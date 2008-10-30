@@ -14,16 +14,16 @@ import steamcondenser.PacketFormatException;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class MasterServerQueryResponsePacket extends SteamPacket
+public class M2A_SERVER_BATCH_Paket extends SteamPacket
 {
 	private Vector<String> serverArray;
 	
-	public MasterServerQueryResponsePacket(byte[] data)
+	public M2A_SERVER_BATCH_Paket(byte[] data)
 		throws PacketFormatException
 	{
-		super(SteamPacket.MASTER_SERVER_QUERY_REQUEST_HEADER, data);
+		super(SteamPacket.M2A_SERVER_BATCH_HEADER, data);
 		
-		if(this.contentData.getByte() != 10)
+		if(this.contentData.getByte() != 0x0A)
 		{
 			throw new PacketFormatException("Master query response is missing additional 0x0A byte.");
 		}

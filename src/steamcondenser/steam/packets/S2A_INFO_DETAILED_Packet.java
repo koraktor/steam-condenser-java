@@ -11,15 +11,15 @@ import java.util.HashMap;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_INFO_GoldSrcResponsePacket extends A2A_INFO_ResponsePacket
+public class S2A_INFO_DETAILED_Packet extends S2A_INFO_BasePacket
 {
 	protected boolean isMod;
 	protected HashMap<String, Object> modInfo;
 	protected String serverIp;
 	
-	public A2A_INFO_GoldSrcResponsePacket(byte[] dataBytes)
+	public S2A_INFO_DETAILED_Packet(byte[] dataBytes)
 	{
-		super(SteamPacket.A2A_INFO_GOLDSRC_RESPONSE_HEADER, dataBytes);
+		super(SteamPacket.S2A_INFO_DETAILED_HEADER, dataBytes);
 		
 		this.serverIp = this.contentData.getString();
 		this.serverName = this.contentData.getString();

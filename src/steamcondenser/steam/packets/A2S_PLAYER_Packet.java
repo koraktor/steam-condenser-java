@@ -11,10 +11,10 @@ import steamcondenser.Helper;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_RULES_RequestPacket extends SteamPacket
+public class A2S_PLAYER_Packet extends SteamPacket
 {
-	public A2A_RULES_RequestPacket(int challengeNumber)
+	public A2S_PLAYER_Packet(int challengeNumber)
 	{
-		super(SteamPacket.A2A_RULES_REQUEST_HEADER, Helper.byteArrayFromInteger(Integer.reverseBytes(challengeNumber)));
+		super(SteamPacket.A2S_PLAYER_HEADER, Helper.byteArrayFromInteger(Integer.reverseBytes(challengeNumber)));
 	}
 }

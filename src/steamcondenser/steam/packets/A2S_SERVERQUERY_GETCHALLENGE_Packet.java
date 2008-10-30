@@ -9,10 +9,10 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_SERVERQUERY_GETCHALLENGE_RequestPacket extends SteamPacket
+public class A2S_SERVERQUERY_GETCHALLENGE_Packet extends SteamPacket
 {
-	public A2A_SERVERQUERY_GETCHALLENGE_RequestPacket()
+	public A2S_SERVERQUERY_GETCHALLENGE_Packet()
 	{
-		super(SteamPacket.A2A_SERVERQUERY_GETCHALLENGE_REQUEST_HEADER);
+		super(SteamPacket.A2S_SERVERQUERY_GETCHALLENGE_HEADER);
 	}
 }

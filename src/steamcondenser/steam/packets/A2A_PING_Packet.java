@@ -9,10 +9,10 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_PING_RequestPacket extends SteamPacket
+public class A2A_PING_Packet extends SteamPacket
 {
-	public A2A_PING_RequestPacket()
+	public A2A_PING_Packet()
 	{
-		super(SteamPacket.A2A_PING_REQUEST_HEADER);
+		super(SteamPacket.A2A_PING_HEADER);
 	}
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public abstract class A2A_INFO_ResponsePacket extends SteamPacket
+public abstract class S2A_INFO_BasePacket extends SteamPacket
 {
 	protected byte dedicated;
 	protected String gameDescription;
@@ -27,7 +27,7 @@ public abstract class A2A_INFO_ResponsePacket extends SteamPacket
 	protected boolean secure;
 	protected String serverName;
 	
-	A2A_INFO_ResponsePacket(byte headerByte, byte[] dataBytes)
+	S2A_INFO_BasePacket(byte headerByte, byte[] dataBytes)
 	{
 		super(headerByte, dataBytes);
 	}

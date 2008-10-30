@@ -9,7 +9,7 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_INFO_SourceResponsePacket extends A2A_INFO_ResponsePacket
+public class S2A_INFO2_Packet extends S2A_INFO_BasePacket
 {
 	protected short appId;
 	protected String gameVersion;
@@ -18,9 +18,9 @@ public class A2A_INFO_SourceResponsePacket extends A2A_INFO_ResponsePacket
 	protected String tvName;
 	protected short tvPort;
 	
-	public A2A_INFO_SourceResponsePacket(byte[] dataBytes)
+	public S2A_INFO2_Packet(byte[] dataBytes)
 	{
-		super(SteamPacket.A2A_INFO_SOURCE_RESPONSE_HEADER, dataBytes);
+		super(SteamPacket.S2A_INFO2_HEADER, dataBytes);
 		
 		this.networkVersion = this.contentData.getByte();
 		this.serverName = this.contentData.getString();

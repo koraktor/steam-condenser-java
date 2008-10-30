@@ -11,12 +11,12 @@ import steamcondenser.PacketFormatException;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_PING_ResponsePacket extends SteamPacket
+public class A2A_ACK_Packet extends SteamPacket
 {
-	public A2A_PING_ResponsePacket(byte[] dataBytes)
+	public A2A_ACK_Packet(byte[] dataBytes)
 		throws PacketFormatException
 	{
-		super(SteamPacket.A2A_PING_RESPONSE_HEADER, dataBytes);
+		super(SteamPacket.A2A_ACK_HEADER, dataBytes);
 		
 		String pingReply = this.contentData.getString();
 		

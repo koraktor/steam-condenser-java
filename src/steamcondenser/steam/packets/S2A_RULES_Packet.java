@@ -13,14 +13,14 @@ import steamcondenser.PacketFormatException;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_RULES_ResponsePacket extends SteamPacket
+public class S2A_RULES_Packet extends SteamPacket
 {
 	private HashMap<String, String>rulesHash;
 	
-	public A2A_RULES_ResponsePacket(byte[] dataBytes)
+	public S2A_RULES_Packet(byte[] dataBytes)
 		throws PacketFormatException
 	{
-		super(SteamPacket.A2A_RULES_RESPONSE_HEADER, dataBytes);
+		super(SteamPacket.S2A_RULES_HEADER, dataBytes);
 		
 		if(this.contentData.getLength() == 0)
 		{

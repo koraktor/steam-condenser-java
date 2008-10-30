@@ -27,7 +27,7 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class MasterServerQueryRequestPacket extends SteamPacket
+public class A2M_GET_SERVERS_BATCH2_Paket extends SteamPacket
 {
 	public static final byte REGION_US_EAST_COAST = 0x00;
 	public static final byte REGION_US_WEST_COAST = 0x01;
@@ -46,9 +46,9 @@ public class MasterServerQueryRequestPacket extends SteamPacket
 	/**
 	 * Creates a master server request without applying any filters.
 	 */
-	public MasterServerQueryRequestPacket()
+	public A2M_GET_SERVERS_BATCH2_Paket()
 	{
-		this(MasterServerQueryRequestPacket.REGION_ALL, "0.0.0.0:0", "");
+		this(A2M_GET_SERVERS_BATCH2_Paket.REGION_ALL, "0.0.0.0:0", "");
 	}
 	
 	/**
@@ -58,9 +58,9 @@ public class MasterServerQueryRequestPacket extends SteamPacket
 	 *        server or 0.0.0.0 
 	 * @param filter The <a href="#filtering">filters</a> to apply in the form ("\filtername\value...")
 	 */
-	public MasterServerQueryRequestPacket(byte regionCode, String startIp, String filter)
+	public A2M_GET_SERVERS_BATCH2_Paket(byte regionCode, String startIp, String filter)
 	{
-		super(SteamPacket.MASTER_SERVER_QUERY_REQUEST_HEADER);
+		super(SteamPacket.A2M_GET_SERVERS_BATCH2_HEADER);
 		
 		this.filter = filter;
 		this.regionCode = regionCode;

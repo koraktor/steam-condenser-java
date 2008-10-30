@@ -14,14 +14,14 @@ import steamcondenser.steam.SteamPlayer;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_PLAYER_ResponsePacket extends SteamPacket
+public class S2A_PLAYER_Packet extends SteamPacket
 {
 	private ArrayList<SteamPlayer> playerArray;
 
-	public A2A_PLAYER_ResponsePacket(byte[] dataBytes)
+	public S2A_PLAYER_Packet(byte[] dataBytes)
 		throws PacketFormatException
 	{
-		super(SteamPacket.A2A_PLAYER_RESPONSE_HEADER, dataBytes);
+		super(SteamPacket.S2A_PLAYER_HEADER, dataBytes);
 		
 		if(this.contentData.getLength() == 0)
 		{

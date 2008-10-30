@@ -10,7 +10,7 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_SERVERQUERY_GETCHALLENGE_ResponsePacket extends SteamPacket
+public class S2C_CHALLENGE_Packet extends SteamPacket
 {
 	/**
 	 * Creates a A2A_SERVERQUERY_GETCHALLENGE response base on a challenge
@@ -18,9 +18,9 @@ public class A2A_SERVERQUERY_GETCHALLENGE_ResponsePacket extends SteamPacket
 	 * @param challengeNumberBytes A byte[] representation of the challenge
 	 *        number to send in this packet
 	 */
-	public A2A_SERVERQUERY_GETCHALLENGE_ResponsePacket(byte[] challengeNumberBytes)
+	public S2C_CHALLENGE_Packet(byte[] challengeNumberBytes)
 	{
-		super(SteamPacket.A2A_SERVERQUERY_GETCHALLENGE_RESPONSE_HEADER, challengeNumberBytes);
+		super(SteamPacket.S2C_CHALLENGE_HEADER, challengeNumberBytes);
 	}
 	
 	/**

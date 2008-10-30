@@ -9,10 +9,10 @@ package steamcondenser.steam.packets;
  * @author Sebastian Staudt
  * @version $Id$
  */
-public class A2A_INFO_RequestPacket extends SteamPacket
+public class A2S_INFO_Packet extends SteamPacket
 {
-	public A2A_INFO_RequestPacket()
+	public A2S_INFO_Packet()
 	{
-		super(SteamPacket.A2A_INFO_REQUEST_HEADER, "Source Engine Query".getBytes());
+		super(SteamPacket.A2S_INFO_HEADER, "Source Engine Query".getBytes());
 	}
 }
