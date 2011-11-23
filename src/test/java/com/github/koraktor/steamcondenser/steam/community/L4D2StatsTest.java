@@ -70,7 +70,13 @@ public class L4D2StatsTest {
 		assertEquals("Left 4 Dead 2", l4d2Stats.getGameName());
 		assertEquals("L4D2", l4d2Stats.getGameFriendlyName());
 		assertEquals(550, l4d2Stats.getAppId());
+		assertEquals("0s", l4d2Stats.getHoursPlayed());//TODO: strange behavior
+		assertEquals(76561197985077150l, l4d2Stats.getSteamId64());
+	}
 
+	@Test
+	public void achievements() throws Exception {
+		assertEquals(7, l4d2Stats.getAchievementsDone());
 	}
 
 	@Test
