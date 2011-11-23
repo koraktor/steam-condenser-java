@@ -6,6 +6,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -21,10 +24,10 @@ import org.w3c.dom.Document;
 @PrepareForTest({DocumentBuilderFactory.class, DocumentBuilder.class})
 public class GutoMaiaSteamCommunityTest {
 		
-	public Document getGutoMaiaProfileFromFile() throws Exception {
+	public Document getGutoMaiaProfileFromFile(String file) throws Exception {
 		try {
 			DOMParser parser = new DOMParser();
-			parser.parse("src/test/resources/gutomaia.xml");
+			parser.parse("src/test/resources/"+file);
 			return parser.getDocument();
 		}catch (Exception e) {
 			throw e;
@@ -39,11 +42,12 @@ public class GutoMaiaSteamCommunityTest {
 		mockStatic(DocumentBuilderFactory.class);
 		when(DocumentBuilderFactory.newInstance()).thenReturn(factory);
 		when(factory.newDocumentBuilder()).thenReturn(parser);
+		
 	}
 	
 	@Test
 	public void getProfile() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile());
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
 				
 		SteamId steamId = SteamId.create("gutomaia");
 		
@@ -53,5 +57,19 @@ public class GutoMaiaSteamCommunityTest {
 		assertEquals("gutomaia",steamId.getCustomUrl());
 		assertEquals("Salvador, Bahia, Brazil",steamId.getLocation());
 	}
+	
+	@Test
+	public void getGames() throws Exception{
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
+		
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-games.xml"));
 
+		SteamId steamId = SteamId.create("gutomaia");
+		HashMap<Integer, SteamGame> games = steamId.getGames();
+
+		assertEquals(285, games.size());
+
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
+	}
+	
 }
