@@ -56,6 +56,14 @@ public class GutoMaiaSteamCommunityTest {
 		assertEquals(76561197985077150l, steamId.getSteamId64());
 		assertEquals("gutomaia", steamId.getNickname());
 		assertEquals("gutomaia",steamId.getCustomUrl());
+		assertEquals("http://media.steampowered.com/steamcommunity/public/images/avatars/56/566f5c7e9126864777b7d9d3cfe9f8e62e27f706_full.jpg", steamId.getAvatarFullUrl());
+		assertEquals("http://media.steampowered.com/steamcommunity/public/images/avatars/56/566f5c7e9126864777b7d9d3cfe9f8e62e27f706.jpg", steamId.getAvatarIconUrl());
+		assertEquals("http://media.steampowered.com/steamcommunity/public/images/avatars/56/566f5c7e9126864777b7d9d3cfe9f8e62e27f706_medium.jpg", steamId.getAvatarMediumUrl());
+		
+		assertEquals(false, steamId.isBanned());
+		assertEquals(false, steamId.isInGame());
+		assertEquals(false, steamId.isOnline());
+						
 		assertEquals("Salvador, Bahia, Brazil",steamId.getLocation());
 	}
 	
@@ -84,5 +92,4 @@ public class GutoMaiaSteamCommunityTest {
 		
 		verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
 	}
-	
 }
