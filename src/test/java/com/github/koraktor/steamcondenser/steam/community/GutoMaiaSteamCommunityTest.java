@@ -26,7 +26,7 @@ import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
 @PrepareForTest({DocumentBuilderFactory.class, DocumentBuilder.class})
 public class GutoMaiaSteamCommunityTest {
 		
-	public Document getGutoMaiaProfileFromFile(String file) throws Exception {
+	public Document loadXml(String file) throws Exception {
 		try {
 			DOMParser parser = new DOMParser();
 			parser.parse("src/test/resources/"+file);
@@ -49,7 +49,7 @@ public class GutoMaiaSteamCommunityTest {
 	
 	@Test
 	public void getProfile() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(loadXml("gutomaia.xml"));
 				
 		SteamId steamId = SteamId.create("gutomaia");
 		
@@ -71,8 +71,8 @@ public class GutoMaiaSteamCommunityTest {
 	
 	@Test
 	public void getGames() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-games.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(loadXml("gutomaia.xml"));		
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(loadXml("gutomaia-games.xml"));
 
 		SteamId steamId = SteamId.create("gutomaia", true, false);
 		HashMap<Integer, SteamGame> games = steamId.getGames();
@@ -84,8 +84,8 @@ public class GutoMaiaSteamCommunityTest {
 	
 	@Test
 	public void getFriends() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-friends.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(loadXml("gutomaia.xml"));		
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1")).thenReturn(loadXml("gutomaia-friends.xml"));
 		
 		SteamId steamId = SteamId.create("gutomaia", true, false);
 		SteamId friends[] = steamId.getFriends();
@@ -99,9 +99,9 @@ public class GutoMaiaSteamCommunityTest {
 	
 	@Test
 	public void getTF2Stats() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-friends.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-tf2.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(loadXml("gutomaia.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(loadXml("gutomaia-friends.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all")).thenReturn(loadXml("gutomaia-tf2.xml"));
 
 		SteamId steamId = SteamId.create("gutomaia", true, false);
 		HashMap<Integer, SteamGame> games = steamId.getGames();
