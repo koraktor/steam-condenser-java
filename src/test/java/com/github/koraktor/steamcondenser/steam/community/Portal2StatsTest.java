@@ -68,6 +68,8 @@ public class Portal2StatsTest {
 		assertEquals("Portal 2", portal2Stats.getGameName());
 		assertEquals("Portal2", portal2Stats.getGameFriendlyName());
 		assertEquals(620, portal2Stats.getAppId());
+		assertEquals("0", portal2Stats.getHoursPlayed());
+		assertEquals(76561197985077150l, portal2Stats.getSteamId64());
 	}
 	
 	@Test
