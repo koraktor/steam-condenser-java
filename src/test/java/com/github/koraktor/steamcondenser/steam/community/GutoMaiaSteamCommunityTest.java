@@ -20,6 +20,8 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.w3c.dom.Document;
 
+import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
+
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DocumentBuilderFactory.class, DocumentBuilder.class})
 public class GutoMaiaSteamCommunityTest {
@@ -72,7 +74,7 @@ public class GutoMaiaSteamCommunityTest {
 		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
 		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-games.xml"));
 
-		SteamId steamId = SteamId.create("gutomaia");
+		SteamId steamId = SteamId.create("gutomaia", true, false);
 		HashMap<Integer, SteamGame> games = steamId.getGames();
 
 		assertEquals(285, games.size());
@@ -85,11 +87,29 @@ public class GutoMaiaSteamCommunityTest {
 		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
 		when(parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-friends.xml"));
 		
-		SteamId steamId = SteamId.create("gutomaia");
+		SteamId steamId = SteamId.create("gutomaia", true, false);
 		SteamId friends[] = steamId.getFriends();
 		
 		assertEquals(30, friends.length);
 		
+		//verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
 		verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
+		
+	}
+	
+	@Test
+	public void getTF2Stats() throws Exception{
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-friends.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-tf2.xml"));
+
+		SteamId steamId = SteamId.create("gutomaia", true, false);
+		HashMap<Integer, SteamGame> games = steamId.getGames();
+
+		TF2Stats tf2Stats = (TF2Stats) steamId.getGameStats("tf2");
+		
+		assertEquals("Team Fortress 2", tf2Stats.getGameName());
+		assertEquals("TF2", tf2Stats.getGameFriendlyName());
+		assertEquals(440, tf2Stats.getAppId());
 	}
 }
