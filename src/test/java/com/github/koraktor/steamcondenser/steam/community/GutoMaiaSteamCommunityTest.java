@@ -1,3 +1,10 @@
+/**
+ * This code is free software; you can redistribute it and/or modify it under
+ * the terms of the new BSD License.
+ *
+ * Copyright (c) 2008-2011, Sebastian Staudt
+ */
+
 package com.github.koraktor.steamcondenser.steam.community;
 
 import static org.junit.Assert.assertEquals;
@@ -22,6 +29,9 @@ import org.w3c.dom.Document;
 
 import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
 
+/**
+ * @author Guto Maia
+ */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DocumentBuilderFactory.class, DocumentBuilder.class})
 public class GutoMaiaSteamCommunityTest {
@@ -112,4 +122,5 @@ public class GutoMaiaSteamCommunityTest {
 		assertEquals("TF2", tf2Stats.getGameFriendlyName());
 		assertEquals(440, tf2Stats.getAppId());
 	}
+	
 }
