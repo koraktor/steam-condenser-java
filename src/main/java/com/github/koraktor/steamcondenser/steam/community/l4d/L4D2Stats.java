@@ -39,10 +39,10 @@ public class L4D2Stats extends AbstractL4DStats {
 
         Element weaponsData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
         this.damagePercentages = new HashMap<String, Float>();
-        this.damagePercentages.put("melee", Float.parseFloat(((Element) weaponsData.getElementsByTagName("meleePctDmg")).getTextContent()));
-        this.damagePercentages.put("pistols", Float.parseFloat(((Element) weaponsData.getElementsByTagName("pistolsPctDmg")).getTextContent()));
-        this.damagePercentages.put("rifles", Float.parseFloat(((Element) weaponsData.getElementsByTagName("bulletsPctDmg")).getTextContent()));
-        this.damagePercentages.put("shotguns", Float.parseFloat(((Element) weaponsData.getElementsByTagName("shellPctDmg")).getTextContent()));
+        this.damagePercentages.put("melee", Float.parseFloat(weaponsData.getElementsByTagName("meleePctDmg").item(0).getTextContent()));
+        this.damagePercentages.put("pistols", Float.parseFloat(weaponsData.getElementsByTagName("pistolsPctDmg").item(0).getTextContent()));
+        this.damagePercentages.put("rifles", Float.parseFloat(weaponsData.getElementsByTagName("bulletsPctDmg").item(0).getTextContent()));
+        this.damagePercentages.put("shotguns", Float.parseFloat(weaponsData.getElementsByTagName("shellsPctDmg").item(0).getTextContent()));
     }
 
     /**

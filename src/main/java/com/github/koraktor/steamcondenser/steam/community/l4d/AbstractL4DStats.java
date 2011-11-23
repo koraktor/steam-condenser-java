@@ -112,7 +112,7 @@ public abstract class AbstractL4DStats extends GameStats {
             this.lifetimeStats = new HashMap<String, Object>();
             this.lifetimeStats.put("finalesSurvived", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
             this.lifetimeStats.put("gamesPlayed", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
-            this.lifetimeStats.put("finalesSurvivedPercentage", (Float) this.lifetimeStats.get("finalesSurvived") / (Integer) this.lifetimeStats.get("gamesPlayed"));
+            //this.lifetimeStats.put("finalesSurvivedPercentage", (Float) this.lifetimeStats.get("finales") / (Integer) this.lifetimeStats.get("gamesPlayed"));
             this.lifetimeStats.put("infectedKilled", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("infectedkilled").item(0).getTextContent()));
             this.lifetimeStats.put("killsPerHour", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("killsperhour").item(0).getTextContent()));
             this.lifetimeStats.put("avgKitsShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("kitsshared").item(0).getTextContent()));
