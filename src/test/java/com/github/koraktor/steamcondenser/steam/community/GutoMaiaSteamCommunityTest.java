@@ -100,7 +100,7 @@ public class GutoMaiaSteamCommunityTest {
 	@Test
 	public void getTF2Stats() throws Exception{
 		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(loadXml("gutomaia.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(loadXml("gutomaia-friends.xml"));
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(loadXml("gutomaia-games.xml"));
 		when(parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all")).thenReturn(loadXml("gutomaia-tf2.xml"));
 
 		SteamId steamId = SteamId.create("gutomaia", true, false);
