@@ -52,7 +52,8 @@ public class GutoMaiaSteamCommunityTest {
 		SteamId steamId = SteamId.create("gutomaia");
 		
 		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
-		
+
+		assertEquals(76561197985077150l, steamId.getSteamId64());
 		assertEquals("gutomaia", steamId.getNickname());
 		assertEquals("gutomaia",steamId.getCustomUrl());
 		assertEquals("Salvador, Bahia, Brazil",steamId.getLocation());
@@ -60,8 +61,7 @@ public class GutoMaiaSteamCommunityTest {
 	
 	@Test
 	public void getGames() throws Exception{
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));
-		
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
 		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-games.xml"));
 
 		SteamId steamId = SteamId.create("gutomaia");
@@ -70,6 +70,19 @@ public class GutoMaiaSteamCommunityTest {
 		assertEquals(285, games.size());
 
 		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
+	}
+	
+	@Test
+	public void getFriends() throws Exception{
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia.xml"));		
+		when(parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1")).thenReturn(getGutoMaiaProfileFromFile("gutomaia-friends.xml"));
+		
+		SteamId steamId = SteamId.create("gutomaia");
+		SteamId friends[] = steamId.getFriends();
+		
+		assertEquals(30, friends.length);
+		
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
 	}
 	
 }
