@@ -7,6 +7,7 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import static com.github.koraktor.steamcondenser.steam.community.XMLUtil.loadXml;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -15,13 +16,11 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.xerces.parsers.DOMParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.w3c.dom.Document;
 
 import com.github.koraktor.steamcondenser.steam.community.portal2.Portal2Stats;
 
@@ -32,15 +31,6 @@ import com.github.koraktor.steamcondenser.steam.community.portal2.Portal2Stats;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ DocumentBuilderFactory.class, DocumentBuilder.class })
 public class Portal2StatsTest {
-	public Document loadXml(String file) throws Exception {
-		try {
-			DOMParser parser = new DOMParser();
-			parser.parse("src/test/resources/" + file);
-			return parser.getDocument();
-		} catch (Exception e) {
-			throw e;
-		}
-	}
 
 	DocumentBuilder parser = mock(DocumentBuilder.class);
 	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);

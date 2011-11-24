@@ -7,6 +7,7 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import static com.github.koraktor.steamcondenser.steam.community.XMLUtil.loadXml;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -15,16 +16,13 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.xerces.parsers.DOMParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.w3c.dom.Document;
 
 import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Class;
-import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Inventory;
 import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
 
 /**
@@ -34,16 +32,6 @@ import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
 @PrepareForTest({ DocumentBuilderFactory.class, DocumentBuilder.class })
 public class TF2StatsTest {
 	
-	public Document loadXml(String file) throws Exception {
-		try {
-			DOMParser parser = new DOMParser();
-			parser.parse("src/test/resources/" + file);
-			return parser.getDocument();
-		} catch (Exception e) {
-			throw e;
-		}
-	}
-
 	DocumentBuilder parser = mock(DocumentBuilder.class);
 	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);
 
@@ -85,7 +73,7 @@ public class TF2StatsTest {
 		//TODO: TF2Inventory inventory = tf2Stats.getInventory();
 		//assertEquals(1, inventory.getItems().size());
 	}
-	
+		
 	@Test
 	public void classStats() throws Exception{
 		assertEquals(9, tf2Stats.getClassStats().size());
@@ -216,7 +204,5 @@ public class TF2StatsTest {
 	    assertEquals(410, medic.getMaxTimeAlive());
 	    assertEquals(35802, medic.getPlayTime());
 	}
-	
-	
 
 }
