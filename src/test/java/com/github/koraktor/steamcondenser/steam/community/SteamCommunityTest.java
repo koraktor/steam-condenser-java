@@ -10,6 +10,7 @@ package com.github.koraktor.steamcondenser.steam.community;
 import static com.github.koraktor.steamcondenser.steam.community.XMLUtil.loadXml;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
@@ -25,8 +26,6 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
-
 /**
  * @author Sebastian Staudt
  * @author Guto Maia
@@ -39,11 +38,23 @@ public class SteamCommunityTest {
 	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);
 
 	@Before
-	public void init() throws Exception {
+	public void setUp() throws Exception {
 		mockStatic(DocumentBuilderFactory.class);
 		when(DocumentBuilderFactory.newInstance()).thenReturn(factory);
 		when(factory.newDocumentBuilder()).thenReturn(parser);
 
+	}
+		
+	@Test
+	public void testCache() throws Exception {
+		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1"))
+		.thenReturn(loadXml("gutomaia.xml"), loadXml("gutomaia.xml"));
+		
+		SteamId.create("gutomaia", true, true);
+		SteamId.create("gutomaia", true, true);
+		
+		verify(factory, times(2)).newDocumentBuilder();
+		verify(parser, times(2)).parse("http://steamcommunity.com/id/gutomaia?xml=1");
 	}
 
 	/**
@@ -55,9 +66,10 @@ public class SteamCommunityTest {
 		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1"))
 				.thenReturn(loadXml("gutomaia.xml"));
 
-		SteamId steamId = SteamId.create("gutomaia");
+		SteamId steamId = SteamId.create("gutomaia", true, true);
 
-//		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
+		verify(factory).newDocumentBuilder();
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
 
 		assertEquals(76561197985077150l, steamId.getSteamId64());
 		assertEquals("gutomaia", steamId.getNickname());
@@ -89,9 +101,10 @@ public class SteamCommunityTest {
 		when(parser.parse("http://steamcommunity.com/profiles/76561197985077150?xml=1"))
 				.thenReturn(loadXml("gutomaia.xml"));
 
-		SteamId steamId = SteamId.create(76561197985077150l);
+		SteamId steamId = SteamId.create(76561197985077150l, true, true);
 
-		//verify(parser).parse("http://steamcommunity.com/profiles/76561197985077150?xml=1");
+		verify(factory).newDocumentBuilder();
+		verify(parser).parse("http://steamcommunity.com/profiles/76561197985077150?xml=1");
 
 		assertEquals(76561197985077150l, steamId.getSteamId64());
 		assertEquals("gutomaia", steamId.getNickname());
@@ -120,13 +133,14 @@ public class SteamCommunityTest {
 		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1"))
 				.thenReturn(loadXml("gutomaia-games.xml"));
 
-		SteamId steamId = SteamId.create("gutomaia", true, false);
+		SteamId steamId = SteamId.create("gutomaia", true, true);
 		HashMap<Integer, SteamGame> games = steamId.getGames();
+		
+		verify(factory, times(2)).newDocumentBuilder();
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
 
 		assertEquals(285, games.size());
-
-//		verify(parser).parse(
-//				"http://steamcommunity.com/id/gutomaia/games?xml=1");
 	}
 
 	@Test
@@ -137,34 +151,13 @@ public class SteamCommunityTest {
 				parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1"))
 				.thenReturn(loadXml("gutomaia-friends.xml"));
 
-		SteamId steamId = SteamId.create("gutomaia", true, false);
+		SteamId steamId = SteamId.create("gutomaia", true, true);
 		SteamId friends[] = steamId.getFriends();
 
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
+
 		assertEquals(30, friends.length);
-
-		// verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
-		verify(parser).parse(
-				"http://steamcommunity.com/id/gutomaia/friends?xml=1");
-
-	}
-
-	@Test
-	public void getTF2Stats() throws Exception {
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1"))
-				.thenReturn(loadXml("gutomaia.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1"))
-				.thenReturn(loadXml("gutomaia-games.xml"));
-		when(
-				parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all"))
-				.thenReturn(loadXml("gutomaia-tf2.xml"));
-
-		SteamId steamId = SteamId.create("gutomaia", true, false);
-
-		TF2Stats tf2Stats = (TF2Stats) steamId.getGameStats("tf2");
-
-		assertEquals("Team Fortress 2", tf2Stats.getGameName());
-		assertEquals("TF2", tf2Stats.getGameFriendlyName());
-		assertEquals(440, tf2Stats.getAppId());
 	}
 
 	@Test
@@ -177,6 +170,10 @@ public class SteamCommunityTest {
 				.thenReturn(loadXml("gutomaia.xml"));
 
 		SteamGroup group = SteamGroup.create("gutonet");
+
+		//TODO: cache for groups not working
+		//verify(parser).parse("http://steamcommunity.com/groups/gutonet/memberslistxml?p=1");
+		//verify(parser).parse("http://steamcommunity.com/profiles/76561197985077150?xml=1");
 
 		assertEquals(1, group.getMemberCount());
 	}
@@ -192,6 +189,10 @@ public class SteamCommunityTest {
 				.thenReturn(loadXml("gutomaia.xml"));
 
 		SteamGroup group = SteamGroup.create(103582791429521412L);
+
+		//TODO: cache for groups not working
+		//verify(parser).parse("http://steamcommunity.com/gid/103582791429521412/memberslistxml?p=1");
+		//verify(parser).parse("http://steamcommunity.com/profiles/76561197985077150?xml=1");
 
 		assertEquals(1, group.getMemberCount());
 	}
