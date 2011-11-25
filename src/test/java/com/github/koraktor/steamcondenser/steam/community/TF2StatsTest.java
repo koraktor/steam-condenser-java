@@ -10,12 +10,14 @@ package com.github.koraktor.steamcondenser.steam.community;
 import static com.github.koraktor.steamcondenser.steam.community.XMLUtil.loadXml;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,11 +50,18 @@ public class TF2StatsTest {
 		when(
 				parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all"))
 				.thenReturn(loadXml("gutomaia-tf2.xml"));
-		SteamId steamId = SteamId.create("gutomaia", true, false);
+		SteamId steamId = SteamId.create("gutomaia", true, true);
 		tf2Stats = (TF2Stats) steamId.getGameStats("tf2");
 
 	}
-	
+
+	@After
+	public void tearDown() throws Exception{
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all");
+	}
+
 	TF2Stats tf2Stats;
 
 	@Test

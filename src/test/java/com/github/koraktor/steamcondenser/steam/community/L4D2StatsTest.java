@@ -11,11 +11,13 @@ import static com.github.koraktor.steamcondenser.steam.community.XMLUtil.loadXml
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,9 +48,16 @@ public class L4D2StatsTest {
 		when(
 				parser.parse("http://steamcommunity.com/id/gutomaia/stats/l4d2?xml=all"))
 				.thenReturn(loadXml("gutomaia-l4d2.xml"));
-		SteamId steamId = SteamId.create("gutomaia", true, false);
+		SteamId steamId = SteamId.create("gutomaia", true, true);
 		l4d2Stats = (L4D2Stats) steamId.getGameStats("l4d2");
 
+	}
+	
+	@After
+	public void tearDown() throws Exception{
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
+		verify(parser).parse("http://steamcommunity.com/id/gutomaia/stats/l4d2?xml=all");
 	}
 
 	L4D2Stats l4d2Stats;
