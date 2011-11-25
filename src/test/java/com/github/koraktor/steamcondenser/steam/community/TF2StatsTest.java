@@ -36,7 +36,8 @@ public class TF2StatsTest {
 	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);
 
 	@Before
-	public void init() throws Exception {
+	public void setUp() throws Exception {
+		
 		mockStatic(DocumentBuilderFactory.class);
 		when(DocumentBuilderFactory.newInstance()).thenReturn(factory);
 		when(factory.newDocumentBuilder()).thenReturn(parser);
@@ -67,13 +68,7 @@ public class TF2StatsTest {
 	public void achievements() throws Exception {
 		assertEquals(314, tf2Stats.getAchievementsDone());
 	}
-	
-	@Test
-	public void inventory() throws Exception {
-		//TODO: TF2Inventory inventory = tf2Stats.getInventory();
-		//assertEquals(1, inventory.getItems().size());
-	}
-		
+			
 	@Test
 	public void classStats() throws Exception{
 		assertEquals(9, tf2Stats.getClassStats().size());
