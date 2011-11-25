@@ -32,57 +32,31 @@ import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Stats;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ DocumentBuilderFactory.class, DocumentBuilder.class })
-public class TF2StatsTest {
+public class TF2StatsTest extends StatsTestCase<TF2Stats>{
 	
-	DocumentBuilder parser = mock(DocumentBuilder.class);
-	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);
-
-	@Before
-	public void setUp() throws Exception {
-		
-		mockStatic(DocumentBuilderFactory.class);
-		when(DocumentBuilderFactory.newInstance()).thenReturn(factory);
-		when(factory.newDocumentBuilder()).thenReturn(parser);
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1"))
-				.thenReturn(loadXml("gutomaia.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1"))
-				.thenReturn(loadXml("gutomaia-games.xml"));
-		when(
-				parser.parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all"))
-				.thenReturn(loadXml("gutomaia-tf2.xml"));
-		SteamId steamId = SteamId.create("gutomaia", true, true);
-		tf2Stats = (TF2Stats) steamId.getGameStats("tf2");
-
+	public TF2StatsTest() {
+		super("gutomaia", "tf2");
 	}
-
-	@After
-	public void tearDown() throws Exception{
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia/stats/tf2?xml=all");
-	}
-
-	TF2Stats tf2Stats;
 
 	@Test
 	public void getTF2Stats() throws Exception {
-		assertEquals("Team Fortress 2", tf2Stats.getGameName());
-		assertEquals("TF2", tf2Stats.getGameFriendlyName());
-		assertEquals(440, tf2Stats.getAppId());
-		assertEquals("13.5", tf2Stats.getHoursPlayed());
-		assertEquals(76561197985077150l, tf2Stats.getSteamId64());
+		assertEquals("Team Fortress 2", stats.getGameName());
+		assertEquals("TF2", stats.getGameFriendlyName());
+		assertEquals(440, stats.getAppId());
+		assertEquals("13.5", stats.getHoursPlayed());
+		assertEquals(76561197985077150l, stats.getSteamId64());
 	}
 
 	@Test
 	public void achievements() throws Exception {
-		assertEquals(314, tf2Stats.getAchievementsDone());
+		assertEquals(314, stats.getAchievementsDone());
 	}
 			
 	@Test
 	public void classStats() throws Exception{
-		assertEquals(9, tf2Stats.getClassStats().size());
+		assertEquals(9, stats.getClassStats().size());
 		
-	    TF2Class soldier = tf2Stats.getClassStats().get(0);
+	    TF2Class soldier = stats.getClassStats().get(0);
 	    assertEquals("Soldier", soldier.getName());
 	    assertEquals(7, soldier.getMaxBuildingsDestroyed());
 	    assertEquals(5, soldier.getMaxCaptures());
@@ -96,7 +70,7 @@ public class TF2StatsTest {
 	    assertEquals(344, soldier.getMaxTimeAlive());
 	    assertEquals(218955, soldier.getPlayTime());
 	    
-	    TF2Class spy = tf2Stats.getClassStats().get(1);
+	    TF2Class spy = stats.getClassStats().get(1);
 	    assertEquals("Spy", spy.getName());
 	    assertEquals(9, spy.getMaxBuildingsDestroyed());
 	    assertEquals(2, spy.getMaxCaptures());
@@ -110,7 +84,7 @@ public class TF2StatsTest {
 	    assertEquals(438, spy.getMaxTimeAlive());
 	    assertEquals(194204, spy.getPlayTime());
 
-	    TF2Class pyro = tf2Stats.getClassStats().get(2);
+	    TF2Class pyro = stats.getClassStats().get(2);
 	    assertEquals("Pyro", pyro.getName());
 	    assertEquals(4, pyro.getMaxBuildingsDestroyed());
 	    assertEquals(3, pyro.getMaxCaptures());
@@ -124,7 +98,7 @@ public class TF2StatsTest {
 	    assertEquals(611, pyro.getMaxTimeAlive());
 	    assertEquals(190730, pyro.getPlayTime());
 
-	    TF2Class engineer = tf2Stats.getClassStats().get(3);
+	    TF2Class engineer = stats.getClassStats().get(3);
 	    assertEquals("Engineer", engineer.getName());
 	    assertEquals(3, engineer.getMaxBuildingsDestroyed());
 	    assertEquals(5, engineer.getMaxCaptures());
@@ -138,7 +112,7 @@ public class TF2StatsTest {
 	    assertEquals(795, engineer.getMaxTimeAlive());
 	    assertEquals(188409, engineer.getPlayTime());
 
-	    TF2Class sniper = tf2Stats.getClassStats().get(4);
+	    TF2Class sniper = stats.getClassStats().get(4);
 	    assertEquals("Sniper", sniper.getName());
 	    assertEquals(4, sniper.getMaxBuildingsDestroyed());
 	    assertEquals(3, sniper.getMaxCaptures());
@@ -152,7 +126,7 @@ public class TF2StatsTest {
 	    assertEquals(588, sniper.getMaxTimeAlive());
 	    assertEquals(122459, sniper.getPlayTime());
 
-	    TF2Class heavy = tf2Stats.getClassStats().get(5);
+	    TF2Class heavy = stats.getClassStats().get(5);
 	    assertEquals("Heavy", heavy.getName());
 	    assertEquals(6, heavy.getMaxBuildingsDestroyed());
 	    assertEquals(14, heavy.getMaxCaptures());
@@ -166,7 +140,7 @@ public class TF2StatsTest {
 	    assertEquals(478, heavy.getMaxTimeAlive());
 	    assertEquals(104456, heavy.getPlayTime());
 
-	    TF2Class demoman = tf2Stats.getClassStats().get(6);
+	    TF2Class demoman = stats.getClassStats().get(6);
 	    assertEquals("Demoman", demoman.getName());
 	    assertEquals(5, demoman.getMaxBuildingsDestroyed());
 	    assertEquals(7, demoman.getMaxCaptures());
@@ -180,7 +154,7 @@ public class TF2StatsTest {
 	    assertEquals(403, demoman.getMaxTimeAlive());
 	    assertEquals(74357, demoman.getPlayTime());
 
-	    TF2Class scout = tf2Stats.getClassStats().get(7);
+	    TF2Class scout = stats.getClassStats().get(7);
 	    assertEquals("Scout", scout.getName());
 	    assertEquals(5, scout.getMaxBuildingsDestroyed());
 	    assertEquals(3, scout.getMaxCaptures());
@@ -194,7 +168,7 @@ public class TF2StatsTest {
 	    assertEquals(266, scout.getMaxTimeAlive());
 	    assertEquals(60785, scout.getPlayTime());
 
-	    TF2Class medic = tf2Stats.getClassStats().get(8);
+	    TF2Class medic = stats.getClassStats().get(8);
 	    assertEquals("Medic", medic.getName());
 	    assertEquals(1, medic.getMaxBuildingsDestroyed());
 	    assertEquals(5, medic.getMaxCaptures());

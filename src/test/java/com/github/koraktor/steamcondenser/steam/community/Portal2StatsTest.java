@@ -32,47 +32,23 @@ import com.github.koraktor.steamcondenser.steam.community.portal2.Portal2Stats;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ DocumentBuilderFactory.class, DocumentBuilder.class })
-public class Portal2StatsTest {
+public class Portal2StatsTest extends StatsTestCase<Portal2Stats>{
 
-	DocumentBuilder parser = mock(DocumentBuilder.class);
-	DocumentBuilderFactory factory = mock(DocumentBuilderFactory.class);
-
-	@Before
-	public void setUp() throws Exception {
-		mockStatic(DocumentBuilderFactory.class);
-		when(DocumentBuilderFactory.newInstance()).thenReturn(factory);
-		when(factory.newDocumentBuilder()).thenReturn(parser);
-		when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1"))
-				.thenReturn(loadXml("gutomaia.xml"));
-		when(parser.parse("http://steamcommunity.com/id/gutomaia/games?xml=1"))
-				.thenReturn(loadXml("gutomaia-games.xml"));
-		when(
-				parser.parse("http://steamcommunity.com/id/gutomaia/stats/portal2?xml=all"))
-				.thenReturn(loadXml("gutomaia-portal2.xml"));
-		SteamId steamId = SteamId.create("gutomaia", true, true);
-		portal2Stats = (Portal2Stats) steamId.getGameStats("portal2");
+	public Portal2StatsTest() {
+		super("gutomaia", "portal2");
 	}
-
-	@After
-	public void tearDown() throws Exception{
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia?xml=1");
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia/games?xml=1");
-		verify(parser).parse("http://steamcommunity.com/id/gutomaia/stats/portal2?xml=all");
-	}
-
-	Portal2Stats portal2Stats;
 
 	@Test
 	public void getPortal2Stats() throws Exception {
-		assertEquals("Portal 2", portal2Stats.getGameName());
-		assertEquals("Portal2", portal2Stats.getGameFriendlyName());
-		assertEquals(620, portal2Stats.getAppId());
-		assertEquals("0", portal2Stats.getHoursPlayed());
-		assertEquals(76561197985077150l, portal2Stats.getSteamId64());
+		assertEquals("Portal 2", stats.getGameName());
+		assertEquals("Portal2", stats.getGameFriendlyName());
+		assertEquals(620, stats.getAppId());
+		assertEquals("0", stats.getHoursPlayed());
+		assertEquals(76561197985077150l, stats.getSteamId64());
 	}
 	
 	@Test
 	public void achievements() throws Exception {
-		assertEquals(17, portal2Stats.getAchievementsDone());
+		assertEquals(17, stats.getAchievementsDone());
 	}
 }
