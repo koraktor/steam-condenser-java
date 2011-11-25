@@ -14,7 +14,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -290,7 +289,7 @@ public class SteamId {
     public void fetchData() throws SteamCondenserException {
         try {
             String url = this.getBaseUrl() + "?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element profile = parser.parse(url).getDocumentElement();
 
             if(profile.getElementsByTagName("error").getLength() > 0) {
@@ -383,7 +382,7 @@ public class SteamId {
     private void fetchFriends() throws SteamCondenserException {
         try {
             String url = this.getBaseUrl() + "/friends?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element friendsData = parser.parse(url).getDocumentElement();
 
             Element friendsNode = (Element) friendsData.getElementsByTagName("friends").item(0);
@@ -408,7 +407,7 @@ public class SteamId {
     private void fetchGames() throws SteamCondenserException {
         try {
             String url = this.getBaseUrl() + "/games?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element gamesData = parser.parse(url).getDocumentElement();
 
             Element gamesNode = (Element) gamesData.getElementsByTagName("games").item(0);

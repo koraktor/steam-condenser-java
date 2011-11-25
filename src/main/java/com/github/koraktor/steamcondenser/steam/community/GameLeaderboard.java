@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -107,7 +106,7 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("http://steamcommunity.com/stats/%s/leaderboards/?xml=1", gameName);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element boardsData = parser.parse(url).getDocumentElement();
 
             NodeList errorNode = boardsData.getElementsByTagName("error");
@@ -211,7 +210,7 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("%s&steamid=%s", this.url, steamId);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element boardData = parser.parse(url).getDocumentElement();
 
             NodeList errorNode = boardData.getElementsByTagName("error");
@@ -257,7 +256,7 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("%s&steamid=%s", this.url, steamId);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element boardData = parser.parse(url).getDocumentElement();
 
             NodeList errorNode = boardData.getElementsByTagName("error");
@@ -300,7 +299,7 @@ public class GameLeaderboard {
 
         String url = String.format("%s&start=%d&end=%d", this.url, first, last);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             Element boardData = parser.parse(url).getDocumentElement();
 
             NodeList errorNode = boardData.getElementsByTagName("error");

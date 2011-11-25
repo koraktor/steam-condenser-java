@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -227,7 +226,7 @@ public class SteamGroup {
         this.members = new ArrayList<SteamId>();
 
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             do {
                 page ++;
                 url = this.getBaseUrl() + "/memberslistxml?p=" + page;
@@ -316,7 +315,7 @@ public class SteamGroup {
     public int getMemberCount() throws SteamCondenserException {
         try {
             if(this.members == null) {
-                DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                DocumentBuilder parser = XMLData.getDocumentBuilder();
                 Element memberData = parser.parse(this.getBaseUrl() + "/memberslistxml").getDocumentElement();
                 return Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
             } else {

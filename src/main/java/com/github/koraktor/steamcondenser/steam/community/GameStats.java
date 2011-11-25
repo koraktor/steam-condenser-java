@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -108,7 +107,7 @@ public class GameStats {
         try {
             String url = this.getBaseUrl() + "?xml=all";
 
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            DocumentBuilder parser = XMLData.getDocumentBuilder();
             this.xmlData = parser.parse(url).getDocumentElement();
 
             NodeList errorNode = this.xmlData.getElementsByTagName("error");
