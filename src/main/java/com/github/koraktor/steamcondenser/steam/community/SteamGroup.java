@@ -26,7 +26,7 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
  */
 public class SteamGroup {
 
-    private static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
+    protected static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
 
     private String customUrl;
 
@@ -179,7 +179,7 @@ public class SteamGroup {
      * @throws SteamCondenserException if an error occurs while parsing the
      *         data
      */
-    private SteamGroup(Object id, boolean fetch)
+    protected SteamGroup(Object id, boolean fetch)
             throws SteamCondenserException {
         if(id instanceof String) {
             this.customUrl = (String) id;
