@@ -146,15 +146,19 @@ public class SteamGroup {
      */
     private static SteamGroup create(Object id, boolean fetch, boolean bypassCache)
             throws SteamCondenserException {
+        SteamGroup group;
+
         if(SteamGroup.isCached(id) && !bypassCache) {
-            SteamGroup group = SteamGroup.steamGroups.get(id);
+            group = SteamGroup.steamGroups.get(id);
             if(fetch && !group.isFetched()) {
                 group.fetchMembers();
             }
-            return group;
         } else {
-            return new SteamGroup(id, fetch);
+            group = new SteamGroup(id, fetch);
+            group.cache();
         }
+
+        return group;
     }
 
     /**
@@ -190,8 +194,6 @@ public class SteamGroup {
         if(fetch) {
             this.fetchMembers();
         }
-
-        this.cache();
     }
 
     /**
