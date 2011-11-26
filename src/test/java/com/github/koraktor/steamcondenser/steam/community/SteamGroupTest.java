@@ -7,14 +7,18 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
+import org.w3c.dom.Document;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.w3c.dom.Document;
+
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -67,7 +71,12 @@ public class SteamGroupTest {
         when(this.parser.parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1")).thenReturn(memberDocument);
 
         SteamGroup group = new SteamGroup("valve", true);
+        ArrayList<SteamId> members = group.getMembers();
+
         assertThat(group.getMemberCount(), is(221));
+        assertThat(members.get(0).getSteamId64(), is(76561197960265740L));
+        assertFalse(members.get(0).isFetched());
+        assertThat(members.get(members.size() - 1).getSteamId64(), is(76561197970323416L));
         assertTrue(group.isFetched());
 
         verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1");
