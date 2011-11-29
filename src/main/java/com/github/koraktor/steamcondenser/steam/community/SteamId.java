@@ -279,6 +279,19 @@ public class SteamId {
         }
         return false;
     }
+    
+    /**
+     * Get the data from the XML and gives a way for a nicer exception messages.
+     * 
+     * TODO: rafactoring extract the method to a separe class
+     * 
+     * @param document the w3c dom document to be looked
+     * @param elementId the name of the dom node
+     * @return the content of a specific node on the dom document
+     */
+    private static String getData(Element document, String elementId) {
+    		return document.getElementsByTagName(elementId).item(0).getTextContent();
+    }
 
     /**
      * Fetchs data from the Steam Community by querying the XML version of the
@@ -294,42 +307,42 @@ public class SteamId {
             Element profile = parser.parse(url).getDocumentElement();
 
             if(profile.getElementsByTagName("error").getLength() > 0) {
-                throw new SteamCondenserException(profile.getElementsByTagName("error").item(0).getTextContent());
+                throw new SteamCondenserException(getData(profile, "error"));
             }
 
-            this.nickname  = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("steamID").item(0).getTextContent());
-            this.steamId64 = Long.parseLong(profile.getElementsByTagName("steamID64").item(0).getTextContent());
-            this.vacBanned = (profile.getElementsByTagName("vacBanned").item(0).getTextContent().equals("1"));
+            this.nickname  = StringEscapeUtils.unescapeXml(getData(profile, "steamID"));
+            this.steamId64 = Long.parseLong(getData(profile, "steamID64"));
+            this.vacBanned = (getData(profile, "vacBanned").equals("1"));
 
             if(profile.getElementsByTagName("privacyMessage").getLength() > 0) {
-                throw new SteamCondenserException(profile.getElementsByTagName("privacyMessage").item(0).getTextContent());
+                throw new SteamCondenserException(getData(profile, "privacyMessage"));
             }
 
-            String avatarIconUrl = profile.getElementsByTagName("avatarIcon").item(0).getTextContent();
+            String avatarIconUrl = getData(profile, "avatarIcon");
             this.imageUrl = avatarIconUrl.substring(0, avatarIconUrl.length() - 4);
-            this.onlineState = profile.getElementsByTagName("onlineState").item(0).getTextContent();
-            this.privacyState = profile.getElementsByTagName("privacyState").item(0).getTextContent();
-            this.stateMessage = profile.getElementsByTagName("stateMessage").item(0).getTextContent();
-            this.visibilityState = Integer.parseInt(profile.getElementsByTagName("visibilityState").item(0).getTextContent());
+            this.onlineState = getData(profile, "onlineState");
+            this.privacyState = getData(profile, "privacyState");
+            this.stateMessage = getData(profile, "stateMessage");
+            this.visibilityState = Integer.parseInt(getData(profile, "visibilityState"));
 
             if(this.privacyState.compareTo("public") == 0) {
-                this.customUrl = profile.getElementsByTagName("customURL").item(0).getTextContent();
+                this.customUrl = getData(profile, "customURL");
                 if(this.customUrl.length() == 0) {
                     this.customUrl = null;
                 }
 
                 Element favoriteGame = (Element) profile.getElementsByTagName("favoriteGame").item(0);
                 if(favoriteGame != null) {
-                    this.favoriteGame = favoriteGame.getElementsByTagName("name").item(0).getTextContent();
-                    this.favoriteGameHoursPlayed = Float.parseFloat(favoriteGame.getElementsByTagName("hoursPlayed2wk").item(0).getTextContent());
+                    this.favoriteGame = getData(favoriteGame, "name");
+                    this.favoriteGameHoursPlayed = Float.parseFloat(getData(favoriteGame, "hoursPlayed2wk"));
                 }
-                this.headLine = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("headline").item(0).getTextContent());
-                this.hoursPlayed = Float.parseFloat(profile.getElementsByTagName("hoursPlayed2Wk").item(0).getTextContent());
-                this.location = profile.getElementsByTagName("location").item(0).getTextContent();
-                this.memberSince = DateFormat.getDateInstance(DateFormat.LONG,Locale.ENGLISH).parse(profile.getElementsByTagName("memberSince").item(0).getTextContent());
-                this.realName = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("realname").item(0).getTextContent());
-                this.steamRating = Float.parseFloat(profile.getElementsByTagName("steamRating").item(0).getTextContent());
-                this.summary = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("summary").item(0).getTextContent());
+                this.headLine = StringEscapeUtils.unescapeXml(getData(profile, "headline"));
+                this.hoursPlayed = Float.parseFloat(getData(profile, "hoursPlayed2Wk"));
+                this.location = getData(profile, "location");
+                this.memberSince = DateFormat.getDateInstance(DateFormat.LONG,Locale.ENGLISH).parse(getData(profile, "memberSince"));
+                this.realName = StringEscapeUtils.unescapeXml(getData(profile, "realname"));
+                this.steamRating = Float.parseFloat(getData(profile, "steamRating"));
+                this.summary = StringEscapeUtils.unescapeXml(getData(profile, "summary"));
 
                 this.mostPlayedGames = new HashMap<String, Float>();
                 Element mostPlayedGamesNode = (Element) profile.getElementsByTagName("mostPlayedGames").item(0);
@@ -337,7 +350,7 @@ public class SteamId {
                     NodeList mostPlayedGameList = mostPlayedGamesNode.getElementsByTagName("mostPlayedGame");
                     for(int i = 0; i < mostPlayedGameList.getLength(); i++) {
                         Element mostPlayedGame = (Element) mostPlayedGameList.item(i);
-                        this.mostPlayedGames.put(mostPlayedGame.getElementsByTagName("gameName").item(0).getTextContent(), Float.parseFloat(mostPlayedGame.getElementsByTagName("hoursPlayed").item(0).getTextContent()));
+                        this.mostPlayedGames.put(getData(mostPlayedGame, "gameName"), Float.parseFloat(getData(mostPlayedGame, "hoursPlayed")));
                     }
                 }
 
@@ -348,7 +361,7 @@ public class SteamId {
                     this.groups = new SteamGroup[groupsNodeList.getLength()];
                     for(int i = 0; i < groupsNodeList.getLength(); i++) {
                         Element group = (Element) groupsNodeList.item(i);
-                        this.groups[i] = SteamGroup.create(Long.parseLong(group.getElementsByTagName("groupID64").item(0).getTextContent()), false);
+                        this.groups[i] = SteamGroup.create(Long.parseLong(getData(group, "groupID64")), false);
                     }
                 }
 
@@ -358,7 +371,7 @@ public class SteamId {
                     NodeList weblinksList = weblinksNode.getElementsByTagName("weblink");
                     for(int i = 0; i < weblinksList.getLength(); i++) {
                         Element weblink = (Element) weblinksList.item(i);
-                        this.links.put(StringEscapeUtils.unescapeXml(weblink.getElementsByTagName("title").item(0).getTextContent()), weblink.getElementsByTagName("link").item(0).getTextContent());
+                        this.links.put(StringEscapeUtils.unescapeXml(getData(weblink, "title")), getData(weblink, "link"));
                     }
                 }
             }
@@ -421,13 +434,13 @@ public class SteamId {
                 this.games.put(game.getAppId(), game);
                 float recent;
                 try {
-                    recent = Float.parseFloat(gameData.getElementsByTagName("hoursLast2Weeks").item(0).getTextContent());
+                    recent = Float.parseFloat(getData(gameData, "hoursLast2Weeks"));
                 } catch(NullPointerException e) {
                     recent = 0;
                 }
                 float total;
                 try {
-                    total = Float.parseFloat(gameData.getElementsByTagName("hoursOnRecord").item(0).getTextContent());
+                    total = Float.parseFloat(getData(gameData, "hoursOnRecord"));
                 } catch(NullPointerException e) {
                     total = 0;
                 }
