@@ -289,8 +289,13 @@ public class SteamId {
      * @param elementId the name of the dom node
      * @return the content of a specific node on the dom document
      */
-    private static String getData(Element document, String elementId) {
-    		return document.getElementsByTagName(elementId).item(0).getTextContent();
+    private static String getData(Element document, String elementId) throws SteamCondenserException{
+		try {
+			return document.getElementsByTagName(elementId).item(0)
+					.getTextContent();
+		} catch (Exception e) {
+			throw new SteamCondenserException("Error with "+elementId+" element");
+		}
     }
 
     /**
@@ -435,13 +440,13 @@ public class SteamId {
                 float recent;
                 try {
                     recent = Float.parseFloat(getData(gameData, "hoursLast2Weeks"));
-                } catch(NullPointerException e) {
+                } catch(SteamCondenserException e) {
                     recent = 0;
                 }
                 float total;
                 try {
                     total = Float.parseFloat(getData(gameData, "hoursOnRecord"));
-                } catch(NullPointerException e) {
+                } catch(SteamCondenserException e) {
                     total = 0;
                 }
                 int[] playtimes = { (int) (recent * 60), (int) (total * 60) };
