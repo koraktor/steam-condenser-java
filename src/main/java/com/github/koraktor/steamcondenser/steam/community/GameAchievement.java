@@ -43,6 +43,10 @@ public class GameAchievement {
     private Date timestamp;
 
     private boolean unlocked;
+    
+    private String iconOpen;
+    
+	private String iconClosed;
 
     /**
      * Loads the global unlock percentages of all achievements for the given
@@ -96,6 +100,10 @@ public class GameAchievement {
         this.name        = achievementData.getElementsByTagName("name").item(0).getTextContent();
         this.steamId64   = steamId64;
         this.unlocked    = achievementData.getAttribute("closed").equals("1");
+        
+        this.iconClosed  = achievementData.getElementsByTagName("iconClosed").item(0).getTextContent();
+        this.iconOpen    = achievementData.getElementsByTagName("iconOpen").item(0).getTextContent();
+        
 
         NodeList unlockTimestampElements = achievementData.getElementsByTagName("unlockTimestamp");
         if(this.unlocked && unlockTimestampElements.getLength() != 0) {
@@ -167,4 +175,12 @@ public class GameAchievement {
     public boolean isUnlocked() {
         return this.unlocked;
     }
+
+    public String getIconOpen() {
+		return iconOpen;
+	}
+
+	public String getIconClosed() {
+		return iconClosed;
+	}
 }

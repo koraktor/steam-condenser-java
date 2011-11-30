@@ -9,6 +9,9 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -43,6 +46,13 @@ public class TF2StatsTest extends StatsTestCase<TF2Stats>{
 	@Test
 	public void achievements() throws Exception {
 		assertEquals(314, stats.getAchievementsDone());
+		List<GameAchievement> achievements = stats.getAchievements();
+		GameAchievement headOfTheClass = achievements.get(0);
+		assertEquals("Head of the Class", headOfTheClass.getName());
+		assertEquals("Play a complete round with every class.", headOfTheClass.getDescription());
+		//TODO: test headOfTheClass.getTimestamp()
+		assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg", headOfTheClass.getIconClosed());
+		assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg", headOfTheClass.getIconOpen());
 	}
 			
 	@Test
@@ -175,5 +185,4 @@ public class TF2StatsTest extends StatsTestCase<TF2Stats>{
 	    assertEquals(410, medic.getMaxTimeAlive());
 	    assertEquals(35802, medic.getPlayTime());
 	}
-
 }
