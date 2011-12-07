@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -48,6 +50,29 @@ public class SteamGame {
         } else {
             return new SteamGame(appId, gameData);
         }
+    }
+
+    /**
+     * Returns whether the given version of the game with the given application
+     * ID is up-to-date
+     *
+     * @param appId The application ID of the game to check
+     * @param version The version to check against the Web API
+     * @return boolean <var>true</var> if the given version is up-to-date
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the Web API request fails
+     */
+    public static boolean isUpToDate(int appId, int version)
+            throws JSONException, SteamCondenserException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("appid", appId);
+        params.put("version", version);
+        String json = WebApi.getJSON("ISteamApps", "UpToDateCheck", 1, params);
+        JSONObject result = new JSONObject(json).getJSONObject("response");
+        if(!result.getBoolean("success")) {
+            throw new SteamCondenserException(result.getString("error"));
+        }
+        return result.getBoolean("up_to_date");
     }
 
     /**
@@ -106,7 +131,7 @@ public class SteamGame {
     /**
      * Returns the leaderboard for this game and the given leaderboard name
      *
-     * @param id The name of the leaderboard to return
+     * @param name The name of the leaderboard to return
      * @return The matching leaderboard if available
      */
     public GameLeaderboard getLeaderboard(String name)
@@ -155,6 +180,19 @@ public class SteamGame {
      */
     public boolean hasStats() {
         return this.shortName != null;
+    }
+
+    /**
+     * Returns whether the given version of this game is up-to-date
+     *
+     * @param version The version to check against the Web API
+     * @return boolean <var>true</var> if the given version is up-to-date
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the Web API request fails
+     */
+    public boolean isUpToDate(int version)
+            throws JSONException, SteamCondenserException {
+        return SteamGame.isUpToDate(this.appId, version);
     }
 
 }
