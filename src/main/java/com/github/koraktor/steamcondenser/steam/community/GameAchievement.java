@@ -44,6 +44,10 @@ public class GameAchievement {
 
     private boolean unlocked;
 
+    private String iconOpen;
+
+    private String iconClosed;
+
     /**
      * Loads the global unlock percentages of all achievements for the given
      * game
@@ -93,6 +97,8 @@ public class GameAchievement {
         this.apiName     = achievementData.getElementsByTagName("apiname").item(0).getTextContent();
         this.appId       = appId;
         this.description = achievementData.getElementsByTagName("description").item(0).getTextContent();
+        this.iconClosed  = achievementData.getElementsByTagName("iconClosed").item(0).getTextContent();
+        this.iconOpen    = achievementData.getElementsByTagName("iconOpen").item(0).getTextContent();
         this.name        = achievementData.getElementsByTagName("name").item(0).getTextContent();
         this.steamId64   = steamId64;
         this.unlocked    = achievementData.getAttribute("closed").equals("1");
@@ -167,4 +173,23 @@ public class GameAchievement {
     public boolean isUnlocked() {
         return this.unlocked;
     }
+
+    /**
+     * Returns the icon for this achievement when it has not been achieved yet
+     *
+     * @return The open icon for this achievement
+     */
+    public String getIconOpen() {
+        return this.iconOpen;
+    }
+
+    /**
+     * Returns the icon for this achievement when it been already achieved
+     *
+     * @return The closed icon for this achievement
+     */
+    public String getIconClosed() {
+        return this.iconClosed;
+    }
+
 }

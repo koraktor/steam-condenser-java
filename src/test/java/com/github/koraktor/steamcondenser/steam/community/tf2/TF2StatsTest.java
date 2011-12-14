@@ -10,6 +10,7 @@ package com.github.koraktor.steamcondenser.steam.community.tf2;
 
 import org.junit.Test;
 
+import com.github.koraktor.steamcondenser.steam.community.GameAchievement;
 import com.github.koraktor.steamcondenser.steam.community.GameStatsTestCase;
 
 import static org.junit.Assert.assertEquals;
@@ -36,6 +37,12 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
     @Test
     public void achievements() throws Exception {
         assertEquals(314, stats.getAchievementsDone());
+        GameAchievement headOfTheClass = stats.getAchievements().get(0);
+        assertEquals("Head of the Class", headOfTheClass.getName());
+        assertEquals("Play a complete round with every class.", headOfTheClass.getDescription());
+        //TODO: test headOfTheClass.getTimestamp()
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg", headOfTheClass.getIconClosed());
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg", headOfTheClass.getIconOpen());
     }
 
     @Test

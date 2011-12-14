@@ -17,6 +17,7 @@ The following Java libraries are required:
 * Jakarta Commons HTTPClient (for the Web API features)
 * JSON (for the Web API features)
 * JUnit (for testing)
+* PowerMock (for testing)
 
 Maven will install these for you.
 
