@@ -31,7 +31,7 @@ import com.github.koraktor.steamcondenser.steam.packets.SteamPacketFactory;
  */
 abstract public class SteamSocket {
 
-    private static int timeout = 1000;
+    protected static int timeout = 1000;
 
     protected ByteBuffer buffer;
     protected SelectableChannel channel;
