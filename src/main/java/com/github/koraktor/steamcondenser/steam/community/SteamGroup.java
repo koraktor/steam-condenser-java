@@ -35,6 +35,8 @@ public class SteamGroup {
 
     private long groupId64;
 
+    private int memberCount;
+
     private ArrayList<SteamId> members;
 
     /**
@@ -223,23 +225,12 @@ public class SteamGroup {
     public void fetchMembers() throws SteamCondenserException {
         int page = 0;
         int totalPages;
-        String url;
         this.members = new ArrayList<SteamId>();
 
         try {
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             do {
-                page ++;
-                url = this.getBaseUrl() + "/memberslistxml?p=" + page;
-                Element memberData = parser.parse(url).getDocumentElement();
-
-                totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
-
-                NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
-                for(int i = 0; i < membersList.getLength(); i++) {
-                    Element member = (Element) membersList.item(i);
-                    this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
-                }
+                totalPages = fetchPage(++page);
             } while(page < totalPages);
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
@@ -316,14 +307,54 @@ public class SteamGroup {
     public int getMemberCount() throws SteamCondenserException {
         try {
             if(this.members == null) {
-                DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-                Element memberData = parser.parse(this.getBaseUrl() + "/memberslistxml").getDocumentElement();
-                return Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
-            } else {
-                return this.members.size();
+                members = new ArrayList<SteamId>();
+                fetchPage(1);
             }
+            return memberCount;
         } catch(Exception e) {
             throw new SteamCondenserException(e.getMessage(), e);
+        }
+    }
+
+    /**
+     *
+     * @param page
+     * @return
+     */
+    private int fetchPage(int page) throws SteamCondenserException {
+        int totalPages;
+        String url;
+
+        try {
+            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            url = this.getBaseUrl() + "/memberslistxml?p=" + page;
+            Element memberData = parser.parse(url).getDocumentElement();
+
+            if (page == 1) {
+                if (members.size() == 0) {
+                    memberCount = Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
+                    storeMembers(memberData);
+                    if (members.size() == memberCount) {
+                        this.fetchTime = new Date().getTime();
+                    }
+                }
+            } else {
+                storeMembers(memberData);
+            }
+            totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
+        } catch(Exception e) {
+            throw new SteamCondenserException("XML data could not be parsed.", e);
+        }
+
+        return totalPages;
+    }
+
+    private void storeMembers(Element memberData)
+            throws SteamCondenserException {
+        NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
+        for(int i = 0; i < membersList.getLength(); i++) {
+            Element member = (Element) membersList.item(i);
+            this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
         }
     }
 
@@ -339,6 +370,8 @@ public class SteamGroup {
      */
     public ArrayList<SteamId> getMembers() throws SteamCondenserException {
         if(this.members == null) {
+            this.fetchMembers();
+        } else if (members.size() != memberCount) {
             this.fetchMembers();
         }
 
