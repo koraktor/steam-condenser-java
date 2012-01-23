@@ -89,7 +89,7 @@ public class SteamGame {
             String shortName = globalStatsLinkNode.getTextContent();
             Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
             Matcher matcher = regex.matcher(shortName);
-            matcher.find(0);
+            matcher.find();
             shortName = matcher.group(1).toLowerCase();
             this.shortName = shortName;
         } else {
