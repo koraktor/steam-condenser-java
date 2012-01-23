@@ -225,7 +225,9 @@ public class SteamGroup {
     public void fetchMembers() throws SteamCondenserException {
         int page = 0;
         int totalPages;
-        this.members = new ArrayList<SteamId>();
+        if (members == null) {
+            this.members = new ArrayList<SteamId>();
+        }
 
         try {
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
