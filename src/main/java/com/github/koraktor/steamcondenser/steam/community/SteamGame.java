@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -58,7 +58,7 @@ public class SteamGame {
      *
      * @param appId The application ID of the game to check
      * @param version The version to check against the Web API
-     * @return boolean <var>true</var> if the given version is up-to-date
+     * @return <code>true</code> if the given version is up-to-date
      * @throws JSONException if the JSON data is malformed
      * @throws SteamCondenserException if the Web API request fails
      */
@@ -186,7 +186,7 @@ public class SteamGame {
      * Returns whether the given version of this game is up-to-date
      *
      * @param version The version to check against the Web API
-     * @return boolean <var>true</var> if the given version is up-to-date
+     * @return <code>true</code> if the given version is up-to-date
      * @throws JSONException if the JSON data is malformed
      * @throws SteamCondenserException if the Web API request fails
      */
