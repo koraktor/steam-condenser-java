@@ -296,9 +296,9 @@ public class SteamGroup {
     /**
      * Returns the number of members this group has
      * <p>
-     * If the members have already been fetched the size of the member array is
-     * returned. Otherwise the group size is separately fetched without needing
-     * multiple requests for big groups.
+     * If the members have not already been fetched the first page is
+     * fetched and memberCount is set and returned. Otherwise memberCount
+     * has already been set and is returned.
      *
      * @return The number of this group's members
      * @throws SteamCondenserException if an error occurs while parsing the
@@ -317,9 +317,12 @@ public class SteamGroup {
     }
 
     /**
+     * Fetches a specific page of the member listing of this group
      *
-     * @param page
-     * @return
+     * @param page desired page to be fetched
+     * @return The total number of pages of this group's member listing
+     * @throws SteamCondenserException if error occurs while parsing the
+     *         data
      */
     private int fetchPage(int page) throws SteamCondenserException {
         int totalPages;
@@ -349,8 +352,13 @@ public class SteamGroup {
         return totalPages;
     }
 
-    private void storeMembers(Element memberData)
-            throws SteamCondenserException {
+    /**
+     * Stores member information in internal ArrayList storage.
+     *
+     * @param memberData member data parsed from XML
+     * @throws SteamCondenserException if error occurs while creating a SteamId
+     */
+    private void storeMembers(Element memberData) throws SteamCondenserException {
         NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
         for(int i = 0; i < membersList.getLength(); i++) {
             Element member = (Element) membersList.item(i);
