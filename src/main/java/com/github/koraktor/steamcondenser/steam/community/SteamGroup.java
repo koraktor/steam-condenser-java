@@ -237,6 +237,7 @@ public class SteamGroup {
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
         }
+        this.fetchTime = new Date().getTime();
     }
 
     /**
@@ -309,6 +310,9 @@ public class SteamGroup {
             if(this.members == null) {
                 members = new ArrayList<SteamId>();
                 fetchPage(1);
+                if (members.size() == memberCount) {
+                    this.fetchTime = new Date().getTime();
+                }
             }
             return memberCount;
         } catch(Exception e) {
@@ -344,9 +348,6 @@ public class SteamGroup {
             totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
-        }
-        if (members.size() == memberCount) {
-            this.fetchTime = new Date().getTime();
         }
 
         return totalPages;
