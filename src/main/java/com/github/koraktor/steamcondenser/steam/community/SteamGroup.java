@@ -190,6 +190,8 @@ public class SteamGroup {
             this.groupId64 = (Long) id;
         }
 
+        this.members = new ArrayList<SteamId>();
+
         if(fetch) {
             this.fetchMembers();
         }
@@ -225,9 +227,6 @@ public class SteamGroup {
     public void fetchMembers() throws SteamCondenserException {
         int page = 0;
         int totalPages;
-        if (members == null) {
-            this.members = new ArrayList<SteamId>();
-        }
 
         try {
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -307,7 +306,7 @@ public class SteamGroup {
      */
     public int getMemberCount() throws SteamCondenserException {
         try {
-            if(this.members == null) {
+            if(this.members.size() == 0) {
                 members = new ArrayList<SteamId>();
                 fetchPage(1);
                 if (members.size() == memberCount) {
@@ -378,9 +377,7 @@ public class SteamGroup {
      *         data
      */
     public ArrayList<SteamId> getMembers() throws SteamCondenserException {
-        if(this.members == null) {
-            this.fetchMembers();
-        } else if (members.size() != memberCount) {
+        if (members.size() != memberCount) {
             this.fetchMembers();
         }
 
