@@ -2,7 +2,8 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
+ *               2012, Sam Kinard
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -35,7 +36,7 @@ public class SteamGroup {
 
     private long groupId64;
 
-    private int memberCount;
+    private Integer memberCount;
 
     private ArrayList<SteamId> members;
 
@@ -296,9 +297,9 @@ public class SteamGroup {
     /**
      * Returns the number of members this group has
      * <p>
-     * If the members have not already been fetched the first page is
-     * fetched and memberCount is set and returned. Otherwise memberCount
-     * has already been set and is returned.
+     * If the members have already been fetched the size of the member array is
+     * returned. Otherwise the the first page of the member listing is fetched
+     * and the member count and the first batch of members is stored.
      *
      * @return The number of this group's members
      * @throws SteamCondenserException if an error occurs while parsing the
@@ -306,13 +307,13 @@ public class SteamGroup {
      */
     public int getMemberCount() throws SteamCondenserException {
         try {
-            if(this.members.size() == 0) {
-                members = new ArrayList<SteamId>();
-                fetchPage(1);
-                if (members.size() == memberCount) {
+            if(this.memberCount == null) {
+                int totalPages = fetchPage(1);
+                if(totalPages == 1) {
                     this.fetchTime = new Date().getTime();
                 }
             }
+
             return memberCount;
         } catch(Exception e) {
             throw new SteamCondenserException(e.getMessage(), e);
@@ -322,9 +323,9 @@ public class SteamGroup {
     /**
      * Fetches a specific page of the member listing of this group
      *
-     * @param page desired page to be fetched
+     * @param page The member page to fetch
      * @return The total number of pages of this group's member listing
-     * @throws SteamCondenserException if error occurs while parsing the
+     * @throws SteamCondenserException if an error occurs while parsing the
      *         data
      */
     private int fetchPage(int page) throws SteamCondenserException {
@@ -336,34 +337,19 @@ public class SteamGroup {
             url = this.getBaseUrl() + "/memberslistxml?p=" + page;
             Element memberData = parser.parse(url).getDocumentElement();
 
-            if (page == 1) {
-                if (members.size() == 0) {
-                    memberCount = Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
-                    storeMembers(memberData);
-                }
-            } else {
-                storeMembers(memberData);
-            }
+            this.memberCount = Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
             totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
+
+            NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
+            for(int i = 0; i < membersList.getLength(); i++) {
+                Element member = (Element) membersList.item(i);
+                this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
+            }
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
         }
 
         return totalPages;
-    }
-
-    /**
-     * Stores member information in internal ArrayList storage.
-     *
-     * @param memberData member data parsed from XML
-     * @throws SteamCondenserException if error occurs while creating a SteamId
-     */
-    private void storeMembers(Element memberData) throws SteamCondenserException {
-        NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
-        for(int i = 0; i < membersList.getLength(); i++) {
-            Element member = (Element) membersList.item(i);
-            this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
-        }
     }
 
     /**
@@ -377,7 +363,7 @@ public class SteamGroup {
      *         data
      */
     public ArrayList<SteamId> getMembers() throws SteamCondenserException {
-        if (members.size() != memberCount) {
+        if(Integer.valueOf(this.members.size()) != this.memberCount) {
             this.fetchMembers();
         }
 
