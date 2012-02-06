@@ -45,7 +45,11 @@ public class GameStats {
 
     protected String customUrl;
 
+    protected String gameIconUrl;
+
     protected String gameFriendlyName;
+
+    protected String gameLogoUrl;
 
     protected String gameName;
 
@@ -120,6 +124,9 @@ public class GameStats {
             if(this.isPublic()) {
                 this.appId = Integer.parseInt(((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
                 this.gameFriendlyName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameFriendlyName").item(0).getTextContent();
+                this.gameIconUrl = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameIcon").item(0).getTextContent();
+                String tempLogoUrl = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLogo").item(0).getTextContent();
+                this.gameLogoUrl = tempLogoUrl.substring(0, tempLogoUrl.length() - 4);
                 this.gameName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameName").item(0).getTextContent();
 
                 Node hoursPlayedNode = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("hoursPlayed").item(0);
@@ -238,6 +245,33 @@ public class GameStats {
     }
 
     /**
+     * Returns the url for the icon of this game
+     *
+     * @return url for game icon
+     */
+    public String getGameIconUrl() {
+        return this.gameIconUrl;
+    }
+
+    /**
+     * Returns the url for the logo image of this game
+     *
+     * @return url for game logo
+     */
+    public String getGameLogoUrl() {
+        return this.gameLogoUrl + ".jpg";
+    }
+
+    /**
+     * Returns the url for the logo thumbnail image of this game
+     *
+     * @return url for game logo thumbnail
+     */
+    public String getGameLogoSmallUrl() {
+        return this.gameLogoUrl + "_thumb.jpg";
+    }
+
+    /**
      * Returns the full name of the game these stats belong to
      *
      * @return The name of the game
@@ -278,7 +312,7 @@ public class GameStats {
     /**
      * Returns the leaderboard for this game and the given leaderboard name
      *
-     * @param id The name of the leaderboard to return
+     * @param name The name of the leaderboard to return
      * @return The matching leaderboard if available
      */
     public GameLeaderboard getLeaderboard(String name)
