@@ -30,6 +30,8 @@ public class TF2Stats extends GameStats {
 
     private TF2Inventory inventory;
 
+    private int secondsPlayedAllClassesLifetime;
+
     /**
      * Creates a new <code>TF2Stats</code> instance by calling the super
      * constructor with the game name <code>"tf2"</code>
@@ -60,6 +62,9 @@ public class TF2Stats extends GameStats {
             if(statsElement.getElementsByTagName("accumulatedPoints").getLength() != 0) {
                 this.accumulatedPoints = Integer.parseInt(statsElement.getElementsByTagName("accumulatedPoints").item(0).getTextContent());
             }
+            if(statsElement.getElementsByTagName("secondsPlayedAllClassesLifetime").getLength() != 0) {
+                this.secondsPlayedAllClassesLifetime = Integer.parseInt(statsElement.getElementsByTagName("secondsPlayedAllClassesLifetime").item(0).getTextContent());
+            }
         }
     }
 
@@ -70,6 +75,15 @@ public class TF2Stats extends GameStats {
      */
     public int getAccumulatedPoints() {
         return this.accumulatedPoints;
+    }
+
+    /**
+     * Returns the accumulated number of seconds this player has spent playing as a TF2 class
+     *
+     * @return total seconds played as a TF2 class
+     */
+    public int getSecondsPlayedAllClassesLifetime() {
+        return this.secondsPlayedAllClassesLifetime;
     }
 
     /**
