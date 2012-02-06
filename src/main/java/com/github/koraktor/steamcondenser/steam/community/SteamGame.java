@@ -28,9 +28,13 @@ public class SteamGame {
 
     private int appId;
 
+    private String logoUrl;
+
     private String name;
 
     private String shortName;
+
+    private String storeUrl;
 
     /**
      * Creates a new or cached instance of the game specified by the given XML
@@ -70,6 +74,9 @@ public class SteamGame {
         } else {
             this.shortName = null;
         }
+        this.logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
+        this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
+        this.storeUrl = gameData.getElementsByTagName("storeLink").item(0).getTextContent();
 
         games.put(appId, this);
     }
@@ -125,12 +132,30 @@ public class SteamGame {
     }
 
     /**
+     * Returns the URL for an image of the game logo
+     *
+     * @return URL for game logo
+     */
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    /**
      * Returns the short name of this game (also known as "friendly name")
      *
      * @return The short name of this game
      */
     public String getShortName() {
         return this.shortName;
+    }
+
+    /**
+     * Returns the URL to the store page for this game
+     *
+     * @return the URL for the store page
+     */
+    public String getStoreUrl() {
+        return storeUrl;
     }
 
     /**

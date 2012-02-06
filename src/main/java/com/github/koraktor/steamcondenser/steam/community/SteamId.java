@@ -43,6 +43,7 @@ public class SteamId {
     private String headLine;
     private float hoursPlayed;
     private String imageUrl;
+    private boolean limitedAccount;
     private Map<String, String> links;
     private String location;
     private Date memberSince;
@@ -56,6 +57,7 @@ public class SteamId {
     private long steamId64;
     private float steamRating;
     private String summary;
+    private String tradeBanState;
     private boolean vacBanned;
     private int visibilityState;
 
@@ -330,6 +332,8 @@ public class SteamId {
                 this.realName = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("realname").item(0).getTextContent());
                 this.steamRating = Float.parseFloat(profile.getElementsByTagName("steamRating").item(0).getTextContent());
                 this.summary = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("summary").item(0).getTextContent());
+                this.tradeBanState = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("tradeBanState").item(0).getTextContent());
+                this.limitedAccount = (profile.getElementsByTagName("isLimitedAccount").item(0).getTextContent().equals("1"));
 
                 this.mostPlayedGames = new HashMap<String, Float>();
                 Element mostPlayedGamesNode = (Element) profile.getElementsByTagName("mostPlayedGames").item(0);
@@ -737,6 +741,15 @@ public class SteamId {
     }
 
     /**
+     * Returns the user's trade ban state
+     *
+     * @return the user's trade ban state
+     */
+    public String getTradeBanState() {
+        return this.tradeBanState;
+    }
+
+    /**
      * Returns the visibility state of this Steam ID
      *
      * @return This Steam ID's visibility State
@@ -809,6 +822,15 @@ public class SteamId {
      */
     public boolean isInGame() {
         return this.onlineState.equals("in-game");
+    }
+
+    /**
+    * Returns whether the owner of this Steam ID has a limited account
+     *
+     * @return <code>true</code> if the user has a limited account
+     */
+    public boolean isLimitedAccount() {
+        return this.limitedAccount;
     }
 
     /**
