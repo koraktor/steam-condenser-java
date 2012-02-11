@@ -102,12 +102,12 @@ abstract public class SteamSocket {
      */
     protected int receivePacket(int bufferLength)
             throws SteamCondenserException, TimeoutException {
+        Selector selector = null;
         try {
-            Selector selector = Selector.open();
+            selector = Selector.open();
             this.channel.register(selector, SelectionKey.OP_READ);
 
             if(selector.select(SteamSocket.timeout) == 0) {
-                selector.close();
                 throw new TimeoutException();
             }
 
@@ -125,11 +125,17 @@ abstract public class SteamSocket {
                 this.buffer.limit(bytesRead);
             }
 
-            selector.close();
-
             return bytesRead;
         } catch(IOException e) {
             throw new SteamCondenserException(e.getMessage(), e);
+        } finally {
+            if(selector != null) {
+                try {
+                    selector.close();
+                } catch(IOException e) {
+                    throw new SteamCondenserException(e.getMessage(), e);
+                }
+            }
         }
     }
 
