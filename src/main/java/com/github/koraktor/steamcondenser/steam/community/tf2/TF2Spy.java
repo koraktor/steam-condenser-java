@@ -18,6 +18,8 @@ public class TF2Spy extends TF2Class {
 
     private int maxBackstabs;
 
+    private int maxHeadShots;
+
     private int maxHealthLeeched;
 
     /**
@@ -29,6 +31,7 @@ public class TF2Spy extends TF2Class {
         super(classData);
 
         this.maxBackstabs      = Integer.parseInt(classData.getElementsByTagName("ibackstabs").item(0).getTextContent());
+        this.maxHeadShots      = Integer.parseInt(classData.getElementsByTagName("iheadshots").item(0).getTextContent());
         this.maxHealthLeeched  = Integer.parseInt(classData.getElementsByTagName("ihealthpointsleached").item(0).getTextContent());
     }
 
@@ -40,6 +43,15 @@ public class TF2Spy extends TF2Class {
      */
     public int getMaxBackstabs() {
         return this.maxBackstabs;
+    }
+
+    /**
+     * Returns the head shots by the player in a single life as a Spy
+     *
+     * @return Maximum number of head shots
+     */
+    public int getMaxHeadShots() {
+        return this.maxHeadShots;
     }
 
     /**
