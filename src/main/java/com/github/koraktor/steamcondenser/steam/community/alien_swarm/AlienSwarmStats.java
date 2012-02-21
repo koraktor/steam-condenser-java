@@ -88,7 +88,7 @@ public class AlienSwarmStats extends GameStats {
                 this.lifetimeStats.put("promotionImg", BASE_URL + lifetimeStats.getElementsByTagName("promotionpic").item(0).getTextContent());
             }
 
-            this.lifetimeStats.put("games_successful_percentage", ((Integer) this.lifetimeStats.get("totalGames") > 0) ? (Integer) this.lifetimeStats.get("gamesSuccessful") / (Integer) this.lifetimeStats.get("totalGames") : 0);
+            this.lifetimeStats.put("games_successful_percentage", ((Integer) this.lifetimeStats.get("totalGames") > 0) ? ((Integer) this.lifetimeStats.get("gamesSuccessful")).floatValue() / (Integer) this.lifetimeStats.get("totalGames") : 0);
         }
     }
 

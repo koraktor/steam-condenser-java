@@ -112,7 +112,7 @@ public abstract class AbstractL4DStats extends GameStats {
             this.lifetimeStats = new HashMap<String, Object>();
             this.lifetimeStats.put("finalesSurvived", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
             this.lifetimeStats.put("gamesPlayed", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
-            this.lifetimeStats.put("finalesSurvivedPercentage", (Float) this.lifetimeStats.get("finalesSurvived") / (Integer) this.lifetimeStats.get("gamesPlayed"));
+            this.lifetimeStats.put("finalesSurvivedPercentage", ((Integer) this.lifetimeStats.get("finalesSurvived")).floatValue() / (Integer) this.lifetimeStats.get("gamesPlayed"));
             this.lifetimeStats.put("infectedKilled", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("infectedkilled").item(0).getTextContent()));
             this.lifetimeStats.put("killsPerHour", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("killsperhour").item(0).getTextContent()));
             this.lifetimeStats.put("avgKitsShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("kitsshared").item(0).getTextContent()));
@@ -214,7 +214,7 @@ public abstract class AbstractL4DStats extends GameStats {
             this.versusStats.put("gamesPlayed", Integer.parseInt(versusStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
             this.versusStats.put("gamesCompleted", Integer.parseInt(versusStatsElement.getElementsByTagName("gamescompleted").item(0).getTextContent()));
             this.versusStats.put("finalesSurvived", Integer.parseInt(versusStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
-            this.versusStats.put("finalesSurvivedPercentage", (Integer) this.versusStats.get("finalesSurvived") / (Integer) this.versusStats.get("gamesPlayed"));
+            this.versusStats.put("finalesSurvivedPercentage", ((Integer) this.versusStats.get("finalesSurvived")).floatValue() / (Integer) this.versusStats.get("gamesPlayed"));
             this.versusStats.put("points", Integer.parseInt(versusStatsElement.getElementsByTagName("points").item(0).getTextContent()));
             this.versusStats.put("mostPointsInfected", versusStatsElement.getElementsByTagName("pointsas").item(0).getTextContent());
             this.versusStats.put("gamesWon", Integer.parseInt(versusStatsElement.getElementsByTagName("gameswon").item(0).getTextContent()));

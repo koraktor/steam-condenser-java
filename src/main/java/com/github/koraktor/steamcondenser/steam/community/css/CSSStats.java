@@ -108,21 +108,21 @@ public class CSSStats extends GameStats {
             this.totalStats.put("zoomedSniperKills", Integer.parseInt(lifetimeStats.getElementsByTagName("zsniperkills").item(0).getTextContent()));
 
             if((Integer) this.lastMatchStats.get("deaths") > 0) {
-                this.lastMatchStats.put("kdratio", (Integer) this.lastMatchStats.get("kills") / (Integer) this.lastMatchStats.get("deaths"));
+                this.lastMatchStats.put("kdratio", ((Integer) this.lastMatchStats.get("kills")).floatValue() / (Integer) this.lastMatchStats.get("deaths"));
             } else {
                 this.lastMatchStats.put("kdratio", 0);
             }
             if((Integer) this.totalStats.get("shots") > 0) {
-                this.totalStats.put("accuracy", (Integer) this.totalStats.get("hits") / (Integer) this.totalStats.get("shots"));
+                this.totalStats.put("accuracy", ((Integer) this.totalStats.get("hits")).floatValue() / (Integer) this.totalStats.get("shots"));
             } else {
                 this.totalStats.put("accuracy", 0);
             }
             if((Integer) this.totalStats.get("deaths") > 0) {
-                this.totalStats.put("kdratio", (Integer) this.totalStats.get("kills") / (Integer) this.totalStats.get("deaths"));
+                this.totalStats.put("kdratio", ((Integer) this.totalStats.get("kills")).floatValue() / (Integer) this.totalStats.get("deaths"));
             } else {
                 this.totalStats.put("kdratio", 0);
             }
-            this.totalStats.put("roundsLost", (Integer) this.totalStats.get("roundsPlayed") - (Integer) this.totalStats.get("roundsWon"));
+            this.totalStats.put("roundsLost", ((Integer) this.totalStats.get("roundsPlayed")).floatValue() - (Integer) this.totalStats.get("roundsWon"));
         }
     }
 
