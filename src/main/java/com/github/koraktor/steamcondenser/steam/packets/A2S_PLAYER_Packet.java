@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.packets;
@@ -23,6 +23,13 @@ import com.github.koraktor.steamcondenser.Helper;
 public class A2S_PLAYER_Packet extends SteamPacket {
 
     /**
+     * Creates a new A2S_PLAYER request object without a challenge number
+     */
+    public A2S_PLAYER_Packet() {
+        super(SteamPacket.A2S_PLAYER_HEADER);
+    }
+
+    /**
      * Creates a new A2S_PLAYER request object including the challenge number
      *
      * @param challengeNumber The challenge number received from the server
@@ -30,4 +37,5 @@ public class A2S_PLAYER_Packet extends SteamPacket {
     public A2S_PLAYER_Packet(int challengeNumber) {
         super(SteamPacket.A2S_PLAYER_HEADER, Helper.byteArrayFromInteger(Integer.reverseBytes(challengeNumber)));
     }
+
 }
