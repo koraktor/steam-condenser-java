@@ -37,41 +37,41 @@ public class SteamGame {
 
     private String shortName;
 
-        /**
-         * Checks if a game is up-to-date by reading information from a
-         * <code>steam.inf</code> file and comparing it using the Web API
-         *
-         * @param path The file system path of the `steam.inf` file
-         * @return <code>true</code> if the game is up-to-date
-         * @throws IOException if the steam.inf cannot be read
-         * @throws JSONException if the JSON data is malformed
-         * @throws SteamCondenserException if the given steam.inf is invalid or
-         *         the Web API request fails
-         */
-        public static boolean checkSteamInf(String path)
-                throws IOException, JSONException, SteamCondenserException {
-            BufferedReader steamInf = new BufferedReader(new FileReader(path));
-            String steamInfContents = "";
+    /**
+     * Checks if a game is up-to-date by reading information from a
+     * <code>steam.inf</code> file and comparing it using the Web API
+     *
+     * @param path The file system path of the `steam.inf` file
+     * @return <code>true</code> if the game is up-to-date
+     * @throws IOException if the steam.inf cannot be read
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the given steam.inf is invalid or
+     *         the Web API request fails
+     */
+    public static boolean checkSteamInf(String path)
+            throws IOException, JSONException, SteamCondenserException {
+        BufferedReader steamInf = new BufferedReader(new FileReader(path));
+        String steamInfContents = "";
 
-            while(steamInf.ready()) {
-                steamInfContents += steamInf.readLine() + "\n";
-            }
-            steamInf.close();
-
-            Pattern appIdPattern = Pattern.compile("^\\s*appID=(\\d+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-            Matcher appIdMatcher = appIdPattern.matcher(steamInfContents);
-            Pattern versionPattern = Pattern.compile("^\\s*PatchVersion=([\\d\\.]+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-            Matcher versionMatcher = versionPattern.matcher(steamInfContents);
-
-            if(!(appIdMatcher.find() && versionMatcher.find())) {
-                throw new SteamCondenserException("The steam.inf file at \"" + path + "\" is invalid.");
-            }
-
-            int appId = Integer.parseInt(appIdMatcher.group(1));
-            int version = Integer.parseInt(versionMatcher.group(1).replace(".", ""));
-
-            return isUpToDate(appId, version);
+        while(steamInf.ready()) {
+            steamInfContents += steamInf.readLine() + "\n";
         }
+        steamInf.close();
+
+        Pattern appIdPattern = Pattern.compile("^\\s*appID=(\\d+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+        Matcher appIdMatcher = appIdPattern.matcher(steamInfContents);
+        Pattern versionPattern = Pattern.compile("^\\s*PatchVersion=([\\d\\.]+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+        Matcher versionMatcher = versionPattern.matcher(steamInfContents);
+
+        if(!(appIdMatcher.find() && versionMatcher.find())) {
+            throw new SteamCondenserException("The steam.inf file at \"" + path + "\" is invalid.");
+        }
+
+        int appId = Integer.parseInt(appIdMatcher.group(1));
+        int version = Integer.parseInt(versionMatcher.group(1).replace(".", ""));
+
+        return isUpToDate(appId, version);
+    }
 
     /**
      * Creates a new or cached instance of the game specified by the given XML
