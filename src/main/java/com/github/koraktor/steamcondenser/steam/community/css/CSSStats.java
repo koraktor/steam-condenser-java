@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.css;
@@ -60,9 +60,9 @@ public class CSSStats extends GameStats {
         super(steamId, "cs:s");
 
         if(this.isPublic()); {
-            Element lastMatchStats = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("lastmatch").item(0);
-            Element lifetimeStats = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("lifetime").item(0);
-            Element summaryStats = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("summary").item(0);
+            Element lastMatchStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lastmatch").item(0);
+            Element lifetimeStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
+            Element summaryStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("summary").item(0);
 
             this.lastMatchStats = new HashMap<String, Object>();
             this.totalStats     = new HashMap<String, Object>();
@@ -150,7 +150,7 @@ public class CSSStats extends GameStats {
 
         if(this.mapStats == null) {
             this.mapStats = new HashMap<String, CSSMap>();
-            Element mapsData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("maps").item(0);
+            Element mapsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("maps").item(0);
 
             for(String mapName : MAPS) {
                 this.mapStats.put(mapName, new CSSMap(mapName, mapsData));
@@ -184,7 +184,7 @@ public class CSSStats extends GameStats {
 
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, CSSWeapon>();
-            Element weaponData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
+            Element weaponData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
 
             for(String weaponName : WEAPONS) {
                 this.weaponStats.put(weaponName, new CSSWeapon(weaponName, weaponData));

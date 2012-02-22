@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.defense_grid;
@@ -64,7 +64,7 @@ public class DefenseGridStats extends GameStats {
             XPath xpath = XPathFactory.newInstance().newXPath();
 
             try {
-                Element generalData = (Element) xpath.evaluate("stats/general", this.xmlData, XPathConstants.NODE);
+                Element generalData = (Element) xpath.evaluate("stats/general", this.xmlData.getRoot(), XPathConstants.NODE);
                 this.bronzeMedals = Integer.parseInt(((Element) xpath.evaluate("bronze_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
                 this.silverMedals = Integer.parseInt(((Element) xpath.evaluate("silver_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
                 this.goldMedals = Integer.parseInt(((Element) xpath.evaluate("gold_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
@@ -112,7 +112,7 @@ public class DefenseGridStats extends GameStats {
         if(this.alienStats != null) {
             try {
                 XPath xpath = XPathFactory.newInstance().newXPath();
-                Element aliensData = (Element) xpath.evaluate("stats/aliens", this.xmlData, XPathConstants.NODE);
+                Element aliensData = (Element) xpath.evaluate("stats/aliens", this.xmlData.getRoot(), XPathConstants.NODE);
                 this.alienStats = new HashMap<String, int[]>();
                 String[] aliens = {"bulwark", "crasher", "dart", "decoy",
                     "drone", "grunt", "juggernaut", "manta", "racer", "rumbler",
@@ -354,7 +354,7 @@ public class DefenseGridStats extends GameStats {
         if(this.towerStats != null) {
             try {
                 XPath xpath = XPathFactory.newInstance().newXPath();
-                Element towersData = (Element) xpath.evaluate("stats/towers", this.xmlData, XPathConstants.NODE);
+                Element towersData = (Element) xpath.evaluate("stats/towers", this.xmlData.getRoot(), XPathConstants.NODE);
                 this.towerStats = new HashMap<String, ArrayList<float[]>>();
                 String[] towers = {"cannon", "flak", "gun", "inferno", "laser", "meteor", "missile", "tesla"};
 

@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.alien_swarm;
@@ -61,7 +61,7 @@ public class AlienSwarmStats extends GameStats {
         super(steamId, "alienswarm");
 
         if(this.isPublic()) {
-            Element lifetimeStats = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("lifetime").item(0);
+            Element lifetimeStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
             this.hoursPlayed = lifetimeStats.getElementsByTagName("timeplayed").item(0).getTextContent();
 
             this.lifetimeStats = new HashMap<String, Object>();
@@ -105,7 +105,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.favorites == null) {
-            Element favoritesData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("favorites").item(0);
+            Element favoritesData = (Element) this.xmlData.getElement("stats").getElementsByTagName("favorites").item(0);
 
             this.favorites = new HashMap<String, Object>();
             this.favorites.put("class", favoritesData.getElementsByTagName("class").item(0).getTextContent());
@@ -147,7 +147,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.itemStats == null) {
-            Element itemStatsData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
+            Element itemStatsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
 
             this.itemStats = new HashMap<String, Object>();
             this.itemStats.put("ammoDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("ammo_deployed").item(0).getTextContent()));
@@ -200,7 +200,7 @@ public class AlienSwarmStats extends GameStats {
 
         if(this.missionStats == null) {
             this.missionStats = new HashMap<String, Object>();
-            Element statsElement = (Element) this.xmlData.getElementsByTagName("stats").item(0);
+            Element statsElement = this.xmlData.getElement("stats");
             NodeList missionNodes = statsElement.getElementsByTagName("missions").item(0).getChildNodes();
             for(int i = 0; i < missionNodes.getLength(); i++) {
                 Node missionNode = missionNodes.item(i);
@@ -230,7 +230,7 @@ public class AlienSwarmStats extends GameStats {
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, Object>();
             for(String weaponNode : WEAPONS) {
-                Element weaponData = (Element) ((Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0)).getElementsByTagName(weaponNode).item(0);
+                Element weaponData = (Element) ((Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0)).getElementsByTagName(weaponNode).item(0);
                 AlienSwarmWeapon weapon = new AlienSwarmWeapon(weaponData);
                 this.weaponStats.put(weapon.getName(), weapon);
             }

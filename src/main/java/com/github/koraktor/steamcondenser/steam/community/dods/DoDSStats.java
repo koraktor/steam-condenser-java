@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.dods;
@@ -54,7 +54,7 @@ public class DoDSStats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new HashMap<String, DoDSClass>();
-            NodeList classNodes = ((Element) this.xmlData.getElementsByTagName("classes").item(0)).getElementsByTagName("class");
+            NodeList classNodes = this.xmlData.getElement("classes").getElementsByTagName("class");
             for(int i = 0; i < classNodes.getLength(); i++) {
                 Element classData = (Element) classNodes.item(i);
                 this.classStats.put(classData.getAttribute("key"),
@@ -80,7 +80,7 @@ public class DoDSStats extends GameStats {
 
         if(this.weaponStats == null) {
         this.weaponStats = new HashMap<String, DoDSWeapon>();
-        NodeList weaponNodes = this.xmlData.getElementsByTagName("weapons").item(0).getChildNodes();
+        NodeList weaponNodes = this.xmlData.getElement("weapons").getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {
                 Element weaponData = (Element) weaponNodes.item(i);
                 this.weaponStats.put(weaponData.getAttribute("key"),

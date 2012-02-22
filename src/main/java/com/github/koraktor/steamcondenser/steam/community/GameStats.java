@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -54,7 +54,7 @@ public class GameStats {
 
     protected Long steamId64;
 
-    protected Element xmlData;
+    protected XMLData xmlData;
 
     /**
      * Creates a <code>GameStats</code> (or one of its subclasses) instance for
@@ -106,31 +106,28 @@ public class GameStats {
 
         try {
             String url = this.getBaseUrl() + "?xml=all";
+            this.xmlData = new XMLData(url);
 
-            DocumentBuilder parser = XMLData.getDocumentBuilder();
-            this.xmlData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = this.xmlData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            if(this.xmlData.hasElement("error")) {
+                throw new SteamCondenserException(this.xmlData.getString("error"));
             }
 
-            this.privacyState = this.xmlData.getElementsByTagName("privacyState").item(0).getTextContent();
+            this.privacyState = this.xmlData.getString("privacyState");
             if(this.isPublic()) {
-                this.appId = Integer.parseInt(((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
-                this.gameFriendlyName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameFriendlyName").item(0).getTextContent();
-                this.gameName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameName").item(0).getTextContent();
+                this.appId = Integer.parseInt(this.xmlData.getElement("game").getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
+                this.gameFriendlyName = this.xmlData.getElement("game").getElementsByTagName("gameFriendlyName").item(0).getTextContent();
+                this.gameName = this.xmlData.getElement("game").getElementsByTagName("gameName").item(0).getTextContent();
 
-                Node hoursPlayedNode = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("hoursPlayed").item(0);
+                Node hoursPlayedNode = this.xmlData.getElement("stats").getElementsByTagName("hoursPlayed").item(0);
                 if(hoursPlayedNode != null) {
                     this.hoursPlayed = hoursPlayedNode.getTextContent();
                 }
 
                 if(this.customUrl == null) {
-                    this.customUrl = ((Element) this.xmlData.getElementsByTagName("player").item(0)).getElementsByTagName("customURL").item(0).getTextContent();
+                    this.customUrl = this.xmlData.getElement("player").getElementsByTagName("customURL").item(0).getTextContent();
                 }
                 if(this.steamId64 == null) {
-                    this.steamId64 = Long.parseLong(((Element) this.xmlData.getElementsByTagName("player").item(0)).getElementsByTagName("steamID64").item(0).getTextContent().trim());
+                    this.steamId64 = Long.parseLong(this.xmlData.getElement("player").getElementsByTagName("steamID64").item(0).getTextContent().trim());
                 }
             }
         } catch(Exception e) {
@@ -150,7 +147,7 @@ public class GameStats {
             this.achievements = new ArrayList<GameAchievement>();
             this.achievementsDone = 0;
 
-            NodeList achievementsList = ((Element) this.xmlData.getElementsByTagName("achievements").item(0)).getElementsByTagName("achievement");
+            NodeList achievementsList = this.xmlData.getElement("achievements").getElementsByTagName("achievement");
             for(int i = 0; i < achievementsList.getLength(); i++) {
                 Element achievementData = (Element) achievementsList.item(i);
                 GameAchievement achievement = new GameAchievement(this.steamId64, this.appId, achievementData);

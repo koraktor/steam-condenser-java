@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2010, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
@@ -56,7 +56,7 @@ public class TF2Stats extends GameStats {
         super(steamId, (beta ? "520" : "tf2"));
 
         if(this.isPublic()) {
-            Element statsElement = (Element) this.xmlData.getElementsByTagName("stats").item(0);
+            Element statsElement = this.xmlData.getElement("stats");
             if(statsElement.getElementsByTagName("accumulatedPoints").getLength() != 0) {
                 this.accumulatedPoints = Integer.parseInt(statsElement.getElementsByTagName("accumulatedPoints").item(0).getTextContent());
             }
@@ -86,7 +86,7 @@ public class TF2Stats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new ArrayList<TF2Class>();
-            NodeList classes = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("classData");
+            NodeList classes = this.xmlData.getElement("stats").getElementsByTagName("classData");
             for(int i = 0; i < classes.getLength(); i++) {
                 this.classStats.add(TF2ClassFactory.getTF2Class((Element) classes.item(i)));
             }

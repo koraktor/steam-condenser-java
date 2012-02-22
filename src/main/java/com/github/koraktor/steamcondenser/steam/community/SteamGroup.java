@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -228,15 +228,14 @@ public class SteamGroup {
         this.members = new ArrayList<SteamId>();
 
         try {
-            DocumentBuilder parser = XMLData.getDocumentBuilder();
             do {
                 page ++;
                 url = this.getBaseUrl() + "/memberslistxml?p=" + page;
-                Element memberData = parser.parse(url).getDocumentElement();
+                XMLData memberData = new XMLData(url);
 
-                totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
+                totalPages = Integer.parseInt(memberData.getString("totalPages"));
 
-                NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
+                NodeList membersList = memberData.getElement("members").getElementsByTagName("steamID64");
                 for(int i = 0; i < membersList.getLength(); i++) {
                     Element member = (Element) membersList.item(i);
                     this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
@@ -317,9 +316,7 @@ public class SteamGroup {
     public int getMemberCount() throws SteamCondenserException {
         try {
             if(this.members == null) {
-                DocumentBuilder parser = XMLData.getDocumentBuilder();
-                Element memberData = parser.parse(this.getBaseUrl() + "/memberslistxml").getDocumentElement();
-                return Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
+                return Integer.parseInt(new XMLData(this.getBaseUrl() + "/memberslistxml").getString("memberCount"));
             } else {
                 return this.members.size();
             }

@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
@@ -52,7 +52,7 @@ public class L4DStats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("survival").item(0);
+            Element survivalStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("survival").item(0);
             HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
             NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
             for(int i = 0; i < mapNodes.getLength(); i++) {
@@ -79,7 +79,7 @@ public class L4DStats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
+            Element weaponStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
             this.weaponStats = new HashMap<String, GameWeapon>();
             NodeList weaponNodes = weaponStatsElement.getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {

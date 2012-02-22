@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
@@ -37,7 +37,7 @@ public class L4D2Stats extends AbstractL4DStats {
     public L4D2Stats(Object steamId) throws SteamCondenserException {
         super(steamId, "l4d2");
 
-        Element weaponsData = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
+        Element weaponsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
         this.damagePercentages = new HashMap<String, Float>();
         this.damagePercentages.put("melee", Float.parseFloat(weaponsData.getElementsByTagName("meleePctDmg").item(0).getTextContent()));
         this.damagePercentages.put("pistols", Float.parseFloat(weaponsData.getElementsByTagName("pistolsPctDmg").item(0).getTextContent()));
@@ -78,7 +78,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.lifetimeStats == null) {
             super.getLifetimeStats();
-            Element lifetimeStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("lifetime").item(0);
+            Element lifetimeStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
             this.lifetimeStats.put("avgAdrenalineShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineshared").item(0).getTextContent()));
             this.lifetimeStats.put("avgAdrenalineUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineused").item(0).getTextContent()));
             this.lifetimeStats.put("avgDefibrillatorsUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("defibrillatorsused").item(0).getTextContent()));
@@ -102,7 +102,7 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.scavengeStats == null) {
-            Element scavengeStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("scavenge").item(0);
+            Element scavengeStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("scavenge").item(0);
             this.scavengeStats = new HashMap<String, Object>();
             this.scavengeStats.put("avgCansPerRound", Float.parseFloat(scavengeStatsElement.getElementsByTagName("avgcansperround").item(0).getTextContent()));
             this.scavengeStats.put("perfectRounds", Integer.parseInt(scavengeStatsElement.getElementsByTagName("perfect16canrounds").item(0).getTextContent()));
@@ -154,7 +154,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("survival").item(0);
+            Element survivalStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("survival").item(0);
             HashMap<String, L4D2Map> mapsHash = new HashMap<String, L4D2Map>();
             NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
             for(int i = 0; i < mapNodes.getLength(); i++) {
@@ -181,7 +181,7 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = (Element) ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("weapons").item(0);
+            Element weaponStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
             this.weaponStats = new HashMap<String, GameWeapon>();
             NodeList weaponNodes = weaponStatsElement.getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {
