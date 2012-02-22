@@ -126,7 +126,10 @@ public class SteamGame {
      */
     private SteamGame(int appId, Element gameData) {
         this.appId = appId;
+        this.logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
         this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
+        this.storeUrl = gameData.getElementsByTagName("storeLink").item(0).getTextContent();
+
         Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
         if(globalStatsLinkNode != null) {
             String shortName = globalStatsLinkNode.getTextContent();
@@ -138,9 +141,6 @@ public class SteamGame {
         } else {
             this.shortName = null;
         }
-        this.logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
-        this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
-        this.storeUrl = gameData.getElementsByTagName("storeLink").item(0).getTextContent();
 
         games.put(appId, this);
     }
