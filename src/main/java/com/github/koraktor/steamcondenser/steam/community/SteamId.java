@@ -299,8 +299,10 @@ public class SteamId {
                 throw new SteamCondenserException(profile.getElementsByTagName("error").item(0).getTextContent());
             }
 
+            this.limitedAccount = (profile.getElementsByTagName("isLimitedAccount").item(0).getTextContent().equals("1"));
             this.nickname  = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("steamID").item(0).getTextContent());
             this.steamId64 = Long.parseLong(profile.getElementsByTagName("steamID64").item(0).getTextContent());
+            this.tradeBanState = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("tradeBanState").item(0).getTextContent());
             this.vacBanned = (profile.getElementsByTagName("vacBanned").item(0).getTextContent().equals("1"));
 
             if(profile.getElementsByTagName("privacyMessage").getLength() > 0) {
@@ -332,8 +334,6 @@ public class SteamId {
                 this.realName = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("realname").item(0).getTextContent());
                 this.steamRating = Float.parseFloat(profile.getElementsByTagName("steamRating").item(0).getTextContent());
                 this.summary = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("summary").item(0).getTextContent());
-                this.tradeBanState = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("tradeBanState").item(0).getTextContent());
-                this.limitedAccount = (profile.getElementsByTagName("isLimitedAccount").item(0).getTextContent().equals("1"));
 
                 this.mostPlayedGames = new HashMap<String, Float>();
                 Element mostPlayedGamesNode = (Element) profile.getElementsByTagName("mostPlayedGames").item(0);
