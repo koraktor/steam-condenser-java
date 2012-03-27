@@ -128,7 +128,6 @@ public class SteamGame {
         this.appId = appId;
         this.logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
         this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
-        this.storeUrl = gameData.getElementsByTagName("storeLink").item(0).getTextContent();
 
         Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
         if(globalStatsLinkNode != null) {
@@ -201,7 +200,7 @@ public class SteamGame {
      * @return URL for game logo
      */
     public String getLogoUrl() {
-        return logoUrl;
+        return this.logoUrl;
     }
 
     /**
@@ -214,12 +213,12 @@ public class SteamGame {
     }
 
     /**
-     * Returns the URL to the store page for this game
+     * Returns the URL of this game's page in the Steam Store
      *
-     * @return the URL for the store page
+     * @return This game's store page
      */
     public String getStoreUrl() {
-        return storeUrl;
+        return "http://store.steampowered.com/app/" + this.appId;
     }
 
     /**
