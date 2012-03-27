@@ -226,8 +226,14 @@ public class SteamGroup {
      *         data
      */
     public void fetchMembers() throws SteamCondenserException {
-        int page = 0;
+        int page;
         int totalPages;
+
+        if(this.memberCount == null || Integer.valueOf(this.members.size()) != this.memberCount) {
+            page = 0;
+        } else {
+            page = 1;
+        }
 
         try {
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
