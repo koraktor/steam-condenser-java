@@ -303,7 +303,7 @@ public abstract class GameServer extends Server {
         switch(requestType) {
             case GameServer.REQUEST_CHALLENGE:
                 expectedResponse = S2C_CHALLENGE_Packet.class;
-                requestPacket = new A2S_SERVERQUERY_GETCHALLENGE_Packet();
+                requestPacket = new A2S_PLAYER_Packet();
                 break;
             case GameServer.REQUEST_INFO:
                 expectedResponse = S2A_INFO_BasePacket.class;

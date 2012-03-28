@@ -27,9 +27,9 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
 
     @Test
     public void getTF2Stats() throws Exception {
-        assertEquals("Team Fortress 2", stats.getGameName());
-        assertEquals("TF2", stats.getGameFriendlyName());
-        assertEquals(440, stats.getAppId());
+        assertEquals("Team Fortress 2", stats.getGame().getName());
+        assertEquals("tf2", stats.getGame().getShortName());
+        assertEquals(440, stats.getGame().getAppId());
         assertEquals("13.5", stats.getHoursPlayed());
         assertEquals(76561197985077150l, stats.getSteamId64());
     }
@@ -41,8 +41,8 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals("Head of the Class", headOfTheClass.getName());
         assertEquals("Play a complete round with every class.", headOfTheClass.getDescription());
         //TODO: test headOfTheClass.getTimestamp()
-        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg", headOfTheClass.getIconClosed());
-        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg", headOfTheClass.getIconOpen());
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg", headOfTheClass.getIconClosedURL());
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg", headOfTheClass.getIconOpenURL());
     }
 
     @Test

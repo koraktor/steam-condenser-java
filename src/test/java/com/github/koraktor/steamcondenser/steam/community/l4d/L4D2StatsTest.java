@@ -27,9 +27,9 @@ public class L4D2StatsTest extends GameStatsTestCase<L4D2Stats> {
     @Test
     public void getL4D2Stats() throws Exception {
 
-        assertEquals("Left 4 Dead 2", stats.getGameName());
-        assertEquals("L4D2", stats.getGameFriendlyName());
-        assertEquals(550, stats.getAppId());
+        assertEquals("Left 4 Dead 2", stats.getGame().getName());
+        assertEquals("l4d2", stats.getGame().getShortName());
+        assertEquals(550, stats.getGame().getAppId());
         assertEquals("0s", stats.getHoursPlayed());// TODO: strange behavior
         assertEquals(76561197985077150l, stats.getSteamId64());
     }

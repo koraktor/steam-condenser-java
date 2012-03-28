@@ -26,9 +26,9 @@ public class Portal2StatsTest extends GameStatsTestCase<Portal2Stats> {
 
     @Test
     public void getPortal2Stats() throws Exception {
-        assertEquals("Portal 2", stats.getGameName());
-        assertEquals("Portal2", stats.getGameFriendlyName());
-        assertEquals(620, stats.getAppId());
+        assertEquals("Portal 2", stats.getGame().getName());
+        assertEquals("portal2", stats.getGame().getShortName());
+        assertEquals(620, stats.getGame().getAppId());
         assertEquals("0", stats.getHoursPlayed());
         assertEquals(76561197985077150l, stats.getSteamId64());
     }

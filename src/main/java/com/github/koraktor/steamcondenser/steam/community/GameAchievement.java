@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -36,6 +36,8 @@ public class GameAchievement {
 
     private String description;
 
+    private String iconURL;
+
     private String name;
 
     private long steamId64;
@@ -43,10 +45,6 @@ public class GameAchievement {
     private Date timestamp;
 
     private boolean unlocked;
-
-    private String iconOpen;
-
-    private String iconClosed;
 
     /**
      * Loads the global unlock percentages of all achievements for the given
@@ -97,8 +95,8 @@ public class GameAchievement {
         this.apiName     = achievementData.getElementsByTagName("apiname").item(0).getTextContent();
         this.appId       = appId;
         this.description = achievementData.getElementsByTagName("description").item(0).getTextContent();
-        this.iconClosed  = achievementData.getElementsByTagName("iconClosed").item(0).getTextContent();
-        this.iconOpen    = achievementData.getElementsByTagName("iconOpen").item(0).getTextContent();
+        String tempIconUrl = achievementData.getElementsByTagName("iconClosed").item(0).getTextContent();
+        this.iconURL = tempIconUrl.substring(0, tempIconUrl.length() - 4);
         this.name        = achievementData.getElementsByTagName("name").item(0).getTextContent();
         this.steamId64   = steamId64;
         this.unlocked    = achievementData.getAttribute("closed").equals("1");
@@ -138,6 +136,24 @@ public class GameAchievement {
     }
 
     /**
+     * Return the url for the closed icon of this achievement
+     *
+     * @return The url for the closed icon of this achievement
+     */
+    public String getIconClosedURL() {
+        return this.iconURL + ".jpg";
+    }
+
+    /**
+     * Return the url for the open icon of this achievement
+     *
+     * @return The url for the open icon of this achievement
+     */
+    public String getIconOpenURL() {
+        return this.iconURL + "_bw.jpg";
+    }
+
+    /**
      * Returns the name of this achievement
      *
      * @return The name of this achievement
@@ -172,24 +188,6 @@ public class GameAchievement {
      */
     public boolean isUnlocked() {
         return this.unlocked;
-    }
-
-    /**
-     * Returns the icon for this achievement when it has not been achieved yet
-     *
-     * @return The open icon for this achievement
-     */
-    public String getIconOpen() {
-        return this.iconOpen;
-    }
-
-    /**
-     * Returns the icon for this achievement when it been already achieved
-     *
-     * @return The closed icon for this achievement
-     */
-    public String getIconClosed() {
-        return this.iconClosed;
     }
 
 }

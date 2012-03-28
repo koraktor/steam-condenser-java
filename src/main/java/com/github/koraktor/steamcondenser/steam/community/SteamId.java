@@ -42,6 +42,7 @@ public class SteamId {
     private String headLine;
     private float hoursPlayed;
     private String imageUrl;
+    private boolean limitedAccount;
     private Map<String, String> links;
     private String location;
     private Date memberSince;
@@ -55,6 +56,7 @@ public class SteamId {
     private long steamId64;
     private float steamRating;
     private String summary;
+    private String tradeBanState;
     private boolean vacBanned;
     private int visibilityState;
 
@@ -294,8 +296,10 @@ public class SteamId {
                 throw new SteamCondenserException(profile.getString("error"));
             }
 
+            this.limitedAccount = (profile.getString("isLimitedAccount").equals("1"));
             this.nickname  = StringEscapeUtils.unescapeXml(profile.getString("steamID"));
             this.steamId64 = Long.parseLong(profile.getString("steamID64"));
+            this.tradeBanState = StringEscapeUtils.unescapeXml(profile.getString("tradeBanState"));
             this.vacBanned = (profile.getString("vacBanned").equals("1"));
 
             if(profile.hasElement("privacyMessage")) {
@@ -409,8 +413,9 @@ public class SteamId {
             this.playtimes = new HashMap<Integer, int[]>();
             for(int i = 0; i < gamesNodeList.getLength(); i++) {
                 Element gameData = (Element) gamesNodeList.item(i);
-                SteamGame game = SteamGame.create(gameData);
-                this.games.put(game.getAppId(), game);
+                int appId = Integer.valueOf(gameData.getElementsByTagName("appID").item(0).getTextContent());
+                SteamGame game = SteamGame.create(appId, gameData);
+                this.games.put(appId, game);
                 float recent;
                 try {
                     recent = Float.parseFloat(gameData.getElementsByTagName("hoursLast2Weeks").item(0).getTextContent());
@@ -729,6 +734,15 @@ public class SteamId {
     }
 
     /**
+     * Returns the user's trade ban state
+     *
+     * @return the user's trade ban state
+     */
+    public String getTradeBanState() {
+        return this.tradeBanState;
+    }
+
+    /**
      * Returns the visibility state of this Steam ID
      *
      * @return This Steam ID's visibility State
@@ -795,12 +809,21 @@ public class SteamId {
     }
 
     /**
-    * Returns whether the owner of this Steam ID is playing a game
+     * Returns whether the owner of this Steam ID is playing a game
      *
      * @return <code>true</code> if the user is in-game
      */
     public boolean isInGame() {
         return this.onlineState.equals("in-game");
+    }
+
+    /**
+     * Returns whether the owner of this Steam ID has a limited account
+     *
+     * @return <code>true</code> if the user has a limited account
+     */
+    public boolean isLimitedAccount() {
+        return this.limitedAccount;
     }
 
     /**

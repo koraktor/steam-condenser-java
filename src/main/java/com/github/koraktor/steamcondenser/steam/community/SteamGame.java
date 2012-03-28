@@ -2,16 +2,21 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -28,26 +33,88 @@ public class SteamGame {
 
     private int appId;
 
+    private String iconUrl;
+
+    private String logoHash;
+
     private String name;
 
     private String shortName;
 
     /**
+     * Checks if a game is up-to-date by reading information from a
+     * <code>steam.inf</code> file and comparing it using the Web API
+     *
+     * @param path The file system path of the `steam.inf` file
+     * @return <code>true</code> if the game is up-to-date
+     * @throws IOException if the steam.inf cannot be read
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the given steam.inf is invalid or
+     *         the Web API request fails
+     */
+    public static boolean checkSteamInf(String path)
+            throws IOException, JSONException, SteamCondenserException {
+        BufferedReader steamInf = new BufferedReader(new FileReader(path));
+        String steamInfContents = "";
+
+        while(steamInf.ready()) {
+            steamInfContents += steamInf.readLine() + "\n";
+        }
+        steamInf.close();
+
+        Pattern appIdPattern = Pattern.compile("^\\s*appID=(\\d+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+        Matcher appIdMatcher = appIdPattern.matcher(steamInfContents);
+        Pattern versionPattern = Pattern.compile("^\\s*PatchVersion=([\\d\\.]+)\\s*$", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+        Matcher versionMatcher = versionPattern.matcher(steamInfContents);
+
+        if(!(appIdMatcher.find() && versionMatcher.find())) {
+            throw new SteamCondenserException("The steam.inf file at \"" + path + "\" is invalid.");
+        }
+
+        int appId = Integer.parseInt(appIdMatcher.group(1));
+        int version = Integer.parseInt(versionMatcher.group(1).replace(".", ""));
+
+        return isUpToDate(appId, version);
+    }
+
+    /**
      * Creates a new or cached instance of the game specified by the given XML
      * data
      *
+     * @param appId The application ID of the game
      * @param gameData The XML data of the game
      * @return The game instance for the given data
      * @see SteamGame#SteamGame
      */
-    public static SteamGame create(Element gameData) {
-        int appId = Integer.parseInt(gameData.getElementsByTagName("appID").item(0).getTextContent());
-
+    public static SteamGame create(int appId, Element gameData) {
         if(games.containsKey(appId)) {
             return games.get(appId);
         } else {
             return new SteamGame(appId, gameData);
         }
+    }
+
+    /**
+     * Returns whether the given version of the game with the given application
+     * ID is up-to-date
+     *
+     * @param appId The application ID of the game to check
+     * @param version The version to check against the Web API
+     * @return <code>true</code> if the given version is up-to-date
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the Web API request fails
+     */
+    public static boolean isUpToDate(int appId, int version)
+            throws JSONException, SteamCondenserException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("appid", appId);
+        params.put("version", version);
+        String json = WebApi.getJSON("ISteamApps", "UpToDateCheck", 1, params);
+        JSONObject result = new JSONObject(json).getJSONObject("response");
+        if(!result.getBoolean("success")) {
+            throw new SteamCondenserException(result.getString("error"));
+        }
+        return result.getBoolean("up_to_date");
     }
 
     /**
@@ -58,18 +125,34 @@ public class SteamGame {
      */
     private SteamGame(int appId, Element gameData) {
         this.appId = appId;
-        this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
-        Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
-        if(globalStatsLinkNode != null) {
-            String shortName = globalStatsLinkNode.getTextContent();
-            Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
-            Matcher matcher = regex.matcher(shortName);
-            matcher.find(0);
-            shortName = matcher.group(1).toLowerCase();
-            this.shortName = shortName;
+
+        String logoUrl;
+        if(gameData.getElementsByTagName("name").getLength() > 0) {
+            logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
+            this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
+
+            Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
+            if(globalStatsLinkNode != null) {
+                String shortName = globalStatsLinkNode.getTextContent();
+                Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
+                Matcher matcher = regex.matcher(shortName);
+                matcher.find();
+                shortName = matcher.group(1).toLowerCase();
+                this.shortName = shortName;
+            } else {
+                this.shortName = null;
+            }
         } else {
-            this.shortName = null;
+            this.iconUrl = gameData.getElementsByTagName("gameIcon").item(0).getTextContent();
+            logoUrl = gameData.getElementsByTagName("gameLogo").item(0).getTextContent();
+            this.name  = gameData.getElementsByTagName("gameName").item(0).getTextContent();
+            this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent();
         }
+
+        Pattern regex = Pattern.compile("/#{app_id}/([0-9a-f]+).jpg");
+        Matcher matcher = regex.matcher(logoUrl);
+        matcher.find();
+        this.logoHash = matcher.group(1).toLowerCase();
 
         games.put(appId, this);
     }
@@ -81,6 +164,30 @@ public class SteamGame {
      */
     public int getAppId() {
         return this.appId;
+    }
+
+    /**
+     * Returns the URL for the icon image of this game
+     *
+     * @return The URL for the game icon
+     */
+    public String getIconUrl() {
+        return this.iconUrl;
+    }
+
+    /**
+     * Returns a unique identifier for this game
+     *
+     * This is either the numeric application ID or the unique short name
+     *
+     * @return The application ID or short name of the game
+     */
+    public Object getId() {
+        if(String.valueOf(this.appId).equals(this.shortName)) {
+            return this.appId;
+        } else {
+            return this.shortName;
+        }
     }
 
     /**
@@ -106,7 +213,7 @@ public class SteamGame {
     /**
      * Returns the leaderboard for this game and the given leaderboard name
      *
-     * @param id The name of the leaderboard to return
+     * @param name The name of the leaderboard to return
      * @return The matching leaderboard if available
      */
     public GameLeaderboard getLeaderboard(String name)
@@ -125,12 +232,39 @@ public class SteamGame {
     }
 
     /**
+     * Returns the URL for the logo image of this game
+     *
+     * @return The URL for the game logo
+     */
+    public String getLogoUrl() {
+        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + ".jpg";
+    }
+
+    /**
+     * Returns the URL for the logo thumbnail image of this game
+     *
+     * @return  The URL for the game logo thumbnail
+     */
+    public String getLogoThumbnailUrl() {
+        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + "_thumb.jpg";
+    }
+
+    /**
      * Returns the short name of this game (also known as "friendly name")
      *
      * @return The short name of this game
      */
     public String getShortName() {
         return this.shortName;
+    }
+
+    /**
+     * Returns the URL of this game's page in the Steam Store
+     *
+     * @return This game's store page
+     */
+    public String getStoreUrl() {
+        return "http://store.steampowered.com/app/" + this.appId;
     }
 
     /**
@@ -155,6 +289,19 @@ public class SteamGame {
      */
     public boolean hasStats() {
         return this.shortName != null;
+    }
+
+    /**
+     * Returns whether the given version of this game is up-to-date
+     *
+     * @param version The version to check against the Web API
+     * @return <code>true</code> if the given version is up-to-date
+     * @throws JSONException if the JSON data is malformed
+     * @throws SteamCondenserException if the Web API request fails
+     */
+    public boolean isUpToDate(int version)
+            throws JSONException, SteamCondenserException {
+        return SteamGame.isUpToDate(this.appId, version);
     }
 
 }

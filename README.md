@@ -39,9 +39,10 @@ included LICENSE file.
 
 ## Credits
 
-* Sebastian Staudt -- koraktor(at)gmail.com
-* David Wursteisen -- david.wursteisen(at)gmail.com
-* Guto Maia -- guto(at)guto.net
+* Sebastian Staudt – koraktor(at)gmail.com
+* David Wursteisen – david.wursteisen(at)gmail.com
+* Guto Maia – guto(at)guto.net
+* Sam Kinard – snkinard(at)gmail.com
 
 ## See Also
 

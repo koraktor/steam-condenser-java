@@ -127,12 +127,12 @@ public class SteamGroupTest {
     @Test
     public void testMemberCount() throws Exception {
         Document memberDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.getClass().getResourceAsStream("valve-members.xml"));
-        when(this.parser.parse("http://steamcommunity.com/groups/valve/memberslistxml")).thenReturn(memberDocument);
+        when(this.parser.parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1")).thenReturn(memberDocument);
 
         SteamGroup group = new SteamGroup("valve", false);
         assertThat(group.getMemberCount(), is(221));
 
-        verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml");
+        verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1");
     }
 
     @After
