@@ -149,7 +149,7 @@ public class SteamGame {
             this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent();
         }
 
-        Pattern regex = Pattern.compile("/#{app_id}/([0-9a-f]+).jpg");
+        Pattern regex = Pattern.compile("/" + appId + "/([0-9a-f]+).jpg");
         Matcher matcher = regex.matcher(logoUrl);
         matcher.find();
         this.logoHash = matcher.group(1).toLowerCase();
