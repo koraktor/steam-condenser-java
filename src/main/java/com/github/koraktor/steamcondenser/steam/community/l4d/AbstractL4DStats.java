@@ -184,8 +184,8 @@ public abstract class AbstractL4DStats extends GameStats {
             this.teamplayStats.put("avgWasRevived", Float.parseFloat(teamplayStatsElement.getElementsByTagName("wasrevivedavg").item(0).getTextContent()));
             this.teamplayStats.put("protected", Integer.parseInt(teamplayStatsElement.getElementsByTagName("protected").item(0).getTextContent()));
             this.teamplayStats.put("mostProtectedDifficulty", teamplayStatsElement.getElementsByTagName("protecteddiff").item(0).getTextContent());
-            this.teamplayStats.put("avgProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("avgProtected").item(0).getTextContent()));
-            this.teamplayStats.put("avgWasProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("avgWasProtected").item(0).getTextContent()));
+            this.teamplayStats.put("avgProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("protectedavg").item(0).getTextContent()));
+            this.teamplayStats.put("avgWasProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("wasprotectedavg").item(0).getTextContent()));
             this.teamplayStats.put("friendlyFireDamage", Integer.parseInt(teamplayStatsElement.getElementsByTagName("ffdamage").item(0).getTextContent()));
             this.teamplayStats.put("mostFriendlyFireDamageDifficulty", teamplayStatsElement.getElementsByTagName("ffdamagediff").item(0).getTextContent());
             this.teamplayStats.put("avgFriendlyFireDamage", Float.parseFloat(teamplayStatsElement.getElementsByTagName("ffdamageavg").item(0).getTextContent()));
