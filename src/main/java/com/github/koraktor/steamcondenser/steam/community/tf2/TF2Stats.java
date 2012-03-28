@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2010, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
@@ -123,7 +123,7 @@ public class TF2Stats extends GameStats {
         }
 
         if(this.inventory == null) {
-            if(this.gameFriendlyName.equals("tf2")) {
+            if(this.game.getShortName().equals("tf2")) {
                 this.inventory = TF2Inventory.create(this.steamId64);
             } else {
                 this.inventory = TF2BetaInventory.create(this.steamId64);

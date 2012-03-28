@@ -421,8 +421,9 @@ public class SteamId {
             this.playtimes = new HashMap<Integer, int[]>();
             for(int i = 0; i < gamesNodeList.getLength(); i++) {
                 Element gameData = (Element) gamesNodeList.item(i);
-                SteamGame game = SteamGame.create(gameData);
-                this.games.put(game.getAppId(), game);
+                int appId = Integer.valueOf(gameData.getElementsByTagName("appID").item(0).getTextContent());
+                SteamGame game = SteamGame.create(appId, gameData);
+                this.games.put(appId, game);
                 float recent;
                 try {
                     recent = Float.parseFloat(gameData.getElementsByTagName("hoursLast2Weeks").item(0).getTextContent());

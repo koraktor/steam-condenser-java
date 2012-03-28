@@ -2,13 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -41,17 +40,9 @@ public class GameStats {
 
     protected int achievementsDone;
 
-    protected int appId;
-
     protected String customUrl;
 
-    protected String gameIconUrl;
-
-    protected String gameFriendlyName;
-
-    protected String gameLogoUrl;
-
-    protected String gameName;
+    protected SteamGame game;
 
     protected String hoursPlayed;
 
@@ -93,24 +84,45 @@ public class GameStats {
     }
 
     /**
+     * Returns the base Steam Communtiy URL for the given player and game IDs
+     *
+     * @param userId The 64bit SteamID or custom URL of the user
+     * @param gameId The application ID or short name of the game
+     * @return The base URL used for the given stats IDs
+     */
+    protected static String getBaseUrl(Object userId, Object gameId) {
+        String gameUrl;
+        if(gameId instanceof Integer) {
+            gameUrl = "appid/" + gameId;
+        } else {
+            gameUrl = (String) gameId;
+        }
+
+        if(userId instanceof Integer) {
+            return "http://steamcommunity.com/profiles/" + userId + "/stats/" + gameUrl;
+        } else {
+            return "http://steamcommunity.com/id/" + userId + "/stats/" + gameUrl;
+        }
+    }
+
+    /**
      * Creates a <code>GameStats</code> object and fetches data from the Steam
      * Community for the given user and game
      *
      * @param steamId The custom URL or the 64bit Steam ID of the user
-     * @param gameName The friendly name of the game
+     * @param gameId The app ID or friendly name of the game
      * @throws SteamCondenserException if the stats cannot be fetched
      */
-    protected GameStats(Object steamId, String gameName)
+    protected GameStats(Object steamId, Object gameId)
             throws SteamCondenserException {
         if(steamId instanceof String) {
             this.customUrl = (String) steamId;
         } else if(steamId instanceof Long) {
             this.steamId64 = (Long) steamId;
         }
-        this.gameName = gameName;
 
         try {
-            String url = this.getBaseUrl() + "?xml=all";
+            String url = getBaseUrl(steamId, gameId) + "?xml=all";
 
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             this.xmlData = parser.parse(url).getDocumentElement();
@@ -122,12 +134,8 @@ public class GameStats {
 
             this.privacyState = this.xmlData.getElementsByTagName("privacyState").item(0).getTextContent();
             if(this.isPublic()) {
-                this.appId = Integer.parseInt(((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
-                this.gameFriendlyName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameFriendlyName").item(0).getTextContent();
-                this.gameIconUrl = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameIcon").item(0).getTextContent();
-                String tempLogoUrl = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLogo").item(0).getTextContent();
-                this.gameLogoUrl = tempLogoUrl.substring(0, tempLogoUrl.length() - 4);
-                this.gameName = ((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameName").item(0).getTextContent();
+                int appId = Integer.parseInt(((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
+                this.game = SteamGame.create(appId, (Element) this.xmlData.getElementsByTagName("game").item(0));
 
                 Node hoursPlayedNode = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("hoursPlayed").item(0);
                 if(hoursPlayedNode != null) {
@@ -161,7 +169,7 @@ public class GameStats {
             NodeList achievementsList = ((Element) this.xmlData.getElementsByTagName("achievements").item(0)).getElementsByTagName("achievement");
             for(int i = 0; i < achievementsList.getLength(); i++) {
                 Element achievementData = (Element) achievementsList.item(i);
-                GameAchievement achievement = new GameAchievement(this.steamId64, this.appId, achievementData);
+                GameAchievement achievement = new GameAchievement(this.steamId64, this.game.getAppId(), achievementData);
                 if(achievement.isUnlocked()) {
                     this.achievementsDone += 1;
                 }
@@ -203,15 +211,6 @@ public class GameStats {
     }
 
     /**
-     * Returns the Steam application ID of the game these stats belong to
-     *
-     * @return The Steam application ID of the game
-     */
-    public int getAppId() {
-        return this.appId;
-    }
-
-    /**
      * Returns the base Steam Communtiy URL for the stats contained in this
      * object
      *
@@ -219,9 +218,9 @@ public class GameStats {
      */
     public String getBaseUrl() {
         if(this.customUrl == null) {
-            return "http://steamcommunity.com/profiles/" + this.steamId64 + "/stats/" + this.gameName;
+            return getBaseUrl(this.steamId64, this.game.getId());
         } else {
-            return "http://steamcommunity.com/id/" + this.customUrl + "/stats/" + this.gameName;
+            return getBaseUrl(this.customUrl, this.game.getId());
         }
     }
 
@@ -236,48 +235,12 @@ public class GameStats {
     }
 
     /**
-     * Returns the friendly name of the game these stats belong to
+     * Returns the game these stats belong to
      *
-     * @return The frienldy name of the game
+     * @return The game object
      */
-    public String getGameFriendlyName() {
-        return this.gameFriendlyName;
-    }
-
-    /**
-     * Returns the url for the icon of this game
-     *
-     * @return url for game icon
-     */
-    public String getGameIconUrl() {
-        return this.gameIconUrl;
-    }
-
-    /**
-     * Returns the url for the logo image of this game
-     *
-     * @return url for game logo
-     */
-    public String getGameLogoUrl() {
-        return this.gameLogoUrl + ".jpg";
-    }
-
-    /**
-     * Returns the url for the logo thumbnail image of this game
-     *
-     * @return url for game logo thumbnail
-     */
-    public String getGameLogoSmallUrl() {
-        return this.gameLogoUrl + "_thumb.jpg";
-    }
-
-    /**
-     * Returns the full name of the game these stats belong to
-     *
-     * @return The name of the game
-     */
-    public String getGameName() {
-        return this.gameName;
+    public SteamGame getGame() {
+        return this.game;
     }
 
     /**
@@ -296,38 +259,6 @@ public class GameStats {
      */
     public String getHoursPlayed() {
         return this.hoursPlayed;
-    }
-
-    /**
-     * Returns the leaderboard for this game and the given leaderboard ID
-     *
-     * @param id The ID of the leaderboard to return
-     * @return The matching leaderboard if available
-     */
-    public GameLeaderboard getLeaderboard(int id)
-            throws SteamCondenserException {
-        return GameLeaderboard.getLeaderboard(this.gameFriendlyName, id);
-    }
-
-    /**
-     * Returns the leaderboard for this game and the given leaderboard name
-     *
-     * @param name The name of the leaderboard to return
-     * @return The matching leaderboard if available
-     */
-    public GameLeaderboard getLeaderboard(String name)
-            throws SteamCondenserException {
-        return GameLeaderboard.getLeaderboard(this.gameFriendlyName, name);
-    }
-
-    /**
-     * Returns an array containing all of this game's leaderboards
-     *
-     * @return The leaderboards for this game
-     */
-    public Map<Integer, GameLeaderboard> getLeaderboards()
-            throws SteamCondenserException {
-        return GameLeaderboard.getLeaderboards(this.gameFriendlyName);
     }
 
     /**

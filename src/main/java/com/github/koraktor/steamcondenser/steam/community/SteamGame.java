@@ -33,13 +33,13 @@ public class SteamGame {
 
     private int appId;
 
-    private String logoUrl;
+    private String iconUrl;
+
+    private String logoHash;
 
     private String name;
 
     private String shortName;
-
-    private String storeUrl;
 
     /**
      * Checks if a game is up-to-date by reading information from a
@@ -81,13 +81,12 @@ public class SteamGame {
      * Creates a new or cached instance of the game specified by the given XML
      * data
      *
+     * @param appId The application ID of the game
      * @param gameData The XML data of the game
      * @return The game instance for the given data
      * @see SteamGame#SteamGame
      */
-    public static SteamGame create(Element gameData) {
-        int appId = Integer.parseInt(gameData.getElementsByTagName("appID").item(0).getTextContent());
-
+    public static SteamGame create(int appId, Element gameData) {
         if(games.containsKey(appId)) {
             return games.get(appId);
         } else {
@@ -126,20 +125,34 @@ public class SteamGame {
      */
     private SteamGame(int appId, Element gameData) {
         this.appId = appId;
-        this.logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
-        this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
 
-        Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
-        if(globalStatsLinkNode != null) {
-            String shortName = globalStatsLinkNode.getTextContent();
-            Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
-            Matcher matcher = regex.matcher(shortName);
-            matcher.find();
-            shortName = matcher.group(1).toLowerCase();
-            this.shortName = shortName;
+        String logoUrl;
+        if(gameData.getElementsByTagName("name").getLength() > 0) {
+            logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
+            this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
+
+            Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
+            if(globalStatsLinkNode != null) {
+                String shortName = globalStatsLinkNode.getTextContent();
+                Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
+                Matcher matcher = regex.matcher(shortName);
+                matcher.find();
+                shortName = matcher.group(1).toLowerCase();
+                this.shortName = shortName;
+            } else {
+                this.shortName = null;
+            }
         } else {
-            this.shortName = null;
+            this.iconUrl = gameData.getElementsByTagName("gameIcon").item(0).getTextContent();
+            logoUrl = gameData.getElementsByTagName("gameLogo").item(0).getTextContent();
+            this.name  = gameData.getElementsByTagName("gameName").item(0).getTextContent();
+            this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent();
         }
+
+        Pattern regex = Pattern.compile("/#{app_id}/([0-9a-f]+).jpg");
+        Matcher matcher = regex.matcher(logoUrl);
+        matcher.find();
+        this.logoHash = matcher.group(1).toLowerCase();
 
         games.put(appId, this);
     }
@@ -151,6 +164,30 @@ public class SteamGame {
      */
     public int getAppId() {
         return this.appId;
+    }
+
+    /**
+     * Returns the URL for the icon image of this game
+     *
+     * @return The URL for the game icon
+     */
+    public String getIconUrl() {
+        return this.iconUrl;
+    }
+
+    /**
+     * Returns a unique identifier for this game
+     *
+     * This is either the numeric application ID or the unique short name
+     *
+     * @return The application ID or short name of the game
+     */
+    public Object getId() {
+        if(String.valueOf(this.appId).equals(this.shortName)) {
+            return this.appId;
+        } else {
+            return this.shortName;
+        }
     }
 
     /**
@@ -195,12 +232,21 @@ public class SteamGame {
     }
 
     /**
-     * Returns the URL for an image of the game logo
+     * Returns the URL for the logo image of this game
      *
-     * @return URL for game logo
+     * @return The URL for the game logo
      */
     public String getLogoUrl() {
-        return this.logoUrl;
+        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + ".jpg";
+    }
+
+    /**
+     * Returns the URL for the logo thumbnail image of this game
+     *
+     * @return  The URL for the game logo thumbnail
+     */
+    public String getLogoThumbnailUrl() {
+        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + "_thumb.jpg";
     }
 
     /**
