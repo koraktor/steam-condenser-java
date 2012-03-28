@@ -146,10 +146,10 @@ public class SteamGame {
             this.iconUrl = gameData.getElementsByTagName("gameIcon").item(0).getTextContent();
             logoUrl = gameData.getElementsByTagName("gameLogo").item(0).getTextContent();
             this.name  = gameData.getElementsByTagName("gameName").item(0).getTextContent();
-            this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent();
+            this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent().toLowerCase();
         }
 
-        Pattern regex = Pattern.compile("/#{app_id}/([0-9a-f]+).jpg");
+        Pattern regex = Pattern.compile("/" + appId + "/([0-9a-f]+).jpg");
         Matcher matcher = regex.matcher(logoUrl);
         matcher.find();
         this.logoHash = matcher.group(1).toLowerCase();

@@ -364,7 +364,7 @@ public class SteamGroup {
      *         data
      */
     public ArrayList<SteamId> getMembers() throws SteamCondenserException {
-        if(Integer.valueOf(this.members.size()) != this.memberCount) {
+        if(this.members.size() != this.memberCount) {
             this.fetchMembers();
         }
 
