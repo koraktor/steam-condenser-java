@@ -229,7 +229,7 @@ public class SteamGroup {
         int page;
         int totalPages;
 
-        if(this.memberCount == null || Integer.valueOf(this.members.size()) != this.memberCount) {
+        if(this.memberCount == null || this.members.size() != this.memberCount) {
             page = 0;
         } else {
             page = 1;
