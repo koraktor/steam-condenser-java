@@ -37,7 +37,7 @@ public class L4D2Stats extends AbstractL4DStats {
     public L4D2Stats(Object steamId) throws SteamCondenserException {
         super(steamId, "l4d2");
 
-        Element weaponsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
+        Element weaponsData = this.xmlData.getElement("stats", "weapons");
         this.damagePercentages = new HashMap<String, Float>();
         this.damagePercentages.put("melee", Float.parseFloat(weaponsData.getElementsByTagName("meleePctDmg").item(0).getTextContent()));
         this.damagePercentages.put("pistols", Float.parseFloat(weaponsData.getElementsByTagName("pistolsPctDmg").item(0).getTextContent()));
@@ -78,7 +78,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.lifetimeStats == null) {
             super.getLifetimeStats();
-            Element lifetimeStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
+            Element lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
             this.lifetimeStats.put("avgAdrenalineShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineshared").item(0).getTextContent()));
             this.lifetimeStats.put("avgAdrenalineUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineused").item(0).getTextContent()));
             this.lifetimeStats.put("avgDefibrillatorsUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("defibrillatorsused").item(0).getTextContent()));
@@ -102,7 +102,7 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.scavengeStats == null) {
-            Element scavengeStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("scavenge").item(0);
+            Element scavengeStatsElement = this.xmlData.getElement("stats", "scavenge");
             this.scavengeStats = new HashMap<String, Object>();
             this.scavengeStats.put("avgCansPerRound", Float.parseFloat(scavengeStatsElement.getElementsByTagName("avgcansperround").item(0).getTextContent()));
             this.scavengeStats.put("perfectRounds", Integer.parseInt(scavengeStatsElement.getElementsByTagName("perfect16canrounds").item(0).getTextContent()));
@@ -154,7 +154,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("survival").item(0);
+            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
             HashMap<String, L4D2Map> mapsHash = new HashMap<String, L4D2Map>();
             NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
             for(int i = 0; i < mapNodes.getLength(); i++) {
@@ -181,7 +181,7 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
+            Element weaponStatsElement = this.xmlData.getElement("stats", "weapons");
             this.weaponStats = new HashMap<String, GameWeapon>();
             NodeList weaponNodes = weaponStatsElement.getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {

@@ -100,9 +100,8 @@ public class TF2Stats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new ArrayList<TF2Class>();
-            NodeList classes = this.xmlData.getElement("stats").getElementsByTagName("classData");
-            for(int i = 0; i < classes.getLength(); i++) {
-                this.classStats.add(TF2ClassFactory.getTF2Class((Element) classes.item(i)));
+            for(Element classData : this.xmlData.getElements("stats", "classData")) {
+                this.classStats.add(TF2ClassFactory.getTF2Class(classData));
             }
         }
 

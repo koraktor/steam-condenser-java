@@ -54,9 +54,7 @@ public class DoDSStats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new HashMap<String, DoDSClass>();
-            NodeList classNodes = this.xmlData.getElement("classes").getElementsByTagName("class");
-            for(int i = 0; i < classNodes.getLength(); i++) {
-                Element classData = (Element) classNodes.item(i);
+            for(Element classData : this.xmlData.getElements("classes", "class")) {
                 this.classStats.put(classData.getAttribute("key"),
                     new DoDSClass(classData));
             }
@@ -79,8 +77,8 @@ public class DoDSStats extends GameStats {
         }
 
         if(this.weaponStats == null) {
-        this.weaponStats = new HashMap<String, DoDSWeapon>();
-        NodeList weaponNodes = this.xmlData.getElement("weapons").getChildNodes();
+            this.weaponStats = new HashMap<String, DoDSWeapon>();
+            NodeList weaponNodes = this.xmlData.getElement("weapons").getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {
                 Element weaponData = (Element) weaponNodes.item(i);
                 this.weaponStats.put(weaponData.getAttribute("key"),

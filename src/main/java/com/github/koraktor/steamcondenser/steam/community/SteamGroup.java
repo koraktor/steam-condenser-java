@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -338,12 +337,10 @@ public class SteamGroup {
         try {
             XMLData xmlData = new XMLData(this.getBaseUrl() + "/memberslistxml?p=" + page);
 
-            this.memberCount = Integer.parseInt(xmlData.getString("memberCount"));
-            totalPages = Integer.parseInt(xmlData.getString("totalPages"));
+            this.memberCount = xmlData.getInteger("memberCount");
+            totalPages = xmlData.getInteger("totalPages");
 
-            NodeList membersList = xmlData.getElement("members").getElementsByTagName("steamID64");
-            for(int i = 0; i < membersList.getLength(); i++) {
-                Element member = (Element) membersList.item(i);
+            for(Element member : xmlData.getElements("members", "steamID64")) {
                 this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
             }
         } catch(Exception e) {

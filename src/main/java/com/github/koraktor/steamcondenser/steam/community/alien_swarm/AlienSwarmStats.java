@@ -61,7 +61,7 @@ public class AlienSwarmStats extends GameStats {
         super(steamId, "alienswarm");
 
         if(this.isPublic()) {
-            Element lifetimeStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
+            Element lifetimeStats = this.xmlData.getElement("stats", "lifetime");
             this.hoursPlayed = lifetimeStats.getElementsByTagName("timeplayed").item(0).getTextContent();
 
             this.lifetimeStats = new HashMap<String, Object>();
@@ -105,7 +105,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.favorites == null) {
-            Element favoritesData = (Element) this.xmlData.getElement("stats").getElementsByTagName("favorites").item(0);
+            Element favoritesData = this.xmlData.getElement("stats", "favorites");
 
             this.favorites = new HashMap<String, Object>();
             this.favorites.put("class", favoritesData.getElementsByTagName("class").item(0).getTextContent());
@@ -147,7 +147,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.itemStats == null) {
-            Element itemStatsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
+            Element itemStatsData = this.xmlData.getElement("stats", "weapons");
 
             this.itemStats = new HashMap<String, Object>();
             this.itemStats.put("ammoDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("ammo_deployed").item(0).getTextContent()));
@@ -200,8 +200,7 @@ public class AlienSwarmStats extends GameStats {
 
         if(this.missionStats == null) {
             this.missionStats = new HashMap<String, Object>();
-            Element statsElement = this.xmlData.getElement("stats");
-            NodeList missionNodes = statsElement.getElementsByTagName("missions").item(0).getChildNodes();
+            NodeList missionNodes = this.xmlData.getElement("stats", "missions").getChildNodes();
             for(int i = 0; i < missionNodes.getLength(); i++) {
                 Node missionNode = missionNodes.item(i);
                 if(missionNode.getNodeType() == Node.TEXT_NODE) {
@@ -230,7 +229,7 @@ public class AlienSwarmStats extends GameStats {
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, Object>();
             for(String weaponNode : WEAPONS) {
-                Element weaponData = (Element) ((Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0)).getElementsByTagName(weaponNode).item(0);
+                Element weaponData = this.xmlData.getElement("stats", "weapons", weaponNode);
                 AlienSwarmWeapon weapon = new AlienSwarmWeapon(weaponData);
                 this.weaponStats.put(weapon.getName(), weapon);
             }

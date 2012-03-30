@@ -52,7 +52,7 @@ public class L4DStats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("survival").item(0);
+            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
             HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
             NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
             for(int i = 0; i < mapNodes.getLength(); i++) {
@@ -79,7 +79,7 @@ public class L4DStats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
+            Element weaponStatsElement = this.xmlData.getElement("stats", "weapons");
             this.weaponStats = new HashMap<String, GameWeapon>();
             NodeList weaponNodes = weaponStatsElement.getChildNodes();
             for(int i = 0; i < weaponNodes.getLength(); i++) {

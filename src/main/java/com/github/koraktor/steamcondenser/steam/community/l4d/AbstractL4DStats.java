@@ -55,7 +55,7 @@ public abstract class AbstractL4DStats extends GameStats {
         super(steamId, gameName);
 
         if(this.isPublic()) {
-            Element mostRecentGameNode = (Element) this.xmlData.getElement("stats").getElementsByTagName("mostRecentGame").item(0);
+            Element mostRecentGameNode = this.xmlData.getElement("stats", "mostRecentGame");
             this.mostRecentGame = new HashMap<String, Object>();
             if(mostRecentGameNode != null) {
                 this.mostRecentGame.put("difficulty", mostRecentGameNode.getElementsByTagName("difficulty").item(0).getTextContent());
@@ -79,7 +79,7 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.favorites == null) {
-            Element favoritesNode = (Element) this.xmlData.getElement("stats").getElementsByTagName("favorites").item(0);
+            Element favoritesNode = this.xmlData.getElement("stats", "favorites");
             this.favorites = new HashMap<String, Object>();
             this.favorites.put("campaign", favoritesNode.getElementsByTagName("campaign").item(0).getTextContent());
             this.favorites.put("campaignPercentage", Integer.parseInt(favoritesNode.getElementsByTagName("campaignpct").item(0).getTextContent()));
@@ -108,7 +108,7 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.lifetimeStats == null) {
-            Element lifetimeStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
+            Element lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
             this.lifetimeStats = new HashMap<String, Object>();
             this.lifetimeStats.put("finalesSurvived", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
             this.lifetimeStats.put("gamesPlayed", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
@@ -141,7 +141,7 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.survivalStats == null) {
-            Element survivalStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("survival").item(0);
+            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
             this.survivalStats = new HashMap<String, Object>();
             this.survivalStats.put("goldMedals", Integer.parseInt(survivalStatsElement.getElementsByTagName("goldmedals").item(0).getTextContent()));
             this.survivalStats.put("silverMedals", Integer.parseInt(survivalStatsElement.getElementsByTagName("silvermedals").item(0).getTextContent()));
@@ -176,7 +176,7 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.teamplayStats == null) {
-            Element teamplayStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("teamplay").item(0);
+            Element teamplayStatsElement = this.xmlData.getElement("stats", "teamplay");
             this.teamplayStats = new HashMap<String, Object>();
             this.teamplayStats.put("revived", Integer.parseInt(teamplayStatsElement.getElementsByTagName("revived").item(0).getTextContent()));
             this.teamplayStats.put("mostRevivedDifficulty", teamplayStatsElement.getElementsByTagName("reviveddiff").item(0).getTextContent());
@@ -209,7 +209,7 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.versusStats == null) {
-            Element versusStatsElement = (Element) this.xmlData.getElement("stats").getElementsByTagName("versus").item(0);
+            Element versusStatsElement = this.xmlData.getElement("stats", "versus");
             this.versusStats = new HashMap<String, Object>();
             this.versusStats.put("gamesPlayed", Integer.parseInt(versusStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
             this.versusStats.put("gamesCompleted", Integer.parseInt(versusStatsElement.getElementsByTagName("gamescompleted").item(0).getTextContent()));

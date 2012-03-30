@@ -60,9 +60,9 @@ public class CSSStats extends GameStats {
         super(steamId, "cs:s");
 
         if(this.isPublic()); {
-            Element lastMatchStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lastmatch").item(0);
-            Element lifetimeStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("lifetime").item(0);
-            Element summaryStats = (Element) this.xmlData.getElement("stats").getElementsByTagName("summary").item(0);
+            Element lastMatchStats = this.xmlData.getElement("stats", "lastmatch");
+            Element lifetimeStats = this.xmlData.getElement("stats", "lifetime");
+            Element summaryStats = this.xmlData.getElement("stats", "summary");
 
             this.lastMatchStats = new HashMap<String, Object>();
             this.totalStats     = new HashMap<String, Object>();
@@ -150,7 +150,7 @@ public class CSSStats extends GameStats {
 
         if(this.mapStats == null) {
             this.mapStats = new HashMap<String, CSSMap>();
-            Element mapsData = (Element) this.xmlData.getElement("stats").getElementsByTagName("maps").item(0);
+            Element mapsData = this.xmlData.getElement("stats", "maps");
 
             for(String mapName : MAPS) {
                 this.mapStats.put(mapName, new CSSMap(mapName, mapsData));
@@ -184,7 +184,7 @@ public class CSSStats extends GameStats {
 
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, CSSWeapon>();
-            Element weaponData = (Element) this.xmlData.getElement("stats").getElementsByTagName("weapons").item(0);
+            Element weaponData = this.xmlData.getElement("stats", "weapons");
 
             for(String weaponName : WEAPONS) {
                 this.weaponStats.put(weaponName, new CSSWeapon(weaponName, weaponData));
