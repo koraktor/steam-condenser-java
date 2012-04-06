@@ -2,14 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.alien_swarm;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class holds statistical information about weapons used by a player
@@ -32,14 +31,14 @@ public class AlienSwarmWeapon extends GameWeapon {
      *
      * @param weaponData The data representing this weapon
      */
-    public AlienSwarmWeapon(Element weaponData) {
+    public AlienSwarmWeapon(XMLData weaponData) {
         super(weaponData);
 
-        this.accuracy     = Float.parseFloat(weaponData.getElementsByTagName("accuracy").item(0).getTextContent());
-        this.damage       = Integer.parseInt(weaponData.getElementsByTagName("damage").item(0).getTextContent());
-        this.friendlyFire = Integer.parseInt(weaponData.getElementsByTagName("friendlyfire").item(0).getTextContent());
-        this.name         = weaponData.getElementsByTagName("name").item(0).getTextContent();
-        this.shots        = Integer.parseInt(weaponData.getElementsByTagName("shotsfired").item(0).getTextContent());
+        this.accuracy     = weaponData.getFloat("accuracy");
+        this.damage       = weaponData.getInteger("damage");
+        this.friendlyFire = weaponData.getInteger("friendlyfire");
+        this.name         = weaponData.getString("name");
+        this.shots        = weaponData.getInteger("shotsfired");
     }
 
     /**

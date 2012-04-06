@@ -9,13 +9,10 @@ package com.github.koraktor.steamcondenser.steam.community.defense_grid;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-import org.w3c.dom.Element;
+
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the game statistics for a single user in Defense Grid:
@@ -61,35 +58,29 @@ public class DefenseGridStats extends GameStats {
         super(steamId, "defensegrid:awakening");
 
         if(this.isPublic()) {
-            XPath xpath = XPathFactory.newInstance().newXPath();
-
-            try {
-                Element generalData = (Element) xpath.evaluate("stats/general", this.xmlData.getRoot(), XPathConstants.NODE);
-                this.bronzeMedals = Integer.parseInt(((Element) xpath.evaluate("bronze_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.silverMedals = Integer.parseInt(((Element) xpath.evaluate("silver_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.goldMedals = Integer.parseInt(((Element) xpath.evaluate("gold_medals_won/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsPlayed = Integer.parseInt(((Element) xpath.evaluate("levels_played_total/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsPlayedCampaign = Integer.parseInt(((Element) xpath.evaluate("levels_played_campaign/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsPlayedChallenge = Integer.parseInt(((Element) xpath.evaluate("levels_played_challenge/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsWon = Integer.parseInt(((Element) xpath.evaluate("levels_won_total/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsWonCampaign = Integer.parseInt(((Element) xpath.evaluate("levels_won_campaign/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.levelsWonChallenge = Integer.parseInt(((Element) xpath.evaluate("levels_won_challenge/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.encountered = Integer.parseInt(((Element) xpath.evaluate("total_aliens_encountered/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.killed = Integer.parseInt(((Element) xpath.evaluate("total_aliens_killed/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.killedCampaign = Integer.parseInt(((Element) xpath.evaluate("total_aliens_killed_campaign/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.killedChallenge = Integer.parseInt(((Element) xpath.evaluate("total_aliens_killed_challenge/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.resources = Float.parseFloat(((Element) xpath.evaluate("resources_recovered/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.heatDamage = Float.parseFloat(((Element) xpath.evaluate("heatdamage/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.timePlayed = Float.parseFloat(((Element) xpath.evaluate("time_played/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.interest = Float.parseFloat(((Element) xpath.evaluate("interest_gained/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.damage = Float.parseFloat(((Element) xpath.evaluate("tower_damage_total/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.damageCampaign = Float.parseFloat(((Element) xpath.evaluate("tower_damage_total_campaign/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.damageChallenge = Float.parseFloat(((Element) xpath.evaluate("tower_damage_total_challenge/value", generalData, XPathConstants.NODE)).getTextContent());
-                this.orbitalLaserFired = Integer.parseInt(((Element) xpath.evaluate("stats/orbitallaser/fired/value", this.xmlData, XPathConstants.NODE)).getTextContent());
-                this.orbitalLaserDamage = Float.parseFloat(((Element) xpath.evaluate("stats/orbitallaser/damage/value", this.xmlData, XPathConstants.NODE)).getTextContent());
-            } catch(XPathExpressionException e) {
-                throw new SteamCondenserException("Stats could not be parsed.", e);
-            }
+            XMLData generalData = this.xmlData.getElement("stats", "general");
+            this.bronzeMedals = generalData.getInteger("bronze_medals_won", "value");
+            this.silverMedals = generalData.getInteger("silver_medals_won", "value");
+            this.goldMedals = generalData.getInteger("gold_medals_won", "value");
+            this.levelsPlayed = generalData.getInteger("levels_played_total", "value");
+            this.levelsPlayedCampaign = generalData.getInteger("levels_played_campaign", "value");
+            this.levelsPlayedChallenge = generalData.getInteger("levels_played_challenge", "value");
+            this.levelsWon = generalData.getInteger("levels_won_total", "value");
+            this.levelsWonCampaign = generalData.getInteger("levels_won_campaign", "value");
+            this.levelsWonChallenge = generalData.getInteger("levels_won_challenge", "value");
+            this.encountered = generalData.getInteger("total_aliens_encountered", "value");
+            this.killed = generalData.getInteger("total_aliens_killed", "value");
+            this.killedCampaign = generalData.getInteger("total_aliens_killed_campaign", "value");
+            this.killedChallenge = generalData.getInteger("total_aliens_killed_challenge", "value");
+            this.resources = generalData.getFloat("resources_recovered", "value");
+            this.heatDamage = generalData.getFloat("heatdamage", "value");
+            this.timePlayed = generalData.getFloat("time_played", "value");
+            this.interest = generalData.getFloat("interest_gained", "value");
+            this.damage = generalData.getFloat("tower_damage_total", "value");
+            this.damageCampaign = generalData.getFloat("tower_damage_total_campaign", "value");
+            this.damageChallenge = generalData.getFloat("tower_damage_total_challenge", "value");
+            this.orbitalLaserFired = this.xmlData.getInteger("stats", "orbitallaser", "fired", "value");
+            this.orbitalLaserDamage = this.xmlData.getFloat("stats", "orbitallaser", "damage", "value");
         }
     }
 
@@ -110,22 +101,17 @@ public class DefenseGridStats extends GameStats {
         }
 
         if(this.alienStats != null) {
-            try {
-                XPath xpath = XPathFactory.newInstance().newXPath();
-                Element aliensData = (Element) xpath.evaluate("stats/aliens", this.xmlData.getRoot(), XPathConstants.NODE);
-                this.alienStats = new HashMap<String, int[]>();
-                String[] aliens = {"bulwark", "crasher", "dart", "decoy",
-                    "drone", "grunt", "juggernaut", "manta", "racer", "rumbler",
-                    "seeker", "spire", "stealth", "swarmer", "turtle", "walker"};
+            XMLData aliensData = this.xmlData.getElement("stats", "aliens");
+            this.alienStats = new HashMap<String, int[]>();
+            String[] aliens = {"bulwark", "crasher", "dart", "decoy",
+                "drone", "grunt", "juggernaut", "manta", "racer", "rumbler",
+                "seeker", "spire", "stealth", "swarmer", "turtle", "walker"};
 
-                for(String alien : aliens) {
-                    int[] alienData = new int[2];
-                    alienData[0] = Integer.parseInt(((Element) xpath.evaluate(alien + "/encountered/value", aliensData, XPathConstants.NODE)).getTextContent());
-                    alienData[1] = Integer.parseInt(((Element) xpath.evaluate(alien + "/killed/value", aliensData, XPathConstants.NODE)).getTextContent());
-                    this.alienStats.put(alien, alienData);
-                }
-            } catch(XPathExpressionException e) {
-                throw new SteamCondenserException("Stats could not be parsed.");
+            for(String alien : aliens) {
+                int[] alienData = new int[2];
+                alienData[0] = aliensData.getInteger(alien, "encountered", "value");
+                alienData[1] = aliensData.getInteger(alien, "killed", "value");
+                this.alienStats.put(alien, alienData);
             }
         }
 
@@ -352,43 +338,38 @@ public class DefenseGridStats extends GameStats {
         }
 
         if(this.towerStats != null) {
-            try {
-                XPath xpath = XPathFactory.newInstance().newXPath();
-                Element towersData = (Element) xpath.evaluate("stats/towers", this.xmlData.getRoot(), XPathConstants.NODE);
-                this.towerStats = new HashMap<String, ArrayList<float[]>>();
-                String[] towers = {"cannon", "flak", "gun", "inferno", "laser", "meteor", "missile", "tesla"};
+            XMLData towersData = this.xmlData.getElement("stats", "towers");
+            this.towerStats = new HashMap<String, ArrayList<float[]>>();
+            String[] towers = {"cannon", "flak", "gun", "inferno", "laser", "meteor", "missile", "tesla"};
 
-                ArrayList<float[]> towerData;
-                for(String tower : towers) {
-                    towerData = new ArrayList<float[]>();
-                    for(int i = 1; i <= 3; i++) {
-                        float[] levelData = new float[2];
-                        levelData[0] = Float.parseFloat(((Element) xpath.evaluate(tower + "[@level=" + i + "]/built/value", towersData, XPathConstants.NODE)).getTextContent());
-                        levelData[1] = Float.parseFloat(((Element) xpath.evaluate(tower + "[@level=" + i + "]/damage/value", towersData, XPathConstants.NODE)).getTextContent());
-                        towerData.add(i, levelData);
-                    }
-                    this.towerStats.put(tower, towerData);
-                }
-
+            ArrayList<float[]> towerData;
+            for(String tower : towers) {
                 towerData = new ArrayList<float[]>();
                 for(int i = 1; i <= 3; i++) {
                     float[] levelData = new float[2];
-                    levelData[0] = Float.parseFloat(((Element) xpath.evaluate("command[@level=" + i + "]/built/value", towersData, XPathConstants.NODE)).getTextContent());
-                    levelData[1] = Float.parseFloat(((Element) xpath.evaluate("command[@level=" + i + "]/resource/value", towersData, XPathConstants.NODE)).getTextContent());
+                    levelData[0] = towersData.getXPath(tower + "[@level=" + i + "]/built/value").getFloat();
+                    levelData[1] = towersData.getXPath(tower + "[@level=" + i + "]/damage/value").getFloat();
                     towerData.add(i, levelData);
                 }
-                this.towerStats.put("command", towerData);
-
-                towerData = new ArrayList<float[]>();
-                for(int i = 1; i <= 3; i++) {
-                    float[] levelData = new float[2];
-                    levelData[0] = Float.parseFloat(((Element) xpath.evaluate("temporal[@level=" + i + "]/built/value", towersData, XPathConstants.NODE)).getTextContent());
-                    towerData.add(i, levelData);
-                }
-                this.towerStats.put("temporal", towerData);
-            } catch(XPathExpressionException e) {
-                throw new SteamCondenserException("Stats could not be parsed.", e);
+                this.towerStats.put(tower, towerData);
             }
+
+            towerData = new ArrayList<float[]>();
+            for(int i = 1; i <= 3; i++) {
+                float[] levelData = new float[2];
+                levelData[0] = towersData.getXPath("command[@level=" + i + "]/built/value").getFloat();
+                levelData[1] = towersData.getXPath("command[@level=" + i + "]/resource/value").getFloat();
+                towerData.add(i, levelData);
+            }
+            this.towerStats.put("command", towerData);
+
+            towerData = new ArrayList<float[]>();
+            for(int i = 1; i <= 3; i++) {
+                float[] levelData = new float[2];
+                levelData[0] = towersData.getXPath("temporal[@level=" + i + "]/built/value").getFloat();
+                towerData.add(i, levelData);
+            }
+            this.towerStats.put("temporal", towerData);
         }
 
         return this.towerStats;

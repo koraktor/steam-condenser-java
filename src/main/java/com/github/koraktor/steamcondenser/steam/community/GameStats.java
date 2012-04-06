@@ -9,8 +9,6 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.ArrayList;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.css.CSSStats;
 import com.github.koraktor.steamcondenser.steam.community.defense_grid.DefenseGridStats;
@@ -154,7 +152,7 @@ public class GameStats {
             this.achievements = new ArrayList<GameAchievement>();
             this.achievementsDone = 0;
 
-            for(Element achievementData : this.xmlData.getElements("achievements", "achievement")) {
+            for(XMLData achievementData : this.xmlData.getElements("achievements", "achievement")) {
                 GameAchievement achievement = new GameAchievement(this.steamId64, this.game.getAppId(), achievementData);
                 if(achievement.isUnlocked()) {
                     this.achievementsDone += 1;

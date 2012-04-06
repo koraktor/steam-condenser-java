@@ -2,14 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.dods;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.steam.community.GameClass;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for a Day of Defeat: Source class for a specific user
@@ -46,32 +45,20 @@ public class DoDSClass extends GameClass {
      *
      * @param classData The XML data of the class
      */
-    public DoDSClass(Element classData) {
-        this.blocks = Integer.parseInt(classData.getElementsByTagName("blocks")
-            .item(0).getTextContent());
-        this.bombsDefused = Integer.parseInt(classData.getElementsByTagName(
-            "bombsdefused").item(0).getTextContent());
-        this.bombsPlanted = Integer.parseInt(classData.getElementsByTagName(
-            "bombsplanted").item(0).getTextContent());
-        this.captures = Integer.parseInt(classData.getElementsByTagName(
-            "captures").item(0).getTextContent());
-        this.deaths = Integer.parseInt(classData.getElementsByTagName("deaths")
-            .item(0).getTextContent());
-        this.dominations = Integer.parseInt(classData.getElementsByTagName(
-            "dominations").item(0).getTextContent());
+    public DoDSClass(XMLData classData) {
+        this.blocks = classData.getInteger("blocks");
+        this.bombsDefused = classData.getInteger("bombsdefused");
+        this.bombsPlanted = classData.getInteger("bombsplanted");
+        this.captures = classData.getInteger("captures");
+        this.deaths = classData.getInteger("deaths");
+        this.dominations = classData.getInteger("dominations");
         this.key = classData.getAttribute("key");
-        this.kills = Integer.parseInt(classData.getElementsByTagName("kills")
-            .item(0).getTextContent());
-        this.name = classData.getElementsByTagName("name").item(0)
-            .getTextContent();
-        this.playTime = Integer.parseInt(classData.getElementsByTagName(
-            "playtime").item(0).getTextContent());
-        this.roundsLost = Integer.parseInt(classData.getElementsByTagName(
-            "roundslost").item(0).getTextContent());
-        this.roundsWon = Integer.parseInt(classData.getElementsByTagName(
-            "roundswon").item(0).getTextContent());
-        this.revenges = Integer.parseInt(classData.getElementsByTagName(
-            "revenges").item(0).getTextContent());
+        this.kills = classData.getInteger("kills");
+        this.name = classData.getString("name");
+        this.playTime = classData.getInteger("playtime");
+        this.roundsLost = classData.getInteger("roundslost");
+        this.roundsWon = classData.getInteger("roundswon");
+        this.revenges = classData.getInteger("revenges");
     }
 
     /**

@@ -2,13 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
 
-import org.w3c.dom.Element;
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This abstract class is a base class for weapons in Left4Dead and Left4Dead 2
@@ -34,18 +34,15 @@ public abstract class AbtractL4DWeapon extends GameWeapon {
      *
      * @param weaponData The XML data for this weapon
      */
-    public AbtractL4DWeapon(Element weaponData) {
+    public AbtractL4DWeapon(XMLData weaponData) {
         super(weaponData);
 
         this.accuracy = Float.parseFloat(weaponData
-            .getElementsByTagName("accuracy").item(0).getTextContent()
-            .replace("%", "")) * 0.01f;
+            .getString("accuracy").replace("%", "")) * 0.01f;
         this.headshotPercentage = Float.parseFloat(weaponData
-            .getElementsByTagName("headshots").item(0).getTextContent()
-            .replace("%", "")) * 0.01f;
-        this.name = weaponData.getTagName();
-        this.shots = Integer.valueOf(weaponData.getElementsByTagName("shots")
-            .item(0).getTextContent());
+            .getString("headshots").replace("%", "")) * 0.01f;
+        this.name = weaponData.getName();
+        this.shots = weaponData.getInteger("shots");
     }
 
     /**

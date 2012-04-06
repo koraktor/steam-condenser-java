@@ -10,12 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community.alien_swarm;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the game statistics for a single user in Alien Swarm
@@ -61,31 +58,31 @@ public class AlienSwarmStats extends GameStats {
         super(steamId, "alienswarm");
 
         if(this.isPublic()) {
-            Element lifetimeStats = this.xmlData.getElement("stats", "lifetime");
-            this.hoursPlayed = lifetimeStats.getElementsByTagName("timeplayed").item(0).getTextContent();
+            XMLData lifetimeStats = this.xmlData.getElement("stats", "lifetime");
+            this.hoursPlayed = lifetimeStats.getString("timeplayed");
 
             this.lifetimeStats = new HashMap<String, Object>();
-            this.lifetimeStats.put("accuracy", Float.valueOf(lifetimeStats.getElementsByTagName("accuracy").item(0).getTextContent()));
-            this.lifetimeStats.put("aliensBurned", Integer.valueOf(lifetimeStats.getElementsByTagName("aliensburned").item(0).getTextContent()));
-            this.lifetimeStats.put("aliensKilled", Integer.valueOf(lifetimeStats.getElementsByTagName("alienskilled").item(0).getTextContent()));
-            this.lifetimeStats.put("campaigns", Integer.valueOf(lifetimeStats.getElementsByTagName("campaigns").item(0).getTextContent()));
-            this.lifetimeStats.put("damageTaken", Integer.valueOf(lifetimeStats.getElementsByTagName("damagetaken").item(0).getTextContent()));
-            this.lifetimeStats.put("experience", Integer.valueOf(lifetimeStats.getElementsByTagName("experience").item(0).getTextContent()));
-            this.lifetimeStats.put("experienceRequired", Integer.valueOf(lifetimeStats.getElementsByTagName("xprequired").item(0).getTextContent()));
-            this.lifetimeStats.put("fastHacks", Integer.valueOf(lifetimeStats.getElementsByTagName("fasthacks").item(0).getTextContent()));
-            this.lifetimeStats.put("friendlyFire", Integer.valueOf(lifetimeStats.getElementsByTagName("friendlyfire").item(0).getTextContent()));
-            this.lifetimeStats.put("gamesSuccessful", Integer.valueOf(lifetimeStats.getElementsByTagName("gamessuccess").item(0).getTextContent()));
-            this.lifetimeStats.put("healing", Integer.valueOf(lifetimeStats.getElementsByTagName("healing").item(0).getTextContent()));
-            this.lifetimeStats.put("killsPerHour", Float.valueOf(lifetimeStats.getElementsByTagName("killsperhour").item(0).getTextContent()));
-            this.lifetimeStats.put("level", Integer.valueOf(lifetimeStats.getElementsByTagName("level").item(0).getTextContent()));
-            this.lifetimeStats.put("promotion", Integer.valueOf(lifetimeStats.getElementsByTagName("promotion").item(0).getTextContent()));
-            this.lifetimeStats.put("nextUnlock", lifetimeStats.getElementsByTagName("nextunlock").item(0).getTextContent());
-            this.lifetimeStats.put("nextUnlockImg", BASE_URL + lifetimeStats.getElementsByTagName("nextunlockimg").item(0).getTextContent());
-            this.lifetimeStats.put("shotsFired", Integer.valueOf(lifetimeStats.getElementsByTagName("shotsfired").item(0).getTextContent()));
-            this.lifetimeStats.put("totalGames", Integer.valueOf(lifetimeStats.getElementsByTagName("totalgames").item(0).getTextContent()));
+            this.lifetimeStats.put("accuracy", lifetimeStats.getFloat("accuracy"));
+            this.lifetimeStats.put("aliensBurned", lifetimeStats.getInteger("aliensburned"));
+            this.lifetimeStats.put("aliensKilled", lifetimeStats.getInteger("alienskilled"));
+            this.lifetimeStats.put("campaigns", lifetimeStats.getInteger("campaigns"));
+            this.lifetimeStats.put("damageTaken", lifetimeStats.getInteger("damagetaken"));
+            this.lifetimeStats.put("experience", lifetimeStats.getInteger("experience"));
+            this.lifetimeStats.put("experienceRequired", lifetimeStats.getInteger("xprequired"));
+            this.lifetimeStats.put("fastHacks", lifetimeStats.getInteger("fasthacks"));
+            this.lifetimeStats.put("friendlyFire", lifetimeStats.getInteger("friendlyfire"));
+            this.lifetimeStats.put("gamesSuccessful", lifetimeStats.getInteger("gamessuccess"));
+            this.lifetimeStats.put("healing", lifetimeStats.getInteger("healing"));
+            this.lifetimeStats.put("killsPerHour", lifetimeStats.getFloat("killsperhour"));
+            this.lifetimeStats.put("level", lifetimeStats.getInteger("level"));
+            this.lifetimeStats.put("promotion", lifetimeStats.getInteger("promotion"));
+            this.lifetimeStats.put("nextUnlock", lifetimeStats.getString("nextunlock"));
+            this.lifetimeStats.put("nextUnlockImg", BASE_URL + lifetimeStats.getString("nextunlockimg"));
+            this.lifetimeStats.put("shotsFired", lifetimeStats.getInteger("shotsfired"));
+            this.lifetimeStats.put("totalGames", lifetimeStats.getInteger("totalgames"));
 
             if((Integer) this.lifetimeStats.get("promotion") > 0) {
-                this.lifetimeStats.put("promotionImg", BASE_URL + lifetimeStats.getElementsByTagName("promotionpic").item(0).getTextContent());
+               this.lifetimeStats.put("promotionImg", BASE_URL + lifetimeStats.getString("promotionpic"));
             }
 
             this.lifetimeStats.put("games_successful_percentage", ((Integer) this.lifetimeStats.get("totalGames") > 0) ? ((Integer) this.lifetimeStats.get("gamesSuccessful")).floatValue() / (Integer) this.lifetimeStats.get("totalGames") : 0);
@@ -105,29 +102,29 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.favorites == null) {
-            Element favoritesData = this.xmlData.getElement("stats", "favorites");
+            XMLData favoritesData = this.xmlData.getElement("stats", "favorites");
 
             this.favorites = new HashMap<String, Object>();
-            this.favorites.put("class", favoritesData.getElementsByTagName("class").item(0).getTextContent());
-            this.favorites.put("classImg", favoritesData.getElementsByTagName("classimg").item(0).getTextContent());
-            this.favorites.put("classPercentage", Float.valueOf(favoritesData.getElementsByTagName("classpct").item(0).getTextContent()));
-            this.favorites.put("difficulty", favoritesData.getElementsByTagName("difficulty").item(0).getTextContent());
-            this.favorites.put("difficultyPercentage", Float.valueOf(favoritesData.getElementsByTagName("difficultypct").item(0).getTextContent()));
-            this.favorites.put("extra", favoritesData.getElementsByTagName("extra").item(0).getTextContent());
-            this.favorites.put("extraImg", favoritesData.getElementsByTagName("extraimg").item(0).getTextContent());
-            this.favorites.put("extraPercentage", Float.valueOf(favoritesData.getElementsByTagName("extrapct").item(0).getTextContent()));
-            this.favorites.put("marine", favoritesData.getElementsByTagName("marine").item(0).getTextContent());
-            this.favorites.put("marineImg", favoritesData.getElementsByTagName("marineimg").item(0).getTextContent());
-            this.favorites.put("marinePercentage", Float.valueOf(favoritesData.getElementsByTagName("marinepct").item(0).getTextContent()));
-            this.favorites.put("mission", favoritesData.getElementsByTagName("mission").item(0).getTextContent());
-            this.favorites.put("missionImg", favoritesData.getElementsByTagName("missionimg").item(0).getTextContent());
-            this.favorites.put("missionPercentage", Float.valueOf(favoritesData.getElementsByTagName("missionpct").item(0).getTextContent()));
-            this.favorites.put("primaryWeapon", favoritesData.getElementsByTagName("primary").item(0).getTextContent());
-            this.favorites.put("primaryWeaponImg", favoritesData.getElementsByTagName("primaryimg").item(0).getTextContent());
-            this.favorites.put("primaryWeaponPercentage", Float.valueOf(favoritesData.getElementsByTagName("primarypct").item(0).getTextContent()));
-            this.favorites.put("secondaryWeapon", favoritesData.getElementsByTagName("secondary").item(0).getTextContent());
-            this.favorites.put("secondaryWeaponImg", favoritesData.getElementsByTagName("secondaryimg").item(0).getTextContent());
-            this.favorites.put("secondaryWeapon_Percentage", Float.valueOf(favoritesData.getElementsByTagName("secondarypct").item(0).getTextContent()));
+            this.favorites.put("class", favoritesData.getString("class"));
+            this.favorites.put("classImg", favoritesData.getString("classimg"));
+            this.favorites.put("classPercentage", favoritesData.getFloat("classpct"));
+            this.favorites.put("difficulty", favoritesData.getString("difficulty"));
+            this.favorites.put("difficultyPercentage", favoritesData.getFloat("difficultypct"));
+            this.favorites.put("extra", favoritesData.getString("extra"));
+            this.favorites.put("extraImg", favoritesData.getString("extraimg"));
+            this.favorites.put("extraPercentage", favoritesData.getFloat("extrapct"));
+            this.favorites.put("marine", favoritesData.getString("marine"));
+            this.favorites.put("marineImg", favoritesData.getString("marineimg"));
+            this.favorites.put("marinePercentage", favoritesData.getFloat("marinepct"));
+            this.favorites.put("mission", favoritesData.getString("mission"));
+            this.favorites.put("missionImg", favoritesData.getString("missionimg"));
+            this.favorites.put("missionPercentage", favoritesData.getFloat("missionpct"));
+            this.favorites.put("primaryWeapon", favoritesData.getString("primary"));
+            this.favorites.put("primaryWeaponImg", favoritesData.getString("primaryimg"));
+            this.favorites.put("primaryWeaponPercentage", favoritesData.getFloat("primarypct"));
+            this.favorites.put("secondaryWeapon", favoritesData.getString("secondary"));
+            this.favorites.put("secondaryWeaponImg", favoritesData.getString("secondaryimg"));
+            this.favorites.put("secondaryWeapon_Percentage", favoritesData.getFloat("secondarypct"));
         }
 
         return this.favorites;
@@ -147,30 +144,30 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.itemStats == null) {
-            Element itemStatsData = this.xmlData.getElement("stats", "weapons");
+            XMLData itemStatsData = this.xmlData.getElement("stats", "weapons");
 
             this.itemStats = new HashMap<String, Object>();
-            this.itemStats.put("ammoDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("ammo_deployed").item(0).getTextContent()));
-            this.itemStats.put("sentrygunsDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("sentryguns_deployed").item(0).getTextContent()));
-            this.itemStats.put("sentryFlamersDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("sentry_flamers_deployed").item(0).getTextContent()));
-            this.itemStats.put("sentryFreezeDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("sentry_freeze_deployed").item(0).getTextContent()));
-            this.itemStats.put("sentryCannonDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("sentry_cannon_deployed").item(0).getTextContent()));
-            this.itemStats.put("medkitsUsed", Integer.valueOf(itemStatsData.getElementsByTagName("medkits_used").item(0).getTextContent()));
-            this.itemStats.put("flaresUsed", Integer.valueOf(itemStatsData.getElementsByTagName("flares_used").item(0).getTextContent()));
-            this.itemStats.put("adrenalineUsed", Integer.valueOf(itemStatsData.getElementsByTagName("adrenaline_used").item(0).getTextContent()));
-            this.itemStats.put("teslaTrapsDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("tesla_traps_deployed").item(0).getTextContent()));
-            this.itemStats.put("freezeGrenadesThrown", Integer.valueOf(itemStatsData.getElementsByTagName("freeze_grenades_thrown").item(0).getTextContent()));
-            this.itemStats.put("electricArmorUsed", Integer.valueOf(itemStatsData.getElementsByTagName("electric_armor_used").item(0).getTextContent()));
-            this.itemStats.put("healgunHeals", Integer.valueOf(itemStatsData.getElementsByTagName("healgun_heals").item(0).getTextContent()));
-            this.itemStats.put("healgunHealsSelf", Integer.valueOf(itemStatsData.getElementsByTagName("healgun_heals_self").item(0).getTextContent()));
-            this.itemStats.put("healbeaconHeals", Integer.valueOf(itemStatsData.getElementsByTagName("healbeacon_heals").item(0).getTextContent()));
-            this.itemStats.put("healbeaconHealsSelf", Integer.valueOf(itemStatsData.getElementsByTagName("healbeacon_heals_self").item(0).getTextContent()));
-            this.itemStats.put("damageAmpsUsed", Integer.valueOf(itemStatsData.getElementsByTagName("damage_amps_used").item(0).getTextContent()));
-            this.itemStats.put("healbeaconsDeployed", Integer.valueOf(itemStatsData.getElementsByTagName("healbeacons_deployed").item(0).getTextContent()));
-            this.itemStats.put("healbeaconHealsPct", Float.valueOf(itemStatsData.getElementsByTagName("healbeacon_heals_pct").item(0).getTextContent()));
-            this.itemStats.put("healgunHealsPct", Float.valueOf(itemStatsData.getElementsByTagName("healgun_heals_pct").item(0).getTextContent()));
-            this.itemStats.put("healbeaconHealsPctSelf", Float.valueOf(itemStatsData.getElementsByTagName("healbeacon_heals_pct_self").item(0).getTextContent()));
-            this.itemStats.put("healgunHealsPctSelf", Float.valueOf(itemStatsData.getElementsByTagName("healgun_heals_pct_self").item(0).getTextContent()));
+            this.itemStats.put("ammoDeployed", itemStatsData.getInteger("ammo_deployed"));
+            this.itemStats.put("sentrygunsDeployed", itemStatsData.getInteger("sentryguns_deployed"));
+            this.itemStats.put("sentryFlamersDeployed", itemStatsData.getInteger("sentry_flamers_deployed"));
+            this.itemStats.put("sentryFreezeDeployed", itemStatsData.getInteger("sentry_freeze_deployed"));
+            this.itemStats.put("sentryCannonDeployed", itemStatsData.getInteger("sentry_cannon_deployed"));
+            this.itemStats.put("medkitsUsed", itemStatsData.getInteger("medkits_used"));
+            this.itemStats.put("flaresUsed", itemStatsData.getInteger("flares_used"));
+            this.itemStats.put("adrenalineUsed", itemStatsData.getInteger("adrenaline_used"));
+            this.itemStats.put("teslaTrapsDeployed", itemStatsData.getInteger("tesla_traps_deployed"));
+            this.itemStats.put("freezeGrenadesThrown", itemStatsData.getInteger("freeze_grenades_thrown"));
+            this.itemStats.put("electricArmorUsed", itemStatsData.getInteger("electric_armor_used"));
+            this.itemStats.put("healgunHeals", itemStatsData.getInteger("healgun_heals"));
+            this.itemStats.put("healgunHealsSelf", itemStatsData.getInteger("healgun_heals_self"));
+            this.itemStats.put("healbeaconHeals", itemStatsData.getInteger("healbeacon_heals"));
+            this.itemStats.put("healbeaconHealsSelf", itemStatsData.getInteger("healbeacon_heals_self"));
+            this.itemStats.put("damageAmpsUsed", itemStatsData.getInteger("damage_amps_used"));
+            this.itemStats.put("healbeaconsDeployed", itemStatsData.getInteger("healbeacons_deployed"));
+            this.itemStats.put("healbeaconHealsPct", itemStatsData.getFloat("healbeacon_heals_pct"));
+            this.itemStats.put("healgunHealsPct", itemStatsData.getFloat("healgun_heals_pct"));
+            this.itemStats.put("healbeaconHealsPctSelf", itemStatsData.getFloat("healbeacon_heals_pct_self"));
+            this.itemStats.put("healgunHealsPctSelf", itemStatsData.getFloat("healgun_heals_pct_self"));
         }
 
         return this.itemStats;
@@ -200,13 +197,8 @@ public class AlienSwarmStats extends GameStats {
 
         if(this.missionStats == null) {
             this.missionStats = new HashMap<String, Object>();
-            NodeList missionNodes = this.xmlData.getElement("stats", "missions").getChildNodes();
-            for(int i = 0; i < missionNodes.getLength(); i++) {
-                Node missionNode = missionNodes.item(i);
-                if(missionNode.getNodeType() == Node.TEXT_NODE) {
-                    continue;
-                }
-                this.missionStats.put(missionNode.getNodeName(), new AlienSwarmMission((Element) missionNode));
+            for(XMLData missionData : this.xmlData.getElements("stats", "missions")) {
+                this.missionStats.put(missionData.getName(), new AlienSwarmMission(missionData));
             }
         }
 
@@ -229,7 +221,7 @@ public class AlienSwarmStats extends GameStats {
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, Object>();
             for(String weaponNode : WEAPONS) {
-                Element weaponData = this.xmlData.getElement("stats", "weapons", weaponNode);
+                XMLData weaponData = this.xmlData.getElement("stats", "weapons", weaponNode);
                 AlienSwarmWeapon weapon = new AlienSwarmWeapon(weaponData);
                 this.weaponStats.put(weapon.getName(), weapon);
             }

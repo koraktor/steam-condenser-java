@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the statistics of a single weapon for a user in
@@ -22,12 +22,11 @@ public class L4DWeapon extends AbtractL4DWeapon {
      *
      * @param weaponData The XML data for this weapon
      */
-    public L4DWeapon(Element weaponData) {
+    public L4DWeapon(XMLData weaponData) {
         super(weaponData);
 
         this.killPercentage = Float.parseFloat(weaponData
-            .getElementsByTagName("killpct").item(0).getTextContent()
-            .replace("%", "")) * 0.01f;
+            .getString("killpct").replace("%", "")) * 0.01f;
     }
 
 }

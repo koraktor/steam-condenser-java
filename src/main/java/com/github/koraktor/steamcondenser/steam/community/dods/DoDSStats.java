@@ -9,12 +9,9 @@ package com.github.koraktor.steamcondenser.steam.community.dods;
 
 import java.util.HashMap;
 
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * The is class represents the game statistics for a single user in Day of
@@ -54,7 +51,7 @@ public class DoDSStats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new HashMap<String, DoDSClass>();
-            for(Element classData : this.xmlData.getElements("classes", "class")) {
+            for(XMLData classData : this.xmlData.getElements("classes", "class")) {
                 this.classStats.put(classData.getAttribute("key"),
                     new DoDSClass(classData));
             }
@@ -78,9 +75,7 @@ public class DoDSStats extends GameStats {
 
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, DoDSWeapon>();
-            NodeList weaponNodes = this.xmlData.getElement("weapons").getChildNodes();
-            for(int i = 0; i < weaponNodes.getLength(); i++) {
-                Element weaponData = (Element) weaponNodes.item(i);
+            for(XMLData weaponData : this.xmlData.getChildren("weapons")) {
                 this.weaponStats.put(weaponData.getAttribute("key"),
                     new DoDSWeapon(weaponData));
             }

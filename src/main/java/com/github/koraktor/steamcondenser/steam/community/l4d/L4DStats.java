@@ -10,11 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community.l4d;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the game statistics for a single user in Left4Dead
@@ -52,12 +50,9 @@ public class L4DStats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
             HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
-            NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
-            for(int i = 0; i < mapNodes.getLength(); i++) {
-                Element mapData = (Element) mapNodes.item(i);
-                mapsHash.put(mapData.getNodeName(), new L4DMap(mapData));
+            for(XMLData mapData : this.xmlData.getElements("stats", "survival", "maps")) {
+                mapsHash.put(mapData.getName(), new L4DMap(mapData));
             }
             this.survivalStats.put("maps", mapsHash);
         }
@@ -79,12 +74,9 @@ public class L4DStats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = this.xmlData.getElement("stats", "weapons");
             this.weaponStats = new HashMap<String, GameWeapon>();
-            NodeList weaponNodes = weaponStatsElement.getChildNodes();
-            for(int i = 0; i < weaponNodes.getLength(); i++) {
-                Element weaponData = (Element) weaponNodes.item(i);
-                String weaponName = weaponData.getNodeName();
+            for(XMLData weaponData : this.xmlData.getChildren("stats", "weapons")) {
+                String weaponName = weaponData.getName();
                 GameWeapon weapon;
                 if(!weaponName.equals("molotov") && !weaponName.equals("pipes")) {
                     weapon = new L4DWeapon(weaponData);

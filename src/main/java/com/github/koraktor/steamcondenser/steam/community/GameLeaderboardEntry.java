@@ -2,12 +2,10 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
-
-import org.w3c.dom.Element;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -33,12 +31,12 @@ public class GameLeaderboardEntry {
      *        entry
      * @param leaderboard The leaderboard this entry belongs to
      */
-    public GameLeaderboardEntry(Element entryData, GameLeaderboard leaderboard) {
+    public GameLeaderboardEntry(XMLData entryData, GameLeaderboard leaderboard) {
         try {
-            this.steamId     = SteamId.create(entryData.getElementsByTagName("steamid").item(0).getTextContent(), false);
+            this.steamId     = SteamId.create(entryData.getString("steamid"), false);
         } catch(SteamCondenserException e) {}
-        this.score       = Integer.parseInt(entryData.getElementsByTagName("score").item(0).getTextContent());
-        this.rank        = Integer.parseInt(entryData.getElementsByTagName("rank").item(0).getTextContent());
+        this.score       = entryData.getInteger("score");
+        this.rank        = entryData.getInteger("rank");
         this.leaderboard = leaderboard;
     }
 

@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
@@ -10,11 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community.l4d;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.SteamId;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class holds statistical information about a map played by a player in
@@ -48,34 +46,32 @@ public class L4D2Map extends L4DMap {
      *
      * @param mapData The XML data for this map
      */
-    public L4D2Map(Element mapData)
+    public L4D2Map(XMLData mapData)
             throws SteamCondenserException {
-        String imgUrl = mapData.getElementsByTagName("img").item(0).getTextContent();
+        String imgUrl = mapData.getString("img");
         this.id = imgUrl.substring(imgUrl.lastIndexOf('/'), -4);
-        this.name = mapData.getElementsByTagName("name").item(0).getTextContent();
-        this.played = mapData.getElementsByTagName("hasPlayed").item(0).getTextContent().equals("1");
+        this.name = mapData.getString("name");
+        this.played = mapData.getString("hasPlayed").equals("1");
 
         if(this.played) {
-            this.bestTime = Float.parseFloat(mapData.getElementsByTagName("besttimemilliseconds").item(0).getTextContent()) / 1000;
+            this.bestTime = mapData.getFloat("besttimemilliseconds") / 1000;
 
             this.items = new HashMap<String, Integer>();
             for(String item : ITEMS) {
-                this.items.put(item, Integer.parseInt(mapData.getElementsByTagName("items_" + item).item(0).getTextContent()));
+                this.items.put(item, mapData.getInteger("items_" + item));
             }
 
             this.kills = new HashMap<String, Integer>();
             for(String infected : INFECTED) {
-                this.items.put(infected, Integer.parseInt(mapData.getElementsByTagName("kills_" + infected).item(0).getTextContent()));
+                this.items.put(infected, mapData.getInteger("kills_" + infected));
             }
 
             this.teammates = new ArrayList<SteamId>();
-            NodeList teammateNodes = mapData.getElementsByTagName("teammates").item(0).getChildNodes();
-            for(int i = 0; i < teammateNodes.getLength(); i++) {
-                Element teammateNode = (Element) teammateNodes.item(i);
-                this.teammates.add(SteamId.create(Long.parseLong(teammateNode.getTextContent())));
+            for(XMLData teammateData : mapData.getChildren("teammates")) {
+                this.teammates.add(SteamId.create(teammateData.getLong()));
             }
 
-            String medal = mapData.getElementsByTagName("medal").item(0).getTextContent();
+            String medal = mapData.getString("medal");
             if(medal.equals("gold")) {
                 this.medal = GOLD;
             } else if(medal.equals("silver")) {

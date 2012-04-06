@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class holds statistical information about a map played by a player in
@@ -40,13 +40,13 @@ public class L4DMap {
      *
      * @param mapData The XML data for this map
      */
-    public L4DMap(Element mapData) {
-        this.bestTime    = Float.parseFloat(mapData.getElementsByTagName("besttimeseconds").item(0).getTextContent());
-        this.id          = mapData.getNodeName();
-        this.name        = mapData.getElementsByTagName("name").item(0).getTextContent();
-        this.timesPlayed = Integer.parseInt(mapData.getElementsByTagName("timesplayed").item(0).getTextContent());
+    public L4DMap(XMLData mapData) {
+        this.bestTime    = mapData.getFloat("besttimeseconds");
+        this.id          = mapData.getName();
+        this.name        = mapData.getString("name");
+        this.timesPlayed = mapData.getInteger("timesplayed");
 
-        String medal = mapData.getElementsByTagName("medal").item(0).getTextContent();
+        String medal = mapData.getString("medal");
         if(medal.equals("gold")) {
             this.medal = GOLD;
         } else if(medal.equals("silver")) {

@@ -2,14 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.dods;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for a Day of Defeat: Source weapon for a specific user
@@ -18,15 +17,9 @@ import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
  */
 public class DoDSWeapon extends GameWeapon {
 
-    private float avgHitsPerKill;
-
-    private float headshotPercentage;
-
     private int headshots;
 
     private int hits;
-
-    private float hitPercentage;
 
     private String name;
 
@@ -36,18 +29,14 @@ public class DoDSWeapon extends GameWeapon {
      *
      * @param weaponData The XML data of the class
      */
-    public DoDSWeapon(Element weaponData) {
+    public DoDSWeapon(XMLData weaponData) {
         super(weaponData);
 
-        this.headshots = Integer.parseInt(weaponData.getElementsByTagName(
-            "headshots").item(0).getTextContent());
+        this.headshots = weaponData.getInteger("headshots");
         this.id = weaponData.getAttribute("key");
-        this.name = weaponData.getElementsByTagName("name").item(0)
-            .getTextContent();
-        this.shots = Integer.parseInt(weaponData.getElementsByTagName(
-            "shotsfired").item(0).getTextContent());
-        this.hits = Integer.parseInt(weaponData
-            .getElementsByTagName("shotshit").item(0).getTextContent());
+        this.name = weaponData.getString("name");
+        this.shots = weaponData.getInteger("shotsfired");
+        this.hits = weaponData.getInteger("shotshit");
     }
 
     /**

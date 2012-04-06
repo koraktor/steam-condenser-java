@@ -11,12 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This abstract class is a base class for statistics for Left4Dead and
@@ -55,13 +53,13 @@ public abstract class AbstractL4DStats extends GameStats {
         super(steamId, gameName);
 
         if(this.isPublic()) {
-            Element mostRecentGameNode = this.xmlData.getElement("stats", "mostRecentGame");
+            XMLData mostRecentGameNode = this.xmlData.getElement("stats", "mostRecentGame");
             this.mostRecentGame = new HashMap<String, Object>();
             if(mostRecentGameNode != null) {
-                this.mostRecentGame.put("difficulty", mostRecentGameNode.getElementsByTagName("difficulty").item(0).getTextContent());
-                this.mostRecentGame.put("escaped", mostRecentGameNode.getElementsByTagName("bEscaped").item(0).getTextContent().equals("1"));
-                this.mostRecentGame.put("movie", mostRecentGameNode.getElementsByTagName("movie").item(0).getTextContent());
-                this.mostRecentGame.put("timePlayed", mostRecentGameNode.getElementsByTagName("time").item(0).getTextContent());
+                this.mostRecentGame.put("difficulty", mostRecentGameNode.getString("difficulty"));
+                this.mostRecentGame.put("escaped", mostRecentGameNode.getString("bEscaped").equals("1"));
+                this.mostRecentGame.put("movie", mostRecentGameNode.getString("movie"));
+                this.mostRecentGame.put("timePlayed", mostRecentGameNode.getString("time"));
             }
         }
     }
@@ -79,16 +77,16 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.favorites == null) {
-            Element favoritesNode = this.xmlData.getElement("stats", "favorites");
+            XMLData favoritesNode = this.xmlData.getElement("stats", "favorites");
             this.favorites = new HashMap<String, Object>();
-            this.favorites.put("campaign", favoritesNode.getElementsByTagName("campaign").item(0).getTextContent());
-            this.favorites.put("campaignPercentage", Integer.parseInt(favoritesNode.getElementsByTagName("campaignpct").item(0).getTextContent()));
-            this.favorites.put("character", favoritesNode.getElementsByTagName("character").item(0).getTextContent());
-            this.favorites.put("characterPercentage", Integer.parseInt(favoritesNode.getElementsByTagName("characterpct").item(0).getTextContent()));
-            this.favorites.put("level1Weapon", favoritesNode.getElementsByTagName("weapon1").item(0).getTextContent());
-            this.favorites.put("level1WeaponPercentage", Integer.parseInt(favoritesNode.getElementsByTagName("weapon1pct").item(0).getTextContent()));
-            this.favorites.put("level2Weapon", favoritesNode.getElementsByTagName("weapon2").item(0).getTextContent());
-            this.favorites.put("level2WeaponPercentage", Integer.parseInt(favoritesNode.getElementsByTagName("weapon2pct").item(0).getTextContent()));
+            this.favorites.put("campaign", favoritesNode.getString("campaign"));
+            this.favorites.put("campaignPercentage", favoritesNode.getInteger("campaignpct"));
+            this.favorites.put("character", favoritesNode.getString("character"));
+            this.favorites.put("characterPercentage", favoritesNode.getInteger("characterpct"));
+            this.favorites.put("level1Weapon", favoritesNode.getString("weapon1"));
+            this.favorites.put("level1WeaponPercentage", favoritesNode.getInteger("weapon1pct"));
+            this.favorites.put("level2Weapon", favoritesNode.getString("weapon2"));
+            this.favorites.put("level2WeaponPercentage", favoritesNode.getInteger("weapon2pct"));
         }
 
         return this.favorites;
@@ -108,18 +106,18 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.lifetimeStats == null) {
-            Element lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
+            XMLData lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
             this.lifetimeStats = new HashMap<String, Object>();
-            this.lifetimeStats.put("finalesSurvived", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
-            this.lifetimeStats.put("gamesPlayed", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
+            this.lifetimeStats.put("finalesSurvived", lifetimeStatsElement.getInteger("finales"));
+            this.lifetimeStats.put("gamesPlayed", lifetimeStatsElement.getInteger("gamesplayed"));
             this.lifetimeStats.put("finalesSurvivedPercentage", ((Integer) this.lifetimeStats.get("finalesSurvived")).floatValue() / (Integer) this.lifetimeStats.get("gamesPlayed"));
-            this.lifetimeStats.put("infectedKilled", Integer.parseInt(lifetimeStatsElement.getElementsByTagName("infectedkilled").item(0).getTextContent()));
-            this.lifetimeStats.put("killsPerHour", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("killsperhour").item(0).getTextContent()));
-            this.lifetimeStats.put("avgKitsShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("kitsshared").item(0).getTextContent()));
-            this.lifetimeStats.put("avgKitsUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("kitsused").item(0).getTextContent()));
-            this.lifetimeStats.put("avgPillsShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("pillsshared").item(0).getTextContent()));
-            this.lifetimeStats.put("avgPillsUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("pillsused").item(0).getTextContent()));
-            this.lifetimeStats.put("timePlayed", lifetimeStatsElement.getElementsByTagName("timeplayed").item(0).getTextContent());
+            this.lifetimeStats.put("infectedKilled", lifetimeStatsElement.getInteger("infectedkilled"));
+            this.lifetimeStats.put("killsPerHour", lifetimeStatsElement.getFloat("killsperhour"));
+            this.lifetimeStats.put("avgKitsShared", lifetimeStatsElement.getFloat("kitsshared"));
+            this.lifetimeStats.put("avgKitsUsed", lifetimeStatsElement.getFloat("kitsused"));
+            this.lifetimeStats.put("avgPillsShared", lifetimeStatsElement.getFloat("pillsshared"));
+            this.lifetimeStats.put("avgPillsUsed", lifetimeStatsElement.getFloat("pillsused"));
+            this.lifetimeStats.put("timePlayed", lifetimeStatsElement.getString("timeplayed"));
         }
 
         return this.lifetimeStats;
@@ -141,19 +139,17 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.survivalStats == null) {
-            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
+            XMLData survivalStatsElement = this.xmlData.getElement("stats", "survival");
             this.survivalStats = new HashMap<String, Object>();
-            this.survivalStats.put("goldMedals", Integer.parseInt(survivalStatsElement.getElementsByTagName("goldmedals").item(0).getTextContent()));
-            this.survivalStats.put("silverMedals", Integer.parseInt(survivalStatsElement.getElementsByTagName("silvermedals").item(0).getTextContent()));
-            this.survivalStats.put("bronzeMedals", Integer.parseInt(survivalStatsElement.getElementsByTagName("bronzemedals").item(0).getTextContent()));
-            this.survivalStats.put("roundsPlayed", Integer.parseInt(survivalStatsElement.getElementsByTagName("roundsplayed").item(0).getTextContent()));
-            this.survivalStats.put("bestTime", Float.parseFloat(survivalStatsElement.getElementsByTagName("besttime").item(0).getTextContent()));
+            this.survivalStats.put("goldMedals", survivalStatsElement.getInteger("goldmedals"));
+            this.survivalStats.put("silverMedals", survivalStatsElement.getInteger("silvermedals"));
+            this.survivalStats.put("bronzeMedals", survivalStatsElement.getInteger("bronzemedals"));
+            this.survivalStats.put("roundsPlayed", survivalStatsElement.getInteger("roundsplayed"));
+            this.survivalStats.put("bestTime", survivalStatsElement.getFloat("besttime"));
 
             HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
-            NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
-            for(int i = 0; i < mapNodes.getLength(); i++) {
-                Element mapData = (Element) mapNodes.item(i);
-                mapsHash.put(mapData.getNodeName(), new L4DMap(mapData));
+            for(XMLData mapData : survivalStatsElement.getElements("maps")) {
+                mapsHash.put(mapData.getName(), new L4DMap(mapData));
             }
             this.survivalStats.put("maps", mapsHash);
         }
@@ -176,19 +172,19 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.teamplayStats == null) {
-            Element teamplayStatsElement = this.xmlData.getElement("stats", "teamplay");
+            XMLData teamplayStatsElement = this.xmlData.getElement("stats", "teamplay");
             this.teamplayStats = new HashMap<String, Object>();
-            this.teamplayStats.put("revived", Integer.parseInt(teamplayStatsElement.getElementsByTagName("revived").item(0).getTextContent()));
-            this.teamplayStats.put("mostRevivedDifficulty", teamplayStatsElement.getElementsByTagName("reviveddiff").item(0).getTextContent());
-            this.teamplayStats.put("avgRevived", Float.parseFloat(teamplayStatsElement.getElementsByTagName("revivedavg").item(0).getTextContent()));
-            this.teamplayStats.put("avgWasRevived", Float.parseFloat(teamplayStatsElement.getElementsByTagName("wasrevivedavg").item(0).getTextContent()));
-            this.teamplayStats.put("protected", Integer.parseInt(teamplayStatsElement.getElementsByTagName("protected").item(0).getTextContent()));
-            this.teamplayStats.put("mostProtectedDifficulty", teamplayStatsElement.getElementsByTagName("protecteddiff").item(0).getTextContent());
-            this.teamplayStats.put("avgProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("protectedavg").item(0).getTextContent()));
-            this.teamplayStats.put("avgWasProtected", Float.parseFloat(teamplayStatsElement.getElementsByTagName("wasprotectedavg").item(0).getTextContent()));
-            this.teamplayStats.put("friendlyFireDamage", Integer.parseInt(teamplayStatsElement.getElementsByTagName("ffdamage").item(0).getTextContent()));
-            this.teamplayStats.put("mostFriendlyFireDamageDifficulty", teamplayStatsElement.getElementsByTagName("ffdamagediff").item(0).getTextContent());
-            this.teamplayStats.put("avgFriendlyFireDamage", Float.parseFloat(teamplayStatsElement.getElementsByTagName("ffdamageavg").item(0).getTextContent()));
+            this.teamplayStats.put("revived", teamplayStatsElement.getInteger("revived"));
+            this.teamplayStats.put("mostRevivedDifficulty", teamplayStatsElement.getString("reviveddiff"));
+            this.teamplayStats.put("avgRevived", teamplayStatsElement.getFloat("revivedavg"));
+            this.teamplayStats.put("avgWasRevived", teamplayStatsElement.getFloat("wasrevivedavg"));
+            this.teamplayStats.put("protected", teamplayStatsElement.getInteger("protected"));
+            this.teamplayStats.put("mostProtectedDifficulty", teamplayStatsElement.getString("protecteddiff"));
+            this.teamplayStats.put("avgProtected", teamplayStatsElement.getFloat("protectedavg"));
+            this.teamplayStats.put("avgWasProtected", teamplayStatsElement.getFloat("wasprotectedavg"));
+            this.teamplayStats.put("friendlyFireDamage", teamplayStatsElement.getInteger("ffdamage"));
+            this.teamplayStats.put("mostFriendlyFireDamageDifficulty", teamplayStatsElement.getString("ffdamagediff"));
+            this.teamplayStats.put("avgFriendlyFireDamage", teamplayStatsElement.getFloat("ffdamageavg"));
         }
 
         return this.teamplayStats;
@@ -209,17 +205,17 @@ public abstract class AbstractL4DStats extends GameStats {
         }
 
         if(this.versusStats == null) {
-            Element versusStatsElement = this.xmlData.getElement("stats", "versus");
+            XMLData versusStatsElement = this.xmlData.getElement("stats", "versus");
             this.versusStats = new HashMap<String, Object>();
-            this.versusStats.put("gamesPlayed", Integer.parseInt(versusStatsElement.getElementsByTagName("gamesplayed").item(0).getTextContent()));
-            this.versusStats.put("gamesCompleted", Integer.parseInt(versusStatsElement.getElementsByTagName("gamescompleted").item(0).getTextContent()));
-            this.versusStats.put("finalesSurvived", Integer.parseInt(versusStatsElement.getElementsByTagName("finales").item(0).getTextContent()));
+            this.versusStats.put("gamesPlayed", versusStatsElement.getInteger("gamesplayed"));
+            this.versusStats.put("gamesCompleted", versusStatsElement.getInteger("gamescompleted"));
+            this.versusStats.put("finalesSurvived", versusStatsElement.getInteger("finales"));
             this.versusStats.put("finalesSurvivedPercentage", ((Integer) this.versusStats.get("finalesSurvived")).floatValue() / (Integer) this.versusStats.get("gamesPlayed"));
-            this.versusStats.put("points", Integer.parseInt(versusStatsElement.getElementsByTagName("points").item(0).getTextContent()));
-            this.versusStats.put("mostPointsInfected", versusStatsElement.getElementsByTagName("pointsas").item(0).getTextContent());
-            this.versusStats.put("gamesWon", Integer.parseInt(versusStatsElement.getElementsByTagName("gameswon").item(0).getTextContent()));
-            this.versusStats.put("gamesLost", Integer.parseInt(versusStatsElement.getElementsByTagName("gameslost").item(0).getTextContent()));
-            this.versusStats.put("highestSurvivorScore", Integer.parseInt(versusStatsElement.getElementsByTagName("survivorscore").item(0).getTextContent()));
+            this.versusStats.put("points", versusStatsElement.getInteger("points"));
+            this.versusStats.put("mostPointsInfected", versusStatsElement.getString("pointsas"));
+            this.versusStats.put("gamesWon", versusStatsElement.getInteger("gameswon"));
+            this.versusStats.put("gamesLost", versusStatsElement.getInteger("gameslost"));
+            this.versusStats.put("highestSurvivorScore", versusStatsElement.getInteger("survivorscore"));
 
             ArrayList<String> infectedArray = new ArrayList<String>();
             infectedArray.add("boomer");
@@ -228,9 +224,9 @@ public abstract class AbstractL4DStats extends GameStats {
             infectedArray.add("tank");
             for(String infected : infectedArray) {
                 HashMap<String, Number> infectedStats = new HashMap<String, Number>();
-                infectedStats.put("special", Integer.parseInt(versusStatsElement.getElementsByTagName(infected + "special").item(0).getTextContent()));
-                infectedStats.put("mostDamage", Integer.parseInt(versusStatsElement.getElementsByTagName(infected + "dmg").item(0).getTextContent()));
-                infectedStats.put("avgLifespan", Integer.parseInt(versusStatsElement.getElementsByTagName(infected + "lifespan").item(0).getTextContent()));
+                infectedStats.put("special", versusStatsElement.getInteger(infected + "special"));
+                infectedStats.put("mostDamage", versusStatsElement.getInteger(infected + "dmg"));
+                infectedStats.put("avgLifespan", versusStatsElement.getInteger(infected + "lifespan"));
                 this.versusStats.put(infected, infectedStats);
             }
         }

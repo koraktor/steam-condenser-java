@@ -10,9 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community.css;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * The is class represents the game statistics for a single user in
@@ -60,52 +60,52 @@ public class CSSStats extends GameStats {
         super(steamId, "cs:s");
 
         if(this.isPublic()); {
-            Element lastMatchStats = this.xmlData.getElement("stats", "lastmatch");
-            Element lifetimeStats = this.xmlData.getElement("stats", "lifetime");
-            Element summaryStats = this.xmlData.getElement("stats", "summary");
+            XMLData lastMatchStats = this.xmlData.getElement("stats", "lastmatch");
+            XMLData lifetimeStats = this.xmlData.getElement("stats", "lifetime");
+            XMLData summaryStats = this.xmlData.getElement("stats", "summary");
 
             this.lastMatchStats = new HashMap<String, Object>();
             this.totalStats     = new HashMap<String, Object>();
 
-            this.lastMatchStats.put("costPerKill", Float.parseFloat(lastMatchStats.getElementsByTagName("costkill").item(0).getTextContent()));
-            this.lastMatchStats.put("ctWins", Integer.parseInt(lastMatchStats.getElementsByTagName("ct_wins").item(0).getTextContent()));
-            this.lastMatchStats.put("damage", Integer.parseInt(lastMatchStats.getElementsByTagName("dmg").item(0).getTextContent()));
-            this.lastMatchStats.put("deaths", Integer.parseInt(lastMatchStats.getElementsByTagName("deaths").item(0).getTextContent()));
-            this.lastMatchStats.put("dominations", Integer.parseInt(lastMatchStats.getElementsByTagName("dominations").item(0).getTextContent()));
-            this.lastMatchStats.put("favoriteWeaponId", Integer.parseInt(lastMatchStats.getElementsByTagName("favwpnid").item(0).getTextContent()));
-            this.lastMatchStats.put("kills", Integer.parseInt(lastMatchStats.getElementsByTagName("kills").item(0).getTextContent()));
-            this.lastMatchStats.put("maxPlayers", Integer.parseInt(lastMatchStats.getElementsByTagName("max_players").item(0).getTextContent()));
-            this.lastMatchStats.put("money", Integer.parseInt(lastMatchStats.getElementsByTagName("money").item(0).getTextContent()));
-            this.lastMatchStats.put("revenges", Integer.parseInt(lastMatchStats.getElementsByTagName("revenges").item(0).getTextContent()));
-            this.lastMatchStats.put("stars", Integer.parseInt(lastMatchStats.getElementsByTagName("stars").item(0).getTextContent()));
-            this.lastMatchStats.put("tWins", Integer.parseInt(lastMatchStats.getElementsByTagName("t_wins").item(0).getTextContent()));
-            this.lastMatchStats.put("wins", Integer.parseInt(lastMatchStats.getElementsByTagName("wins").item(0).getTextContent()));
-            this.totalStats.put("blindKills", Integer.parseInt(lifetimeStats.getElementsByTagName("blindkills").item(0).getTextContent()));
-            this.totalStats.put("bombsDefused", Integer.parseInt(lifetimeStats.getElementsByTagName("bombsdefused").item(0).getTextContent()));
-            this.totalStats.put("bombsPlanted", Integer.parseInt(lifetimeStats.getElementsByTagName("bombsplanted").item(0).getTextContent()));
-            this.totalStats.put("damage", Integer.parseInt(lifetimeStats.getElementsByTagName("dmg").item(0).getTextContent()));
-            this.totalStats.put("deaths", Integer.parseInt(summaryStats.getElementsByTagName("deaths").item(0).getTextContent()));
-            this.totalStats.put("dominationOverkills", Integer.parseInt(lifetimeStats.getElementsByTagName("dominationoverkills").item(0).getTextContent()));
-            this.totalStats.put("dominations", Integer.parseInt(lifetimeStats.getElementsByTagName("dominations").item(0).getTextContent()));
-            this.totalStats.put("earnedMoney", Integer.parseInt(lifetimeStats.getElementsByTagName("money").item(0).getTextContent()));
-            this.totalStats.put("enemyWeaponKills", Integer.parseInt(lifetimeStats.getElementsByTagName("enemywpnkills").item(0).getTextContent()));
-            this.totalStats.put("headshots", Integer.parseInt(lifetimeStats.getElementsByTagName("headshots").item(0).getTextContent()));
-            this.totalStats.put("hits", Integer.parseInt(summaryStats.getElementsByTagName("shotshit").item(0).getTextContent()));
-            this.totalStats.put("hostagesRescued", Integer.parseInt(lifetimeStats.getElementsByTagName("hostagesrescued").item(0).getTextContent()));
-            this.totalStats.put("kills", Integer.parseInt(summaryStats.getElementsByTagName("kills").item(0).getTextContent()));
-            this.totalStats.put("knifeKills", Integer.parseInt(lifetimeStats.getElementsByTagName("knifekills").item(0).getTextContent()));
-            this.totalStats.put("logosSprayed", Integer.parseInt(lifetimeStats.getElementsByTagName("decals").item(0).getTextContent()));
-            this.totalStats.put("nightvisionDamage", Integer.parseInt(lifetimeStats.getElementsByTagName("nvgdmg").item(0).getTextContent()));
-            this.totalStats.put("pistolRoundsWon", Integer.parseInt(lifetimeStats.getElementsByTagName("pistolrounds").item(0).getTextContent()));
-            this.totalStats.put("revenges", Integer.parseInt(lifetimeStats.getElementsByTagName("revenges").item(0).getTextContent()));
-            this.totalStats.put("roundsPlayed", Integer.parseInt(summaryStats.getElementsByTagName("rounds").item(0).getTextContent()));
-            this.totalStats.put("roundsWon", Integer.parseInt(summaryStats.getElementsByTagName("wins").item(0).getTextContent()));
-            this.totalStats.put("secondsPlayed", Integer.parseInt(summaryStats.getElementsByTagName("timeplayed").item(0).getTextContent()));
-            this.totalStats.put("shots", Integer.parseInt(summaryStats.getElementsByTagName("shots").item(0).getTextContent()));
-            this.totalStats.put("stars", Integer.parseInt(summaryStats.getElementsByTagName("stars").item(0).getTextContent()));
-            this.totalStats.put("weaponsDonated", Integer.parseInt(lifetimeStats.getElementsByTagName("wpndonated").item(0).getTextContent()));
-            this.totalStats.put("windowsBroken", Integer.parseInt(lifetimeStats.getElementsByTagName("winbroken").item(0).getTextContent()));
-            this.totalStats.put("zoomedSniperKills", Integer.parseInt(lifetimeStats.getElementsByTagName("zsniperkills").item(0).getTextContent()));
+            this.lastMatchStats.put("costPerKill", lastMatchStats.getFloat("costkill"));
+            this.lastMatchStats.put("ctWins", lastMatchStats.getInteger("ct_wins"));
+            this.lastMatchStats.put("damage", lastMatchStats.getInteger("dmg"));
+            this.lastMatchStats.put("deaths", lastMatchStats.getInteger("deaths"));
+            this.lastMatchStats.put("dominations", lastMatchStats.getInteger("dominations"));
+            this.lastMatchStats.put("favoriteWeaponId", lastMatchStats.getInteger("favwpnid"));
+            this.lastMatchStats.put("kills", lastMatchStats.getInteger("kills"));
+            this.lastMatchStats.put("maxPlayers", lastMatchStats.getInteger("max_players"));
+            this.lastMatchStats.put("money", lastMatchStats.getInteger("money"));
+            this.lastMatchStats.put("revenges", lastMatchStats.getInteger("revenges"));
+            this.lastMatchStats.put("stars", lastMatchStats.getInteger("stars"));
+            this.lastMatchStats.put("tWins", lastMatchStats.getInteger("t_wins"));
+            this.lastMatchStats.put("wins", lastMatchStats.getInteger("wins"));
+            this.totalStats.put("blindKills", lifetimeStats.getInteger("blindkills"));
+            this.totalStats.put("bombsDefused", lifetimeStats.getInteger("bombsdefused"));
+            this.totalStats.put("bombsPlanted", lifetimeStats.getInteger("bombsplanted"));
+            this.totalStats.put("damage", lifetimeStats.getInteger("dmg"));
+            this.totalStats.put("deaths", summaryStats.getInteger("deaths"));
+            this.totalStats.put("dominationOverkills", lifetimeStats.getInteger("dominationoverkills"));
+            this.totalStats.put("dominations", lifetimeStats.getInteger("dominations"));
+            this.totalStats.put("earnedMoney", lifetimeStats.getInteger("money"));
+            this.totalStats.put("enemyWeaponKills", lifetimeStats.getInteger("enemywpnkills"));
+            this.totalStats.put("headshots", lifetimeStats.getInteger("headshots"));
+            this.totalStats.put("hits", summaryStats.getInteger("shotshit"));
+            this.totalStats.put("hostagesRescued", lifetimeStats.getInteger("hostagesrescued"));
+            this.totalStats.put("kills", summaryStats.getInteger("kills"));
+            this.totalStats.put("knifeKills", lifetimeStats.getInteger("knifekills"));
+            this.totalStats.put("logosSprayed", lifetimeStats.getInteger("decals"));
+            this.totalStats.put("nightvisionDamage", lifetimeStats.getInteger("nvgdmg"));
+            this.totalStats.put("pistolRoundsWon", lifetimeStats.getInteger("pistolrounds"));
+            this.totalStats.put("revenges", lifetimeStats.getInteger("revenges"));
+            this.totalStats.put("roundsPlayed", summaryStats.getInteger("rounds"));
+            this.totalStats.put("roundsWon", summaryStats.getInteger("wins"));
+            this.totalStats.put("secondsPlayed", summaryStats.getInteger("timeplayed"));
+            this.totalStats.put("shots", summaryStats.getInteger("shots"));
+            this.totalStats.put("stars", summaryStats.getInteger("stars"));
+            this.totalStats.put("weaponsDonated", lifetimeStats.getInteger("wpndonated"));
+            this.totalStats.put("windowsBroken", lifetimeStats.getInteger("winbroken"));
+            this.totalStats.put("zoomedSniperKills", lifetimeStats.getInteger("zsniperkills"));
 
             if((Integer) this.lastMatchStats.get("deaths") > 0) {
                 this.lastMatchStats.put("kdratio", ((Integer) this.lastMatchStats.get("kills")).floatValue() / (Integer) this.lastMatchStats.get("deaths"));
@@ -150,7 +150,7 @@ public class CSSStats extends GameStats {
 
         if(this.mapStats == null) {
             this.mapStats = new HashMap<String, CSSMap>();
-            Element mapsData = this.xmlData.getElement("stats", "maps");
+            XMLData mapsData = this.xmlData.getElement("stats", "maps");
 
             for(String mapName : MAPS) {
                 this.mapStats.put(mapName, new CSSMap(mapName, mapsData));
@@ -184,7 +184,7 @@ public class CSSStats extends GameStats {
 
         if(this.weaponStats == null) {
             this.weaponStats = new HashMap<String, CSSWeapon>();
-            Element weaponData = this.xmlData.getElement("stats", "weapons");
+            XMLData weaponData = this.xmlData.getElement("stats", "weapons");
 
             for(String weaponName : WEAPONS) {
                 this.weaponStats.put(weaponName, new CSSWeapon(weaponName, weaponData));

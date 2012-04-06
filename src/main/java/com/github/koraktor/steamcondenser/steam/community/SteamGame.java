@@ -17,8 +17,6 @@ import java.util.regex.Pattern;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -86,7 +84,7 @@ public class SteamGame {
      * @return The game instance for the given data
      * @see SteamGame#SteamGame
      */
-    public static SteamGame create(int appId, Element gameData) {
+    public static SteamGame create(int appId, XMLData gameData) {
         if(games.containsKey(appId)) {
             return games.get(appId);
         } else {
@@ -123,30 +121,28 @@ public class SteamGame {
      * @param appId The application ID of the game
      * @param gameData The XML data of the game
      */
-    private SteamGame(int appId, Element gameData) {
+    private SteamGame(int appId, XMLData gameData) {
         this.appId = appId;
 
         String logoUrl;
-        if(gameData.getElementsByTagName("name").getLength() > 0) {
-            logoUrl = gameData.getElementsByTagName("logo").item(0).getTextContent();
-            this.name  = gameData.getElementsByTagName("name").item(0).getTextContent();
+        if(gameData.hasElement("name")) {
+            logoUrl = gameData.getString("logo");
+            this.name  = gameData.getString("name");
 
-            Node globalStatsLinkNode = gameData.getElementsByTagName("globalStatsLink").item(0);
-            if(globalStatsLinkNode != null) {
-                String shortName = globalStatsLinkNode.getTextContent();
+            if(gameData.hasElement("globalStatsLink")) {
                 Pattern regex = Pattern.compile("http://steamcommunity.com/stats/([^?/]+)/achievements/");
-                Matcher matcher = regex.matcher(shortName);
+                Matcher matcher = regex.matcher(gameData.getString("globalStatsLink"));
                 matcher.find();
                 shortName = matcher.group(1).toLowerCase();
-                this.shortName = shortName;
+                this.shortName = matcher.group(1).toLowerCase();
             } else {
                 this.shortName = null;
             }
         } else {
-            this.iconUrl = gameData.getElementsByTagName("gameIcon").item(0).getTextContent();
-            logoUrl = gameData.getElementsByTagName("gameLogo").item(0).getTextContent();
-            this.name  = gameData.getElementsByTagName("gameName").item(0).getTextContent();
-            this.shortName = gameData.getElementsByTagName("gameFriendlyName").item(0).getTextContent().toLowerCase();
+            this.iconUrl = gameData.getString("gameIcon");
+            logoUrl = gameData.getString("gameLogo");
+            this.name  = gameData.getString("gameName");
+            this.shortName = gameData.getString("gameFriendlyName").toLowerCase();
         }
 
         Pattern regex = Pattern.compile("/" + appId + "/([0-9a-f]+).jpg");

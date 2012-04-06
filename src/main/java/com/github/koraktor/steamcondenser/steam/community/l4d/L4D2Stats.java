@@ -10,11 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community.l4d;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the game statistics for a single user in Left4Dead 2
@@ -37,12 +35,12 @@ public class L4D2Stats extends AbstractL4DStats {
     public L4D2Stats(Object steamId) throws SteamCondenserException {
         super(steamId, "l4d2");
 
-        Element weaponsData = this.xmlData.getElement("stats", "weapons");
+        XMLData weaponsData = this.xmlData.getElement("stats", "weapons");
         this.damagePercentages = new HashMap<String, Float>();
-        this.damagePercentages.put("melee", Float.parseFloat(weaponsData.getElementsByTagName("meleePctDmg").item(0).getTextContent()));
-        this.damagePercentages.put("pistols", Float.parseFloat(weaponsData.getElementsByTagName("pistolsPctDmg").item(0).getTextContent()));
-        this.damagePercentages.put("rifles", Float.parseFloat(weaponsData.getElementsByTagName("bulletsPctDmg").item(0).getTextContent()));
-        this.damagePercentages.put("shotguns", Float.parseFloat(weaponsData.getElementsByTagName("shellsPctDmg").item(0).getTextContent()));
+        this.damagePercentages.put("melee", weaponsData.getFloat("meleePctDmg"));
+        this.damagePercentages.put("pistols", weaponsData.getFloat("pistolsPctDmg"));
+        this.damagePercentages.put("rifles", weaponsData.getFloat("bulletsPctDmg"));
+        this.damagePercentages.put("shotguns", weaponsData.getFloat("shellsPctDmg"));
     }
 
     /**
@@ -78,10 +76,10 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.lifetimeStats == null) {
             super.getLifetimeStats();
-            Element lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
-            this.lifetimeStats.put("avgAdrenalineShared", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineshared").item(0).getTextContent()));
-            this.lifetimeStats.put("avgAdrenalineUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("adrenalineused").item(0).getTextContent()));
-            this.lifetimeStats.put("avgDefibrillatorsUsed", Float.parseFloat(lifetimeStatsElement.getElementsByTagName("defibrillatorsused").item(0).getTextContent()));
+            XMLData lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
+            this.lifetimeStats.put("avgAdrenalineShared", lifetimeStatsElement.getFloat("adrenalineshared"));
+            this.lifetimeStats.put("avgAdrenalineUsed", lifetimeStatsElement.getFloat("adrenalineused"));
+            this.lifetimeStats.put("avgDefibrillatorsUsed", lifetimeStatsElement.getFloat("defibrillatorsused"));
         }
 
         return this.lifetimeStats;
@@ -102,27 +100,25 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.scavengeStats == null) {
-            Element scavengeStatsElement = this.xmlData.getElement("stats", "scavenge");
+            XMLData scavengeStatsElement = this.xmlData.getElement("stats", "scavenge");
             this.scavengeStats = new HashMap<String, Object>();
-            this.scavengeStats.put("avgCansPerRound", Float.parseFloat(scavengeStatsElement.getElementsByTagName("avgcansperround").item(0).getTextContent()));
-            this.scavengeStats.put("perfectRounds", Integer.parseInt(scavengeStatsElement.getElementsByTagName("perfect16canrounds").item(0).getTextContent()));
-            this.scavengeStats.put("roundsLost", Integer.parseInt(scavengeStatsElement.getElementsByTagName("roundslost").item(0).getTextContent()));
-            this.scavengeStats.put("roundsPlayed", Integer.parseInt(scavengeStatsElement.getElementsByTagName("roundsplayed").item(0).getTextContent()));
-            this.scavengeStats.put("roundsWon", Integer.parseInt(scavengeStatsElement.getElementsByTagName("roundswon").item(0).getTextContent()));
-            this.scavengeStats.put("totalCans", Integer.parseInt(scavengeStatsElement.getElementsByTagName("totalcans").item(0).getTextContent()));
+            this.scavengeStats.put("avgCansPerRound", scavengeStatsElement.getFloat("avgcansperround"));
+            this.scavengeStats.put("perfectRounds", scavengeStatsElement.getInteger("perfect16canrounds"));
+            this.scavengeStats.put("roundsLost", scavengeStatsElement.getInteger("roundslost"));
+            this.scavengeStats.put("roundsPlayed", scavengeStatsElement.getInteger("roundsplayed"));
+            this.scavengeStats.put("roundsWon", scavengeStatsElement.getInteger("roundswon"));
+            this.scavengeStats.put("totalCans", scavengeStatsElement.getInteger("totalcans"));
 
             HashMap<String, HashMap<String, Object>> mapsHash = new HashMap<String, HashMap<String, Object>>();
-            NodeList mapNodes = scavengeStatsElement.getElementsByTagName("mapstats").item(0).getChildNodes();
-            for(int i = 0; i < mapNodes.getLength(); i++) {
-                Element mapData = (Element) mapNodes.item(i);
-                String mapId = mapData.getElementsByTagName("name").item(0).getTextContent();
+            for(XMLData mapData : scavengeStatsElement.getChildren("mapstats")) {
+                String mapId = mapData.getString("name");
                 HashMap<String, Object> mapHash = new HashMap<String, Object>();
-                mapHash.put("avgRoundScore", Integer.parseInt(mapData.getElementsByTagName("avgscoreperround").item(0).getTextContent()));
-                mapHash.put("highestGameScore", Integer.parseInt(mapData.getElementsByTagName("highgamescore").item(0).getTextContent()));
-                mapHash.put("highestRoundScore", Integer.parseInt(mapData.getElementsByTagName("highroundscore").item(0).getTextContent()));
-                mapHash.put("name", mapData.getElementsByTagName("fullname").item(0).getTextContent());
-                mapHash.put("roundsPlayed", Integer.parseInt(mapData.getElementsByTagName("roundsplayed").item(0).getTextContent()));
-                mapHash.put("roundsWon", Integer.parseInt(mapData.getElementsByTagName("roundswon").item(0).getTextContent()));
+                mapHash.put("avgRoundScore", mapData.getInteger("avgscoreperround"));
+                mapHash.put("highestGameScore", mapData.getInteger("highgamescore"));
+                mapHash.put("highestRoundScore", mapData.getInteger("highroundscore"));
+                mapHash.put("name", mapData.getString("fullname"));
+                mapHash.put("roundsPlayed", mapData.getInteger("roundsplayed"));
+                mapHash.put("roundsWon", mapData.getInteger("roundswon"));
                 mapsHash.put(mapId, mapHash);
             }
             this.scavengeStats.put("maps", mapsHash);
@@ -154,12 +150,9 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            Element survivalStatsElement = this.xmlData.getElement("stats", "survival");
             HashMap<String, L4D2Map> mapsHash = new HashMap<String, L4D2Map>();
-            NodeList mapNodes = survivalStatsElement.getElementsByTagName("maps").item(0).getChildNodes();
-            for(int i = 0; i < mapNodes.getLength(); i++) {
-                Element mapData = (Element) mapNodes.item(i);
-                mapsHash.put(mapData.getNodeName(), new L4D2Map(mapData));
+            for(XMLData mapData : this.xmlData.getChildren("stats", "survival", "maps")) {
+                mapsHash.put(mapData.getName(), new L4D2Map(mapData));
             }
             this.survivalStats.put("maps", mapsHash);
         }
@@ -181,12 +174,9 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            Element weaponStatsElement = this.xmlData.getElement("stats", "weapons");
             this.weaponStats = new HashMap<String, GameWeapon>();
-            NodeList weaponNodes = weaponStatsElement.getChildNodes();
-            for(int i = 0; i < weaponNodes.getLength(); i++) {
-                Element weaponData = (Element) weaponNodes.item(i);
-                String weaponName = weaponData.getNodeName();
+            for(XMLData weaponData : this.xmlData.getChildren("stats", "weapons")) {
+                String weaponName = weaponData.getName();
                 GameWeapon weapon;
                 if(!weaponName.equals("bilejars") && !weaponName.equals("molotov") && !weaponName.equals("pipes")) {
                     weapon = new L4D2Weapon(weaponData);

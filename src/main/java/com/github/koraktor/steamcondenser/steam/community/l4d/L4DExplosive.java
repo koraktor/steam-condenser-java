@@ -2,14 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.steam.community.GameWeapon;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the statistics of a single explosive weapon for a user
@@ -24,12 +23,11 @@ public class L4DExplosive extends GameWeapon {
      *
      * @param weaponData The XML data of this explosive
      */
-    public L4DExplosive(Element weaponData) {
+    public L4DExplosive(XMLData weaponData) {
         super(weaponData);
 
-        this.id = weaponData.getNodeName();
-        this.shots = Integer.parseInt(weaponData.getElementsByTagName("thrown")
-            .item(0).getTextContent());
+        this.id = weaponData.getName();
+        this.shots = weaponData.getInteger("thrown");
     }
 
     /**

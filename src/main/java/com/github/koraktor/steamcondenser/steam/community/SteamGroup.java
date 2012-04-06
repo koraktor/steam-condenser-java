@@ -13,8 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
 /**
@@ -227,7 +225,7 @@ public class SteamGroup {
         int page;
         int totalPages;
 
-        if(this.memberCount == null || Integer.valueOf(this.members.size()) != this.memberCount) {
+        if(this.memberCount == null || this.members.size() != this.memberCount) {
             page = 0;
         } else {
             page = 1;
@@ -340,8 +338,8 @@ public class SteamGroup {
             this.memberCount = xmlData.getInteger("memberCount");
             totalPages = xmlData.getInteger("totalPages");
 
-            for(Element member : xmlData.getElements("members", "steamID64")) {
-                this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
+            for(XMLData member : xmlData.getElements("members", "steamID64")) {
+                this.members.add(SteamId.create(member.getLong(), false));
             }
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);

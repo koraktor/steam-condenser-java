@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.css;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for a Counter-Strike: Source map for a specific user
@@ -33,12 +33,12 @@ public class CSSMap {
      * @param mapName The name of the map
      * @param mapsData The XML data of all maps
      */
-    public CSSMap(String mapName, Element mapsData) {
+    public CSSMap(String mapName, XMLData mapsData) {
         this.name = mapName;
 
-        this.favorite     = mapsData.getElementsByTagName("favorite").item(0).getTextContent().equals(this.name);
-        this.roundsPlayed = Integer.parseInt(mapsData.getElementsByTagName(this.name + "_rounds").item(0).getTextContent());
-        this.roundsWon    = Integer.parseInt(mapsData.getElementsByTagName(this.name + "_wins").item(0).getTextContent());
+        this.favorite     = mapsData.getString("favorite").equals(this.name);
+        this.roundsPlayed = mapsData.getInteger(this.name + "_rounds");
+        this.roundsWon    = mapsData.getInteger(this.name + "_wins");
         this.roundsLost   = this.roundsPlayed - this.roundsWon;
     }
 

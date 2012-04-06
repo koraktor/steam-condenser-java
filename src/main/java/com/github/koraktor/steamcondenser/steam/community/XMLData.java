@@ -14,6 +14,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -30,6 +34,8 @@ import org.xml.sax.SAXException;
 public class XMLData {
 
     protected static DocumentBuilder documentBuilder;
+
+    protected static XPath xpath;
 
     protected Element root;
 
@@ -52,13 +58,23 @@ public class XMLData {
     }
 
     /**
-     * Creates a new XML document for the given URL
+     * Creates a new XML data container for the given URL
      *
      * @param url The URL to load XML data from
      */
     public XMLData(String url)
             throws IOException, ParserConfigurationException, SAXException {
         this.root = getDocumentBuilder().parse(url).getDocumentElement();
+    }
+
+    /**
+     * Creates a new XML data container from an existing <code>Element</code>
+     * object
+     *
+     * @param element The XML element to wrap
+     */
+    protected XMLData(Element element) {
+        this.root = element;
     }
 
     /**
@@ -71,13 +87,36 @@ public class XMLData {
     }
 
     /**
-     * Returns the raw object for the element with the given name (or path)
+     * Returnes the valued of the attribute of the root element with the given
+     * name
+     *
+     * @param name The name of the attribute
+     * @return The value of the attribute
+     */
+    public String getAttribute(String name) {
+        return this.root.getAttribute(name);
+    }
+
+    /**
+     * Returns the XML data for the children of the element with the given name
+     * or path
+     *
+     * @param names The name of the elements representing the path to the
+     *        target element
+     * @return The children of the named element
+     */
+    public List<XMLData> getChildren(String... names) {
+        return this.wrapNodeList(this.getElement(names).getRoot().getChildNodes());
+    }
+
+    /**
+     * Returns the XML data for the element with the given name (or path)
      *
      * @param names The name of the elements representing the path to the
      *        target element
      * @return The named element
      */
-    public Element getElement(String... names) {
+    public XMLData getElement(String... names) {
         Element node = this.root;
         for(String name : names) {
             if(node.getElementsByTagName(name).getLength() == 0) {
@@ -86,25 +125,45 @@ public class XMLData {
             node = (Element) node.getElementsByTagName(name).item(0);
         }
 
-        return node;
+        return new XMLData(node);
     }
 
-    public List<Element> getElements(String... names) {
+    /**
+     * Returns the XML data for the element specified by the given XPath
+     *
+     * @param path The XPath to get the XML data for
+     * @return The element with the given XPath
+     */
+    public XMLData getXPath(String path) {
+        if(xpath == null) {
+            xpath = XPathFactory.newInstance().newXPath();
+        }
+
+        try {
+            return new XMLData((Element) xpath.evaluate(path, this.root, XPathConstants.NODE));
+        } catch(XPathExpressionException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the XML data for the elements with the given name (or path)
+     *
+     * @param names The name of the elements representing the path to the
+     *        target elements
+     * @return The named elements
+     */
+    public List<XMLData> getElements(String... names) {
         String name = names[names.length - 1];
         String[] baseNames = new String[names.length - 1];
         System.arraycopy(names, 0, baseNames, 0, names.length - 1);
 
-        Element baseElement = this.getElement(baseNames);
+        XMLData baseElement = this.getElement(baseNames);
         if(baseElement == null) {
-            return null;
-        }
-        NodeList nodeList = baseElement.getElementsByTagName(name);
-        List<Element> elements = new ArrayList<Element>(nodeList.getLength());
-        for(int i = 0; i < nodeList.getLength(); i++) {
-            elements.add((Element) nodeList.item(i));
+            return new ArrayList<XMLData>();
         }
 
-        return elements;
+        return this.wrapNodeList(baseElement.getRoot().getElementsByTagName(name));
     }
 
     /**
@@ -115,7 +174,7 @@ public class XMLData {
      * @return The float value of the named element
      */
     public Float getFloat(String... names) {
-        return Float.parseFloat(this.getString(names));
+        return Float.parseFloat(this.getString(names).trim());
     }
 
     /**
@@ -126,7 +185,7 @@ public class XMLData {
      * @return The integer value of the named element
      */
     public Integer getInteger(String... names) {
-        return Integer.parseInt(this.getString(names));
+        return Integer.parseInt(this.getString(names).trim());
     }
 
     /**
@@ -138,7 +197,16 @@ public class XMLData {
      * @return The long integer value of the named element
      */
     public Long getLong(String... names) {
-        return Long.parseLong(this.getString(names));
+        return Long.parseLong(this.getString(names).trim());
+    }
+
+    /**
+     * Returns the name of the root element
+     *
+     * @return The name of the root element
+     */
+    public String getName() {
+        return this.root.getTagName();
     }
 
     /**
@@ -158,7 +226,7 @@ public class XMLData {
      * @return The string value of the named element
      */
     public String getString(String... names) {
-        Element element = this.getElement(names);
+        Element element = this.getElement(names).getRoot();
 
         if(element == null) {
             return null;
@@ -190,6 +258,22 @@ public class XMLData {
      */
     public boolean hasElement(String... names) {
         return this.getElement(names) != null;
+    }
+
+    /**
+     * Wraps all element objects inside a <code>NodeList</code> instance into
+     * data containers and returns a list of them
+     *
+     * @param nodeList The node list to wrap into data containers
+     * @return A list of data containers
+     */
+    protected List<XMLData> wrapNodeList(NodeList nodeList) {
+        List<XMLData> elements = new ArrayList<XMLData>(nodeList.getLength());
+        for(int i = 0; i < nodeList.getLength(); i++) {
+            elements.add(new XMLData((Element) nodeList.item(i)));
+        }
+
+        return elements;
     }
 
 }
