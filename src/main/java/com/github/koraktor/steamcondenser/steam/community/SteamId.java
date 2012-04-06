@@ -654,12 +654,34 @@ public class SteamId {
     }
 
     /**
+     * Returns the games this user has played the most in the last two weeks
+     *
+     * The keys of the hash contain the names of the games while the values
+     * contain the number of hours the corresponding game has been played by
+     * the user in the last two weeks.
+     *
+     * @return The games this user has played the most recently
+     */
+    public Map<String, Float> getMostPlayedGames() {
+        return this.mostPlayedGames;
+    }
+
+    /**
      * Returns the Steam nickname of the user
      *
      * @return The Steam nickname of the user
      */
     public String getNickname() {
         return this.nickname;
+    }
+
+    /**
+     * Returns the privacy state of this Steam ID
+     *
+     * @return The privacy state of this Steam ID
+     */
+    public String getPrivacyState() {
+        return this.privacyState;
     }
 
     /**
