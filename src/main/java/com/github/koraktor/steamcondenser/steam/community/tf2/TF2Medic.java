@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2009, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for the Team Fortress 2 Medic class for a specific user
@@ -25,11 +25,11 @@ public class TF2Medic extends TF2Class {
      *
      * @param classData The XML data for this Medic
      */
-    public TF2Medic(Element classData) {
+    public TF2Medic(XMLData classData) {
         super(classData);
 
-        this.maxHealthHealed = Integer.parseInt(classData.getElementsByTagName("ihealthpointshealed").item(0).getTextContent());
-        this.maxUbercharges  = Integer.parseInt(classData.getElementsByTagName("inuminvulnerable").item(0).getTextContent());
+        this.maxHealthHealed = classData.getInteger("ihealthpointshealed");
+        this.maxUbercharges  = classData.getInteger("inuminvulnerable");
     }
 
     /**

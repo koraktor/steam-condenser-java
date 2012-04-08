@@ -2,19 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -65,7 +59,7 @@ public class GameLeaderboard {
      * Returns the leaderboard for the given game and leaderboard ID or name
      *
      * @param gameName The short name of the game
-     * @param id The name of the leaderboard to return
+     * @param name The name of the leaderboard to return
      * @return The matching leaderboard if available
      */
     public static GameLeaderboard getLeaderboard(String gameName, String name)
@@ -107,18 +101,13 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("http://steamcommunity.com/stats/%s/leaderboards/?xml=1", gameName);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element boardsData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = boardsData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            XMLData boardsData = new XMLData(url);
+            if(boardsData.hasElement("error")) {
+                throw new SteamCondenserException(boardsData.getString("error"));
             }
 
             leaderboards.put(gameName, new HashMap<Integer, GameLeaderboard>());
-            NodeList boardsList = boardsData.getElementsByTagName("leaderboard");
-            for(int i = 0; i < boardsList.getLength(); i++) {
-                Element boardData = (Element) boardsList.item(i);
+            for(XMLData boardData : boardsData.getElements("leaderboard")) {
                 GameLeaderboard leaderboard = new GameLeaderboard(boardData);
                 leaderboards.get(gameName).put(leaderboard.getId(), leaderboard);
             }
@@ -132,13 +121,13 @@ public class GameLeaderboard {
      *
      * @param boardData The XML data of the leaderboard
      */
-    private GameLeaderboard(Element boardData) {
-        this.url         = boardData.getElementsByTagName("url").item(0).getTextContent();
-        this.id          = Integer.parseInt(boardData.getElementsByTagName("lbid").item(0).getTextContent());
-        this.name        = boardData.getElementsByTagName("name").item(0).getTextContent();
-        this.entryCount  = Integer.parseInt(boardData.getElementsByTagName("entries").item(0).getTextContent());
-        this.sortMethod  = Integer.parseInt(boardData.getElementsByTagName("sortmethod").item(0).getTextContent());
-        this.displayType = Integer.parseInt(boardData.getElementsByTagName("displaytype").item(0).getTextContent());
+    private GameLeaderboard(XMLData boardData) {
+        this.url         = boardData.getString("url");
+        this.id          = boardData.getInteger("lbid");
+        this.name        = boardData.getString("name");
+        this.entryCount  = boardData.getInteger("entries");
+        this.sortMethod  = boardData.getInteger("sortmethod");
+        this.displayType = boardData.getInteger("displaytype");
     }
 
     /**
@@ -211,18 +200,13 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("%s&steamid=%s", this.url, steamId);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element boardData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = boardData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            XMLData boardData = new XMLData(url);
+            if(boardData.hasElement("error")) {
+                throw new SteamCondenserException(boardData.getString("error"));
             }
 
-            NodeList entryList = ((Element) boardData.getElementsByTagName("entries").item(0)).getElementsByTagName("entry");
-            for(int i = 0; i < entryList.getLength(); i++) {
-                Element entryData = (Element) entryList.item(i);
-                if(Long.parseLong(entryData.getElementsByTagName("steamid").item(0).getTextContent()) == steamId) {
+            for(XMLData entryData : boardData.getElements("entries", "entry")) {
+                if(entryData.getLong("steamid") == steamId) {
                     return new GameLeaderboardEntry(entryData, this);
                 }
             }
@@ -257,18 +241,13 @@ public class GameLeaderboard {
             throws SteamCondenserException {
         String url = String.format("%s&steamid=%s", this.url, steamId);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element boardData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = boardData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            XMLData boardData = new XMLData(url);
+            if(boardData.hasElement("error")) {
+                throw new SteamCondenserException(boardData.getString("error"));
             }
 
             Map<Integer, GameLeaderboardEntry> entries = new HashMap<Integer, GameLeaderboardEntry>();
-            NodeList entryList = ((Element) boardData.getElementsByTagName("entries").item(0)).getElementsByTagName("entry");
-            for(int i = 0; i < entryList.getLength(); i++) {
-                Element entryData = (Element) entryList.item(i);
+            for(XMLData entryData : boardData.getElements("entries", "entry")) {
                 GameLeaderboardEntry entry = new GameLeaderboardEntry(entryData, this);
                 entries.put(entry.getRank(), entry);
             }
@@ -300,18 +279,13 @@ public class GameLeaderboard {
 
         String url = String.format("%s&start=%d&end=%d", this.url, first, last);
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element boardData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = boardData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            XMLData boardData = new XMLData(url);
+            if(boardData.hasElement("error")) {
+                throw new SteamCondenserException(boardData.getString("error"));
             }
 
             Map<Integer, GameLeaderboardEntry> entries = new HashMap<Integer, GameLeaderboardEntry>();
-            NodeList entryList = ((Element) boardData.getElementsByTagName("entries").item(0)).getElementsByTagName("entry");
-            for(int i = 0; i < entryList.getLength(); i++) {
-                Element entryData = (Element) entryList.item(i);
+            for(XMLData entryData : boardData.getElements("entries", "entry")) {
                 GameLeaderboardEntry entry = new GameLeaderboardEntry(entryData, this);
                 entries.put(entry.getRank(), entry);
             }

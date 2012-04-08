@@ -2,11 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2009, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
+
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * The <code>TF2ClassFactory</code> is used to created instances of
@@ -27,8 +28,8 @@ abstract class TF2ClassFactory
      * @param classData The XML data for the class
      * @return The statistics for the given class data
      */
-    public static TF2Class getTF2Class(Element classData) {
-        String className = classData.getElementsByTagName("className").item(0).getTextContent();
+    public static TF2Class getTF2Class(XMLData classData) {
+        String className = classData.getString("className");
 
         if(className.equals("Engineer")) {
             return new TF2Engineer(classData);

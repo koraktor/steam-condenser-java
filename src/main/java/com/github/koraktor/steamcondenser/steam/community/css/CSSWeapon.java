@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.css;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for a Counter-Strike: Source weapon for a specific user
@@ -33,15 +33,15 @@ public class CSSWeapon {
      * @param weaponName The name of the weapon
      * @param weaponsData The XML data of all weapons
      */
-    public CSSWeapon(String weaponName, Element weaponsData) {
+    public CSSWeapon(String weaponName, XMLData weaponsData) {
         this.name = weaponName;
 
-        this.favorite = weaponsData.getElementsByTagName("favorite").item(0).getTextContent().equals(this.name);
-        this.kills    = Integer.parseInt(weaponsData.getElementsByTagName(this.name + "_kills").item(0).getTextContent());
+        this.favorite = weaponsData.getString("favorite").equals(this.name);
+        this.kills    = weaponsData.getInteger(this.name + "_kills");
 
         if(!this.name.equals("grenade") && !this.name.equals("knife")) {
-            this.hits  = Integer.parseInt(weaponsData.getElementsByTagName(this.name + "_hits").item(0).getTextContent());
-            this.shots = Integer.parseInt(weaponsData.getElementsByTagName(this.name + "_shots").item(0).getTextContent());
+            this.hits  = weaponsData.getInteger(this.name + "_hits");
+            this.shots = weaponsData.getInteger(this.name + "_shots");
         }
     }
 

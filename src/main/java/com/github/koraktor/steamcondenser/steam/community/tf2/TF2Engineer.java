@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for the Team Fortress 2 Engineer class for a specific
@@ -28,12 +28,12 @@ public class TF2Engineer extends TF2Class {
      *
      * @param classData The XML data for this Engineer
      */
-    public TF2Engineer(Element classData) {
+    public TF2Engineer(XMLData classData) {
         super(classData);
 
-        this.maxBuildingsBuilt = Integer.parseInt(classData.getElementsByTagName("ibuildingsbuilt").item(0).getTextContent());
-        this.maxSentryKills    = Integer.parseInt(classData.getElementsByTagName("isentrykills").item(0).getTextContent());
-        this.maxTeleports      = Integer.parseInt(classData.getElementsByTagName("inumteleports").item(0).getTextContent());
+        this.maxBuildingsBuilt = classData.getInteger("ibuildingsbuilt");
+        this.maxSentryKills    = classData.getInteger("isentrykills");
+        this.maxTeleports      = classData.getInteger("inumteleports");
     }
 
     /**

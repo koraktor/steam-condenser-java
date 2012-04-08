@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for the Team Fortress 2 Spy class for a specific user
@@ -27,12 +27,12 @@ public class TF2Spy extends TF2Class {
      *
      * @param classData The XML data for this Spy
      */
-    public TF2Spy(Element classData) {
+    public TF2Spy(XMLData classData) {
         super(classData);
 
-        this.maxBackstabs      = Integer.parseInt(classData.getElementsByTagName("ibackstabs").item(0).getTextContent());
-        this.maxHeadShots      = Integer.parseInt(classData.getElementsByTagName("iheadshots").item(0).getTextContent());
-        this.maxHealthLeeched  = Integer.parseInt(classData.getElementsByTagName("ihealthpointsleached").item(0).getTextContent());
+        this.maxBackstabs      = classData.getInteger("ibackstabs");
+        this.maxHeadShots      = classData.getInteger("iheadshots");
+        this.maxHealthLeeched  = classData.getInteger("ihealthpointsleached");
     }
 
     /**

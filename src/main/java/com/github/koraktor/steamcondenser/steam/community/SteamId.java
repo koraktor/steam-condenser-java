@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -10,16 +10,9 @@ package com.github.koraktor.steamcondenser.steam.community;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.apache.commons.lang3.StringEscapeUtils;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -291,79 +284,63 @@ public class SteamId {
      */
     public void fetchData() throws SteamCondenserException {
         try {
-            String url = this.getBaseUrl() + "?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element profile = parser.parse(url).getDocumentElement();
+            XMLData profile = new XMLData(this.getBaseUrl() + "?xml=1");
 
-            if(profile.getElementsByTagName("error").getLength() > 0) {
-                throw new SteamCondenserException(profile.getElementsByTagName("error").item(0).getTextContent());
+            if(profile.hasElement("error")) {
+                throw new SteamCondenserException(profile.getString("error"));
             }
 
-            this.limitedAccount = (profile.getElementsByTagName("isLimitedAccount").item(0).getTextContent().equals("1"));
-            this.nickname  = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("steamID").item(0).getTextContent());
-            this.steamId64 = Long.parseLong(profile.getElementsByTagName("steamID64").item(0).getTextContent());
-            this.tradeBanState = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("tradeBanState").item(0).getTextContent());
-            this.vacBanned = (profile.getElementsByTagName("vacBanned").item(0).getTextContent().equals("1"));
+            this.limitedAccount = (profile.getString("isLimitedAccount").equals("1"));
+            this.nickname  = profile.getUnescapedString("steamID");
+            this.steamId64 = profile.getLong("steamID64");
+            this.tradeBanState = profile.getUnescapedString("tradeBanState");
+            this.vacBanned = (profile.getString("vacBanned").equals("1"));
 
-            if(profile.getElementsByTagName("privacyMessage").getLength() > 0) {
-                throw new SteamCondenserException(profile.getElementsByTagName("privacyMessage").item(0).getTextContent());
+            if(profile.hasElement("privacyMessage")) {
+                throw new SteamCondenserException(profile.getString("privacyMessage"));
             }
 
-            String avatarIconUrl = profile.getElementsByTagName("avatarIcon").item(0).getTextContent();
+            String avatarIconUrl = profile.getString("avatarIcon");
             this.imageUrl = avatarIconUrl.substring(0, avatarIconUrl.length() - 4);
-            this.onlineState = profile.getElementsByTagName("onlineState").item(0).getTextContent();
-            this.privacyState = profile.getElementsByTagName("privacyState").item(0).getTextContent();
-            this.stateMessage = profile.getElementsByTagName("stateMessage").item(0).getTextContent();
-            this.visibilityState = Integer.parseInt(profile.getElementsByTagName("visibilityState").item(0).getTextContent());
+            this.onlineState = profile.getString("onlineState");
+            this.privacyState = profile.getString("privacyState");
+            this.stateMessage = profile.getString("stateMessage");
+            this.visibilityState = profile.getInteger("visibilityState");
 
             if(this.privacyState.compareTo("public") == 0) {
-                this.customUrl = profile.getElementsByTagName("customURL").item(0).getTextContent();
+                this.customUrl = profile.getString("customURL");
                 if(this.customUrl.length() == 0) {
                     this.customUrl = null;
                 }
 
-                Element favoriteGame = (Element) profile.getElementsByTagName("favoriteGame").item(0);
+                XMLData favoriteGame = profile.getElement("favoriteGame");
                 if(favoriteGame != null) {
-                    this.favoriteGame = favoriteGame.getElementsByTagName("name").item(0).getTextContent();
-                    this.favoriteGameHoursPlayed = Float.parseFloat(favoriteGame.getElementsByTagName("hoursPlayed2wk").item(0).getTextContent());
+                    this.favoriteGame = favoriteGame.getString("name");
+                    this.favoriteGameHoursPlayed = favoriteGame.getFloat("hoursPlayed2wk");
                 }
-                this.headLine = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("headline").item(0).getTextContent());
-                this.hoursPlayed = Float.parseFloat(profile.getElementsByTagName("hoursPlayed2Wk").item(0).getTextContent());
-                this.location = profile.getElementsByTagName("location").item(0).getTextContent();
-                this.memberSince = DateFormat.getDateInstance(DateFormat.LONG,Locale.ENGLISH).parse(profile.getElementsByTagName("memberSince").item(0).getTextContent());
-                this.realName = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("realname").item(0).getTextContent());
-                this.steamRating = Float.parseFloat(profile.getElementsByTagName("steamRating").item(0).getTextContent());
-                this.summary = StringEscapeUtils.unescapeXml(profile.getElementsByTagName("summary").item(0).getTextContent());
+                this.headLine = profile.getUnescapedString("headline");
+                this.hoursPlayed = profile.getFloat("hoursPlayed2Wk");
+                this.location = profile.getString("location");
+                this.memberSince = DateFormat.getDateInstance(DateFormat.LONG,Locale.ENGLISH).parse(profile.getString("memberSince"));
+                this.realName = profile.getUnescapedString("realname");
+                this.steamRating = profile.getFloat("steamRating");
+                this.summary = profile.getUnescapedString("summary");
 
                 this.mostPlayedGames = new HashMap<String, Float>();
-                Element mostPlayedGamesNode = (Element) profile.getElementsByTagName("mostPlayedGames").item(0);
-                if(mostPlayedGamesNode != null) {
-                    NodeList mostPlayedGameList = mostPlayedGamesNode.getElementsByTagName("mostPlayedGame");
-                    for(int i = 0; i < mostPlayedGameList.getLength(); i++) {
-                        Element mostPlayedGame = (Element) mostPlayedGameList.item(i);
-                        this.mostPlayedGames.put(mostPlayedGame.getElementsByTagName("gameName").item(0).getTextContent(), Float.parseFloat(mostPlayedGame.getElementsByTagName("hoursPlayed").item(0).getTextContent()));
-                    }
+                for(XMLData mostPlayedGame : profile.getElements("mostPlayedGames", "mostPlayedGame")) {
+                    this.mostPlayedGames.put(mostPlayedGame.getString("gameName"), mostPlayedGame.getFloat("hoursPlayed"));
                 }
 
-                Element groupsNode = (Element) profile.getElementsByTagName(
-                        "groups").item(0);
-                if(groupsNode != null) {
-                    NodeList groupsNodeList = groupsNode.getElementsByTagName("group");
-                    this.groups = new SteamGroup[groupsNodeList.getLength()];
-                    for(int i = 0; i < groupsNodeList.getLength(); i++) {
-                        Element group = (Element) groupsNodeList.item(i);
-                        this.groups[i] = SteamGroup.create(Long.parseLong(group.getElementsByTagName("groupID64").item(0).getTextContent()), false);
-                    }
+                List<XMLData> groupElements = profile.getElements("groups", "group");
+                this.groups = new SteamGroup[groupElements.size()];
+                for(int i = 0; i < this.groups.length; i++) {
+                    XMLData group = groupElements.get(i);
+                    this.groups[i] = SteamGroup.create(group.getLong("groupID64"), false);
                 }
 
                 this.links = new HashMap<String, String>();
-                Element weblinksNode = (Element) profile.getElementsByTagName("weblinks").item(0);
-                if(weblinksNode != null) {
-                    NodeList weblinksList = weblinksNode.getElementsByTagName("weblink");
-                    for(int i = 0; i < weblinksList.getLength(); i++) {
-                        Element weblink = (Element) weblinksList.item(i);
-                        this.links.put(StringEscapeUtils.unescapeXml(weblink.getElementsByTagName("title").item(0).getTextContent()), weblink.getElementsByTagName("link").item(0).getTextContent());
-                    }
+                for(XMLData weblink : profile.getElements("weblinks", "weblink")) {
+                    this.links.put(weblink.getUnescapedString("title"), weblink.getString("link"));
                 }
             }
         } catch(Exception e) {
@@ -387,15 +364,12 @@ public class SteamId {
     private void fetchFriends() throws SteamCondenserException {
         try {
             String url = this.getBaseUrl() + "/friends?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element friendsData = parser.parse(url).getDocumentElement();
 
-            Element friendsNode = (Element) friendsData.getElementsByTagName("friends").item(0);
-            NodeList friendsNodeList = friendsNode.getElementsByTagName("friend");
-            this.friends = new SteamId[friendsNodeList.getLength()];
-            for(int i = 0; i < friendsNodeList.getLength(); i++) {
-                Element friend = (Element) friendsNodeList.item(i);
-                this.friends[i] = SteamId.create(Long.parseLong(friend.getTextContent()), false);
+            List<XMLData> friendElements = new XMLData(url).getElements("friends", "friend");
+            this.friends = new SteamId[friendElements.size()];
+            for(int i = 0; i < this.friends.length; i++) {
+                XMLData friend = friendElements.get(i);
+                this.friends[i] = SteamId.create(Long.parseLong(friend.getRoot().getTextContent()), false);
             }
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
@@ -411,28 +385,23 @@ public class SteamId {
      */
     private void fetchGames() throws SteamCondenserException {
         try {
-            String url = this.getBaseUrl() + "/games?xml=1";
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Element gamesData = parser.parse(url).getDocumentElement();
+            XMLData gamesData = new XMLData(this.getBaseUrl() + "/games?xml=1");
 
-            Element gamesNode = (Element) gamesData.getElementsByTagName("games").item(0);
-            NodeList gamesNodeList = gamesNode.getElementsByTagName("game");
             this.games = new HashMap<Integer, SteamGame>();
             this.playtimes = new HashMap<Integer, int[]>();
-            for(int i = 0; i < gamesNodeList.getLength(); i++) {
-                Element gameData = (Element) gamesNodeList.item(i);
-                int appId = Integer.valueOf(gameData.getElementsByTagName("appID").item(0).getTextContent());
+            for(XMLData gameData : gamesData.getElements("games", "game")) {
+                int appId = gameData.getInteger("appID");
                 SteamGame game = SteamGame.create(appId, gameData);
                 this.games.put(appId, game);
                 float recent;
                 try {
-                    recent = Float.parseFloat(gameData.getElementsByTagName("hoursLast2Weeks").item(0).getTextContent());
+                    recent = gameData.getFloat("hoursLast2Weeks");
                 } catch(NullPointerException e) {
                     recent = 0;
                 }
                 float total;
                 try {
-                    total = Float.parseFloat(gameData.getElementsByTagName("hoursOnRecord").item(0).getTextContent());
+                    total = gameData.getFloat("hoursOnRecord");
                 } catch(NullPointerException e) {
                     total = 0;
                 }
@@ -839,7 +808,7 @@ public class SteamId {
     }
 
     /**
-    * Returns whether the owner of this Steam ID is playing a game
+     * Returns whether the owner of this Steam ID is playing a game
      *
      * @return <code>true</code> if the user is in-game
      */
@@ -848,7 +817,7 @@ public class SteamId {
     }
 
     /**
-    * Returns whether the owner of this Steam ID has a limited account
+     * Returns whether the owner of this Steam ID has a limited account
      *
      * @return <code>true</code> if the user has a limited account
      */

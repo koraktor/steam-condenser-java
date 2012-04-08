@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><playerstats>
+	<privacyState>public</privacyState>
+	<visibilityState>3</visibilityState>
+	<game>
+		<gameFriendlyName><![CDATA[Portal2]]></gameFriendlyName>
+		<gameName><![CDATA[Portal 2]]></gameName>
+		<gameLink><![CDATA[http://store.steampowered.com/app/620]]></gameLink>
+		<gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/2e478fc6874d06ae5baf0d147f6f21203291aa02.jpg]]></gameIcon>
+		<gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/d2a1119ddc202fab81d9b87048f495cbd6377502.jpg]]></gameLogo>
+		<gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/d2a1119ddc202fab81d9b87048f495cbd6377502_thumb.jpg]]></gameLogoSmall>
+	</game>
+	<player>
+		<steamID64>76561197985077150</steamID64>
+		<customURL><![CDATA[gutomaia]]></customURL>
+	</player>
+	<stats>
+		<hoursPlayed>0</hoursPlayed>
+	</stats>
+	<achievements>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SURVIVE_CONTAINER_RIDE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SURVIVE_CONTAINER_RIDE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Wake Up Call]]></name>
+			<apiname><![CDATA[ach.survive_container_ride]]></apiname>
+			<description><![CDATA[Survive the manual override]]></description>
+			<unlockTimestamp>1303772745</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WAKE_UP.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WAKE_UP_BW.jpg]]></iconOpen>
+			<name><![CDATA[You Monster]]></name>
+			<apiname><![CDATA[ach.wake_up]]></apiname>
+			<description><![CDATA[Reunite with GLaDOS]]></description>
+			<unlockTimestamp>1303774309</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LASER.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LASER_BW.jpg]]></iconOpen>
+			<name><![CDATA[Undiscouraged]]></name>
+			<apiname><![CDATA[ach.laser]]></apiname>
+			<description><![CDATA[Complete the first Thermal Discouragement Beam test]]></description>
+			<unlockTimestamp>1303774658</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BRIDGE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BRIDGE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Bridge Over Troubling Water]]></name>
+			<apiname><![CDATA[ach.bridge]]></apiname>
+			<description><![CDATA[Complete the first Hard Light Bridge test]]></description>
+			<unlockTimestamp>1303776957</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BREAK_OUT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BREAK_OUT_BW.jpg]]></iconOpen>
+			<name><![CDATA[SaBOTour]]></name>
+			<apiname><![CDATA[ach.break_out]]></apiname>
+			<description><![CDATA[Make a break for it]]></description>
+			<unlockTimestamp>1303858575</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/STALEMATE_ASSOCIATE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/STALEMATE_ASSOCIATE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Stalemate Associate]]></name>
+			<apiname><![CDATA[ach.stalemate_associate]]></apiname>
+			<description><![CDATA[Press the button!]]></description>
+			<unlockTimestamp>1303861204</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ADDICTED_TO_SPUDS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ADDICTED_TO_SPUDS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Tater Tote]]></name>
+			<apiname><![CDATA[ach.addicted_to_spuds]]></apiname>
+			<description><![CDATA[Carry science forward]]></description>
+			<unlockTimestamp>1303873361</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BLUE_GEL.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BLUE_GEL_BW.jpg]]></iconOpen>
+			<name><![CDATA[Vertically Unchallenged]]></name>
+			<apiname><![CDATA[ach.blue_gel]]></apiname>
+			<description><![CDATA[Master the Repulsion Gel]]></description>
+			<unlockTimestamp>1303871483</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ORANGE_GEL.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ORANGE_GEL_BW.jpg]]></iconOpen>
+			<name><![CDATA[Stranger Than Friction]]></name>
+			<apiname><![CDATA[ach.orange_gel]]></apiname>
+			<description><![CDATA[Master the Propulsion Gel]]></description>
+			<unlockTimestamp>1303874697</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WHITE_GEL.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WHITE_GEL_BW.jpg]]></iconOpen>
+			<name><![CDATA[White Out]]></name>
+			<apiname><![CDATA[ach.white_gel]]></apiname>
+			<description><![CDATA[Complete the first Conversion Gel test]]></description>
+			<unlockTimestamp>1303875662</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TRACTOR_BEAM.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TRACTOR_BEAM_BW.jpg]]></iconOpen>
+			<name><![CDATA[Tunnel of Funnel]]></name>
+			<apiname><![CDATA[ach.tractor_beam]]></apiname>
+			<description><![CDATA[Master the Excursion Funnel]]></description>
+			<unlockTimestamp>1303950352</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TRIVIAL_TEST.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TRIVIAL_TEST_BW.jpg]]></iconOpen>
+			<name><![CDATA[Dual Pit Experiment]]></name>
+			<apiname><![CDATA[ach.trivial_test]]></apiname>
+			<description><![CDATA[Do the same test twice]]></description>
+			<unlockTimestamp>1303877627</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WHEATLEY_TRIES_TO.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WHEATLEY_TRIES_TO_BW.jpg]]></iconOpen>
+			<name><![CDATA[The Part Where He Kills You]]></name>
+			<apiname><![CDATA[ach.wheatley_tries_to]]></apiname>
+			<description><![CDATA[This is that part]]></description>
+			<unlockTimestamp>1303951942</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SHOOT_THE_MOON.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SHOOT_THE_MOON_BW.jpg]]></iconOpen>
+			<name><![CDATA[Lunacy]]></name>
+			<apiname><![CDATA[ach.shoot_the_moon]]></apiname>
+			<description><![CDATA[That just happened]]></description>
+			<unlockTimestamp>1303953647</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SAVE_CUBE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SAVE_CUBE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Preservation of Mass]]></name>
+			<apiname><![CDATA[ach.save_cube]]></apiname>
+			<description><![CDATA[Break the rules in Test Chamber 07]]></description>
+			<unlockTimestamp>1303775601</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/REENTER_TEST_CHAMBERS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/REENTER_TEST_CHAMBERS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Good Listener]]></name>
+			<apiname><![CDATA[ach.reenter_test_chambers]]></apiname>
+			<description><![CDATA[Take GLaDOS' escape advice]]></description>
+			<unlockTimestamp>1304381086</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SAVE_REDEMPTION_TURRET.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SAVE_REDEMPTION_TURRET_BW.jpg]]></iconOpen>
+			<name><![CDATA[No Hard Feelings]]></name>
+			<apiname><![CDATA[ach.save_redemption_turret]]></apiname>
+			<description><![CDATA[Save a turret from redemption]]></description>
+			<unlockTimestamp>1303859435</unlockTimestamp>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BOX_HOLE_IN_ONE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BOX_HOLE_IN_ONE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Drop Box]]></name>
+			<apiname><![CDATA[ach.box_hole_in_one]]></apiname>
+			<description><![CDATA[Place a cube on a button without touching the cube]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPEED_RUN_LEVEL.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPEED_RUN_LEVEL_BW.jpg]]></iconOpen>
+			<name><![CDATA[Overclocker]]></name>
+			<apiname><![CDATA[ach.speed_run_level]]></apiname>
+			<description><![CDATA[Complete Test Chamber 10 in 70 seconds]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/COMPLIANT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/COMPLIANT_BW.jpg]]></iconOpen>
+			<name><![CDATA[Pit Boss]]></name>
+			<apiname><![CDATA[ach.compliant]]></apiname>
+			<description><![CDATA[Show that pit who's boss]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LAUNCH_TURRET.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LAUNCH_TURRET_BW.jpg]]></iconOpen>
+			<name><![CDATA[Pturretdactyl]]></name>
+			<apiname><![CDATA[ach.launch_turret]]></apiname>
+			<description><![CDATA[Use an Aerial Faith Plate to launch a turret]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/CLEAN_UP.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/CLEAN_UP_BW.jpg]]></iconOpen>
+			<name><![CDATA[Final Transmission]]></name>
+			<apiname><![CDATA[ach.clean_up]]></apiname>
+			<description><![CDATA[Find the hidden signal in one of the Rat Man's dens]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NOT_THE_DROID.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NOT_THE_DROID_BW.jpg]]></iconOpen>
+			<name><![CDATA[Scanned Alone]]></name>
+			<apiname><![CDATA[ach.not_the_droid]]></apiname>
+			<description><![CDATA[Stand in a defective turret detector]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/CATCH_CRAZY_BOX.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/CATCH_CRAZY_BOX_BW.jpg]]></iconOpen>
+			<name><![CDATA[Schrodinger's Catch]]></name>
+			<apiname><![CDATA[ach.catch_crazy_box]]></apiname>
+			<description><![CDATA[Catch a blue-painted box before it touches the ground]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NO_BOAT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NO_BOAT_BW.jpg]]></iconOpen>
+			<name><![CDATA[Ship Overboard]]></name>
+			<apiname><![CDATA[ach.no_boat]]></apiname>
+			<description><![CDATA[Discover the missing experiment]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/A3_DOORS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/A3_DOORS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Door Prize]]></name>
+			<apiname><![CDATA[ach.a3_doors]]></apiname>
+			<description><![CDATA[Examine all the vitrified test chamber doors]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PORTRAIT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PORTRAIT_BW.jpg]]></iconOpen>
+			<name><![CDATA[Portrait of a Lady]]></name>
+			<apiname><![CDATA[ach.portrait]]></apiname>
+			<description><![CDATA[Find a hidden portrait]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/DEFIANT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/DEFIANT_BW.jpg]]></iconOpen>
+			<name><![CDATA[You Made Your Point]]></name>
+			<apiname><![CDATA[ach.defiant]]></apiname>
+			<description><![CDATA[Refuse to solve the first test in Chapter 8]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BREAK_MONITORS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/BREAK_MONITORS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Smash TV]]></name>
+			<apiname><![CDATA[ach.break_monitors]]></apiname>
+			<description><![CDATA[Break 11 test chamber monitors]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/HI_FIVE_YOUR_PARTNER.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/HI_FIVE_YOUR_PARTNER_BW.jpg]]></iconOpen>
+			<name><![CDATA[High Five]]></name>
+			<apiname><![CDATA[ach.hi_five_your_partner]]></apiname>
+			<description><![CDATA[Celebrate your cooperative calibration success]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TEAM_BUILDING.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TEAM_BUILDING_BW.jpg]]></iconOpen>
+			<name><![CDATA[Team Building]]></name>
+			<apiname><![CDATA[ach.team_building]]></apiname>
+			<description><![CDATA[Complete all test chambers in the Team Building co-op course]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/MASS_AND_VELOCITY.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/MASS_AND_VELOCITY_BW.jpg]]></iconOpen>
+			<name><![CDATA[Confidence Building]]></name>
+			<apiname><![CDATA[ach.mass_and_velocity]]></apiname>
+			<description><![CDATA[Complete all test chambers in the Mass and Velocity co-op course]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/HUG_NAME.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/HUG_NAME_BW.jpg]]></iconOpen>
+			<name><![CDATA[Bridge Building]]></name>
+			<apiname><![CDATA[ach.hug_name]]></apiname>
+			<description><![CDATA[Complete all test chambers in the Hard-Light Surfaces co-op course]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/EXCURSION_FUNNELS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/EXCURSION_FUNNELS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Obstacle Building]]></name>
+			<apiname><![CDATA[ach.excursion_funnels]]></apiname>
+			<description><![CDATA[Complete all test chambers in the Excursion Funnels co-op course]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NEW_BLOOD.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NEW_BLOOD_BW.jpg]]></iconOpen>
+			<name><![CDATA[You Saved Science]]></name>
+			<apiname><![CDATA[ach.new_blood]]></apiname>
+			<description><![CDATA[Complete all test chambers in all courses of co-op]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NICE_CATCH.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/NICE_CATCH_BW.jpg]]></iconOpen>
+			<name><![CDATA[Iron Grip]]></name>
+			<apiname><![CDATA[ach.nice_catch]]></apiname>
+			<description><![CDATA[Never lose a cube in Chamber 6 of the Mass and Velocity co-op course]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TAUNTS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TAUNTS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Gesticul-8]]></name>
+			<apiname><![CDATA[ach.taunts]]></apiname>
+			<description><![CDATA[Perform all 8 gestures of your own volition in co-op]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/YOU_MONSTER.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/YOU_MONSTER_BW.jpg]]></iconOpen>
+			<name><![CDATA[Can't Touch This]]></name>
+			<apiname><![CDATA[ach.you_monster]]></apiname>
+			<description><![CDATA[Dance in front of a turret blocked by a hard light bridge in co-op]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PARTNER_DROP.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PARTNER_DROP_BW.jpg]]></iconOpen>
+			<name><![CDATA[Empty Gesture]]></name>
+			<apiname><![CDATA[ach.partner_drop]]></apiname>
+			<description><![CDATA[Drop your co-op partner in goo while they are gesturing by removing the bridge under them]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PARTY_OF_THREE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PARTY_OF_THREE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Party of Three]]></name>
+			<apiname><![CDATA[ach.party_of_three]]></apiname>
+			<description><![CDATA[Find the hidden companion cube in co-op test chamber]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PORTAL_TAUNT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/PORTAL_TAUNT_BW.jpg]]></iconOpen>
+			<name><![CDATA[Narbacular Drop]]></name>
+			<apiname><![CDATA[ach.portal_taunt]]></apiname>
+			<description><![CDATA[Place a portal under your co-op partner while they are gesturing]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TEACHER.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TEACHER_BW.jpg]]></iconOpen>
+			<name><![CDATA[Professor Portal]]></name>
+			<apiname><![CDATA[ach.teacher]]></apiname>
+			<description><![CDATA[After completing co-op, complete Calibration Course online with a friend who hasn’t played before]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WITH_STYLE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/WITH_STYLE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Air Show]]></name>
+			<apiname><![CDATA[ach.with_style]]></apiname>
+			<description><![CDATA[Perform 2 aerial gestures before touching the ground in co-op]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LIMITED_PORTALS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/LIMITED_PORTALS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Portal Conservation Society]]></name>
+			<apiname><![CDATA[ach.limited_portals]]></apiname>
+			<description><![CDATA[Complete Chamber 3 in the Hard-Light Surfaces co-op course using only 5 total portal placements]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/FOUR_PORTALS.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/FOUR_PORTALS_BW.jpg]]></iconOpen>
+			<name><![CDATA[Four Ring Circus]]></name>
+			<apiname><![CDATA[ach.four_portals]]></apiname>
+			<description><![CDATA[Enter 4 different portals without touching the ground in co-op]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPEED_RUN_COOP.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPEED_RUN_COOP_BW.jpg]]></iconOpen>
+			<name><![CDATA[Triple Crown]]></name>
+			<apiname><![CDATA[ach.speed_run_coop]]></apiname>
+			<description><![CDATA[Solve 3 co-op chambers in the Mass and Velocity course in under 60 seconds each]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/STAYING_ALIVE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/STAYING_ALIVE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Still Alive]]></name>
+			<apiname><![CDATA[ach.staying_alive]]></apiname>
+			<description><![CDATA[Complete Course 4 with neither you nor your co-op partner dying]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TAUNT_CAMERA.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/TAUNT_CAMERA_BW.jpg]]></iconOpen>
+			<name><![CDATA[Asking for Trouble]]></name>
+			<apiname><![CDATA[ach.taunt_camera]]></apiname>
+			<description><![CDATA[Taunt GLaDOS in front of a camera in each of the five co-op courses]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ROCK_CRUSHES_ROBOT.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/ROCK_CRUSHES_ROBOT_BW.jpg]]></iconOpen>
+			<name><![CDATA[Rock Portal Scissors]]></name>
+			<apiname><![CDATA[ach.rock_crushes_robot]]></apiname>
+			<description><![CDATA[Win 3 co-op games of rock-paper-scissors in a row]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPREAD_THE_LOVE.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/SPREAD_THE_LOVE_BW.jpg]]></iconOpen>
+			<name><![CDATA[Friends List With Benefits]]></name>
+			<apiname><![CDATA[ach.spread_the_love]]></apiname>
+			<description><![CDATA[While playing co-op, hug 3 different people on your friends list]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/732c9e4da3ecf83bffbe9626a5bb40e461d0c634.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/620/0c3f74f5015862a388cd141002f7d9e4627f4c65.jpg]]></iconOpen>
+			<name><![CDATA[Talent Show]]></name>
+			<apiname><![CDATA[ach.summer_sale]]></apiname>
+			<description><![CDATA[Never lose a cube in Chamber 6 of the Mobility Gels co-op course]]></description>
+		</achievement>
+	</achievements>
+</playerstats>

@@ -9,12 +9,10 @@ package com.github.koraktor.steamcondenser.steam.community.tf2;
 
 import java.util.ArrayList;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class represents the game statistics for a single user in Team Fortress
@@ -58,13 +56,8 @@ public class TF2Stats extends GameStats {
         super(steamId, (beta ? "520" : "tf2"));
 
         if(this.isPublic()) {
-            Element statsElement = (Element) this.xmlData.getElementsByTagName("stats").item(0);
-            if(statsElement.getElementsByTagName("accumulatedPoints").getLength() != 0) {
-                this.accumulatedPoints = Integer.parseInt(statsElement.getElementsByTagName("accumulatedPoints").item(0).getTextContent());
-            }
-            if(statsElement.getElementsByTagName("secondsPlayedAllClassesLifetime").getLength() != 0) {
-                this.totalPlayTime = Integer.parseInt(statsElement.getElementsByTagName("secondsPlayedAllClassesLifetime").item(0).getTextContent());
-            }
+            this.accumulatedPoints = this.xmlData.getInteger("stats", "accumulatedPoints");
+            this.totalPlayTime = this.xmlData.getInteger("stats", "secondsPlayedAllClassesLifetime");
         }
     }
 
@@ -100,9 +93,8 @@ public class TF2Stats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new ArrayList<TF2Class>();
-            NodeList classes = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("classData");
-            for(int i = 0; i < classes.getLength(); i++) {
-                this.classStats.add(TF2ClassFactory.getTF2Class((Element) classes.item(i)));
+            for(XMLData classData : this.xmlData.getElements("stats", "classData")) {
+                this.classStats.add(TF2ClassFactory.getTF2Class(classData));
             }
         }
 

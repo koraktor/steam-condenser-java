@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.alien_swarm;
@@ -10,7 +10,7 @@ package com.github.koraktor.steamcondenser.steam.community.alien_swarm;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * This class holds statistical information about missions played by a player
@@ -53,29 +53,29 @@ public class AlienSwarmMission {
      *
      * @param missionData The data representing this mission
      */
-    public AlienSwarmMission(Element missionData) {
-        this.avgDamageTaken       = Float.valueOf(missionData.getElementsByTagName("damagetakenavg").item(0).getTextContent());
-        this.avgFriendlyFire      = Float.valueOf(missionData.getElementsByTagName("friendlyfireavg").item(0).getTextContent());
-        this.avgKills             = Float.valueOf(missionData.getElementsByTagName("killsavg").item(0).getTextContent());
-        this.bestDifficulty       = missionData.getElementsByTagName("bestdifficulty").item(0).getTextContent();
-        this.damageTaken          = Integer.valueOf(missionData.getElementsByTagName("damagetaken").item(0).getTextContent());
-        this.friendlyFire         = Integer.valueOf(missionData.getElementsByTagName("friendlyfire").item(0).getTextContent());
-        this.gamesSuccessful      = Integer.valueOf(missionData.getElementsByTagName("gamessuccess").item(0).getTextContent());
-        this.img                  = AlienSwarmStats.BASE_URL + missionData.getElementsByTagName("image").item(0).getTextContent();
-        this.kills                = Integer.valueOf(missionData.getElementsByTagName("kills").item(0).getTextContent());
-        this.mapName              = missionData.getNodeName();
-        this.name                 = missionData.getElementsByTagName("name").item(0).getTextContent();
-        this.totalGames           = Integer.valueOf(missionData.getElementsByTagName("gamestotal").item(0).getTextContent());
-        this.totalGamesPercentage = Float.valueOf(missionData.getElementsByTagName("gamestotalpct").item(0).getTextContent());
+    public AlienSwarmMission(XMLData missionData) {
+        this.avgDamageTaken       = missionData.getFloat("damagetakenavg");
+        this.avgFriendlyFire      = missionData.getFloat("friendlyfireavg");
+        this.avgKills             = missionData.getFloat("killsavg");
+        this.bestDifficulty       = missionData.getString("bestdifficulty");
+        this.damageTaken          = missionData.getInteger("damagetaken");
+        this.friendlyFire         = missionData.getInteger("friendlyfire");
+        this.gamesSuccessful      = missionData.getInteger("gamessuccess");
+        this.img                  = AlienSwarmStats.BASE_URL + missionData.getString("image");
+        this.kills                = missionData.getInteger("kills");
+        this.mapName              = missionData.getName();
+        this.name                 = missionData.getString("name");
+        this.totalGames           = missionData.getInteger("gamestotal");
+        this.totalGamesPercentage = missionData.getFloat("gamestotalpct");
 
         this.time = new HashMap<String, String>();
-        this.time.put("average", missionData.getElementsByTagName("avgtime").item(0).getTextContent());
-        this.time.put("brutal", missionData.getElementsByTagName("brutaltime").item(0).getTextContent());
-        this.time.put("easy", missionData.getElementsByTagName("easytime").item(0).getTextContent());
-        this.time.put("hard", missionData.getElementsByTagName("hardtime").item(0).getTextContent());
-        this.time.put("insane", missionData.getElementsByTagName("insanetime").item(0).getTextContent());
-        this.time.put("normal", missionData.getElementsByTagName("normaltime").item(0).getTextContent());
-        this.time.put("total", missionData.getElementsByTagName("totaltime").item(0).getTextContent());
+        this.time.put("average", missionData.getString("avgtime"));
+        this.time.put("brutal", missionData.getString("brutaltime"));
+        this.time.put("easy", missionData.getString("easytime"));
+        this.time.put("hard", missionData.getString("hardtime"));
+        this.time.put("insane", missionData.getString("insanetime"));
+        this.time.put("normal", missionData.getString("normaltime"));
+        this.time.put("total", missionData.getString("totaltime"));
     }
 
     /**

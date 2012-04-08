@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -14,8 +14,6 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
@@ -91,19 +89,18 @@ public class GameAchievement {
      *        all application IDs
      * @param achievementData The achievement data extracted from XML
      */
-    public GameAchievement(long steamId64, int appId, Element achievementData) {
-        this.apiName     = achievementData.getElementsByTagName("apiname").item(0).getTextContent();
+    public GameAchievement(long steamId64, int appId, XMLData achievementData) {
+        this.apiName     = achievementData.getString("apiname");
         this.appId       = appId;
-        this.description = achievementData.getElementsByTagName("description").item(0).getTextContent();
-        String tempIconUrl = achievementData.getElementsByTagName("iconClosed").item(0).getTextContent();
+        this.description = achievementData.getString("description");
+        String tempIconUrl = achievementData.getString("iconClosed");
         this.iconURL = tempIconUrl.substring(0, tempIconUrl.length() - 4);
-        this.name        = achievementData.getElementsByTagName("name").item(0).getTextContent();
+        this.name        = achievementData.getString("name");
         this.steamId64   = steamId64;
         this.unlocked    = achievementData.getAttribute("closed").equals("1");
 
-        NodeList unlockTimestampElements = achievementData.getElementsByTagName("unlockTimestamp");
-        if(this.unlocked && unlockTimestampElements.getLength() != 0) {
-            this.timestamp = new Date(Long.parseLong(achievementData.getElementsByTagName("unlockTimestamp").item(0).getTextContent()) * 1000);
+        if(this.unlocked && achievementData.hasElement("unlockTimestamp")) {
+            this.timestamp = new Date(achievementData.getLong("unlockTimestamp") * 1000);
         }
     }
 
@@ -189,4 +186,5 @@ public class GameAchievement {
     public boolean isUnlocked() {
         return this.unlocked;
     }
+
 }

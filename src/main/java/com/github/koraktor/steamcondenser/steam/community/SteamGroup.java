@@ -13,12 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
 /**
@@ -28,7 +22,7 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
  */
 public class SteamGroup {
 
-    private static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
+    protected static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
 
     private String customUrl;
 
@@ -150,15 +144,19 @@ public class SteamGroup {
      */
     private static SteamGroup create(Object id, boolean fetch, boolean bypassCache)
             throws SteamCondenserException {
+        SteamGroup group;
+
         if(SteamGroup.isCached(id) && !bypassCache) {
-            SteamGroup group = SteamGroup.steamGroups.get(id);
+            group = SteamGroup.steamGroups.get(id);
             if(fetch && !group.isFetched()) {
                 group.fetchMembers();
             }
-            return group;
         } else {
-            return new SteamGroup(id, fetch);
+            group = new SteamGroup(id, fetch);
+            group.cache();
         }
+
+        return group;
     }
 
     /**
@@ -183,7 +181,7 @@ public class SteamGroup {
      * @throws SteamCondenserException if an error occurs while parsing the
      *         data
      */
-    private SteamGroup(Object id, boolean fetch)
+    protected SteamGroup(Object id, boolean fetch)
             throws SteamCondenserException {
         if(id instanceof String) {
             this.customUrl = (String) id;
@@ -196,8 +194,6 @@ public class SteamGroup {
         if(fetch) {
             this.fetchMembers();
         }
-
-        this.cache();
     }
 
     /**
@@ -236,7 +232,6 @@ public class SteamGroup {
         }
 
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             do {
                 totalPages = fetchPage(++page);
             } while(page < totalPages);
@@ -336,20 +331,15 @@ public class SteamGroup {
      */
     private int fetchPage(int page) throws SteamCondenserException {
         int totalPages;
-        String url;
 
         try {
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            url = this.getBaseUrl() + "/memberslistxml?p=" + page;
-            Element memberData = parser.parse(url).getDocumentElement();
+            XMLData xmlData = new XMLData(this.getBaseUrl() + "/memberslistxml?p=" + page);
 
-            this.memberCount = Integer.parseInt(memberData.getElementsByTagName("memberCount").item(0).getTextContent());
-            totalPages = Integer.parseInt(memberData.getElementsByTagName("totalPages").item(0).getTextContent());
+            this.memberCount = xmlData.getInteger("memberCount");
+            totalPages = xmlData.getInteger("totalPages");
 
-            NodeList membersList = ((Element) memberData.getElementsByTagName("members").item(0)).getElementsByTagName("steamID64");
-            for(int i = 0; i < membersList.getLength(); i++) {
-                Element member = (Element) membersList.item(i);
-                this.members.add(SteamId.create(Long.parseLong(member.getTextContent()), false));
+            for(XMLData member : xmlData.getElements("members", "steamID64")) {
+                this.members.add(SteamId.create(member.getLong(), false));
             }
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);

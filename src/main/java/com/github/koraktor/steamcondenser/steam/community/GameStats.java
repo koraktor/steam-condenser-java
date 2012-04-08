@@ -9,13 +9,6 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.css.CSSStats;
 import com.github.koraktor.steamcondenser.steam.community.defense_grid.DefenseGridStats;
@@ -50,7 +43,7 @@ public class GameStats {
 
     protected Long steamId64;
 
-    protected Element xmlData;
+    protected XMLData xmlData;
 
     /**
      * Creates a <code>GameStats</code> (or one of its subclasses) instance for
@@ -122,31 +115,24 @@ public class GameStats {
         }
 
         try {
-            String url = getBaseUrl(steamId, gameId) + "?xml=all";
+            this.xmlData = new XMLData(getBaseUrl(steamId, gameId) + "?xml=all");
 
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            this.xmlData = parser.parse(url).getDocumentElement();
-
-            NodeList errorNode = this.xmlData.getElementsByTagName("error");
-            if(errorNode.getLength() > 0) {
-                throw new SteamCondenserException(errorNode.item(0).getTextContent());
+            if(this.xmlData.hasElement("error")) {
+                throw new SteamCondenserException(this.xmlData.getString("error"));
             }
 
-            this.privacyState = this.xmlData.getElementsByTagName("privacyState").item(0).getTextContent();
+            this.privacyState = this.xmlData.getString("privacyState");
             if(this.isPublic()) {
-                int appId = Integer.parseInt(((Element) this.xmlData.getElementsByTagName("game").item(0)).getElementsByTagName("gameLink").item(0).getTextContent().replace("http://store.steampowered.com/app/", ""));
-                this.game = SteamGame.create(appId, (Element) this.xmlData.getElementsByTagName("game").item(0));
+                int appId = Integer.parseInt(this.xmlData.getString("game", "gameLink").replace("http://store.steampowered.com/app/", ""));
+                this.game = SteamGame.create(appId, this.xmlData.getElement("game"));
 
-                Node hoursPlayedNode = ((Element) this.xmlData.getElementsByTagName("stats").item(0)).getElementsByTagName("hoursPlayed").item(0);
-                if(hoursPlayedNode != null) {
-                    this.hoursPlayed = hoursPlayedNode.getTextContent();
-                }
+                this.hoursPlayed = this.xmlData.getString("stats", "hoursPlayed");
 
                 if(this.customUrl == null) {
-                    this.customUrl = ((Element) this.xmlData.getElementsByTagName("player").item(0)).getElementsByTagName("customURL").item(0).getTextContent();
+                    this.customUrl = this.xmlData.getString("player", "customURL");
                 }
                 if(this.steamId64 == null) {
-                    this.steamId64 = Long.parseLong(((Element) this.xmlData.getElementsByTagName("player").item(0)).getElementsByTagName("steamID64").item(0).getTextContent().trim());
+                    this.steamId64 = this.xmlData.getLong("player", "steamID64");
                 }
             }
         } catch(Exception e) {
@@ -166,9 +152,7 @@ public class GameStats {
             this.achievements = new ArrayList<GameAchievement>();
             this.achievementsDone = 0;
 
-            NodeList achievementsList = ((Element) this.xmlData.getElementsByTagName("achievements").item(0)).getElementsByTagName("achievement");
-            for(int i = 0; i < achievementsList.getLength(); i++) {
-                Element achievementData = (Element) achievementsList.item(i);
+            for(XMLData achievementData : this.xmlData.getElements("achievements", "achievement")) {
                 GameAchievement achievement = new GameAchievement(this.steamId64, this.game.getAppId(), achievementData);
                 if(achievement.isUnlocked()) {
                     this.achievementsDone += 1;

@@ -2,13 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
 import com.github.koraktor.steamcondenser.steam.community.GameClass;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for a Team Fortress 2 class for a specific user
@@ -33,19 +33,19 @@ public class TF2Class extends GameClass {
      *
      * @param classData The XML data for this class
      */
-    public TF2Class(Element classData) {
-        this.name                  = classData.getElementsByTagName("className").item(0).getTextContent();
-        this.maxBuildingsDestroyed = Integer.parseInt(classData.getElementsByTagName("ibuildingsdestroyed").item(0).getTextContent());
-        this.maxCaptures           = Integer.parseInt(classData.getElementsByTagName("ipointcaptures").item(0).getTextContent());
-        this.maxDamage             = Integer.parseInt(classData.getElementsByTagName("idamagedealt").item(0).getTextContent());
-        this.maxDefenses           = Integer.parseInt(classData.getElementsByTagName("ipointdefenses").item(0).getTextContent());
-        this.maxDominations        = Integer.parseInt(classData.getElementsByTagName("idominations").item(0).getTextContent());
-        this.maxKillAssists        = Integer.parseInt(classData.getElementsByTagName("ikillassists").item(0).getTextContent());
-        this.maxKills              = Integer.parseInt(classData.getElementsByTagName("inumberofkills").item(0).getTextContent());
-        this.maxRevenges           = Integer.parseInt(classData.getElementsByTagName("irevenge").item(0).getTextContent());
-        this.maxScore              = Integer.parseInt(classData.getElementsByTagName("ipointsscored").item(0).getTextContent());
-        this.maxTimeAlive          = Integer.parseInt(classData.getElementsByTagName("iplaytime").item(0).getTextContent());
-        this.playTime              = Integer.parseInt(classData.getElementsByTagName("playtimeSeconds").item(0).getTextContent());
+    public TF2Class(XMLData classData) {
+        this.name                  = classData.getString("className");
+        this.maxBuildingsDestroyed = classData.getInteger("ibuildingsdestroyed");
+        this.maxCaptures           = classData.getInteger("ipointcaptures");
+        this.maxDamage             = classData.getInteger("idamagedealt");
+        this.maxDefenses           = classData.getInteger("ipointdefenses");
+        this.maxDominations        = classData.getInteger("idominations");
+        this.maxKillAssists        = classData.getInteger("ikillassists");
+        this.maxKills              = classData.getInteger("inumberofkills");
+        this.maxRevenges           = classData.getInteger("irevenge");
+        this.maxScore              = classData.getInteger("ipointsscored");
+        this.maxTimeAlive          = classData.getInteger("iplaytime");
+        this.playTime              = classData.getInteger("playtimeSeconds");
     }
 
     /**

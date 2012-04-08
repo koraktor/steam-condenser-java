@@ -2,19 +2,16 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.dods;
 
 import java.util.HashMap;
 
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * The is class represents the game statistics for a single user in Day of
@@ -54,9 +51,7 @@ public class DoDSStats extends GameStats {
 
         if(this.classStats == null) {
             this.classStats = new HashMap<String, DoDSClass>();
-            NodeList classNodes = ((Element) this.xmlData.getElementsByTagName("classes").item(0)).getElementsByTagName("class");
-            for(int i = 0; i < classNodes.getLength(); i++) {
-                Element classData = (Element) classNodes.item(i);
+            for(XMLData classData : this.xmlData.getElements("classes", "class")) {
                 this.classStats.put(classData.getAttribute("key"),
                     new DoDSClass(classData));
             }
@@ -79,10 +74,8 @@ public class DoDSStats extends GameStats {
         }
 
         if(this.weaponStats == null) {
-        this.weaponStats = new HashMap<String, DoDSWeapon>();
-        NodeList weaponNodes = this.xmlData.getElementsByTagName("weapons").item(0).getChildNodes();
-            for(int i = 0; i < weaponNodes.getLength(); i++) {
-                Element weaponData = (Element) weaponNodes.item(i);
+            this.weaponStats = new HashMap<String, DoDSWeapon>();
+            for(XMLData weaponData : this.xmlData.getChildren("weapons")) {
                 this.weaponStats.put(weaponData.getAttribute("key"),
                     new DoDSWeapon(weaponData));
             }

@@ -2,12 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import org.w3c.dom.Element;
+import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
 /**
  * Represents the stats for the Team Fortress 2 Sniper class for a specific
@@ -24,10 +24,10 @@ public class TF2Sniper extends TF2Class {
      *
      * @param classData The XML data for this Sniper
      */
-    public TF2Sniper(Element classData) {
+    public TF2Sniper(XMLData classData) {
         super(classData);
 
-        this.maxHeadshots = Integer.parseInt(classData.getElementsByTagName("iheadshots").item(0).getTextContent());
+        this.maxHeadshots = classData.getInteger("iheadshots");
     }
 
     /**

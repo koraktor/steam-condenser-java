@@ -2,12 +2,10 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2011, Sebastian Staudt
+ * Copyright (c) 2009-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
-
-import org.w3c.dom.Element;
 
 /**
  * An abstract class implementing basic functionality for classes representing
@@ -28,9 +26,8 @@ public abstract class GameWeapon {
      *
      * @param weaponData The data representing this weapon
      */
-    public GameWeapon(Element weaponData) {
-        this.kills = Integer.parseInt(weaponData.getElementsByTagName("kills").
-            item(0).getTextContent());
+    public GameWeapon(XMLData weaponData) {
+        this.kills = weaponData.getInteger("kills");
     }
 
     /**
@@ -54,7 +51,7 @@ public abstract class GameWeapon {
     /**
      * Returns the number of kills achieved with this weapon
      *
-     + @return The number of kills achieved
+     * @return The number of kills achieved
      */
     public int getKills() {
         return this.kills;
