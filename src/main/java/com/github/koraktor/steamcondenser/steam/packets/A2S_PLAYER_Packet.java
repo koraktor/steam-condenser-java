@@ -26,7 +26,7 @@ public class A2S_PLAYER_Packet extends SteamPacket {
      * Creates a new A2S_PLAYER request object without a challenge number
      */
     public A2S_PLAYER_Packet() {
-        super(SteamPacket.A2S_PLAYER_HEADER);
+        this(-1);
     }
 
     /**
