@@ -28,8 +28,8 @@ import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONGoldSrcResponse
  */
 public class GoldSrcSocket extends QuerySocket {
 
-    private boolean isHLTV;
-    private long rconChallenge = -1;
+    protected boolean isHLTV;
+    protected long rconChallenge = -1;
 
     /**
      * Creates a new socket to communicate with the server on the given IP
@@ -203,7 +203,7 @@ public class GoldSrcSocket extends QuerySocket {
      * @throws SteamCondenserException if an error occured while writing to the
      *         socket
      */
-    private void rconSend(String command)
+    protected void rconSend(String command)
             throws SteamCondenserException {
         this.send(new RCONGoldSrcRequestPacket(command));
     }
