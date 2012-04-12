@@ -266,8 +266,8 @@ public class MasterServer extends Server {
         Vector<String> serverStringArray;
         Vector<InetSocketAddress> serverArray = new Vector<InetSocketAddress>();
 
-        while(true) {
-            try {
+        try {
+            while(true) {
                 do {
                     this.socket.send(new A2M_GET_SERVERS_BATCH2_Paket(regionCode, hostName + ":" + portNumber, filter));
                     try {
@@ -293,10 +293,10 @@ public class MasterServer extends Server {
                     }
                 } while(!finished);
                 break;
-            } catch(TimeoutException e) {
-                if(this.rotateIp() && !force) {
-                    throw e;
-                }
+            }
+        } catch(TimeoutException e) {
+            if(this.rotateIp() && !force) {
+                throw e;
             }
         }
 
