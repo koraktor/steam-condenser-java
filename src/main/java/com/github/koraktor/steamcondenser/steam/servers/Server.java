@@ -24,11 +24,11 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
  */
 public abstract class Server {
 
-    private List<String> hostNames;
+    protected List<String> hostNames;
 
     protected InetAddress ipAddress;
 
-    private List<InetAddress> ipAddresses;
+    protected List<InetAddress> ipAddresses;
 
     protected int ipIndex;
 

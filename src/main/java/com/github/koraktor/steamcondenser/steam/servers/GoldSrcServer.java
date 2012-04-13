@@ -28,7 +28,7 @@ public class GoldSrcServer extends GameServer {
 
     private boolean isHLTV;
 
-    private String rconPassword;
+    protected String rconPassword;
 
     /**
      * Returns a master server instance for the default master server for

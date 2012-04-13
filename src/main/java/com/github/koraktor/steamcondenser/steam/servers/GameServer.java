@@ -19,12 +19,11 @@ import java.util.logging.Logger;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.SteamPlayer;
 import com.github.koraktor.steamcondenser.steam.packets.A2S_INFO_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.S2A_INFO_BasePacket;
 import com.github.koraktor.steamcondenser.steam.packets.A2S_PLAYER_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.S2A_PLAYER_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.A2S_RULES_Packet;
+import com.github.koraktor.steamcondenser.steam.packets.S2A_INFO_BasePacket;
+import com.github.koraktor.steamcondenser.steam.packets.S2A_PLAYER_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.S2A_RULES_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.A2S_SERVERQUERY_GETCHALLENGE_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.S2C_CHALLENGE_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
 import com.github.koraktor.steamcondenser.steam.sockets.QuerySocket;
@@ -38,10 +37,10 @@ import com.github.koraktor.steamcondenser.steam.sockets.QuerySocket;
  */
 public abstract class GameServer extends Server {
 
-    private static final int REQUEST_CHALLENGE = 0;
-    private static final int REQUEST_INFO = 1;
-    private static final int REQUEST_PLAYER = 2;
-    private static final int REQUEST_RULES = 3;
+    protected static final int REQUEST_CHALLENGE = 0;
+    protected static final int REQUEST_INFO = 1;
+    protected static final int REQUEST_PLAYER = 2;
+    protected static final int REQUEST_RULES = 3;
     protected int challengeNumber = 0xFFFFFFFF;
     protected int ping;
     protected HashMap<String, SteamPlayer> playerHash;
@@ -74,7 +73,7 @@ public abstract class GameServer extends Server {
      * @return array Split player attribute names
      * @see #splitPlayerStatus
      */
-    private static List<String> getPlayerStatusAttributes(String statusHeader) {
+    protected static List<String> getPlayerStatusAttributes(String statusHeader) {
         List<String> statusAttributes = new ArrayList<String>();
         for(String attribute : statusHeader.split("\\s+")) {
             if(attribute.equals("connected")) {
@@ -98,7 +97,7 @@ public abstract class GameServer extends Server {
      *         player
      * @see #getPlayerStatusAttributes
      */
-    private static Map<String, String> splitPlayerStatus(List<String> attributes, String playerStatus) {
+    protected static Map<String, String> splitPlayerStatus(List<String> attributes, String playerStatus) {
         if(!attributes.get(0).equals("userid")) {
             playerStatus = playerStatus.replaceAll("^\\d+ +", "");
         }
@@ -259,7 +258,7 @@ public abstract class GameServer extends Server {
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if the request times out
      */
-    private SteamPacket getReply()
+    protected SteamPacket getReply()
             throws TimeoutException, SteamCondenserException {
         return this.socket.getReply();
     }
@@ -275,7 +274,7 @@ public abstract class GameServer extends Server {
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if the request times out
      */
-    private void handleResponseForRequest(int requestType)
+    protected void handleResponseForRequest(int requestType)
             throws SteamCondenserException, TimeoutException {
         this.handleResponseForRequest(requestType, true);
     }
@@ -295,9 +294,9 @@ public abstract class GameServer extends Server {
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if the request times out
      */
-    private void handleResponseForRequest(int requestType, boolean repeatOnFailure)
+    protected void handleResponseForRequest(int requestType, boolean repeatOnFailure)
             throws SteamCondenserException, TimeoutException {
-        Class<? extends SteamPacket> expectedResponse = null;
+        Class<? extends SteamPacket> expectedResponse = SteamPacket.class;
         SteamPacket requestPacket = null;
 
         switch(requestType) {
@@ -323,7 +322,7 @@ public abstract class GameServer extends Server {
 
         SteamPacket responsePacket = this.getReply();
 
-        if(responsePacket.getClass().getSuperclass().equals(S2A_INFO_BasePacket.class)) {
+        if(S2A_INFO_BasePacket.class.isInstance(responsePacket)) {
             this.serverInfo = ((S2A_INFO_BasePacket) responsePacket).getInfoHash();
         } else if(responsePacket instanceof S2A_PLAYER_Packet) {
             this.playerHash = ((S2A_PLAYER_Packet) responsePacket).getPlayerHash();
@@ -335,7 +334,7 @@ public abstract class GameServer extends Server {
             throw new SteamCondenserException("Response of type " + responsePacket.getClass() + " cannot be handled by this method.");
         }
 
-        if(responsePacket.getClass() != expectedResponse) {
+        if(!expectedResponse.isInstance(responsePacket)) {
             Logger.getLogger("com.github.koraktor.steamcondenser").warning("Expected " + expectedResponse + ", got " + responsePacket.getClass() + ".");
             if(repeatOnFailure) {
                 this.handleResponseForRequest(requestType, false);
@@ -400,7 +399,7 @@ public abstract class GameServer extends Server {
      * @param requestData The request packet to send to the server
      * @throws SteamCondenserException if the request fails
      */
-    private void sendRequest(SteamPacket requestData)
+    protected void sendRequest(SteamPacket requestData)
             throws SteamCondenserException {
         this.socket.send(requestData);
     }

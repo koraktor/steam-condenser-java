@@ -93,7 +93,7 @@ public class MasterServer extends Server {
 
     public static int retries = 3;
 
-    private MasterServerSocket socket;
+    protected MasterServerSocket socket;
 
     /**
      * Sets the number of consecutive requests that may fail, before getting
