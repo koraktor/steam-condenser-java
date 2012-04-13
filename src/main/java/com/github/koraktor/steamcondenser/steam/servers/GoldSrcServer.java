@@ -37,7 +37,7 @@ public class GoldSrcServer extends GameServer {
      * @return The GoldSrc master server
      * @throws SteamCondenserException if initializing the socket fails
      */
-    public MasterServer getMaster() throws SteamCondenserException {
+    public static MasterServer getMaster() throws SteamCondenserException {
         return new MasterServer(MasterServer.GOLDSRC_MASTER_SERVER);
     }
 

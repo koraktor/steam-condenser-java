@@ -47,7 +47,7 @@ public class SourceServer extends GameServer {
      * @return The Source master server
      * @throws SteamCondenserException if initializing the socket fails
      */
-    public MasterServer getMaster() throws SteamCondenserException {
+    public static MasterServer getMaster() throws SteamCondenserException {
         return new MasterServer(MasterServer.SOURCE_MASTER_SERVER);
     }
 
