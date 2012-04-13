@@ -140,7 +140,7 @@ public class MasterServer extends Server {
      * @throws SteamCondenserException if initializing the socket fails
      */
     public MasterServer(InetAddress address) throws SteamCondenserException {
-        super(address.toString(), null);
+        super(address, null);
     }
 
     /**
@@ -154,7 +154,7 @@ public class MasterServer extends Server {
      */
     public MasterServer(InetAddress address, Integer port)
             throws SteamCondenserException {
-        super(address.toString(), port);
+        super(address, port);
     }
 
     /**

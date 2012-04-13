@@ -60,7 +60,7 @@ public abstract class GameServer extends Server {
      * @param port The port the server is listening on
      * @throws SteamCondenserException if initializing the socket fails
      */
-    protected GameServer(String address, Integer port)
+    protected GameServer(Object address, Integer port)
             throws SteamCondenserException {
         super(address, port);
 

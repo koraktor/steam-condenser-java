@@ -44,33 +44,41 @@ public abstract class Server {
      * @see #initSocket
      * @throws SteamCondenserException if an host name cannot be resolved
      */
-    protected Server(String address, Integer port)
+    protected Server(Object address, Integer port)
             throws SteamCondenserException {
-        if(address.indexOf(':') >= 0) {
-            String[] tmpAddress = address.split(":", 2);
-            port    = Integer.parseInt(tmpAddress[1]);
-            address = tmpAddress[0];
-        }
-
-        if(port == null) {
-            port = 27015;
-        }
-
         this.hostNames   = new ArrayList<String>();
         this.ipAddresses = new ArrayList<InetAddress>();
         this.ipIndex     = 0;
-        this.port        = port;
 
-        try {
-            for(InetAddress ipAddress : InetAddress.getAllByName(address)) {
-                this.hostNames.add(ipAddress.getHostName());
-                this.ipAddresses.add(ipAddress);
+        if(address instanceof String) {
+            if(((String) address).indexOf(':') >= 0) {
+                String[] tmpAddress = ((String) address).split(":", 2);
+                port    = Integer.parseInt(tmpAddress[1]);
+                address = tmpAddress[0];
             }
-        } catch(UnknownHostException e) {
-            throw new SteamCondenserException("Cannot resolve " + address + ": " + e.getMessage());
+            if(port == null) {
+                port = 27015;
+            }
+
+            try {
+                for(InetAddress ipAddress : InetAddress.getAllByName((String) address)) {
+                    this.hostNames.add(ipAddress.getHostName());
+                    this.ipAddresses.add(ipAddress);
+                }
+            } catch(UnknownHostException e) {
+                throw new SteamCondenserException("Cannot resolve " + address + ": " + e.getMessage());
+            }
+        } else if(address instanceof InetAddress) {
+            this.hostNames.add(((InetAddress) address).getHostName());
+            this.ipAddresses.add((InetAddress) address);
+        }
+
+        if(port == null) {
+            throw new IllegalArgumentException("No port given");
         }
 
         this.ipAddress = this.ipAddresses.get(0);
+        this.port = port;
 
         this.initSocket();
     }

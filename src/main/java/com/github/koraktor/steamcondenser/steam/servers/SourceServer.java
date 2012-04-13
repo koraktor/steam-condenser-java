@@ -89,7 +89,7 @@ public class SourceServer extends GameServer {
      * @throws SteamCondenserException if initializing the socket fails
      */
     public SourceServer(InetAddress address) throws SteamCondenserException {
-        super(address.toString(), 27015);
+        super(address, 27015);
     }
 
     /**
@@ -104,7 +104,7 @@ public class SourceServer extends GameServer {
      */
     public SourceServer(InetAddress address, Integer port)
             throws SteamCondenserException {
-        super(address.toString(), port);
+        super(address, port);
     }
 
     /**

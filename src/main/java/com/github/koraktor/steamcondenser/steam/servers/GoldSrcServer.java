@@ -108,7 +108,7 @@ public class GoldSrcServer extends GameServer {
      */
     public GoldSrcServer(InetAddress address, Integer port)
             throws SteamCondenserException {
-        this(address.toString(), port, false);
+        this(address, port, false);
     }
 
     /**
@@ -124,7 +124,9 @@ public class GoldSrcServer extends GameServer {
      */
     public GoldSrcServer(InetAddress address, Integer port, boolean isHLTV)
             throws SteamCondenserException {
-        this(address.toString(), port, isHLTV);
+        super(address, port);
+
+        this.isHLTV = isHLTV;
     }
 
     /**
