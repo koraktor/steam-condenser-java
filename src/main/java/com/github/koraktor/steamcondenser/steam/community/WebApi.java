@@ -267,6 +267,8 @@ abstract public class WebApi {
             }
 
             data = EntityUtils.toString(response.getEntity());
+        } catch (WebApiException e) {
+            throw e;
         } catch(Exception e) {
             throw new WebApiException("Could not communicate with the Web API.", e);
         }
