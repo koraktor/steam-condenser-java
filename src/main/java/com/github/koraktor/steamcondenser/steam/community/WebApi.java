@@ -31,7 +31,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 abstract public class WebApi {
 
-    private static String apiKey;
+    protected static String apiKey;
 
     /**
      * Returns the Steam Web API key currently used by Steam Condenser
