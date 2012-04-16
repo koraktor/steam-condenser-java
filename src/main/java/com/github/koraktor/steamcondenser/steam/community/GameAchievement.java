@@ -34,7 +34,9 @@ public class GameAchievement {
 
     private SteamGame game;
 
-    private String iconURL;
+    private String iconClosedUrl;
+
+    private String iconOpenUrl;
 
     private String name;
 
@@ -89,8 +91,8 @@ public class GameAchievement {
         this.apiName       = achievementData.getString("apiname");
         this.description   = achievementData.getString("description");
         this.game          = game;
-        String tempIconUrl = achievementData.getString("iconClosed");
-        this.iconURL       = tempIconUrl.substring(0, tempIconUrl.length() - 4);
+        this.iconClosedUrl = achievementData.getString("iconClosed");
+        this.iconOpenUrl   = achievementData.getString("iconOpen");
         this.name          = achievementData.getString("name");
         this.unlocked      = achievementData.getAttribute("closed").equals("1");
         this.user          = user;
@@ -133,7 +135,7 @@ public class GameAchievement {
      * @return The url for the closed icon of this achievement
      */
     public String getIconClosedURL() {
-        return this.iconURL + ".jpg";
+        return this.iconClosedUrl;
     }
 
     /**
@@ -142,7 +144,7 @@ public class GameAchievement {
      * @return The url for the open icon of this achievement
      */
     public String getIconOpenURL() {
-        return this.iconURL + "_bw.jpg";
+        return this.iconOpenUrl;
     }
 
     /**
