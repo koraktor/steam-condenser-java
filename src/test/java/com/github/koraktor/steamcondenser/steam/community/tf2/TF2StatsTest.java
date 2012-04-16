@@ -3,17 +3,22 @@
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
+
+import java.util.Date;
 
 import org.junit.Test;
 
 import com.github.koraktor.steamcondenser.steam.community.GameAchievement;
 import com.github.koraktor.steamcondenser.steam.community.GameStatsTestCase;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * @author Guto Maia
@@ -31,18 +36,18 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals("tf2", stats.getGame().getShortName());
         assertEquals(440, stats.getGame().getAppId());
         assertEquals("13.5", stats.getHoursPlayed());
-        assertEquals(76561197985077150l, stats.getSteamId64());
+        assertEquals("gutomaia", stats.getUser().getCustomUrl());
     }
 
     @Test
     public void achievements() throws Exception {
         assertEquals(314, stats.getAchievementsDone());
-        GameAchievement headOfTheClass = stats.getAchievements().get(0);
-        assertEquals("Head of the Class", headOfTheClass.getName());
-        assertEquals("Play a complete round with every class.", headOfTheClass.getDescription());
-        //TODO: test headOfTheClass.getTimestamp()
-        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg", headOfTheClass.getIconClosedURL());
-        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg", headOfTheClass.getIconOpenURL());
+        GameAchievement achievement = stats.getAchievements().get(124);
+        assertEquals("A Year to Remember", achievement.getName());
+        assertEquals("Get 2004 lifetime kills.", achievement.getDescription());
+        assertThat(achievement.getTimestamp(), is(equalTo(new Date(1315454886000L))));
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/37a4bfc04901a7057fee7eca4c1bb7c14fa1b32c.jpg", achievement.getIconClosedURL());
+        assertEquals("http://media.steampowered.com/steamcommunity/public/images/apps/440/70ac5536184a497d5471cf7518ad72efbc7e9038.jpg", achievement.getIconOpenURL());
     }
 
     @Test

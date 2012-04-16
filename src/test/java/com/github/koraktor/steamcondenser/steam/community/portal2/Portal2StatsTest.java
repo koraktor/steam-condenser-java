@@ -3,7 +3,7 @@
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.portal2;
@@ -30,7 +30,7 @@ public class Portal2StatsTest extends GameStatsTestCase<Portal2Stats> {
         assertEquals("portal2", stats.getGame().getShortName());
         assertEquals(620, stats.getGame().getAppId());
         assertEquals("0", stats.getHoursPlayed());
-        assertEquals(76561197985077150l, stats.getSteamId64());
+        assertEquals("gutomaia", stats.getUser().getCustomUrl());
     }
 
     @Test

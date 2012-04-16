@@ -3,7 +3,7 @@
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
@@ -31,7 +31,7 @@ public class L4D2StatsTest extends GameStatsTestCase<L4D2Stats> {
         assertEquals("l4d2", stats.getGame().getShortName());
         assertEquals(550, stats.getGame().getAppId());
         assertEquals("0s", stats.getHoursPlayed());// TODO: strange behavior
-        assertEquals(76561197985077150l, stats.getSteamId64());
+        assertEquals("gutomaia", stats.getUser().getCustomUrl());
     }
 
     @Test

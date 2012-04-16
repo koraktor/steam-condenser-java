@@ -3,7 +3,7 @@
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -18,7 +18,10 @@ import org.junit.Test;
 
 import org.w3c.dom.Document;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -96,6 +99,15 @@ public class SteamIdTest {
         verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
 
         assertEquals(30, friends.length);
+    }
+
+    @Test
+    public void testGetId() throws Exception {
+        SteamId steamId1 = SteamId.create(76561197983311154L, false);
+        SteamId steamId2= SteamId.create("Son_of_Thor", false);
+
+        assertThat((Long) steamId1.getId(), is(equalTo(76561197983311154L)));
+        assertThat((String) steamId2.getId(), is(equalTo("Son_of_Thor")));
     }
 
 }

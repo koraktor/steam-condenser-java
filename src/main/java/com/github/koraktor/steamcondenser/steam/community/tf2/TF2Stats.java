@@ -116,9 +116,9 @@ public class TF2Stats extends GameStats {
 
         if(this.inventory == null) {
             if(this.game.getShortName().equals("TF2")) {
-                this.inventory = TF2Inventory.create(this.steamId64);
+                this.inventory = TF2Inventory.create(this.user.getSteamId64());
             } else {
-                this.inventory = TF2BetaInventory.create(this.steamId64);
+                this.inventory = TF2BetaInventory.create(this.user.getSteamId64());
             }
         }
 

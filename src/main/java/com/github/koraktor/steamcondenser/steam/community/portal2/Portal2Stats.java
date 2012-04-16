@@ -46,7 +46,7 @@ public class Portal2Stats extends GameStats {
         }
 
         if(this.inventory == null) {
-            this.inventory = Portal2Inventory.create(this.steamId64);
+            this.inventory = Portal2Inventory.create(this.user.getSteamId64());
         }
 
         return this.inventory;

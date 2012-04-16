@@ -30,19 +30,19 @@ public class GameAchievement {
 
     private String apiName;
 
-    private int appId;
-
     private String description;
+
+    private SteamGame game;
 
     private String iconURL;
 
     private String name;
 
-    private long steamId64;
-
     private Date timestamp;
 
     private boolean unlocked;
+
+    private SteamId user;
 
     /**
      * Loads the global unlock percentages of all achievements for the given
@@ -81,23 +81,19 @@ public class GameAchievement {
      * Creates the achievement with the given name for the given user and game
      * and achievement data
      *
-     * @param steamId64 The 64bit SteamID of the player this achievement
-     *        belongs to
-     * @param appId The unique Steam Application ID of the game (e.g.
-     *        <code>440</code> for Team Fortress 2). See
-     *        http://developer.valvesoftware.com/wiki/Steam_Application_IDs for
-     *        all application IDs
+     * @param user The Steam ID of the player this achievement belongs to
+     * @param game The game this achievement belongs to
      * @param achievementData The achievement data extracted from XML
      */
-    public GameAchievement(long steamId64, int appId, XMLData achievementData) {
-        this.apiName     = achievementData.getString("apiname");
-        this.appId       = appId;
-        this.description = achievementData.getString("description");
+    public GameAchievement(SteamId user, SteamGame game, XMLData achievementData) {
+        this.apiName       = achievementData.getString("apiname");
+        this.description   = achievementData.getString("description");
+        this.game          = game;
         String tempIconUrl = achievementData.getString("iconClosed");
-        this.iconURL = tempIconUrl.substring(0, tempIconUrl.length() - 4);
-        this.name        = achievementData.getString("name");
-        this.steamId64   = steamId64;
-        this.unlocked    = achievementData.getAttribute("closed").equals("1");
+        this.iconURL       = tempIconUrl.substring(0, tempIconUrl.length() - 4);
+        this.name          = achievementData.getString("name");
+        this.unlocked      = achievementData.getAttribute("closed").equals("1");
+        this.user          = user;
 
         if(this.unlocked && achievementData.hasElement("unlockTimestamp")) {
             this.timestamp = new Date(achievementData.getLong("unlockTimestamp") * 1000);
@@ -114,22 +110,21 @@ public class GameAchievement {
     }
 
     /**
-     * Return the unique Steam Application ID of the game this achievement
-     * belongs to
-     *
-     * @return The Steam Application ID of this achievement's game
-     */
-    public int getAppId() {
-        return this.appId;
-    }
-
-    /**
      * Return the description of this achievement
      *
      * @return The description of this achievement
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Returns the game this achievement belongs to
+     *
+     * @return The game this achievement belongs to
+     */
+    public SteamGame getGame() {
+        return this.game;
     }
 
     /**
@@ -160,21 +155,21 @@ public class GameAchievement {
     }
 
     /**
-     * Returns the 64bit SteamID of the user who owns this achievement
-     *
-     * @return The 64bit SteamID of this achievement's owner
-     */
-    public long getSteamId64() {
-        return this.steamId64;
-    }
-
-    /**
      * Returns the time this achievement has been unlocked by its owner
      *
      * @return The time this achievement has been unlocked
      */
     public Date getTimestamp() {
         return this.timestamp;
+    }
+
+    /**
+     * Returns the SteamID of the user who owns this achievement
+     *
+     * @return The SteamID of this achievement's owner
+     */
+    public SteamId getUser() {
+        return this.user;
     }
 
     /**

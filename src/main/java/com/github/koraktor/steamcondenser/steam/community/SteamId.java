@@ -592,6 +592,17 @@ public class SteamId {
     }
 
     /**
+     * Returns a unique identifier for this Steam ID
+     *
+     * This is either the 64bit numeric SteamID or custom URL
+     *
+     * @return The 64bit numeric SteamID or the custom URL
+     */
+    public Object getId() {
+        return (this.customUrl == null) ? this.steamId64 : this.customUrl;
+    }
+
+    /**
      * Returns the links that this user has added to his/her Steam ID
      * <p>
      * The keys of the hash contain the titles of the links while the values

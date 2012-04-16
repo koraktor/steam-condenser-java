@@ -33,15 +33,13 @@ public class GameStats {
 
     protected int achievementsDone;
 
-    protected String customUrl;
-
     protected SteamGame game;
 
     protected String hoursPlayed;
 
     protected String privacyState;
 
-    protected Long steamId64;
+    protected SteamId user;
 
     protected XMLData xmlData;
 
@@ -109,9 +107,9 @@ public class GameStats {
     protected GameStats(Object steamId, Object gameId)
             throws SteamCondenserException {
         if(steamId instanceof String) {
-            this.customUrl = (String) steamId;
+            this.user = SteamId.create((String) steamId, false);
         } else if(steamId instanceof Long) {
-            this.steamId64 = (Long) steamId;
+            this.user = SteamId.create((Long) steamId, false);
         }
 
         try {
@@ -125,15 +123,7 @@ public class GameStats {
             if(this.isPublic()) {
                 int appId = Integer.parseInt(this.xmlData.getString("game", "gameLink").replace("http://store.steampowered.com/app/", ""));
                 this.game = SteamGame.create(appId, this.xmlData.getElement("game"));
-
                 this.hoursPlayed = this.xmlData.getString("stats", "hoursPlayed");
-
-                if(this.customUrl == null) {
-                    this.customUrl = this.xmlData.getString("player", "customURL");
-                }
-                if(this.steamId64 == null) {
-                    this.steamId64 = this.xmlData.getLong("player", "steamID64");
-                }
             }
         } catch(Exception e) {
             throw new SteamCondenserException("XML data could not be parsed.", e);
@@ -153,7 +143,7 @@ public class GameStats {
             this.achievementsDone = 0;
 
             for(XMLData achievementData : this.xmlData.getElements("achievements", "achievement")) {
-                GameAchievement achievement = new GameAchievement(this.steamId64, this.game.getAppId(), achievementData);
+                GameAchievement achievement = new GameAchievement(this.user, this.game, achievementData);
                 if(achievement.isUnlocked()) {
                     this.achievementsDone += 1;
                 }
@@ -201,21 +191,7 @@ public class GameStats {
      * @return The base URL used for queries on these stats
      */
     public String getBaseUrl() {
-        if(this.customUrl == null) {
-            return getBaseUrl(this.steamId64, this.game.getId());
-        } else {
-            return getBaseUrl(this.customUrl, this.game.getId());
-        }
-    }
-
-
-    /**
-     * Returns the custom URL of the player these stats belong to
-     *
-     * @return The custom URL of the player
-     */
-    public String getCustomUrl() {
-        return this.customUrl;
+        return getBaseUrl(this.user.getId(), this.game.getId());
     }
 
     /**
@@ -246,12 +222,12 @@ public class GameStats {
     }
 
     /**
-     * Returns the 64bit numeric SteamID of the player these stats belong to
+     * Returns the Steam ID of the player these stats belong to
      *
-     * @return The 64bit numeric SteamID of the player
+     * @return The Steam ID instance of the player
      */
-    public long getSteamId64() {
-        return this.steamId64;
+    public SteamId getUser() {
+        return this.user;
     }
 
     /**
