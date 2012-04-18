@@ -243,7 +243,7 @@ public class MasterServer extends Server {
      *     map
      * <li><code>\linux\1</code>: Request only linux servers
      * <li><code>\emtpy\1</code>: Request only **non**-empty servers
-     * <li><code>\full\</code>: Request only servers **not** full
+     * <li><code>\full\1</code>: Request only servers **not** full
      * <li><code>\proxy\1</code>: Request only spectator proxy servers
      * </ul>
      *
