@@ -37,7 +37,7 @@ import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
 import com.github.koraktor.steamcondenser.steam.sockets.QuerySocket;
 
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.number.OrderingComparisons.greaterThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;

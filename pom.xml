@@ -4,7 +4,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-library</artifactId>
-            <version>1.1</version>
+            <version>1.2.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
