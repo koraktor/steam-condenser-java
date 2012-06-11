@@ -174,7 +174,9 @@ public class XMLData {
      * @return The float value of the named element
      */
     public Float getFloat(String... names) {
-        return Float.parseFloat(this.getString(names).trim());
+        String value = this.getString(names).trim();
+
+        return value.isEmpty() ? 0.0f : Float.parseFloat(value);
     }
 
     /**
@@ -185,7 +187,9 @@ public class XMLData {
      * @return The integer value of the named element
      */
     public Integer getInteger(String... names) {
-        return Integer.parseInt(this.getString(names).trim());
+        String value = this.getString(names).trim();
+
+        return value.isEmpty() ? 0 : Integer.parseInt(value);
     }
 
     /**
@@ -197,7 +201,9 @@ public class XMLData {
      * @return The long integer value of the named element
      */
     public Long getLong(String... names) {
-        return Long.parseLong(this.getString(names).trim());
+        String value = this.getString(names).trim();
+
+        return value.isEmpty() ? 0L : Long.parseLong(value);
     }
 
     /**
