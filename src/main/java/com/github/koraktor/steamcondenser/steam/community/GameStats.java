@@ -8,6 +8,8 @@
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.community.css.CSSStats;
@@ -121,7 +123,10 @@ public class GameStats {
 
             this.privacyState = this.xmlData.getString("privacyState");
             if(this.isPublic()) {
-                int appId = Integer.parseInt(this.xmlData.getString("game", "gameLink").replace("http://store.steampowered.com/app/", ""));
+                Pattern appIdPattern = Pattern.compile("http://+store\\.steampowered\\.com/+app/+([1-9][0-9]*)", Pattern.CASE_INSENSITIVE);
+                Matcher appIdMatcher = appIdPattern.matcher(this.xmlData.getString("game", "gameLink"));
+                appIdMatcher.find();
+                int appId = Integer.parseInt(appIdMatcher.group(1));
                 this.game = SteamGame.create(appId, this.xmlData.getElement("game"));
                 this.hoursPlayed = this.xmlData.getString("stats", "hoursPlayed");
             }
