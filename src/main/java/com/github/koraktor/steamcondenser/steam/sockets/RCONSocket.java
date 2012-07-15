@@ -73,7 +73,7 @@ public class RCONSocket extends SteamSocket {
             throws SteamCondenserException {
         try {
             if(!((SocketChannel)this.channel).isConnected()) {
-                ((SocketChannel)this.channel).connect(this.remoteSocket);
+                ((SocketChannel) this.channel).socket().connect(this.remoteSocket, SteamSocket.timeout);
                 this.channel.configureBlocking(false);
             }
 
