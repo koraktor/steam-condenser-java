@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
+import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
 /**
  * This class represents a game available on Steam
@@ -243,6 +244,22 @@ public class SteamGame {
      */
     public String getLogoThumbnailUrl() {
         return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + "_thumb.jpg";
+    }
+
+    /**
+     * Returns the overall number of players currently playing this game
+     *
+     * @return The number of players playing this game
+     * @throws JSONException In case of misformatted JSON data
+     * @throws WebApiException on Web API errors
+     */
+    public int getPlayerCount() throws JSONException, WebApiException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("appid", this.appId);
+        String jsonString = WebApi.getJSON("ISteamUserStats", "GetNumberOfCurrentPlayers", 1, params);
+        JSONObject result = new JSONObject(jsonString).getJSONObject("response");
+
+        return result.getInt("player_count");
     }
 
     /**
