@@ -290,7 +290,6 @@ public class SteamId {
                 throw new SteamCondenserException(profile.getString("error"));
             }
 
-            this.limitedAccount = (profile.getString("isLimitedAccount").equals("1"));
             this.nickname  = profile.getUnescapedString("steamID");
             this.steamId64 = profile.getLong("steamID64");
             this.tradeBanState = profile.getUnescapedString("tradeBanState");
@@ -302,6 +301,7 @@ public class SteamId {
 
             String avatarIconUrl = profile.getString("avatarIcon");
             this.imageUrl = avatarIconUrl.substring(0, avatarIconUrl.length() - 4);
+            this.limitedAccount = (profile.getString("isLimitedAccount").equals("1"));
             this.onlineState = profile.getString("onlineState");
             this.privacyState = profile.getString("privacyState");
             this.stateMessage = profile.getString("stateMessage");
