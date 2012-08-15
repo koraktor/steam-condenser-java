@@ -313,11 +313,6 @@ public class SteamId {
                     this.customUrl = null;
                 }
 
-                XMLData favoriteGame = profile.getElement("favoriteGame");
-                if(favoriteGame != null) {
-                    this.favoriteGame = favoriteGame.getString("name");
-                    this.favoriteGameHoursPlayed = favoriteGame.getFloat("hoursPlayed2wk");
-                }
                 this.headLine = profile.getUnescapedString("headline");
                 this.hoursPlayed = profile.getFloat("hoursPlayed2Wk");
                 this.location = profile.getString("location");
