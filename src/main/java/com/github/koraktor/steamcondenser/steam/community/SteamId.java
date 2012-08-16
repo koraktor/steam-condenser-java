@@ -91,13 +91,15 @@ public class SteamId {
         if(steamId.equals("STEAM_ID_LAN") || steamId.equals("BOT")) {
             throw new SteamCondenserException("Cannot convert SteamID \"" + steamId + "\" to a community ID.");
         }
-        if(!steamId.matches("^STEAM_[0-1]:[0-1]:[0-9]+$")) {
+        if(steamId.matches("^STEAM_[0-1]:[0-1]:[0-9]+$")) {
+            String[] tmpId = steamId.substring(8).split(":");
+            return Long.valueOf(tmpId[0]) + Long.valueOf(tmpId[1]) * 2 + 76561197960265728L;
+        } else if(steamId.matches("^\\[U:[0-1]:[0-9]+\\]+$")) {
+            String[] tmpId = steamId.substring(3, steamId.length() - 1).split(":");
+            return Long.valueOf(tmpId[0]) + Long.valueOf(tmpId[1]) + 76561197960265727L;
+        } else {
             throw new SteamCondenserException("SteamID \"" + steamId + "\" doesn't have the correct format.");
         }
-
-        String[] tmpId = steamId.substring(6).split(":");
-
-        return Long.valueOf(tmpId[1]) + Long.valueOf(tmpId[2]) * 2 + 76561197960265728L;
     }
 
     /**
