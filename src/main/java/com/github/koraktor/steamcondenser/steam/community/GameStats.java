@@ -123,7 +123,7 @@ public class GameStats {
 
             this.privacyState = this.xmlData.getString("privacyState");
             if(this.isPublic()) {
-                Pattern appIdPattern = Pattern.compile("http://+store\\.steampowered\\.com/+app/+([1-9][0-9]*)", Pattern.CASE_INSENSITIVE);
+                Pattern appIdPattern = Pattern.compile("http://steamcommunity\\.com/+app/+([1-9][0-9]*)", Pattern.CASE_INSENSITIVE);
                 Matcher appIdMatcher = appIdPattern.matcher(this.xmlData.getString("game", "gameLink"));
                 appIdMatcher.find();
                 int appId = Integer.parseInt(appIdMatcher.group(1));
