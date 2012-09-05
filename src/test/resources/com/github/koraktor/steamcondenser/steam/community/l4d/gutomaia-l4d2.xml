@@ -4,7 +4,7 @@
 	<game>
 		<gameFriendlyName><![CDATA[L4D2]]></gameFriendlyName>
 		<gameName><![CDATA[Left 4 Dead 2]]></gameName>
-		<gameLink><![CDATA[http://store.steampowered.com/app/550]]></gameLink>
+		<gameLink><![CDATA[http://steamcommunity.com/app/550]]></gameLink>
 		<gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/7d5a243f9500d2f8467312822f8af2a2928777ed.jpg]]></gameIcon>
 		<gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/205863cc21e751a576d6fff851984b3170684142.jpg]]></gameLogo>
 		<gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/205863cc21e751a576d6fff851984b3170684142_thumb.jpg]]></gameLogoSmall>
@@ -589,7 +589,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/31505f883ee5fd9e3b9548d882c2247e4bc6251b.jpg]]></iconOpen>
 			<name><![CDATA[SEPTIC TANK]]></name>
 			<apiname><![CDATA[ach_bile_a_tank]]></apiname>
-			<description><![CDATA[Use a bile grenade on a Tank.]]></description>
+			<description><![CDATA[Use a bile bomb on a Tank.]]></description>
 			<unlockTimestamp>1294191779</unlockTimestamp>
 		</achievement>
 		<achievement closed="1">
@@ -612,14 +612,14 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/d00f26828f010c50d2659f83acc2d07db37f716b.jpg]]></iconOpen>
 			<name><![CDATA[FRIED PIPER]]></name>
 			<apiname><![CDATA[ach_incendiary_clown_posse]]></apiname>
-			<description><![CDATA[Use a Molotov to burn a Clown leading at least 10 Common Infected.]]></description>
+			<description><![CDATA[Using a Molotov, burn a Clown leading at least 10 Common Infected. ]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/ef2d3b6a36844347dec901fb55785b306ab77b37.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/a5a8f254fe307e0d5627103cf7fc2166f9cecbb8.jpg]]></iconOpen>
 			<name><![CDATA[LEVEL A CHARGE]]></name>
 			<apiname><![CDATA[ach_melee_a_charger]]></apiname>
-			<description><![CDATA[Kill a Charger with a melee weapon while they are charging someone.]]></description>
+			<description><![CDATA[Kill a Charger with a melee weapon while they are charging.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/e5459cc284c03c7a5e1dc0a5d9a62aaec6145cc8.jpg]]></iconClosed>
@@ -640,7 +640,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/5f3d1cc262e72978d76ce4919129ee4a45e492bb.jpg]]></iconOpen>
 			<name><![CDATA[HEARTWARMER]]></name>
 			<apiname><![CDATA[ach_vs_leave_safe_room_defib_teammate]]></apiname>
-			<description><![CDATA[In a Versus match, leave the saferoom to defibrillate a dead teammate.]]></description>
+			<description><![CDATA[In a Versus round, leave the saferoom to defibrillate a dead teammate.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/a23c4f24570f3f06581adb6d7f394a9924a3c319.jpg]]></iconClosed>
@@ -654,7 +654,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/046105cc81ca728e67c0d379065bea2ef2ff6658.jpg]]></iconOpen>
 			<name><![CDATA[THE REAL DEAL]]></name>
 			<apiname><![CDATA[ach_survive_expert_realism]]></apiname>
-			<description><![CDATA[Survive a campaign on Expert difficulty with Realism mode enabled.]]></description>
+			<description><![CDATA[Survive a campaign on Expert skill with Realism mode enabled.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/6c7f33786f2cf8064fa04789810a99a767a24e51.jpg]]></iconClosed>
@@ -703,7 +703,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/ebc1b3ac888a061b3a6b2d9d7e3a0e55db334b45.jpg]]></iconOpen>
 			<name><![CDATA[THE QUICK AND THE DEAD]]></name>
 			<apiname><![CDATA[ach_speed_revive_with_adrenaline]]></apiname>
-			<description><![CDATA[Revive 10 incapacitated Survivors while under the speed boosting effects of adrenaline.]]></description>
+			<description><![CDATA[Revive 10 incapacitated Survivors while under the speed-boosting effects of adrenaline.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/6d61190a5e1d19c8dee6357477cd30aea8bd3605.jpg]]></iconClosed>
@@ -724,7 +724,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/303cb6ac4cbaf3c3a344906d0304d8647f0f3de0.jpg]]></iconOpen>
 			<name><![CDATA[BRIDGE OVER TREBLED SLAUGHTER]]></name>
 			<apiname><![CDATA[ach_bridge_timed_run]]></apiname>
-			<description><![CDATA[Cross the bridge finale in less than 3 minutes.]]></description>
+			<description><![CDATA[Cross the bridge finale in less than three minutes.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/457f8cdaaafff9820a12d8509882b9c7a0f24463.jpg]]></iconClosed>
@@ -766,7 +766,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/888e93e7f6e215ddef463fd55ef98e8ef7c37769.jpg]]></iconOpen>
 			<name><![CDATA[VIOLENCE IN SILENCE]]></name>
 			<apiname><![CDATA[ach_impound_lot_no_alarms]]></apiname>
-			<description><![CDATA[Navigate the impound lot and reach the cemetary safe room without tripping any alarms.]]></description>
+			<description><![CDATA[Navigate the impound lot and reach the cemetery safe room without tripping any alarms.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/02d01200d3f14ba7a1145366397ff124c1a45464.jpg]]></iconClosed>
@@ -794,7 +794,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/7b5d3f04d803da4bbfc581d60a4e7b1f17a9211b.jpg]]></iconOpen>
 			<name><![CDATA[QUALIFIED RIDE]]></name>
 			<apiname><![CDATA[ach_vs_jockey_long_ride]]></apiname>
-			<description><![CDATA[As the Jockey, ride a Survivor for more than 8 seconds.]]></description>
+			<description><![CDATA[As the Jockey, ride a Survivor for more than 12 seconds.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/3a038d4447457dee981281742d1e1c5dfa29b16d.jpg]]></iconClosed>
@@ -850,7 +850,7 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/8532f1ca6af161f2b64559edaa998a1c574fe1bb.jpg]]></iconOpen>
 			<name><![CDATA[BEAT THE RUSH]]></name>
 			<apiname><![CDATA[ach_survival_get_medal_melee_only]]></apiname>
-			<description><![CDATA[In a Survival match, get a medal only using melee weapons.]]></description>
+			<description><![CDATA[In a Survival round, get a medal only using melee weapons.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/9f3ae3bd65053f1794a8133b54c4552dcfbc382c.jpg]]></iconClosed>
@@ -871,14 +871,14 @@
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/a934ffb345e9bd1de18449b03a3bc9fc7bad31a1.jpg]]></iconOpen>
 			<name><![CDATA[CACHE AND CARRY]]></name>
 			<apiname><![CDATA[ach_scavenge_collect_all_cans]]></apiname>
-			<description><![CDATA[Collect 15 gas cans in a single Scavenge match.]]></description>
+			<description><![CDATA[Collect 15 gas cans in a single Scavenge round.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/d7f453e01bd43a25108a6c8e7d65e4103ad03125.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/47a8c19257d34aee139890c81e774d924eeb53bb.jpg]]></iconOpen>
-			<name><![CDATA[SCAVENGER HUNT]]></name>
+			<name><![CDATA[SCAVENGE HUNT]]></name>
 			<apiname><![CDATA[ach_scavenge_shut_out]]></apiname>
-			<description><![CDATA[Stop the enemy team from collecting any gas cans during a Scavenge match.]]></description>
+			<description><![CDATA[Stop the enemy team from collecting any gas cans during a Scavenge round.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/8a635b65b64ffdc57d5b0069a8e20a64f6c4ee3b.jpg]]></iconClosed>
@@ -953,28 +953,28 @@
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/beefe7b7be67caff22365caf51580c784cf2a0ee.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/59513aa9a47fedbbdeccc6fb014edbefe9f6fbff.jpg]]></iconOpen>
-			<name><![CDATA[Killing Them Swiftly To This Song]]></name>
+			<name><![CDATA[KILLING THEM SWIFTLY TO THIS SONG]]></name>
 			<apiname><![CDATA[ach_hear_ballad]]></apiname>
 			<description><![CDATA[Play the new Midnight Riders song on a jukebox.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/ed310cbf59963fdc57ebdf159b3315622ffa795c.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/0bb983bce633848cf075b610890f16f8ef2d52cb.jpg]]></iconOpen>
-			<name><![CDATA[Kite Like a Man]]></name>
+			<name><![CDATA[KITE LIKE A MAN]]></name>
 			<apiname><![CDATA[ach_kill_tank_l4d1_only]]></apiname>
-			<description><![CDATA[Kill a tank only with damage from the original Survivors.]]></description>
+			<description><![CDATA[Kill a Tank only with damage from the original Survivors.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/2b17304ac13f29f42a505460ee79e4619fd2be74.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/5ced11d4115529a48db5e2d7d58e2ef0e50b9260.jpg]]></iconOpen>
-			<name><![CDATA[Cache Grab]]></name>
+			<name><![CDATA[CACHE GRAB]]></name>
 			<apiname><![CDATA[ach_open_foot_lockers]]></apiname>
 			<description><![CDATA[Open 5 foot lockers.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/4016cc9d60b347b8bf887e82e7df15b3e6d3466f.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/70ce71c534ae0575e1a3737c47bbbef016a40770.jpg]]></iconOpen>
-			<name><![CDATA[Port of Scavenge]]></name>
+			<name><![CDATA[PORT OF SCAVENGE]]></name>
 			<apiname><![CDATA[ach_scavenge_play_c6_finale]]></apiname>
 			<description><![CDATA[Play 5 full games of Scavenge on The Port.]]></description>
 		</achievement>
@@ -1009,16 +1009,23 @@
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/3a547617190d665e8a5669f08a07c5ef8a9092dd.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/b4d05a3011db6b1029fce2bd38d4f3a0c1489541.jpg]]></iconOpen>
-			<name><![CDATA[Stream Crosser]]></name>
+			<name><![CDATA[STREAM CROSSER]]></name>
 			<apiname><![CDATA[ach_survive_cold_stream]]></apiname>
 			<description><![CDATA[Survive the Cold Stream campaign on any difficulty.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/0456c61b83feb90ce2a2d0765b1ecf8671396085.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/a46ab0da59df4d43ae686d116f7de82736ced05a.jpg]]></iconOpen>
-			<name><![CDATA[Connecting Fight ]]></name>
+			<name><![CDATA[CONNECTING FIGHTS]]></name>
 			<apiname><![CDATA[ach_vs_complete_dead_air]]></apiname>
 			<description><![CDATA[Play a Versus game on Dead Air from start to finish.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/6378d5648f017f2c1039b927f7e4995fd4cc87ab.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/550/bbdbc3e9dde37cf3e5dacc5b38e6c30f9e7410dd.jpg]]></iconOpen>
+			<name><![CDATA[Valve Gift Grab 2011 – L4D2]]></name>
+			<apiname><![CDATA[ach_collect_holiday_gifts]]></apiname>
+			<description><![CDATA[Collect three gifts dropped by Special Infected in Versus Mode.]]></description>
 		</achievement>
 	</achievements>
 </playerstats>

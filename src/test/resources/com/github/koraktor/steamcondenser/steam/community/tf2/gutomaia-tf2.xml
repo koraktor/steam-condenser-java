@@ -4,7 +4,7 @@
 	<game>
 		<gameFriendlyName><![CDATA[TF2]]></gameFriendlyName>
 		<gameName><![CDATA[Team Fortress 2]]></gameName>
-		<gameLink><![CDATA[http://store.steampowered.com/app/440]]></gameLink>
+		<gameLink><![CDATA[http://steamcommunity.com/app/440]]></gameLink>
 		<gameIcon><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg]]></gameIcon>
 		<gameLogo><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg]]></gameLogo>
 		<gameLogoSmall><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8_thumb.jpg]]></gameLogoSmall>
@@ -14,13 +14,13 @@
 		<customURL><![CDATA[gutomaia]]></customURL>
 	</player>
 	<stats>
-		<hoursPlayed>13.5</hoursPlayed>
-		<secondsPlayedAllClassesLifetime>1190157</secondsPlayedAllClassesLifetime>
-		<accumulatedPoints>35112</accumulatedPoints>
+		<hoursPlayed>0</hoursPlayed>
+		<secondsPlayedAllClassesLifetime>1267182</secondsPlayedAllClassesLifetime>
+		<accumulatedPoints>37728</accumulatedPoints>
 		<classData>
 			<className>Soldier</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/soldier.jpg]]></classIcon>
-			<playtimeSeconds>218955</playtimeSeconds>
+			<playtimeSeconds>246153</playtimeSeconds>
 			<ipointsscored>18</ipointsscored>
 			<inumberofkills>13</inumberofkills>
 			<ikillassists>11</ikillassists>
@@ -34,9 +34,25 @@
 			<iplaytime>344</iplaytime>
 		</classData>
 		<classData>
+			<className>Pyro</className>
+			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/pyro.jpg]]></classIcon>
+			<playtimeSeconds>206292</playtimeSeconds>
+			<ipointsscored>16</ipointsscored>
+			<inumberofkills>13</inumberofkills>
+			<ikillassists>7</ikillassists>
+			<ipointcaptures>3</ipointcaptures>
+			<ipointdefenses>4</ipointdefenses>
+			<idamagedealt>1905</idamagedealt>
+			<ibuildingsdestroyed>4</ibuildingsdestroyed>
+			<idominations>3</idominations>
+			<irevenge>2</irevenge>
+			<inuminvulnerable>0</inuminvulnerable>
+			<iplaytime>611</iplaytime>
+		</classData>
+		<classData>
 			<className>Spy</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/spy.jpg]]></classIcon>
-			<playtimeSeconds>194204</playtimeSeconds>
+			<playtimeSeconds>202230</playtimeSeconds>
 			<ipointsscored>31</ipointsscored>
 			<inumberofkills>15</inumberofkills>
 			<ikillassists>5</ikillassists>
@@ -53,25 +69,9 @@
 			<ihealthpointsleached>133</ihealthpointsleached>
 		</classData>
 		<classData>
-			<className>Pyro</className>
-			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/pyro.jpg]]></classIcon>
-			<playtimeSeconds>190730</playtimeSeconds>
-			<ipointsscored>16</ipointsscored>
-			<inumberofkills>13</inumberofkills>
-			<ikillassists>7</ikillassists>
-			<ipointcaptures>3</ipointcaptures>
-			<ipointdefenses>4</ipointdefenses>
-			<idamagedealt>1905</idamagedealt>
-			<ibuildingsdestroyed>4</ibuildingsdestroyed>
-			<idominations>3</idominations>
-			<irevenge>2</irevenge>
-			<inuminvulnerable>0</inuminvulnerable>
-			<iplaytime>611</iplaytime>
-		</classData>
-		<classData>
 			<className>Engineer</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/engineer.jpg]]></classIcon>
-			<playtimeSeconds>188409</playtimeSeconds>
+			<playtimeSeconds>197030</playtimeSeconds>
 			<ipointsscored>21</ipointsscored>
 			<inumberofkills>15</inumberofkills>
 			<isentrykills>13</isentrykills>
@@ -81,7 +81,7 @@
 			<idamagedealt>3193</idamagedealt>
 			<ibuildingsdestroyed>3</ibuildingsdestroyed>
 			<idominations>5</idominations>
-			<irevenge>1</irevenge>
+			<irevenge>2</irevenge>
 			<inuminvulnerable>0</inuminvulnerable>
 			<iplaytime>795</iplaytime>
 			<ibuildingsbuilt>19</ibuildingsbuilt>
@@ -91,7 +91,7 @@
 		<classData>
 			<className>Sniper</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/sniper.jpg]]></classIcon>
-			<playtimeSeconds>122459</playtimeSeconds>
+			<playtimeSeconds>125114</playtimeSeconds>
 			<ipointsscored>22</ipointsscored>
 			<inumberofkills>15</inumberofkills>
 			<ikillassists>7</ikillassists>
@@ -108,7 +108,7 @@
 		<classData>
 			<className>Heavy</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/heavy.jpg]]></classIcon>
-			<playtimeSeconds>104456</playtimeSeconds>
+			<playtimeSeconds>111031</playtimeSeconds>
 			<ipointsscored>29</ipointsscored>
 			<inumberofkills>15</inumberofkills>
 			<ikillassists>9</ikillassists>
@@ -117,14 +117,14 @@
 			<idamagedealt>3827</idamagedealt>
 			<ibuildingsdestroyed>6</ibuildingsdestroyed>
 			<idominations>4</idominations>
-			<irevenge>1</irevenge>
+			<irevenge>3</irevenge>
 			<inuminvulnerable>0</inuminvulnerable>
 			<iplaytime>478</iplaytime>
 		</classData>
 		<classData>
 			<className>Demoman</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/demoman.jpg]]></classIcon>
-			<playtimeSeconds>74357</playtimeSeconds>
+			<playtimeSeconds>74825</playtimeSeconds>
 			<ipointsscored>22</ipointsscored>
 			<inumberofkills>13</inumberofkills>
 			<ikillassists>7</ikillassists>
@@ -140,7 +140,7 @@
 		<classData>
 			<className>Scout</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/scout.jpg]]></classIcon>
-			<playtimeSeconds>60785</playtimeSeconds>
+			<playtimeSeconds>61666</playtimeSeconds>
 			<ipointsscored>12</ipointsscored>
 			<inumberofkills>8</inumberofkills>
 			<ikillassists>4</ikillassists>
@@ -156,7 +156,7 @@
 		<classData>
 			<className>Medic</className>
 			<classIcon><![CDATA[http://cdn.steamcommunity.com/public/images/gamestats/440/medic.jpg]]></classIcon>
-			<playtimeSeconds>35802</playtimeSeconds>
+			<playtimeSeconds>42841</playtimeSeconds>
 			<ipointsscored>19</ipointsscored>
 			<inumberofkills>6</inumberofkills>
 			<ikillassists>15</ikillassists>
@@ -1971,6 +1971,14 @@
 			<unlockTimestamp>1315919681</unlockTimestamp>
 		</achievement>
 		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/0f95a59fd5f49fca6f2c8d760551b4367f0e962c.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/f4c3f7e13eb0aa8d82ea132b273b9d5e0d1741b6.jpg]]></iconOpen>
+			<name><![CDATA[Out, Damned Scot!]]></name>
+			<apiname><![CDATA[tf_soldier_kill_demoman_grind]]></apiname>
+			<description><![CDATA[Kill 500 enemy Demomen]]></description>
+			<unlockTimestamp>1344487570</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/91388742b412ca8d14237586924ee2be60c19be5.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/b4ad937b5565a6d9f8ccfb75bbdf8260f9285e71.jpg]]></iconOpen>
 			<name><![CDATA[Backdraft Dodger]]></name>
@@ -2452,12 +2460,116 @@
 			<description><![CDATA[Get to Loot Island and claim your reward!]]></description>
 			<unlockTimestamp>1319857462</unlockTimestamp>
 		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/b7277ea1b2b2a69e00eed27fdb568fad1c3b5840.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/19186cf9e0a868dc980508c8172d82f8b868a9bc.jpg]]></iconOpen>
+			<name><![CDATA[Valve Gift Grab 2011 – TF2]]></name>
+			<apiname><![CDATA[tf_christmas_collect_gifts]]></apiname>
+			<description><![CDATA[Collect three gifts dropped by opponents.]]></description>
+			<unlockTimestamp>1324261032</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/dbe86ed93882cc0022e7afea8dc17b049f258019.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/de7469c3e1eeb7d409dbb3bbc463f8539d03386e.jpg]]></iconOpen>
+			<name><![CDATA[Cap Trap]]></name>
+			<apiname><![CDATA[tf_maps_foundry_kill_capping_enemy]]></apiname>
+			<description><![CDATA[Kill an enemy who is capturing a control point with a critical hit.]]></description>
+			<unlockTimestamp>1324259670</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/c30f23dd8eb2e3b438d6dc9329b028d893adce12.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/8b1fb30be7b7bfe5992ccabf2180e9abe7fe80af.jpg]]></iconOpen>
+			<name><![CDATA[Two Minute Warring]]></name>
+			<apiname><![CDATA[tf_maps_foundry_win_mintime]]></apiname>
+			<description><![CDATA[Be part of a team that wins within two minutes.]]></description>
+			<unlockTimestamp>1324261865</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/297eec78b1ed3099afc0b66695aab02585018548.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/38cd1cffb503efe95fdf54d252ee33d3fb8d9e9c.jpg]]></iconOpen>
+			<name><![CDATA[Classassin]]></name>
+			<apiname><![CDATA[tf_maps_foundry_play_each_class]]></apiname>
+			<description><![CDATA[Get one or more kills as all nine classes in one round.]]></description>
+			<unlockTimestamp>1324264158</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/e3b3c1c47784b614c7fea34421995ba4fe118546.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3cc1bedeffd471e83a8e528081af2cff47ff31da.jpg]]></iconOpen>
+			<name><![CDATA[Dead Heat]]></name>
+			<apiname><![CDATA[tf_maps_foundry_back_and_forth_battle]]></apiname>
+			<description><![CDATA[Play through a back-and-forth battle for 15 control point captures.]]></description>
+			<unlockTimestamp>1324259940</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/48e46ca20f9669d55f4d1705c53e956a1633884d.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/f788a1e1b63a8221fca2cb9744f090409348ec0f.jpg]]></iconOpen>
+			<name><![CDATA[BFF²]]></name>
+			<apiname><![CDATA[tf_multiple_bff]]></apiname>
+			<description><![CDATA[Have 2 BEST FRIENDS at the same time.]]></description>
+			<unlockTimestamp>1341133933</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/20a10761fa5a7187777430bd04ee8abaebef3c56.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/01514857e12e670bef97f053853027b5c2a7d692.jpg]]></iconOpen>
+			<name><![CDATA[Mass Hysteria]]></name>
+			<apiname><![CDATA[tf_team_pyrovision]]></apiname>
+			<description><![CDATA[Have 6 teammates using Pyrovision at the same time.]]></description>
+			<unlockTimestamp>1341193192</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/9c684b7f03d2a4626e82c937b0eeda2af439e60d.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/f4727b536b170117a30420f948bb659838fcc4a7.jpg]]></iconOpen>
+			<name><![CDATA[A Fresh Pair of Eyes]]></name>
+			<apiname><![CDATA[tf_dominate_for_goggles]]></apiname>
+			<description><![CDATA[Dominate a player using the Pyrovision Goggles and earn your own pair!]]></description>
+			<unlockTimestamp>1341133646</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_earn_money_bonus.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_earn_money_bonus_bw.jpg]]></iconOpen>
+			<name><![CDATA[Wage Against the Machine]]></name>
+			<apiname><![CDATA[tf_mvm_earn_money_bonus]]></apiname>
+			<description><![CDATA[Earn a credit bonus at the end of a wave.]]></description>
+			<unlockTimestamp>1345186838</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_pickup_money_about_to_expire.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_pickup_money_about_to_expire_bw.jpg]]></iconOpen>
+			<name><![CDATA[Fast Cache]]></name>
+			<apiname><![CDATA[tf_mvm_pickup_money_about_to_expire]]></apiname>
+			<description><![CDATA[Pick up a credit pile that is about to expire.]]></description>
+			<unlockTimestamp>1345186458</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_two_tanks.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_two_tanks_bw.jpg]]></iconOpen>
+			<name><![CDATA[Clockwork Carnage]]></name>
+			<apiname><![CDATA[tf_mvm_destroy_two_tanks]]></apiname>
+			<description><![CDATA[Destroy two tanks within 5 seconds of each other.]]></description>
+			<unlockTimestamp>1345186833</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_bomb_carriers.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_bomb_carriers_bw.jpg]]></iconOpen>
+			<name><![CDATA[.executioner]]></name>
+			<apiname><![CDATA[tf_mvm_kill_bomb_carriers]]></apiname>
+			<description><![CDATA[In a single wave, kill 15 bomb-carrying robots in a row before they level up.]]></description>
+			<unlockTimestamp>1345186421</unlockTimestamp>
+		</achievement>
+		<achievement closed="1">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_wave_without_dying.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_wave_without_dying_bw.jpg]]></iconOpen>
+			<name><![CDATA[Deus Ex Machina]]></name>
+			<apiname><![CDATA[tf_mvm_complete_wave_without_dying]]></apiname>
+			<description><![CDATA[Defeat a wave in an advanced difficulty mission without dying once.]]></description>
+			<unlockTimestamp>1345184969</unlockTimestamp>
+		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_friendsonly.jpg]]></iconClosed>
 			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_friendsonly_bw.jpg]]></iconOpen>
 			<name><![CDATA[With Friends Like these...]]></name>
 			<apiname><![CDATA[tf_play_game_friendsonly]]></apiname>
-			<description><![CDATA[Play in a game with 7 or more players from your friends list.]]></description>
+			<description><![CDATA[Play in a game with 7 or more players from your Friends list.]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_demoman.jpg]]></iconClosed>
@@ -2619,13 +2731,6 @@
 			<name><![CDATA[Gore-a! Gore-a! Gore-a!]]></name>
 			<apiname><![CDATA[tf_soldier_freezecam_gibs]]></apiname>
 			<description><![CDATA[Provide the enemy with a freezecam of you taunting over 3 of their body parts.]]></description>
-		</achievement>
-		<achievement closed="0">
-			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/0f95a59fd5f49fca6f2c8d760551b4367f0e962c.jpg]]></iconClosed>
-			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/f4c3f7e13eb0aa8d82ea132b273b9d5e0d1741b6.jpg]]></iconOpen>
-			<name><![CDATA[Out, Damned Scot!]]></name>
-			<apiname><![CDATA[tf_soldier_kill_demoman_grind]]></apiname>
-			<description><![CDATA[Kill 500 enemy Demomen]]></description>
 		</achievement>
 		<achievement closed="0">
 			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/2305a823862a93caaac9375289c7bf53d00f9612.jpg]]></iconClosed>
@@ -2920,6 +3025,370 @@
 			<name><![CDATA[Star of My Own Show]]></name>
 			<apiname><![CDATA[tf_replay_edit_time]]></apiname>
 			<description><![CDATA[Spend some time editing a replay.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/1680a8c7a9ccdde1d29e379df013bdf252575587.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/54b8f1a3b8ae3b390d81065bf3757aa2efa74618.jpg]]></iconOpen>
+			<name><![CDATA[Foundry Force Five]]></name>
+			<apiname><![CDATA[tf_maps_foundry_play_game_friends]]></apiname>
+			<description><![CDATA[Play in a game with five or more players from your Friends list.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/c3ab1a650d25787718fc14e1e50424ccede1dc92.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/261ce641ff82995610f39bdb126c98c41b8a18db.jpg]]></iconOpen>
+			<name><![CDATA[The Crucible]]></name>
+			<apiname><![CDATA[tf_maps_foundry_win_rounds]]></apiname>
+			<description><![CDATA[Win 137 Rounds.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/4486e7d5e04160b1c8be9036f095adce8d811185.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/4491091e6d6fff3e4139f8eaea8886e4c5b632a2.jpg]]></iconOpen>
+			<name><![CDATA[Five the Fast Way]]></name>
+			<apiname><![CDATA[tf_maps_foundry_fast_final_cap]]></apiname>
+			<description><![CDATA[Capture the final control point within five seconds of your team capturing the previous control point.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/dc5b125c51746485375a09739a5b0b71c12a72da.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3e444798cfd4c29d53bd9789a3951062449bc335.jpg]]></iconOpen>
+			<name><![CDATA[Claim Jumper]]></name>
+			<apiname><![CDATA[tf_maps_foundry_teleport_and_cap]]></apiname>
+			<description><![CDATA[Capture a control point within 12 seconds after exiting a teleporter.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/bd88de7768e4efcb092ac3ddee27eba97379ac6a.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/ac0cd64941891bd66ebb97ff8bfd84f6a3ab6fe3.jpg]]></iconOpen>
+			<name><![CDATA[Terminated, Too]]></name>
+			<apiname><![CDATA[tf_maps_foundry_push_into_cauldron]]></apiname>
+			<description><![CDATA[Kill a player by pushing them into the cauldron fire.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/9330acc79a9d041c13295644705c4c30ffb29897.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/87199f19271434e12f1d67ec8577c040a3b68ce6.jpg]]></iconOpen>
+			<name><![CDATA[Real Steal]]></name>
+			<apiname><![CDATA[tf_maps_foundry_push_back_and_win]]></apiname>
+			<description><![CDATA[Win a round in which the enemy team has attempted to capture your final control point.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/567b6fd6f26e6a71e8954336fe9cd037c77812eb.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/e5d69c353384a86e1659cd3a415adbd544abeed0.jpg]]></iconOpen>
+			<name><![CDATA[Raze the Roof]]></name>
+			<apiname><![CDATA[tf_maps_foundry_kill_enemy_on_roof]]></apiname>
+			<description><![CDATA[Kill two people on the roof of the center control point in a single life.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/7950f342499a6d755eddb2f6d6d168be2775553c.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/271da99b1e60267f11f117d627dd35b90482e526.jpg]]></iconOpen>
+			<name><![CDATA[Foundry Milestone]]></name>
+			<apiname><![CDATA[tf_maps_foundry_achieve_progress1]]></apiname>
+			<description><![CDATA[Achieve 7 of the achievements in the Foundry pack.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_pop_file.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_pop_file_bw.jpg]]></iconOpen>
+			<name><![CDATA[Steel Fragnolias]]></name>
+			<apiname><![CDATA[tf_mvm_complete_pop_file]]></apiname>
+			<description><![CDATA[Complete all waves successfully in a mission.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/53894e466a6da3642530933de52399490ead576a.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/b266a392bcf36b58fbdb2ff5ba4a99d1e16fc9fa.jpg]]></iconOpen>
+			<name><![CDATA[Mission Control]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_solo_capture]]></apiname>
+			<description><![CDATA[Pick up the Australium from its home position and capture it without dropping it.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/90b630fea9e806b7d806a8f13bc09e4c2e3ac94d.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/1f53730196c0571f3244e19282e11fc0e4a17e6d.jpg]]></iconOpen>
+			<name><![CDATA[Flight Crew]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_play_game_friends]]></apiname>
+			<description><![CDATA[Play in a game with 5 or more players from your Friends list.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/0590c453905fab1bdb39fc99ed6e5905cd598544.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/c6915d9f8009fa2e67f673e0942021b85c03a662.jpg]]></iconOpen>
+			<name><![CDATA[The Fight Stuff]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_win_rounds]]></apiname>
+			<description><![CDATA[Win 138 Rounds.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/5ae59c44ed394c431a1c76447fa43d7e697335e2.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/66950fd64b54db5c9ff762b2b0377f00e30322df.jpg]]></iconOpen>
+			<name><![CDATA[Plan Nine to Outer Space]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_play_each_class]]></apiname>
+			<description><![CDATA[Launch the rocket as all 9 classes.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/c300026fb2ad7c510237896089467f0301488241.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/8175a4b6ab6a8eb21521d90150a6b46e9d76b16b.jpg]]></iconOpen>
+			<name><![CDATA[Failure to Launch]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_kill_enemies_on_elevator]]></apiname>
+			<description><![CDATA[Kill 3 players riding the elevator within 10 seconds.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3e8f32c08fcad43f7f85eca39ddde522c9c40cf1.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/6c028b10fad1d8d5bb584598f87cef10b2cdf4c0.jpg]]></iconOpen>
+			<name><![CDATA[Rocket Booster]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_push_back_and_win]]></apiname>
+			<description><![CDATA[Win a round after the enemy team has opened the rocket lid.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/be9bc0013226bc283dea9b248b56dadf85b49748.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/0c45978cb0fa11e60aa3c8eca9322b3c9a690081.jpg]]></iconOpen>
+			<name><![CDATA[Best Case Scenario]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_kill_carriers]]></apiname>
+			<description><![CDATA[Kill 6 enemies carrying the Australium during the same round.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/c838026ddbcdb25a2b614d5fd8043d40072babc2.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3cbff38aab9346c884b92310a2e0ab35e6bb5fdf.jpg]]></iconOpen>
+			<name><![CDATA[Cap-ogee]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_ride_the_elevator]]></apiname>
+			<description><![CDATA[Win a round with at least 5 teammates on the elevator.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3f6ae9367323ca6e94addfe1f8e921ecc6802799.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/a8128ecf7c3bade9aa2b01ab10a4a80d6ff5a659.jpg]]></iconOpen>
+			<name><![CDATA[Space Camp]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_deny_neutral_pickup]]></apiname>
+			<description><![CDATA[Kill an enemy within the broken crate area while they attempt to pick up the neutral Australium.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/b893543ad6d3acd330ae0eaf580ce5d5f607338c.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/14ce26ce4afda1a62d9672a91a29f0940d07ff2f.jpg]]></iconOpen>
+			<name><![CDATA[Lift-offed]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_push_into_exhaust]]></apiname>
+			<description><![CDATA[Push a player into the rocket's exhaust path at the end of the round.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/562212a7d82d95b3345bc5851368a6ca123bc2f8.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/885f68c511c221413306aeb879eacd877dcee108.jpg]]></iconOpen>
+			<name><![CDATA[Escape Ferocity]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_defend_carrier]]></apiname>
+			<description><![CDATA[Kill an enemy who has damaged the Australium carrier in the last 3 seconds.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/e87feb6888fcae98a13add91797097afc692419b.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/0df76866244fa519672631bfcc2bab89d81640a1.jpg]]></iconOpen>
+			<name><![CDATA[Doomsday Milestone]]></name>
+			<apiname><![CDATA[tf_maps_doomsday_achieve_progress1]]></apiname>
+			<description><![CDATA[Achieve 7 of the achievements in the Doomsday pack.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/a1ba90d58b81b12ce97f83468a88f9d5ac2c095a.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3318507a5f1f583d0840371a93ae205d5e4b50f1.jpg]]></iconOpen>
+			<name><![CDATA[The Great Deflate]]></name>
+			<apiname><![CDATA[tf_kill_balloonicorn_owners]]></apiname>
+			<description><![CDATA[Kill 79 enemies who have Balloonicorn pets.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3915c6ac94b059b3af95a84febe589260137b7e3.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/3f724208d4c27ebed40b91c0109bb65630b36600.jpg]]></iconOpen>
+			<name><![CDATA[Full Spectrum Warrior]]></name>
+			<apiname><![CDATA[tf_pyro_ignite_with_rainbow]]></apiname>
+			<description><![CDATA[Ignite 3 enemy players using your Rainblower taunt.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_advanced_earn_all_bonuses.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_advanced_earn_all_bonuses_bw.jpg]]></iconOpen>
+			<name><![CDATA[Frags to Riches]]></name>
+			<apiname><![CDATA[tf_mvm_advanced_earn_all_bonuses]]></apiname>
+			<description><![CDATA[Earn all credit bonuses in an advanced difficulty mission.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_collect_money_grind.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_collect_money_grind_bw.jpg]]></iconOpen>
+			<name><![CDATA[T-1000000]]></name>
+			<apiname><![CDATA[tf_mvm_collect_money_grind]]></apiname>
+			<description><![CDATA[Collect 1,000,000 credits in your career.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_play_game_friends.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_play_game_friends_bw.jpg]]></iconOpen>
+			<name><![CDATA[Brotherhood of Steel]]></name>
+			<apiname><![CDATA[tf_mvm_play_game_friends]]></apiname>
+			<description><![CDATA[Complete a mission with 5 people on your Friends List.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_play_each_class.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_play_each_class_bw.jpg]]></iconOpen>
+			<name><![CDATA[Hack of All Trades]]></name>
+			<apiname><![CDATA[tf_mvm_play_each_class]]></apiname>
+			<description><![CDATA[Play an entire mission as a single class, and do this for every class.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_tank_while_deploying.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_tank_while_deploying_bw.jpg]]></iconOpen>
+			<name><![CDATA[Balls-E]]></name>
+			<apiname><![CDATA[tf_mvm_destroy_tank_while_deploying]]></apiname>
+			<description><![CDATA[Destroy the tank during the final seconds of the bomb being deployed.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_tank_quickly.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_destroy_tank_quickly_bw.jpg]]></iconOpen>
+			<name><![CDATA[Clockwork Conqueror]]></name>
+			<apiname><![CDATA[tf_mvm_destroy_tank_quickly]]></apiname>
+			<description><![CDATA[Destroy a tank within 20 seconds of its arrival.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_defend_cap.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_defend_cap_bw.jpg]]></iconOpen>
+			<name><![CDATA[Spam Blocker]]></name>
+			<apiname><![CDATA[tf_mvm_defend_cap]]></apiname>
+			<description><![CDATA[During a wave, defend the hatch 10 times from robots about to deliver a bomb.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_tour.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_complete_tour_bw.jpg]]></iconOpen>
+			<name><![CDATA[Raid Array]]></name>
+			<apiname><![CDATA[tf_mvm_complete_tour]]></apiname>
+			<description><![CDATA[Complete the Crash Course, Doe's Drill, and Manouvers missions.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_teleport_bottle.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_teleport_bottle_bw.jpg]]></iconOpen>
+			<name><![CDATA[Ghost in the Machine]]></name>
+			<apiname><![CDATA[tf_mvm_use_teleport_bottle]]></apiname>
+			<description><![CDATA[Use a canteen charged with 'Teleport to Spawn' and then kill the bomb carrier within 5 seconds.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_crit_bottle.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_crit_bottle_bw.jpg]]></iconOpen>
+			<name><![CDATA[Kritical Terror]]></name>
+			<apiname><![CDATA[tf_mvm_use_crit_bottle]]></apiname>
+			<description><![CDATA[Use a canteen charged with 'Crit Boost' to destroy a giant robot.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_uber_bottle.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_uber_bottle_bw.jpg]]></iconOpen>
+			<name><![CDATA[German Engineering]]></name>
+			<apiname><![CDATA[tf_mvm_use_uber_bottle]]></apiname>
+			<description><![CDATA[Use a canteen charged with 'ÜberCharge' to destroy 15 robots.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_build_bottle.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_build_bottle_bw.jpg]]></iconOpen>
+			<name><![CDATA[Undelete]]></name>
+			<apiname><![CDATA[tf_mvm_use_build_bottle]]></apiname>
+			<description><![CDATA[During a wave, use a canteen charged with 'Instant Building Upgrade' to build a new sentry gun within 3 seconds of your previous sentry gun's destruction.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_ammo_bottle.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_use_ammo_bottle_bw.jpg]]></iconOpen>
+			<name><![CDATA[Shell Extension]]></name>
+			<apiname><![CDATA[tf_mvm_use_ammo_bottle]]></apiname>
+			<description><![CDATA[During a wave, use a canteen charged with 'Ammo Reload' to refill an empty weapon slot.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_max_primary_upgrades.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_max_primary_upgrades_bw.jpg]]></iconOpen>
+			<name><![CDATA[System Upgrade]]></name>
+			<apiname><![CDATA[tf_mvm_max_primary_upgrades]]></apiname>
+			<description><![CDATA[Max out all primary weapon upgrades.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_max_player_resistances.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_max_player_resistances_bw.jpg]]></iconOpen>
+			<name><![CDATA[Maximum Performance]]></name>
+			<apiname><![CDATA[tf_mvm_max_player_resistances]]></apiname>
+			<description><![CDATA[Max out all resistances on a single class.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_no_alarms_in_final_wave.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_no_alarms_in_final_wave_bw.jpg]]></iconOpen>
+			<name><![CDATA[Engine Block]]></name>
+			<apiname><![CDATA[tf_mvm_no_alarms_in_final_wave]]></apiname>
+			<description><![CDATA[Prevent the bomb from ever reaching an alarm zone during the final wave of an advanced difficulty mission.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_medics_charged.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_medics_charged_bw.jpg]]></iconOpen>
+			<name><![CDATA[Negative Charge]]></name>
+			<apiname><![CDATA[tf_mvm_kill_medics_charged]]></apiname>
+			<description><![CDATA[Kill 5 Medics that are ready to deploy an ÜberCharge in a wave.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_robot_grind.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_robot_grind_bw.jpg]]></iconOpen>
+			<name><![CDATA[Silicon Slaughter]]></name>
+			<apiname><![CDATA[tf_mvm_kill_robot_grind]]></apiname>
+			<description><![CDATA[Destroy 100,000 robots.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_robot_mega_grind.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_robot_mega_grind_bw.jpg]]></iconOpen>
+			<name><![CDATA[Metal Massacre]]></name>
+			<apiname><![CDATA[tf_mvm_kill_robot_mega_grind]]></apiname>
+			<description><![CDATA[Destroy 1,000,000 robots.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_sentry_buster.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_kill_sentry_buster_bw.jpg]]></iconOpen>
+			<name><![CDATA[Ctrl + Assault + Delete]]></name>
+			<apiname><![CDATA[tf_mvm_kill_sentry_buster]]></apiname>
+			<description><![CDATA[Destroy a sentry buster before it reaches its target.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_spy_sap_robots.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_spy_sap_robots_bw.jpg]]></iconOpen>
+			<name><![CDATA[Sly Voltage]]></name>
+			<apiname><![CDATA[tf_mvm_spy_sap_robots]]></apiname>
+			<description><![CDATA[As a Spy, sap 10 robots at once.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_soldier_buff_team.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_soldier_buff_team_bw.jpg]]></iconOpen>
+			<name><![CDATA[Turbocharger]]></name>
+			<apiname><![CDATA[tf_mvm_soldier_buff_team]]></apiname>
+			<description><![CDATA[Buff 4 or more teammates as a Soldier at the same time in a single wave.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_heavy_rage_push_deploying_robot.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_heavy_rage_push_deploying_robot_bw.jpg]]></iconOpen>
+			<name><![CDATA[Heavy Mettle]]></name>
+			<apiname><![CDATA[tf_mvm_heavy_rage_push_deploying_robot]]></apiname>
+			<description><![CDATA[During a wave, use rage as a Heavy to push a robot about to deliver the bomb.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_medic_share_bottles.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_medic_share_bottles_bw.jpg]]></iconOpen>
+			<name><![CDATA[Vial Sharing]]></name>
+			<apiname><![CDATA[tf_mvm_medic_share_bottles]]></apiname>
+			<description><![CDATA[As a Medic, share your canteen 5 times in a single wave.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_demo_group_kill.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_demo_group_kill_bw.jpg]]></iconOpen>
+			<name><![CDATA[Tech Wrecker]]></name>
+			<apiname><![CDATA[tf_mvm_demo_group_kill]]></apiname>
+			<description><![CDATA[As a Demoman, kill 10 robots in a single detonation.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_scout_mark_for_death.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_scout_mark_for_death_bw.jpg]]></iconOpen>
+			<name><![CDATA[Do Androids Dream?]]></name>
+			<apiname><![CDATA[tf_mvm_scout_mark_for_death]]></apiname>
+			<description><![CDATA[As a Scout, use the Sandman to mark 15 robots for death in a single wave.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_sniper_kill_group.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_sniper_kill_group_bw.jpg]]></iconOpen>
+			<name><![CDATA[Spark Plugger]]></name>
+			<apiname><![CDATA[tf_mvm_sniper_kill_group]]></apiname>
+			<description><![CDATA[As a Sniper, kill 4 enemies simultaneously.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_pyro_bomb_reset.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_pyro_bomb_reset_bw.jpg]]></iconOpen>
+			<name><![CDATA[Hard Reset]]></name>
+			<apiname><![CDATA[tf_mvm_pyro_bomb_reset]]></apiname>
+			<description><![CDATA[As a Pyro, reset the bomb 3 times in a single wave.]]></description>
+		</achievement>
+		<achievement closed="0">
+			<iconClosed><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_engineer_escape_sentry_buster.jpg]]></iconClosed>
+			<iconOpen><![CDATA[http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_mvm_engineer_escape_sentry_buster_bw.jpg]]></iconOpen>
+			<name><![CDATA[Real Steal]]></name>
+			<apiname><![CDATA[tf_mvm_engineer_escape_sentry_buster]]></apiname>
+			<description><![CDATA[As an Engineer, escape with your sentry as a sentry buster is about to detonate.]]></description>
 		</achievement>
 	</achievements>
 </playerstats>

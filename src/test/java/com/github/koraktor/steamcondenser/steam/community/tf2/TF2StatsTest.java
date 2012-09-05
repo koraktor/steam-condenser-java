@@ -35,13 +35,13 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals("Team Fortress 2", stats.getGame().getName());
         assertEquals("tf2", stats.getGame().getShortName());
         assertEquals(440, stats.getGame().getAppId());
-        assertEquals("13.5", stats.getHoursPlayed());
+        assertEquals("0", stats.getHoursPlayed());
         assertEquals("gutomaia", stats.getUser().getCustomUrl());
     }
 
     @Test
     public void achievements() throws Exception {
-        assertEquals(314, stats.getAchievementsDone());
+        assertEquals(328, stats.getAchievementsDone());
         GameAchievement achievement = stats.getAchievements().get(124);
         assertEquals("A Year to Remember", achievement.getName());
         assertEquals("Get 2004 lifetime kills.", achievement.getDescription());
@@ -66,23 +66,9 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(2, soldier.getMaxRevenges());
         assertEquals(18, soldier.getMaxScore());
         assertEquals(344, soldier.getMaxTimeAlive());
-        assertEquals(218955, soldier.getPlayTime());
+        assertEquals(246153, soldier.getPlayTime());
 
-        TF2Class spy = stats.getClassStats().get(1);
-        assertEquals("Spy", spy.getName());
-        assertEquals(9, spy.getMaxBuildingsDestroyed());
-        assertEquals(2, spy.getMaxCaptures());
-        assertEquals(2825, spy.getMaxDamage());
-        assertEquals(5, spy.getMaxDefenses());
-        assertEquals(2, spy.getMaxDominations());
-        assertEquals(5, spy.getMaxKillAssists());
-        assertEquals(15, spy.getMaxKills());
-        assertEquals(1, spy.getMaxRevenges());
-        assertEquals(31, spy.getMaxScore());
-        assertEquals(438, spy.getMaxTimeAlive());
-        assertEquals(194204, spy.getPlayTime());
-
-        TF2Class pyro = stats.getClassStats().get(2);
+        TF2Class pyro = stats.getClassStats().get(1);
         assertEquals("Pyro", pyro.getName());
         assertEquals(4, pyro.getMaxBuildingsDestroyed());
         assertEquals(3, pyro.getMaxCaptures());
@@ -94,7 +80,21 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(2, pyro.getMaxRevenges());
         assertEquals(16, pyro.getMaxScore());
         assertEquals(611, pyro.getMaxTimeAlive());
-        assertEquals(190730, pyro.getPlayTime());
+        assertEquals(206292, pyro.getPlayTime());
+
+        TF2Class spy = stats.getClassStats().get(2);
+        assertEquals("Spy", spy.getName());
+        assertEquals(9, spy.getMaxBuildingsDestroyed());
+        assertEquals(2, spy.getMaxCaptures());
+        assertEquals(2825, spy.getMaxDamage());
+        assertEquals(5, spy.getMaxDefenses());
+        assertEquals(2, spy.getMaxDominations());
+        assertEquals(5, spy.getMaxKillAssists());
+        assertEquals(15, spy.getMaxKills());
+        assertEquals(1, spy.getMaxRevenges());
+        assertEquals(31, spy.getMaxScore());
+        assertEquals(438, spy.getMaxTimeAlive());
+        assertEquals(202230, spy.getPlayTime());
 
         TF2Class engineer = stats.getClassStats().get(3);
         assertEquals("Engineer", engineer.getName());
@@ -105,10 +105,10 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(5, engineer.getMaxDominations());
         assertEquals(10, engineer.getMaxKillAssists());
         assertEquals(15, engineer.getMaxKills());
-        assertEquals(1, engineer.getMaxRevenges());
+        assertEquals(2, engineer.getMaxRevenges());
         assertEquals(21, engineer.getMaxScore());
         assertEquals(795, engineer.getMaxTimeAlive());
-        assertEquals(188409, engineer.getPlayTime());
+        assertEquals(197030, engineer.getPlayTime());
 
         TF2Class sniper = stats.getClassStats().get(4);
         assertEquals("Sniper", sniper.getName());
@@ -122,7 +122,7 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(1, sniper.getMaxRevenges());
         assertEquals(22, sniper.getMaxScore());
         assertEquals(588, sniper.getMaxTimeAlive());
-        assertEquals(122459, sniper.getPlayTime());
+        assertEquals(125114, sniper.getPlayTime());
 
         TF2Class heavy = stats.getClassStats().get(5);
         assertEquals("Heavy", heavy.getName());
@@ -133,10 +133,10 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(4, heavy.getMaxDominations());
         assertEquals(9, heavy.getMaxKillAssists());
         assertEquals(15, heavy.getMaxKills());
-        assertEquals(1, heavy.getMaxRevenges());
+        assertEquals(3, heavy.getMaxRevenges());
         assertEquals(29, heavy.getMaxScore());
         assertEquals(478, heavy.getMaxTimeAlive());
-        assertEquals(104456, heavy.getPlayTime());
+        assertEquals(111031, heavy.getPlayTime());
 
         TF2Class demoman = stats.getClassStats().get(6);
         assertEquals("Demoman", demoman.getName());
@@ -150,7 +150,7 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(2, demoman.getMaxRevenges());
         assertEquals(22, demoman.getMaxScore());
         assertEquals(403, demoman.getMaxTimeAlive());
-        assertEquals(74357, demoman.getPlayTime());
+        assertEquals(74825, demoman.getPlayTime());
 
         TF2Class scout = stats.getClassStats().get(7);
         assertEquals("Scout", scout.getName());
@@ -164,7 +164,7 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(1, scout.getMaxRevenges());
         assertEquals(12, scout.getMaxScore());
         assertEquals(266, scout.getMaxTimeAlive());
-        assertEquals(60785, scout.getPlayTime());
+        assertEquals(61666, scout.getPlayTime());
 
         TF2Class medic = stats.getClassStats().get(8);
         assertEquals("Medic", medic.getName());
@@ -178,7 +178,7 @@ public class TF2StatsTest extends GameStatsTestCase<TF2Stats> {
         assertEquals(2, medic.getMaxRevenges());
         assertEquals(19, medic.getMaxScore());
         assertEquals(410, medic.getMaxTimeAlive());
-        assertEquals(35802, medic.getPlayTime());
+        assertEquals(42841, medic.getPlayTime());
     }
 
 }
