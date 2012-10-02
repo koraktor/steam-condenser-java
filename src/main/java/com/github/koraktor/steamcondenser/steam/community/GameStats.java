@@ -91,7 +91,7 @@ public class GameStats {
             gameUrl = (String) gameId;
         }
 
-        if(userId instanceof Integer) {
+        if(userId instanceof Long) {
             return "http://steamcommunity.com/profiles/" + userId + "/stats/" + gameUrl;
         } else {
             return "http://steamcommunity.com/id/" + userId + "/stats/" + gameUrl;
