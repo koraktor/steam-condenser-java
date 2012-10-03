@@ -148,8 +148,9 @@ public class SteamGame {
 
         Pattern regex = Pattern.compile("/" + appId + "/([0-9a-f]+).jpg");
         Matcher matcher = regex.matcher(logoUrl);
-        matcher.find();
-        this.logoHash = matcher.group(1).toLowerCase();
+        if (matcher.find()) {
+            this.logoHash = matcher.group(1).toLowerCase();
+        }
 
         games.put(appId, this);
     }
@@ -234,7 +235,11 @@ public class SteamGame {
      * @return The URL for the game logo
      */
     public String getLogoUrl() {
-        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + ".jpg";
+        if (this.logoHash == null) {
+            return null;
+        } else {
+            return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + ".jpg";
+        }
     }
 
     /**
@@ -243,7 +248,11 @@ public class SteamGame {
      * @return  The URL for the game logo thumbnail
      */
     public String getLogoThumbnailUrl() {
-        return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + "_thumb.jpg";
+        if (this.logoHash == null) {
+            return null;
+        } else {
+            return "http://media.steampowered.com/steamcommunity/public/images/apps/" + this.appId + "/" + this.logoHash + "_thumb.jpg";
+        }
     }
 
     /**
