@@ -18,6 +18,7 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
  * and status to the master servers.
  *
  * @author Sebastian Staudt
+ * @deprecated
  * @see com.github.koraktor.steamcondenser.steam.servers.MasterServer#sendHeartbeat
  */
 public class S2M_HEARTBEAT2_Packet extends SteamPacket {

@@ -165,6 +165,7 @@ public class MasterServer extends Server {
      * Please note that this is <strong>not</strong> needed for finding servers
      * using {@link #getServers}.
      *
+     * @deprecated
      * @return The challenge number returned from the master server
      * @see #sendHeartbeat
      * @throws SteamCondenserException if the request fails
@@ -317,6 +318,7 @@ public class MasterServer extends Server {
      * <p/>
      * This can be used to check server versions externally.
      *
+     * @deprecated
      * @param data The heartbeat data to send to the master server
      * @return The reply from the master server – usually zero or more packets.
      *         Zero means either the heartbeat was accepted by the master or
