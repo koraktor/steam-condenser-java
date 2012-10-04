@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.A2M_GET_SERVERS_BATCH2_Paket;
@@ -267,8 +268,9 @@ public class MasterServer extends Server {
         Vector<String> serverStringArray;
         Vector<InetSocketAddress> serverArray = new Vector<InetSocketAddress>();
 
-        try {
-            while(true) {
+        while(true) {
+            try {
+                failCount = 0;
                 do {
                     this.socket.send(new A2M_GET_SERVERS_BATCH2_Paket(regionCode, hostName + ":" + portNumber, filter));
                     try {
@@ -280,8 +282,7 @@ public class MasterServer extends Server {
 
                             if(!hostName.equals("0.0.0.0") && portNumber != 0) {
                                 serverArray.add(new InetSocketAddress(hostName, portNumber));
-                            }
-                            else {
+                            } else {
                                 finished = true;
                             }
                         }
@@ -291,14 +292,16 @@ public class MasterServer extends Server {
                         if(failCount == retries) {
                             throw e;
                         }
+                        Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server " + this.ipAddress + " timed out, retrying...");
                     }
                 } while(!finished);
-                break;
+            } catch(TimeoutException e) {
+                if(this.rotateIp() && !force) {
+                    throw e;
+                }
+                Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server failed, retrying " + this.ipAddress + "...");
             }
-        } catch(TimeoutException e) {
-            if(this.rotateIp() && !force) {
-                throw e;
-            }
+            break;
         }
 
         return serverArray;

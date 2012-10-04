@@ -9,6 +9,7 @@ package com.github.koraktor.steamcondenser.steam.sockets;
 
 import java.net.InetAddress;
 import java.util.concurrent.TimeoutException;
+import java.util.logging.Logger;
 
 import com.github.koraktor.steamcondenser.exceptions.PacketFormatException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
@@ -51,7 +52,11 @@ public class MasterServerSocket extends QuerySocket {
             throw new PacketFormatException("Master query response has wrong packet header.");
         }
 
-        return this.getPacketFromData();
+        SteamPacket packet = this.getPacketFromData();
+
+        Logger.getLogger("com.github.koraktor.steamcondenser").info("Received reply of type \"" + packet.getClass().getSimpleName() + "\"");
+
+        return packet;
     }
 
 }
