@@ -59,6 +59,8 @@ public class SteamSocketTest {
 
     @Test
     public void testClose() throws IOException {
+        when(this.channel.isOpen()).thenReturn(true);
+
         this.socket.close();
 
         verify(this.channel).close();
