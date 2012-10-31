@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.sockets;
@@ -145,7 +145,7 @@ abstract public class SteamSocket {
      * @see #close
      */
     @Override
-    public void finalize() {
+    protected void finalize() {
         this.close();
     }
 
@@ -156,7 +156,9 @@ abstract public class SteamSocket {
      */
     public void close() {
         try {
-            this.channel.close();
+            if (this.channel.isOpen()) {
+                this.channel.close();
+            }
         } catch (IOException e) {}
     }
 }

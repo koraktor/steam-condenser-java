@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -84,6 +84,15 @@ public abstract class Server {
     }
 
     /**
+     * Disconnect the connections to this server
+     * <p>
+     * <em><strong>Note:</strong>
+     * In the base implementation this does nothing, only connection-based
+     * communication channels have to be disconnected.</em>
+     */
+    public void disconnect() {}
+
+    /**
      * Returns a list of host names associated with this server
      *
      * @return The host names of this server
@@ -128,6 +137,15 @@ public abstract class Server {
         this.initSocket();
 
         return this.ipIndex == 0;
+    }
+
+    /**
+     * Disconnects the connections to this server
+     *
+     * @see #disconnect
+     */
+    protected void finalize() {
+        this.disconnect();
     }
 
     /**

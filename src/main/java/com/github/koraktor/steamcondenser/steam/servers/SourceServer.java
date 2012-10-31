@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -105,6 +105,15 @@ public class SourceServer extends GameServer {
     public SourceServer(InetAddress address, Integer port)
             throws SteamCondenserException {
         super(address, port);
+    }
+
+    /**
+     * Disconnects the TCP-based channel used for RCON commands
+     *
+     * @see RCONSocket#close
+     */
+    public void disconnect() {
+        this.rconSocket.close();
     }
 
     /**

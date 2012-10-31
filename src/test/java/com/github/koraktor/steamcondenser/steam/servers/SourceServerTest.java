@@ -105,6 +105,13 @@ public class SourceServerTest {
     }
 
     @Test
+    public void testDisconnect() throws Exception {
+        this.server.disconnect();
+
+        verify(rconSocket).close();
+    }
+
+    @Test
     public void testGetMaster() throws Exception {
         MasterServer master = mock(MasterServer.class);
         whenNew(MasterServer.class).withArguments(MasterServer.SOURCE_MASTER_SERVER).thenReturn(master);
