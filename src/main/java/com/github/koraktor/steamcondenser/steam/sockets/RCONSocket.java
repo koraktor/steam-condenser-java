@@ -42,12 +42,6 @@ public class RCONSocket extends SteamSocket {
     public RCONSocket(InetAddress ipAddress, int portNumber)
             throws SteamCondenserException {
         super(ipAddress, portNumber);
-
-        try {
-            this.channel = SocketChannel.open();
-        } catch(IOException e) {
-            throw new SteamCondenserException(e.getMessage(), e);
-        }
     }
 
     /**
@@ -72,7 +66,9 @@ public class RCONSocket extends SteamSocket {
     public void send(RCONPacket dataPacket)
             throws SteamCondenserException {
         try {
-            if(!((SocketChannel)this.channel).isConnected()) {
+            if (this.channel == null ||
+               !((SocketChannel)this.channel).isConnected()) {
+                this.channel = SocketChannel.open();
                 ((SocketChannel) this.channel).socket().connect(this.remoteSocket, SteamSocket.timeout);
                 this.channel.configureBlocking(false);
             }
@@ -104,7 +100,7 @@ public class RCONSocket extends SteamSocket {
         if (bytesRead < 0) {
             try {
                 this.channel.close();
-                this.channel = SocketChannel.open();
+                this.channel = null;
             } catch (IOException e) {}
             return null;
         }

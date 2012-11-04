@@ -22,12 +22,11 @@ import org.mockito.stubbing.Answer;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -56,7 +55,7 @@ public class RCONSocketTest {
     public void testNewSocket() throws Exception {
         assertEquals(InetAddress.getLocalHost(), this.socket.remoteSocket.getAddress());
         assertEquals(27015, this.socket.remoteSocket.getPort());
-        assertFalse(((SocketChannel) this.socket.channel).isConnected());
+        assertNull(this.socket.channel);
     }
 
     @Test
@@ -91,12 +90,12 @@ public class RCONSocketTest {
     }
 
     @Test
-    public void testBan() throws Exception {
-        this.exception.expect(RCONBanException.class);
+    public void testConnectionReset() throws Exception {
+        this.socket.channel = SocketChannel.open();
+        doReturn(-1).when(this.socket).receivePacket(4);
 
-        doReturn(0).when(this.socket).receivePacket(4);
-
-        this.socket.getReply();
+        assertEquals(null, this.socket.getReply());
+        assertNull(this.socket.channel);
     }
 
 }
