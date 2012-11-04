@@ -100,8 +100,8 @@ public class RCONSocket extends SteamSocket {
         if (bytesRead < 0) {
             try {
                 this.channel.close();
-                this.channel = null;
             } catch (IOException e) {}
+            this.channel = null;
             return null;
         }
 
