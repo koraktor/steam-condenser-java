@@ -141,7 +141,9 @@ public class SourceServer extends GameServer {
         this.rconRequestId = new Random().nextInt();
 
         this.rconSocket.send(new RCONAuthRequestPacket(this.rconRequestId, password));
-        this.rconSocket.getReply();
+        if (this.rconSocket.getReply() == null) {
+            return this.rconAuth(password);
+        }
         RCONAuthResponse reply = (RCONAuthResponse) this.rconSocket.getReply();
         this.rconAuthenticated = reply.getRequestId() == this.rconRequestId;
 

@@ -137,7 +137,8 @@ public class SourceServerTest {
     @Test
     public void testRconAuthSuccess() throws Exception {
         final SourceServer server = this.server;
-        doReturn(null).doAnswer(new Answer<RCONAuthResponse>() {
+        doReturn(mock(RCONAuthResponse.class)).
+            doAnswer(new Answer<RCONAuthResponse>() {
             public RCONAuthResponse answer(InvocationOnMock invocationOnMock) throws Throwable {
                 RCONAuthResponse reply = mock(RCONAuthResponse.class);
                 when(reply.getRequestId()).thenReturn(server.rconRequestId);
@@ -155,7 +156,7 @@ public class SourceServerTest {
     public void testRconAuthFailure() throws Exception {
         RCONAuthResponse reply = mock(RCONAuthResponse.class);
         when(reply.getRequestId()).thenReturn(-1);
-        when(this.rconSocket.getReply()).thenReturn(null).thenReturn(reply);
+        when(this.rconSocket.getReply()).thenReturn(reply).thenReturn(reply);
 
         assertFalse(this.server.rconAuth("password"));
         assertFalse(this.server.rconAuthenticated);
