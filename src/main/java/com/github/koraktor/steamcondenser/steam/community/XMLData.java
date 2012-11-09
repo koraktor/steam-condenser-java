@@ -174,7 +174,7 @@ public class XMLData {
      * @return The float value of the named element
      */
     public Float getFloat(String... names) {
-        String value = this.getString(names).trim();
+        String value = this.getString(names).replaceAll(",", "").trim();
 
         return value.isEmpty() ? 0.0f : Float.parseFloat(value);
     }
