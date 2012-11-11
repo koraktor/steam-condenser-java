@@ -9,6 +9,7 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -30,6 +31,8 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  * @author Sebastian Staudt
  */
 abstract public class WebApi {
+
+    protected static final Logger LOG = Logger.getLogger(WebApi.class.getName());
 
     protected static String apiKey;
 
@@ -249,6 +252,8 @@ abstract public class WebApi {
 
             url += String.format("%s=%s", param.getKey(), param.getValue());
         }
+
+        LOG.info("Querying Steam Web API: " + url);
 
         String data;
         try {
