@@ -41,6 +41,13 @@ public class SteamGame {
     private String shortName;
 
     /**
+     * Clears the game cache
+     */
+    public static void clearCache() {
+        games.clear();
+    }
+
+    /**
      * Checks if a game is up-to-date by reading information from a
      * <code>steam.inf</code> file and comparing it using the Web API
      *

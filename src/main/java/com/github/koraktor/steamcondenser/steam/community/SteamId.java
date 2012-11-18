@@ -57,6 +57,13 @@ public class SteamId {
     private int visibilityState;
 
     /**
+     * Clears the Steam ID cache
+     */
+    public static void clearCache() {
+        steamIds.clear();
+    }
+
+    /**
      * Converts a 64bit numeric SteamID as used by the Steam Community to a
      * SteamID as reported by game servers
      *

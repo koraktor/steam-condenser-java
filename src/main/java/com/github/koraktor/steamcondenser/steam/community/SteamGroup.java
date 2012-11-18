@@ -35,6 +35,13 @@ public class SteamGroup {
     private ArrayList<SteamId> members;
 
     /**
+     * Clears the Steam Community group cache
+     */
+    public static void clearCache() {
+        steamGroups.clear();
+    }
+
+    /**
      * Creates a new <code>SteamGroup</code> instance or gets an existing one
      * from the cache for the group with the given ID
      *

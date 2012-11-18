@@ -44,6 +44,13 @@ public class GameLeaderboard {
     protected int displayType;
 
     /**
+     * Clears the leaderboard cache
+     */
+    public static void clearCache() {
+        leaderboards.clear();
+    }
+
+    /**
      * Returns the leaderboard for the given game and leaderboard ID or name
      *
      * @param gameName The short name of the game
