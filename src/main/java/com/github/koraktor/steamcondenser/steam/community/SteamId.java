@@ -14,7 +14,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
+import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
 /**
  * The SteamId class represents a Steam Community profile (also called Steam
@@ -234,6 +238,30 @@ public class SteamId {
      */
     public static boolean isCached(Object id) {
         return SteamId.steamIds.containsKey(id);
+    }
+
+    /**
+     * Resolves a vanity URL of a Steam Community profile to a 64bit numeric
+     * SteamID
+     *
+     * @param vanityUrl The vanity URL of a Steam Community profile
+     * @throws JSONException if the JSON data cannot be parsed
+     * @throws WebApiException if the request to Steam's Web API fails
+     */
+    public static Long resolveVanityUrl(String vanityUrl)
+            throws JSONException, WebApiException {
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("vanityurl", vanityUrl);
+
+        String json = WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
+        JSONObject result = new JSONObject(json).getJSONObject("response");
+
+        if (result.getInt("success") != 1) {
+            return null;
+        }
+
+        // org.json.JSONObject#getLong() seems to be broken
+        return Long.parseLong(result.getString("steamid"));
     }
 
     /**

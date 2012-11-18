@@ -15,22 +15,30 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.w3c.dom.Document;
+
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 /**
  * @author Sebastian Staudt
  * @author Guto Maia
  */
+@PrepareForTest(WebApi.class)
+@RunWith(PowerMockRunner.class)
 public class SteamIdTest {
 
     private DocumentBuilder parser;
@@ -108,6 +116,32 @@ public class SteamIdTest {
 
         assertThat((Long) steamId1.getId(), is(equalTo(76561197983311154L)));
         assertThat((String) steamId2.getId(), is(equalTo("Son_of_Thor")));
+    }
+
+    @Test
+    public void testResolveVanityUrlSuccess() throws Exception {
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("vanityurl", "koraktor");
+
+        mockStatic(WebApi.class);
+        when(WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params)).
+            thenReturn("{ \"response\": { \"success\": 1, \"steamid\": \"76561197961384956\" } }");
+
+        Long steamID64 = SteamId.resolveVanityUrl("koraktor");
+        assertThat(steamID64, is(equalTo(76561197961384956L)));
+    }
+
+    @Test
+    public void testResolveVanityUrlFailure() throws Exception {
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("vanityurl", "unknown");
+
+        mockStatic(WebApi.class);
+        when(WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params)).
+            thenReturn("{ \"response\": { \"success\": 42 } }");
+
+        Long steamID64 = SteamId.resolveVanityUrl("unknown");
+        assertThat(steamID64, is(eq(null)));
     }
 
 }
