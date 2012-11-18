@@ -32,6 +32,8 @@ public class GameItem {
 
     private int id;
 
+    private GameInventory inventory;
+
     private int level;
 
     private String name;
@@ -53,6 +55,8 @@ public class GameItem {
      */
     public GameItem(GameInventory inventory, JSONObject itemData)
             throws WebApiException {
+        this.inventory = inventory;
+
         try {
             this.defindex         = itemData.getInt("defindex");
             this.backpackPosition = (int) itemData.getLong("inventory") & 0xffff;
@@ -126,6 +130,15 @@ public class GameItem {
      */
     public int getId() {
         return this.id;
+    }
+
+    /**
+     * Returns the inventory this items belongs to
+     *
+     * @return The inventory this item belongs to
+     */
+    public GameInventory getInventory() {
+        return this.inventory;
     }
 
     /**
