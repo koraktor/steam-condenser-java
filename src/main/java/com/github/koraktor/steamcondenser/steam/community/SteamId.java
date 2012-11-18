@@ -31,8 +31,6 @@ public class SteamId {
     private static Map<Object, SteamId> steamIds = new HashMap<Object, SteamId>();
 
     private String customUrl;
-    private String favoriteGame;
-    private float favoriteGameHoursPlayed;
     private long fetchTime;
     private SteamId[] friends;
     private HashMap<Integer, SteamGame> games;
@@ -493,27 +491,6 @@ public class SteamId {
      */
     public String getCustomUrl() {
         return this.customUrl;
-    }
-
-    /**
-     * Returns the favorite game of this user
-     *
-     * @deprecated The favorite game is no longer listed for new users
-     * @return The favorite game of this user
-     */
-    public String getFavoriteGame() {
-        return this.favoriteGame;
-    }
-
-    /**
-     * Returns the number of hours that this user played his/her favorite game
-     * in the last two weeks
-     *
-     * @deprecated The favorite game is no longer listed for new users
-     * @return The number of hours the favorite game has been played recently
-     */
-    public float getFavoriteGameHoursPlayed() {
-        return this.favoriteGameHoursPlayed;
     }
 
     /**
