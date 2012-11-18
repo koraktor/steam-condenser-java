@@ -46,6 +46,7 @@ public class SteamIdTest {
     @Before
     public void setUp() throws Exception {
         this.parser = mock(DocumentBuilder.class);
+        SteamId.clearCache();
 
         XMLData.setDocumentBuilder(this.parser);
     }
