@@ -119,10 +119,18 @@ abstract public class SteamSocket {
                 this.buffer = ByteBuffer.allocate(bufferLength);
             }
 
-            bytesRead = ((ReadableByteChannel) this.channel).read(this.buffer);
-            if(bytesRead > 0) {
-                this.buffer.rewind();
-                this.buffer.limit(bytesRead);
+            try {
+                bytesRead = ((ReadableByteChannel) this.channel).read(this.buffer);
+                if(bytesRead > 0) {
+                    this.buffer.rewind();
+                    this.buffer.limit(bytesRead);
+                }
+            } catch (IOException e) {
+                if (((ReadableByteChannel) this.channel).read(this.buffer) == -1) {
+                    bytesRead = 0;
+                } else {
+                    throw e;
+                }
             }
 
             return bytesRead;

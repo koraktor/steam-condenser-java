@@ -100,7 +100,7 @@ public class RCONSocket extends SteamSocket {
     public RCONPacket getReply()
             throws SteamCondenserException, TimeoutException {
         int bytesRead = this.receivePacket(4);
-        if (bytesRead < 0) {
+        if (bytesRead <= 0) {
             try {
                 this.channel.close();
             } catch (IOException e) {}
