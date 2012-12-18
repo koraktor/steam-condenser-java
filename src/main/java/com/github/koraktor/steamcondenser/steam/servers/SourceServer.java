@@ -173,8 +173,10 @@ public class SourceServer extends GameServer {
         ArrayList<String> response = new ArrayList<String>();
         do {
             responsePacket = this.rconSocket.getReply();
-            if (responsePacket == null ||
-                responsePacket instanceof RCONAuthResponse) {
+            if (responsePacket == null) {
+                this.rconAuthenticated = false;
+                break;
+            } else if (responsePacket instanceof RCONAuthResponse) {
                 this.rconAuthenticated = false;
                 throw new RCONNoAuthException();
             }
