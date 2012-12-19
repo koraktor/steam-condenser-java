@@ -250,23 +250,26 @@ public class SteamId {
      * SteamID
      *
      * @param vanityUrl The vanity URL of a Steam Community profile
-     * @throws JSONException if the JSON data cannot be parsed
      * @throws WebApiException if the request to Steam's Web API fails
      */
     public static Long resolveVanityUrl(String vanityUrl)
-            throws JSONException, WebApiException {
-        HashMap<String, Object> params = new HashMap<String, Object>();
-        params.put("vanityurl", vanityUrl);
+            throws WebApiException {
+        try {
+            HashMap<String, Object> params = new HashMap<String, Object>();
+            params.put("vanityurl", vanityUrl);
 
-        String json = WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
-        JSONObject result = new JSONObject(json).getJSONObject("response");
+            String json = WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
+            JSONObject result = new JSONObject(json).getJSONObject("response");
 
-        if (result.getInt("success") != 1) {
-            return null;
+            if (result.getInt("success") != 1) {
+                return null;
+            }
+
+            // org.json.JSONObject#getLong() seems to be broken
+            return Long.parseLong(result.getString("steamid"));
+        } catch (JSONException e) {
+            throw new WebApiException("Could not parse JSON data.", e);
         }
-
-        // org.json.JSONObject#getLong() seems to be broken
-        return Long.parseLong(result.getString("steamid"));
     }
 
     /**
