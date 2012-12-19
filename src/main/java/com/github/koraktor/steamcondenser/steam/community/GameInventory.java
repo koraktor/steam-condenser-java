@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -10,13 +10,13 @@ package com.github.koraktor.steamcondenser.steam.community;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
 /**
@@ -26,34 +26,63 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 public abstract class GameInventory {
 
-    private static Map<Integer, Map<String, JSONObject>> attributeSchemas = new HashMap<Integer, Map<String, JSONObject>>();
-
-    private static Map<Integer, Map<Integer, JSONObject>> itemSchemas = new HashMap<Integer, Map<Integer, JSONObject>>();
-
-    private static Map<Integer, Map<Integer, String>> qualitySchemas = new HashMap<Integer, Map<Integer, String>>();
+    public static Map<Integer, Map<Long, GameInventory>> cache = new HashMap<Integer, Map<Long, GameInventory>>();
 
     private static String schemaLanguage = "en";
 
+    private int appId;
+
     private Date fetchDate;
+
+    private GameItemSchema itemSchema;
 
     private Map<Integer, GameItem> items;
 
     private long steamId64;
 
+    private SteamId user;
+
     /**
-     * Creates a new inventory object for the given SteamID64. This calls
-     * fetch() to update the data and create the TF2Item instances contained in
-     * this players backpack
+     * Clears the inventory cache
+     */
+    public static void clearCache() {
+        cache.clear();
+    }
+
+    /**
+     * Returns whether the requested inventory is already cached
      *
+     * @param appId The application ID of the game
      * @param steamId64 The 64bit Steam ID of the user
+     * @return {@code true} if the inventory of the given user for the given
+     *         game is already cached
+     */
+    public static boolean isCached(int appId, long steamId64) {
+        return cache.containsKey(appId) &&
+               cache.get(appId).containsKey(steamId64);
+    }
+
+    /**
+     * Creates a new inventory object for the given user. This calls
+     * {@code fetch()} to update the data and create the GameItem instances
+     * contained in this player's inventory
+     *
+     * @param appId The 64bit Steam ID of the user
+     * @param steamId The 64bit Steam ID or the vanity URL of the user
      * @param fetchNow Whether the data should be fetched now
      * @throws WebApiException on Web API errors
      */
-    public GameInventory(long steamId64, boolean fetchNow)
-            throws WebApiException {
-        this.steamId64 = steamId64;
+    public GameInventory(int appId, Object steamId, boolean fetchNow)
+            throws SteamCondenserException {
+        this.appId     = appId;
+        if (steamId instanceof String) {
+            this.steamId64 = SteamId.resolveVanityUrl((String) steamId);
+        } else {
+            this.steamId64 = (Long) steamId;
+        }
+        this.user = SteamId.create(this.steamId64, false);
 
-        if(fetchNow) {
+        if (fetchNow) {
             this.fetch();
         }
 
@@ -61,23 +90,11 @@ public abstract class GameInventory {
     }
 
     /**
-     * Saves this inventory in the cache
-     */
-    @SuppressWarnings("unchecked")
-    protected void cache() {
-        try {
-            Object cache = this.getClass().getField("cache").get(null);
-            ((Map<Long, GameInventory>) cache).put(this.steamId64, this);
-        } catch(IllegalAccessException e) {
-        } catch(NoSuchFieldException e) {}
-    }
-
-    /**
      * Updates the contents of the backpack using Steam Web API
      *
      * @throws WebApiException on Web API errors
      */
-    public void fetch() throws WebApiException {
+    public void fetch() throws SteamCondenserException {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("SteamID", this.steamId64);
@@ -94,7 +111,11 @@ public abstract class GameInventory {
                     } catch(IllegalAccessException e) {
                     } catch(InstantiationException e) {
                     } catch(InvocationTargetException e) {
-                    } catch(NoSuchMethodException e) {}
+                        if (e.getCause() instanceof SteamCondenserException) {
+                            throw (SteamCondenserException) e.getCause();
+                        }
+                    } catch(NoSuchMethodException e) {
+                    }
                 }
             }
         } catch(JSONException e) {
@@ -109,34 +130,8 @@ public abstract class GameInventory {
      *
      * @return The application ID of the game this inventory belongs to
      */
-    protected abstract int getAppId();
-
-    /**
-     * Returns the 64bit SteamID of the player owning this inventory
-     *
-     * @return The 64bit SteamID
-     */
-    public long getSteamId64() {
-        return this.steamId64;
-    }
-
-    /**
-     * Returns the attribute schema
-     * <p>
-     * The attribute schema is fetched first if not done already
-     *
-     * @return The attribute schema for the game this inventory belongs to
-     * @see #updateSchema
-     * @throws JSONException on invalid JSON data
-     * @throws WebApiException on Web API errors
-     */
-    public Map<String, JSONObject> getAttributeSchema()
-            throws JSONException, WebApiException {
-        if(!attributeSchemas.containsKey(this.getAppId())) {
-            this.updateSchema();
-        }
-
-        return attributeSchemas.get(this.getAppId());
+    public int getAppId() {
+        return this.appId;
     }
 
     /**
@@ -164,17 +159,24 @@ public abstract class GameInventory {
      * The item schema is fetched first if not done already
      *
      * @return The item schema for the game this inventory belongs to
-     * @see #updateSchema
-     * @throws JSONException on invalid JSON data
-     * @throws WebApiException on Web API errors
+     * @throws SteamCondenserException if the item schema cannot be fetched
      */
-    public Map<Integer, JSONObject> getItemSchema()
-            throws JSONException, WebApiException {
-        if(!itemSchemas.containsKey(this.getAppId())) {
-            this.updateSchema();
+    public GameItemSchema getItemSchema()
+            throws SteamCondenserException {
+        if (this.itemSchema == null) {
+            this.itemSchema = GameItemSchema.create(this.appId, schemaLanguage);
         }
 
-        return itemSchemas.get(this.getAppId());
+        return this.itemSchema;
+    }
+
+    /**
+     * Returns the Steam ID of the player owning this inventory
+     *
+     * @return The Steam ID of the owner of this inventory
+     */
+    public SteamId getUser() {
+        return this.user;
     }
 
     /**
@@ -184,25 +186,6 @@ public abstract class GameInventory {
      */
     public Map<Integer, GameItem> getItems() {
         return this.items;
-    }
-
-    /**
-     * Returns the item quality schema
-     * <p>
-     * The item schema is fetched first if not done already
-     *
-     * @return The item quality schema for the game this inventory belongs to
-     * @see #updateSchema
-     * @throws JSONException on invalid JSON data
-     * @throws WebApiException on Web API errors
-     */
-    public Map<Integer, String> getQualitySchema()
-            throws JSONException, WebApiException {
-        if(!qualitySchemas.containsKey(this.getAppId())) {
-            this.updateSchema();
-        }
-
-        return qualitySchemas.get(this.getAppId());
     }
 
     /**
@@ -235,47 +218,16 @@ public abstract class GameInventory {
     }
 
     /**
-     * Updates the item schema (this includes attributes and qualities) using
-     * the "GetSchema" method of interface "IEconItems_{AppId}"
-     *
-     * @throws WebApiException on Web API errors
+     * Saves this inventory in the cache
      */
-    protected void updateSchema() throws WebApiException {
-        Map<String, Object> params = new HashMap<String, Object>();
-        if(schemaLanguage != null) {
-            params.put("language", schemaLanguage);
+    private void cache() {
+        Map<Long, GameInventory> gameCache;
+        if (cache.containsKey(this.appId)) {
+            gameCache = cache.get(this.appId);
+        } else {
+            gameCache = new HashMap<Long, GameInventory>();
         }
-
-        try {
-        JSONObject result = WebApi.getJSONData("IEconItems_" + this.getAppId(), "GetSchema", 1, params);
-
-        Map<String, JSONObject> attributeSchema = new HashMap<String, JSONObject>();
-        attributeSchemas.put(this.getAppId(), attributeSchema);
-        JSONArray attributesData = result.getJSONArray("attributes");
-        for(int i = 0; i < attributesData.length(); i++) {
-            JSONObject attributeData = attributesData.getJSONObject(i);
-            attributeSchema.put(attributeData.getString("name"), attributeData);
-        }
-
-        Map<Integer, JSONObject> itemSchema = new HashMap<Integer, JSONObject>();
-        itemSchemas.put(this.getAppId(), itemSchema);
-        JSONArray itemsData = result.getJSONArray("items");
-        for(int i = 0; i < itemsData.length(); i++) {
-            JSONObject itemData = itemsData.getJSONObject(i);
-            itemSchema.put(itemData.getInt("defindex"), itemData);
-        }
-
-        Map<Integer, String> qualitySchema = new HashMap<Integer, String>();
-        qualitySchemas.put(this.getAppId(), qualitySchema);
-        JSONObject qualitiesData = result.getJSONObject("qualities");
-        Iterator qualityIterator = qualitiesData.keys();
-        while(qualityIterator.hasNext()) {
-            String quality = (String) qualityIterator.next();
-            qualitySchema.put(qualitiesData.getInt(quality), quality);
-        }
-        } catch(JSONException e) {
-            throw new WebApiException("Could not parse JSON data.", e);
-        }
+        gameCache.put(this.steamId64, this);
     }
 
 }

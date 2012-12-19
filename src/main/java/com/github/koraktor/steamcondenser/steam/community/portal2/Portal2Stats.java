@@ -40,7 +40,7 @@ public class Portal2Stats extends GameStats {
      * @throws WebApiException if an error occurs while querying Steam's Web
      *         API
      */
-    public Portal2Inventory getInventory() throws WebApiException {
+    public Portal2Inventory getInventory() throws SteamCondenserException {
         if(!this.isPublic()) {
             return null;
         }

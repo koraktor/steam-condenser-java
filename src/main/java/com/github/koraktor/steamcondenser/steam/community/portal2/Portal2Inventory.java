@@ -2,16 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.portal2;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameInventory;
 import com.github.koraktor.steamcondenser.steam.community.GameItem;
@@ -23,24 +19,7 @@ import com.github.koraktor.steamcondenser.steam.community.GameItem;
  */
 public class Portal2Inventory extends GameInventory {
 
-    private static Map<Long, Portal2Inventory> cache = new HashMap<Long, Portal2Inventory>();
-
-    /**
-     * Returns whether the requested inventory is already cached
-     *
-     * @param steamId64 The 64bit Steam ID of the user
-     * @return Whether the inventory of the given user is already cached
-     */
-    public static boolean isCached(long steamId64) {
-        return cache.containsKey(steamId64);
-    }
-
-    /**
-     * Clears the inventory cache
-     */
-    public static void clearCache() {
-        cache.clear();
-    }
+    public static final int APP_ID = 620;
 
     /**
      * This checks the cache for an existing inventory. If it exists it is
@@ -51,7 +30,7 @@ public class Portal2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Portal2Inventory create(long steamId64)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, true, false);
     }
 
@@ -65,7 +44,7 @@ public class Portal2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Portal2Inventory create(long steamId64, boolean fetchNow)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, fetchNow, false);
     }
 
@@ -80,9 +59,9 @@ public class Portal2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Portal2Inventory create(long steamId64, boolean fetchNow, boolean bypassCache)
-            throws WebApiException {
-        if(isCached(steamId64) && !bypassCache) {
-            Portal2Inventory inventory = cache.get(steamId64);
+            throws SteamCondenserException {
+        if(isCached(APP_ID, steamId64) && !bypassCache) {
+            Portal2Inventory inventory = (Portal2Inventory) cache.get(APP_ID).get(steamId64);
             if(fetchNow && !inventory.isFetched()) {
                 inventory.fetch();
             }
@@ -100,8 +79,8 @@ public class Portal2Inventory extends GameInventory {
      * @param steamId64 The 64bit Steam ID of the user
      * @throws WebApiException on Web API errors
      */
-    public Portal2Inventory(long steamId64) throws WebApiException {
-        super(steamId64, true);
+    public Portal2Inventory(long steamId64) throws SteamCondenserException {
+        this(steamId64, true);
     }
 
     /**
@@ -112,17 +91,8 @@ public class Portal2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public Portal2Inventory(long steamId64, boolean fetchNow)
-            throws WebApiException {
-        super(steamId64, fetchNow);
-    }
-
-    /**
-     * Returns the application ID of Portal 2
-     *
-     * @return The application ID of Portal 2 is 620
-     */
-    protected int getAppId() {
-        return 620;
+            throws SteamCondenserException {
+        super(APP_ID, steamId64, fetchNow);
     }
 
     /**

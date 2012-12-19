@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
+import com.github.koraktor.steamcondenser.steam.community.GameInventory;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
 import com.github.koraktor.steamcondenser.steam.community.XMLData;
 
@@ -26,7 +27,7 @@ public class TF2Stats extends GameStats {
 
     private ArrayList<TF2Class> classStats;
 
-    private TF2Inventory inventory;
+    private GameInventory inventory;
 
     private int totalPlayTime;
 
@@ -109,7 +110,7 @@ public class TF2Stats extends GameStats {
      * @throws WebApiException If an error occured while querying Steam's Web
      *         API
      */
-    public TF2Inventory getInventory() throws WebApiException {
+    public GameInventory getInventory() throws SteamCondenserException {
         if(!this.isPublic()) {
             return null;
         }

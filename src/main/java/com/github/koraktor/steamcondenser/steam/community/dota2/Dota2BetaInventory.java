@@ -7,9 +7,7 @@
 
 package com.github.koraktor.steamcondenser.steam.community.dota2;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameInventory;
 import com.github.koraktor.steamcondenser.steam.community.GameItem;
@@ -21,24 +19,7 @@ import com.github.koraktor.steamcondenser.steam.community.GameItem;
  */
 public class Dota2BetaInventory extends GameInventory {
 
-    private static Map<Long, Dota2BetaInventory> cache = new HashMap<Long, Dota2BetaInventory>();
-
-    /**
-     * Returns whether the requested inventory is already cached
-     *
-     * @param steamId64 The 64bit Steam ID of the user
-     * @return Whether the inventory of the given user is already cached
-     */
-    public static boolean isCached(long steamId64) {
-        return cache.containsKey(steamId64);
-    }
-
-    /**
-     * Clears the inventory cache
-     */
-    public static void clearCache() {
-        cache.clear();
-    }
+    public static final int APP_ID = 205790;
 
     /**
      * This checks the cache for an existing inventory. If it exists it is
@@ -49,7 +30,7 @@ public class Dota2BetaInventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Dota2BetaInventory create(long steamId64)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, true, false);
     }
 
@@ -63,7 +44,7 @@ public class Dota2BetaInventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Dota2BetaInventory create(long steamId64, boolean fetchNow)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, fetchNow, false);
     }
 
@@ -78,9 +59,9 @@ public class Dota2BetaInventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static Dota2BetaInventory create(long steamId64, boolean fetchNow, boolean bypassCache)
-            throws WebApiException {
-        if(isCached(steamId64) && !bypassCache) {
-            Dota2BetaInventory inventory = cache.get(steamId64);
+            throws SteamCondenserException {
+        if(isCached(APP_ID, steamId64) && !bypassCache) {
+            Dota2BetaInventory inventory = (Dota2BetaInventory) cache.get(APP_ID).get(steamId64);
             if(fetchNow && !inventory.isFetched()) {
                 inventory.fetch();
             }
@@ -98,8 +79,8 @@ public class Dota2BetaInventory extends GameInventory {
      * @param steamId64 The 64bit Steam ID of the user
      * @throws WebApiException on Web API errors
      */
-    public Dota2BetaInventory(long steamId64) throws WebApiException {
-        super(steamId64, true);
+    public Dota2BetaInventory(long steamId64) throws SteamCondenserException {
+        this(steamId64, true);
     }
 
     /**
@@ -110,17 +91,8 @@ public class Dota2BetaInventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public Dota2BetaInventory(long steamId64, boolean fetchNow)
-            throws WebApiException {
-        super(steamId64, fetchNow);
-    }
-
-    /**
-     * Returns the application ID of the DotA 2 beta
-     *
-     * @return The application ID of the DotA 2 beta is 205790
-     */
-    protected int getAppId() {
-        return 205790;
+            throws SteamCondenserException {
+        super(APP_ID, steamId64, fetchNow);
     }
 
     /**

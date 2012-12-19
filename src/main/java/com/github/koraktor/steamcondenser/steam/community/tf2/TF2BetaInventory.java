@@ -2,15 +2,15 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
+import com.github.koraktor.steamcondenser.steam.community.GameInventory;
+import com.github.koraktor.steamcondenser.steam.community.GameItem;
 
 /**
  * Represents the inventory (aka. Backpack) of a player of the public Team
@@ -18,26 +18,9 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  *
  * @author Sebastian Staudt
  */
-public class TF2BetaInventory extends TF2Inventory {
+public class TF2BetaInventory extends GameInventory {
 
-    public static Map<Long, TF2BetaInventory> cache = new HashMap<Long, TF2BetaInventory>();
-
-    /**
-     * Returns whether the requested inventory is already cached
-     *
-     * @param steamId64 The 64bit Steam ID of the user
-     * @return Whether the inventory of the given user is already cached
-     */
-    public static boolean isCached(long steamId64) {
-        return cache.containsKey(steamId64);
-    }
-
-    /**
-     * Clears the inventory cache
-     */
-    public static void clearCache() {
-        cache.clear();
-    }
+    public static final int APP_ID = 520;
 
     /**
      * This checks the cache for an existing inventory. If it exists it is
@@ -45,10 +28,10 @@ public class TF2BetaInventory extends TF2Inventory {
      *
      * @param steamId64 The 64bit Steam ID of the user
      * @return The inventory created from the given options
-     * @throws com.github.koraktor.steamcondenser.exceptions.WebApiException on Web API errors
+     * @throws WebApiException on Web API errors
      */
     public static TF2BetaInventory create(long steamId64)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, true, false);
     }
 
@@ -59,10 +42,10 @@ public class TF2BetaInventory extends TF2Inventory {
      * @param steamId64 The 64bit Steam ID of the user
      * @param fetchNow Whether the data should be fetched now
      * @return The inventory created from the given options
-     * @throws com.github.koraktor.steamcondenser.exceptions.WebApiException on Web API errors
+     * @throws WebApiException on Web API errors
      */
     public static TF2BetaInventory create(long steamId64, boolean fetchNow)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, fetchNow, false);
     }
 
@@ -74,12 +57,12 @@ public class TF2BetaInventory extends TF2Inventory {
      * @param fetchNow Whether the data should be fetched now
      * @param bypassCache Whether the cache should be bypassed
      * @return The inventory created from the given options
-     * @throws com.github.koraktor.steamcondenser.exceptions.WebApiException on Web API errors
+     * @throws WebApiException on Web API errors
      */
     public static TF2BetaInventory create(long steamId64, boolean fetchNow, boolean bypassCache)
-            throws WebApiException {
-        if(isCached(steamId64) && !bypassCache) {
-            TF2BetaInventory inventory = cache.get(steamId64);
+            throws SteamCondenserException {
+        if(isCached(APP_ID, steamId64) && !bypassCache) {
+            TF2BetaInventory inventory = (TF2BetaInventory) cache.get(APP_ID).get(steamId64);
             if(fetchNow && !inventory.isFetched()) {
                 inventory.fetch();
             }
@@ -95,10 +78,10 @@ public class TF2BetaInventory extends TF2Inventory {
      * and fetches its contents
      *
      * @param steamId64 The 64bit Steam ID of the user
-     * @throws com.github.koraktor.steamcondenser.exceptions.WebApiException on Web API errors
+     * @throws WebApiException on Web API errors
      */
-    protected TF2BetaInventory(long steamId64) throws WebApiException {
-        super(steamId64, true);
+    protected TF2BetaInventory(long steamId64) throws SteamCondenserException {
+        this(steamId64, true);
     }
 
     /**
@@ -106,20 +89,21 @@ public class TF2BetaInventory extends TF2Inventory {
      *
      * @param steamId64 The 64bit Steam ID of the user
      * @param fetchNow Whether the data should be fetched now
-     * @throws com.github.koraktor.steamcondenser.exceptions.WebApiException on Web API errors
+     * @throws WebApiException on Web API errors
      */
     protected TF2BetaInventory(long steamId64, boolean fetchNow)
-            throws WebApiException {
-        super(steamId64, fetchNow);
+            throws SteamCondenserException {
+        super(APP_ID, steamId64, fetchNow);
     }
 
     /**
-     * Returns the application ID of the public Team Fortress 2 beta
+     * Returns the item class for Team Fortress 2
      *
-     * @return The application ID of the public Team Fortress 2 beta is 520
+     * @return The item class for Team Fortress 2 is TF2Item
+     * @see TF2Item
      */
-    protected int getAppId() {
-        return 520;
+    protected Class<? extends GameItem> getItemClass() {
+        return TF2Item.class;
     }
 
 }

@@ -7,10 +7,14 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
 /**
@@ -20,13 +24,13 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 public class GameItem {
 
-    private JSONArray attributes;
+    private Map<String, Object> attributes;
 
     private int backpackPosition;
 
-    private String className;
-
     private int count;
+
+    private boolean craftable;
 
     private int defindex;
 
@@ -34,13 +38,19 @@ public class GameItem {
 
     private GameInventory inventory;
 
+    private String itemClass;
+
+    private JSONObject itemSet;
+
     private int level;
 
     private String name;
 
-    private String quality;
+    private String origin;
 
-    private String slot;
+    private int originalId;
+
+    private String quality;
 
     private boolean tradeable;
 
@@ -54,24 +64,48 @@ public class GameItem {
      * @throws WebApiException on Web API errors
      */
     public GameItem(GameInventory inventory, JSONObject itemData)
-            throws WebApiException {
+            throws SteamCondenserException {
         this.inventory = inventory;
 
         try {
             this.defindex         = itemData.getInt("defindex");
             this.backpackPosition = (int) itemData.getLong("inventory") & 0xffff;
-            this.className        = inventory.getItemSchema().get(this.defindex).getString("item_class");
             this.count            = itemData.getInt("quantity");
+            this.craftable        = itemData.isNull("flag_cannot_craft") || !itemData.getBoolean("flag_cannot_craft");
             this.id               = itemData.getInt("id");
+            this.itemClass        = this.getSchemaData().getString("item_class");
+            this.itemSet          = this.inventory.getItemSchema().getItemSets().get(this.getSchemaData().optString("item_set"));
             this.level            = itemData.getInt("level");
-            this.name             = inventory.getItemSchema().get(this.defindex).getString("item_name");
-            this.quality          = inventory.getQualitySchema().get(itemData.getInt("quality"));
-            this.slot             = inventory.getItemSchema().get(this.defindex).optString("item_slot", null);
+            this.name             = this.getSchemaData().getString("item_name");
+            this.origin           = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
+            this.originalId       = itemData.getInt("original_id");
+            this.quality          = this.inventory.getItemSchema().getQualities().get(itemData.getInt("quality"));
             this.tradeable        = itemData.isNull("flag_cannot_trade") || !itemData.getBoolean("flag_cannot_trade");
-            this.type             = inventory.getItemSchema().get(this.defindex).getString("item_type_name");
+            this.type             = this.getSchemaData().getString("item_type_name");
 
-            if(!inventory.getItemSchema().get(this.defindex).isNull("attributes")) {
-              this.attributes = inventory.getItemSchema().get(this.defindex).getJSONArray("attributes");
+            JSONArray attributesData = this.getSchemaData().optJSONArray("attributes");
+            if (itemData.has("attributes")) {
+                JSONArray itemAttributes = itemData.getJSONArray("attributes");
+                for (int i = 0; i < itemAttributes.length(); i ++) {
+                    attributesData.put(itemAttributes.get(i));
+                }
+            }
+
+            this.attributes = new HashMap<String, Object>();
+            for (int i = 0; i < attributesData.length(); i ++) {
+                JSONObject attributeData = attributesData.getJSONObject(i);
+                Object attributeKey = attributeData.opt("defindex");
+                if (attributeKey == null) {
+                    attributeKey = attributeData.opt("name");
+                }
+
+                if (attributeKey != null) {
+                    JSONObject schemaAttributeData = inventory.getItemSchema().getAttributes().get(attributeKey);
+                    JSONObject attribute = attributeData;
+                    for (String key : JSONObject.getNames(schemaAttributeData)) {
+                        attribute.put(key, schemaAttributeData.get(key));
+                    }
+                }
             }
         } catch(JSONException e) {
             throw new WebApiException("Could not parse JSON data.", e);
@@ -83,7 +117,7 @@ public class GameItem {
      *
      * @return The attributes of this item
      */
-    public JSONArray getAttributes() {
+    public Map<String, Object> getAttributes() {
         return this.attributes;
     }
 
@@ -94,15 +128,6 @@ public class GameItem {
      */
     public int getBackpackPosition() {
         return this.backpackPosition;
-    }
-
-    /**
-     * Returns the class of this item
-     *
-     * @return The class of this item
-     */
-    public String getClassName() {
-        return this.className;
     }
 
     /**
@@ -142,6 +167,24 @@ public class GameItem {
     }
 
     /**
+     * Returns the class of this item
+     *
+     * @return The class of this item
+     */
+    public String getItemClass() {
+        return this.itemClass;
+    }
+
+    /**
+     * Returns the item set this item belongs to
+     *
+     * @return The set this item belongs to
+     */
+    public JSONObject getItemSet() {
+        return this.itemSet;
+    }
+
+    /**
      * Returns the level of this item
      *
      * @return The level of this item
@@ -160,6 +203,24 @@ public class GameItem {
     }
 
     /**
+     * Returns the origin of this item
+     *
+     * @return The origin of this item
+     */
+    public String getOrigin() {
+        return this.origin;
+    }
+
+    /**
+     * Returns the original ID of this item
+     *
+     * @return The original ID of this item
+     */
+    public int getOriginalId() {
+        return this.originalId;
+    }
+
+    /**
      * Returns the quality of this item
      *
      * @return The quality of this item
@@ -169,22 +230,13 @@ public class GameItem {
     }
 
     /**
-     * Returns the slot where this item can be equipped in or <code>null</code>
-     * if this item cannot be equipped
+     * Returns the data for this item that's defined in the item schema
      *
-     * @return The slot where this item can be equipped in
+     * @return The schema data for this item
+     * @throws SteamCondenserException if the item schema cannot be loaded
      */
-    public String getSlot() {
-        return this.slot;
-    }
-
-    /**
-     * Returns whether this item is tradeable
-     *
-     * @return bool Whether this item is tradeable
-     */
-    public boolean isTradeable() {
-        return this.tradeable;
+    public JSONObject getSchemaData() throws SteamCondenserException {
+        return this.inventory.getItemSchema().getItems().get(this.defindex);
     }
 
     /**
@@ -194,6 +246,24 @@ public class GameItem {
      */
     public String getType() {
         return this.type;
+    }
+
+    /**
+     * Returns whether this item is craftable
+     *
+     * @return {@code true} if this item is craftable
+     */
+    public boolean isCraftable() {
+        return this.craftable;
+    }
+
+    /**
+     * Returns whether this item is tradeable
+     *
+     * @return {@code true} if this item is tradeable
+     */
+    public boolean isTradeable() {
+        return this.tradeable;
     }
 
 }

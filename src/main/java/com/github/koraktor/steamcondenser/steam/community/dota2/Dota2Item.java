@@ -9,6 +9,7 @@ package com.github.koraktor.steamcondenser.steam.community.dota2;
 
 import org.json.JSONObject;
 
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameItem;
 
@@ -29,7 +30,7 @@ public class Dota2Item extends GameItem {
      * @throws WebApiException on Web API errors
      */
     public Dota2Item(Dota2Inventory inventory, JSONObject itemData)
-            throws WebApiException {
+            throws SteamCondenserException {
         super(inventory, itemData);
 
         this.equipped = !itemData.isNull("equipped");

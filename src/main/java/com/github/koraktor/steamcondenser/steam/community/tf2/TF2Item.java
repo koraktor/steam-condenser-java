@@ -14,6 +14,7 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameItem;
 
@@ -40,7 +41,7 @@ public class TF2Item extends GameItem {
      * @throws WebApiException on Web API errors
      */
     public TF2Item(TF2Inventory inventory, JSONObject itemData)
-            throws JSONException, WebApiException {
+            throws JSONException, SteamCondenserException {
         super(inventory, itemData);
 
         this.equipped = new HashMap<String, Boolean>();

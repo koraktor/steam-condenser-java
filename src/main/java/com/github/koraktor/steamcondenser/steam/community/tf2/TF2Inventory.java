@@ -2,14 +2,12 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.GameInventory;
 import com.github.koraktor.steamcondenser.steam.community.GameItem;
@@ -21,24 +19,7 @@ import com.github.koraktor.steamcondenser.steam.community.GameItem;
  */
 public class TF2Inventory extends GameInventory {
 
-    public static Map<Long, TF2Inventory> cache = new HashMap<Long, TF2Inventory>();
-
-    /**
-     * Returns whether the requested inventory is already cached
-     *
-     * @param steamId64 The 64bit Steam ID of the user
-     * @return Whether the inventory of the given user is already cached
-     */
-    public static boolean isCached(long steamId64) {
-        return cache.containsKey(steamId64);
-    }
-
-    /**
-     * Clears the inventory cache
-     */
-    public static void clearCache() {
-        cache.clear();
-    }
+    private static final int APP_ID = 440;
 
     /**
      * This checks the cache for an existing inventory. If it exists it is
@@ -49,7 +30,7 @@ public class TF2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static TF2Inventory create(long steamId64)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, true, false);
     }
 
@@ -63,7 +44,7 @@ public class TF2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static TF2Inventory create(long steamId64, boolean fetchNow)
-            throws WebApiException {
+            throws SteamCondenserException {
         return create(steamId64, fetchNow, false);
     }
 
@@ -78,9 +59,9 @@ public class TF2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     public static TF2Inventory create(long steamId64, boolean fetchNow, boolean bypassCache)
-            throws WebApiException {
-        if(isCached(steamId64) && !bypassCache) {
-            TF2Inventory inventory = cache.get(steamId64);
+            throws SteamCondenserException {
+        if(isCached(APP_ID, steamId64) && !bypassCache) {
+            TF2Inventory inventory = (TF2Inventory) cache.get(APP_ID).get(steamId64);
             if(fetchNow && !inventory.isFetched()) {
                 inventory.fetch();
             }
@@ -98,8 +79,8 @@ public class TF2Inventory extends GameInventory {
      * @param steamId64 The 64bit Steam ID of the user
      * @throws WebApiException on Web API errors
      */
-    protected TF2Inventory(long steamId64) throws WebApiException {
-        super(steamId64, true);
+    protected TF2Inventory(long steamId64) throws SteamCondenserException {
+        this(steamId64, true);
     }
 
     /**
@@ -110,17 +91,8 @@ public class TF2Inventory extends GameInventory {
      * @throws WebApiException on Web API errors
      */
     protected TF2Inventory(long steamId64, boolean fetchNow)
-            throws WebApiException {
-        super(steamId64, fetchNow);
-    }
-
-    /**
-     * Returns the application ID of Team Fortress 2
-     *
-     * @return The application ID of Team Fortress 2 is 440
-     */
-    protected int getAppId() {
-        return 440;
+            throws SteamCondenserException {
+        super(APP_ID, steamId64, fetchNow);
     }
 
     /**
