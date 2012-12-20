@@ -7,8 +7,8 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +24,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 public class GameItem {
 
-    private Map<String, Object> attributes;
+    private List<JSONObject> attributes;
 
     private int backpackPosition;
 
@@ -91,7 +91,7 @@ public class GameItem {
                 }
             }
 
-            this.attributes = new HashMap<String, Object>();
+            this.attributes = new ArrayList<JSONObject>();
             for (int i = 0; i < attributesData.length(); i ++) {
                 JSONObject attributeData = attributesData.getJSONObject(i);
                 Object attributeKey = attributeData.opt("defindex");
@@ -101,10 +101,10 @@ public class GameItem {
 
                 if (attributeKey != null) {
                     JSONObject schemaAttributeData = inventory.getItemSchema().getAttributes().get(attributeKey);
-                    JSONObject attribute = attributeData;
                     for (String key : JSONObject.getNames(schemaAttributeData)) {
-                        attribute.put(key, schemaAttributeData.get(key));
+                        attributeData.put(key, schemaAttributeData.get(key));
                     }
+                    this.attributes.add(attributeData);
                 }
             }
         } catch(JSONException e) {
@@ -117,7 +117,7 @@ public class GameItem {
      *
      * @return The attributes of this item
      */
-    public Map<String, Object> getAttributes() {
+    public List<JSONObject> getAttributes() {
         return this.attributes;
     }
 
