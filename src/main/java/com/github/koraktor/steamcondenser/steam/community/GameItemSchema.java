@@ -42,6 +42,13 @@ public class GameItemSchema {
     private Map<Integer, String> origins;
     private Map<Integer, String> qualities;
 
+    /**
+     * Clears the item schema cache
+     */
+    public static void clearCache() {
+        cache.clear();
+    }
+
     public static GameItemSchema create(int appId, String language)
             throws SteamCondenserException {
         return create(appId, language, true, false);
@@ -65,7 +72,7 @@ public class GameItemSchema {
                cache.get(appId).containsKey(language);
     }
 
-    public GameItemSchema(int appId, String language, boolean fetch)
+    private GameItemSchema(int appId, String language, boolean fetch)
             throws WebApiException {
         this.appId    = appId;
         this.language = language;

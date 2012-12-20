@@ -63,6 +63,17 @@ public abstract class GameInventory {
     }
 
     /**
+     * Sets the language the schema should be fetched in (default is:
+     * {@code "en"})
+     *
+     * @param language The language code for the language item descriptions
+     *        should be fetched in
+     */
+    public static void setSchemaLanguage(String language) {
+        schemaLanguage = language;
+    }
+
+    /**
      * Creates a new inventory object for the given user. This calls
      * {@code fetch()} to update the data and create the GameItem instances
      * contained in this player's inventory
@@ -74,7 +85,7 @@ public abstract class GameInventory {
      */
     public GameInventory(int appId, Object steamId, boolean fetchNow)
             throws SteamCondenserException {
-        this.appId     = appId;
+        this.appId = appId;
         if (steamId instanceof String) {
             this.steamId64 = SteamId.resolveVanityUrl((String) steamId);
         } else {
@@ -171,21 +182,21 @@ public abstract class GameInventory {
     }
 
     /**
-     * Returns the Steam ID of the player owning this inventory
-     *
-     * @return The Steam ID of the owner of this inventory
-     */
-    public SteamId getUser() {
-        return this.user;
-    }
-
-    /**
      * Returns an array of all items in this players inventory.
      *
      * @return All items in the backpack
      */
     public Map<Integer, GameItem> getItems() {
         return this.items;
+    }
+
+    /**
+     * Returns the Steam ID of the player owning this inventory
+     *
+     * @return The Steam ID of the owner of this inventory
+     */
+    public SteamId getUser() {
+        return this.user;
     }
 
     /**
@@ -196,16 +207,6 @@ public abstract class GameInventory {
      */
     public boolean isFetched() {
         return this.fetchDate != null;
-    }
-
-    /**
-     * Sets the language the schema should be fetched in (default is: +'en'+)
-     *
-     * @param language The language code for the language item descriptions
-     *        should be fetched in
-     */
-    public static void setSchemaLanguage(String language) {
-        schemaLanguage = language;
     }
 
     /**
