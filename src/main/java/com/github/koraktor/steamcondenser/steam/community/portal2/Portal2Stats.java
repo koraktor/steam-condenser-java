@@ -9,6 +9,7 @@ package com.github.koraktor.steamcondenser.steam.community.portal2;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
+import com.github.koraktor.steamcondenser.steam.community.GameInventory;
 import com.github.koraktor.steamcondenser.steam.community.GameStats;
 
 /**
@@ -46,7 +47,7 @@ public class Portal2Stats extends GameStats {
         }
 
         if(this.inventory == null) {
-            this.inventory = Portal2Inventory.create(this.user.getSteamId64());
+            this.inventory = (Portal2Inventory) GameInventory.create(Portal2Inventory.APP_ID, this.user.getSteamId64());
         }
 
         return this.inventory;

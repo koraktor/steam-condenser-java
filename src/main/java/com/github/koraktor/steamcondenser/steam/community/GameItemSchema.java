@@ -28,7 +28,8 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 public class GameItemSchema {
 
-    private static Map<Integer, Map<String, GameItemSchema>> cache = new HashMap<Integer, Map<String, GameItemSchema>>();
+    private static Map<Integer, Map<String, GameItemSchema>> cache =
+        new HashMap<Integer, Map<String, GameItemSchema>>();
 
     private int appId;
     private Map<Object, JSONObject> attributes;
@@ -49,11 +50,30 @@ public class GameItemSchema {
         cache.clear();
     }
 
+    /**
+     * Creates a new item schema for the game with the given application ID and
+     * with descriptions in the given language
+     *
+     * @param appId The application ID of the game
+     * @param language The language of description strings
+     * @return The item schema for the given game and language
+     */
     public static GameItemSchema create(int appId, String language)
             throws SteamCondenserException {
         return create(appId, language, true, false);
     }
 
+    /**
+     * Creates a new item schema for the game with the given application ID and
+     * with descriptions in the given language
+     *
+     * @param appId The application ID of the game
+     * @param language The language of description strings
+     * @param fetch if {@code true} the schemas's data is fetched after creation
+     * @param bypassCache if {@code true} the schemas's data is fetched again
+     *        even if it has been cached already
+     * @return The item schema for the given game and language
+     */
     public static GameItemSchema create(int appId, String language, boolean fetch, boolean bypassCache)
             throws SteamCondenserException {
         if (GameItemSchema.isCached(appId, language) && !bypassCache) {
@@ -67,12 +87,28 @@ public class GameItemSchema {
         }
     }
 
+    /**
+     * Returns whether the item schema for the given application ID and
+     * language is already cached
+     *
+     * @param appId The application ID of the game
+     * @param language The language of the item schema
+     * @return {@code true} if the object with the given ID is already cached
+     */
     public static boolean isCached(int appId, String language) {
         return cache.containsKey(appId) &&
                cache.get(appId).containsKey(language);
     }
 
-    private GameItemSchema(int appId, String language, boolean fetch)
+    /**
+     * Creates a new item schema for the game with the given application ID and
+     * with descriptions in the given language
+     *
+     * @param appId The application ID of the game
+     * @param language The language of description strings
+     * @param fetch if {@code true} the schemas's data is fetched after creation
+     */
+    protected GameItemSchema(int appId, String language, boolean fetch)
             throws WebApiException {
         this.appId    = appId;
         this.language = language;
@@ -82,6 +118,11 @@ public class GameItemSchema {
         }
     }
 
+    /**
+     * Updates the item definitions of this schema using the Steam Web API
+     *
+     * @throws WebApiException if the item schema cannot be fetched
+     */
     public void fetch() throws WebApiException {
         try {
             Map<String, Object> params = new HashMap<String, Object>();
@@ -159,10 +200,21 @@ public class GameItemSchema {
         this.fetchDate = new Date();
     }
 
+    /**
+     * Returns whether the data for this item schema has already been fetched
+     *
+     * @return {@code true} if this item schema's data is available
+     */
     public boolean isFetched() {
         return this.fetchDate != null;
     }
 
+    /**
+     * Returns a short, human-readable string representation of this item
+     * schema
+     *
+     * @return A string representation of this item schema
+     */
     public String toString() {
         Object fetchDate = (this.fetchDate == null) ? "not fetched" : this.fetchDate;
 
@@ -236,7 +288,7 @@ public class GameItemSchema {
     /**
      * The language of this item schema
      *
-     * @return [Symbol] The language of this item schema
+     * @return The language of this item schema
      */
     public String getLanguage() {
         return this.language;
@@ -245,7 +297,7 @@ public class GameItemSchema {
     /**
      * The item origins defined for this game's items
      *
-     * @return [Array<String>] This item schema's origins
+     * @return This item schema's origins
      */
     public Map<Integer, String> getOrigins() {
         return this.origins;
@@ -254,7 +306,7 @@ public class GameItemSchema {
     /**
      * The item qualities defined for this game's items
      *
-     * @return [Array<String>] This item schema's qualities
+     * @return This item schema's qualities
      */
     public Map<Integer, String> getQualities() {
         return this.qualities;

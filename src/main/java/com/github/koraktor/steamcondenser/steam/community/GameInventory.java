@@ -18,13 +18,18 @@ import org.json.JSONObject;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
+import com.github.koraktor.steamcondenser.steam.community.dota2.Dota2BetaInventory;
+import com.github.koraktor.steamcondenser.steam.community.dota2.Dota2Inventory;
+import com.github.koraktor.steamcondenser.steam.community.portal2.Portal2Inventory;
+import com.github.koraktor.steamcondenser.steam.community.tf2.TF2BetaInventory;
+import com.github.koraktor.steamcondenser.steam.community.tf2.TF2Inventory;
 
 /**
  * Provides basic functionality to represent an inventory of player in a game
  *
  * @author Sebastian Staudt
  */
-public abstract class GameInventory {
+public class GameInventory {
 
     public static Map<Integer, Map<Long, GameInventory>> cache = new HashMap<Integer, Map<Long, GameInventory>>();
 
@@ -47,6 +52,88 @@ public abstract class GameInventory {
      */
     public static void clearCache() {
         cache.clear();
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param appId The application ID of the game
+     * @param steamId64 The 64bit Steam ID of the user
+     * @return The inventory for the given user and game
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static GameInventory create(int appId, long steamId64)
+            throws SteamCondenserException {
+        return create(appId, steamId64, true, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param appId The application ID of the game
+     * @param vanityUrl The vanity URL of the user
+     * @return The inventory for the given user and game
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static GameInventory create(int appId, String vanityUrl)
+            throws SteamCondenserException {
+        return create(appId, vanityUrl, true, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param appId The application ID of the game
+     * @param vanityUrl The vanity URL of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @param bypassCache Whether the cache should be bypassed
+     * @return The inventory for the given user and game
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static GameInventory create(int appId, String vanityUrl, boolean fetchNow, boolean bypassCache)
+            throws SteamCondenserException {
+        long steamId64 = SteamId.resolveVanityUrl(vanityUrl);
+        return create(appId, steamId64, fetchNow, bypassCache);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param appId The application ID of the game
+     * @param steamId64 The 64bit Steam ID of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @param bypassCache Whether the cache should be bypassed
+     * @return The inventory for the given user and game
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static GameInventory create(int appId, long steamId64, boolean fetchNow, boolean bypassCache)
+            throws SteamCondenserException {
+        if (isCached(appId, steamId64) && !bypassCache) {
+            GameInventory inventory = cache.get(appId).get(steamId64);
+            if (fetchNow && !inventory.isFetched()) {
+                inventory.fetch();
+            }
+            return inventory;
+        } else {
+            switch (appId) {
+                case Dota2BetaInventory.APP_ID:
+                    return new Dota2BetaInventory(steamId64, fetchNow);
+                case Dota2Inventory.APP_ID:
+                    return new Dota2Inventory(steamId64, fetchNow);
+                case Portal2Inventory.APP_ID:
+                    return new Portal2Inventory(steamId64, fetchNow);
+                case TF2BetaInventory.APP_ID:
+                    return new TF2BetaInventory(steamId64, fetchNow);
+                case TF2Inventory.APP_ID:
+                    return new TF2Inventory(steamId64, fetchNow);
+                default:
+                    return new GameInventory(appId, steamId64, fetchNow);
+            }
+        }
     }
 
     /**
@@ -83,7 +170,7 @@ public abstract class GameInventory {
      * @param fetchNow Whether the data should be fetched now
      * @throws WebApiException on Web API errors
      */
-    public GameInventory(int appId, Object steamId, boolean fetchNow)
+    protected GameInventory(int appId, Object steamId, boolean fetchNow)
             throws SteamCondenserException {
         this.appId = appId;
         if (steamId instanceof String) {
@@ -162,7 +249,9 @@ public abstract class GameInventory {
      * @return The item class for the game this inventory belongs to
      * @see GameItem
      */
-    protected abstract Class<? extends GameItem> getItemClass();
+    protected Class<? extends GameItem> getItemClass() {
+        return GameItem.class;
+    }
 
     /**
      * Returns the item schema
