@@ -250,6 +250,7 @@ public class SteamId {
      * SteamID
      *
      * @param vanityUrl The vanity URL of a Steam Community profile
+     * @return The 64bit SteamID for the given vanity URL
      * @throws WebApiException if the request to Steam's Web API fails
      */
     public static Long resolveVanityUrl(String vanityUrl)
