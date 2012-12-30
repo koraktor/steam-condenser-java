@@ -2,27 +2,20 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2012, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.A2M_GET_SERVERS_BATCH2_Paket;
-import com.github.koraktor.steamcondenser.steam.packets.C2M_CHECKMD5_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.M2A_SERVER_BATCH_Paket;
-import com.github.koraktor.steamcondenser.steam.packets.M2C_ISVALIDMD5_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.S2M_HEARTBEAT2_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
 import com.github.koraktor.steamcondenser.steam.sockets.MasterServerSocket;
 
 /**
@@ -156,27 +149,6 @@ public class MasterServer extends Server {
     public MasterServer(InetAddress address, Integer port)
             throws SteamCondenserException {
         super(address, port);
-    }
-
-    /**
-     * Request a challenge number from the master server.
-     * <p/>
-     * This is used for further communication with the master server.
-     * <p/>
-     * Please note that this is <strong>not</strong> needed for finding servers
-     * using {@link #getServers}.
-     *
-     * @deprecated
-     * @return The challenge number returned from the master server
-     * @see #sendHeartbeat
-     * @throws SteamCondenserException if the request fails
-     * @throws TimeoutException if the request times out
-     */
-    public int getChallenge()
-            throws SteamCondenserException, TimeoutException {
-        this.socket.send(new C2M_CHECKMD5_Packet());
-
-        return ((M2C_ISVALIDMD5_Packet) this.socket.getReply()).getChallenge();
     }
 
     /**
@@ -314,33 +286,6 @@ public class MasterServer extends Server {
      */
     public void initSocket() throws SteamCondenserException {
         this.socket = new MasterServerSocket(this.ipAddress, this.port);
-    }
-
-    /**
-     * Sends a constructed heartbeat to the master server
-     * <p/>
-     * This can be used to check server versions externally.
-     *
-     * @deprecated
-     * @param data The heartbeat data to send to the master server
-     * @return The reply from the master server – usually zero or more packets.
-     *         Zero means either the heartbeat was accepted by the master or
-     *         there was a timeout. So usually it's best to repeat a heartbeat
-     *         a few times when not receiving any packets.
-     * @throws SteamCondenserException if the request fails
-     */
-    public List<SteamPacket> sendHeartbeat(Map<String, Object> data)
-            throws SteamCondenserException {
-        this.socket.send(new S2M_HEARTBEAT2_Packet(data));
-
-        List<SteamPacket> replyPackets = new ArrayList<SteamPacket>();
-        try {
-            do {
-                replyPackets.add(this.socket.getReply());
-            } while(true);
-        } catch(TimeoutException e) {}
-
-        return replyPackets;
     }
 
 }

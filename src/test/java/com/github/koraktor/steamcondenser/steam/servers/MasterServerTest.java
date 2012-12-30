@@ -9,10 +9,7 @@ package com.github.koraktor.steamcondenser.steam.servers;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
@@ -24,18 +21,13 @@ import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
 import com.github.koraktor.steamcondenser.steam.packets.A2M_GET_SERVERS_BATCH2_Paket;
-import com.github.koraktor.steamcondenser.steam.packets.C2M_CHECKMD5_Packet;
 import com.github.koraktor.steamcondenser.steam.packets.M2A_SERVER_BATCH_Paket;
-import com.github.koraktor.steamcondenser.steam.packets.M2C_ISVALIDMD5_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.S2M_HEARTBEAT2_Packet;
-import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
 import com.github.koraktor.steamcondenser.steam.sockets.MasterServerSocket;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -57,17 +49,6 @@ public class MasterServerTest {
         this.server.socket = mock(MasterServerSocket.class);
 
         doReturn(true).when(this.server).rotateIp();
-    }
-
-    @Test
-    public void testGetChallenge() throws Exception {
-        M2C_ISVALIDMD5_Packet packet = mock(M2C_ISVALIDMD5_Packet.class);
-        when(packet.getChallenge()).thenReturn(1234);
-        when(this.server.socket.getReply()).thenReturn(packet);
-
-        assertThat(this.server.getChallenge(), is(1234));
-
-        verify(this.server.socket).send(any(C2M_CHECKMD5_Packet.class));
     }
 
     @Test
@@ -183,22 +164,6 @@ public class MasterServerTest {
 
             public void describeTo(Description description) {}
         }));
-    }
-
-    @Test
-    public void testSendHeartbeat() throws Exception {
-        SteamPacket reply1 = mock(SteamPacket.class);
-        SteamPacket reply2 = mock(SteamPacket.class);
-        when(this.server.socket.getReply()).thenReturn(reply1).thenReturn(reply2).thenThrow(new TimeoutException());
-
-        HashMap<String, Object> data = new HashMap<String, Object>();
-        data.put("challenge", 1234);
-        List<SteamPacket> replies = new ArrayList<SteamPacket>();
-        replies.add(reply1);
-        replies.add(reply2);
-        assertThat(this.server.sendHeartbeat(data), is(equalTo(replies)));
-
-        verify(this.server.socket).send(any(S2M_HEARTBEAT2_Packet.class));
     }
 
 }
