@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2012, Sebastian Staudt
+ * Copyright (c) 2011-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.tf2;
@@ -21,6 +21,90 @@ import com.github.koraktor.steamcondenser.steam.community.GameItem;
 public class TF2BetaInventory extends GameInventory {
 
     public static final int APP_ID = 520;
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param vanityUrl The vanity URL of the user
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(String vanityUrl)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, vanityUrl, true, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param steamId64 The 64bit Steam ID of the user
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(long steamId64)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, steamId64, true, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param vanityUrl The vanity URL of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(String vanityUrl, boolean fetchNow)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, vanityUrl, fetchNow, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param steamId64 The 64bit Steam ID of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(long steamId64, boolean fetchNow)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, steamId64, fetchNow, false);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param vanityUrl The vanity URL of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @param bypassCache Whether the cache should be bypassed
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(String vanityUrl, boolean fetchNow, boolean bypassCache)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, vanityUrl, fetchNow, bypassCache);
+    }
+
+    /**
+     * This checks the cache for an existing inventory. If it exists it is
+     * returned. Otherwise a new inventory is created.
+     *
+     * @param steamId64 The 64bit Steam ID of the user
+     * @param fetchNow Whether the data should be fetched now
+     * @param bypassCache Whether the cache should be bypassed
+     * @return The Team Fortress 2 Beta inventory for the given user
+     * @throws SteamCondenserException if creating the inventory fails
+     */
+    public static TF2BetaInventory create(long steamId64, boolean fetchNow, boolean bypassCache)
+            throws SteamCondenserException {
+        return (TF2BetaInventory) create(APP_ID, steamId64, fetchNow, bypassCache);
+    }
 
     /**
      * Creates a new inventory instance for the player with the given Steam ID
