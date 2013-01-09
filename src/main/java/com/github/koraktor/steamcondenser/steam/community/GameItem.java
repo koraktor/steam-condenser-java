@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011, Sebastian Staudt
+ * Copyright (c) 2011-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -50,6 +50,8 @@ public class GameItem {
 
     private int originalId;
 
+    private boolean preliminary;
+
     private String quality;
 
     private boolean tradeable;
@@ -77,6 +79,7 @@ public class GameItem {
             this.itemSet          = this.inventory.getItemSchema().getItemSets().get(this.getSchemaData().optString("item_set"));
             this.level            = itemData.getInt("level");
             this.name             = this.getSchemaData().getString("item_name");
+            this.preliminary      = (itemData.getLong("inventory") & 0x40000000) != 0;
             this.origin           = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
             this.originalId       = itemData.getInt("original_id");
             this.quality          = this.inventory.getItemSchema().getQualities().get(itemData.getInt("quality"));
@@ -255,6 +258,18 @@ public class GameItem {
      */
     public boolean isCraftable() {
         return this.craftable;
+    }
+
+    /**
+     * Returns whether this item is preliminary
+     * <p>
+     * Preliminary means that this item was just found or traded and has not
+     * yet been added to the inventory
+     *
+     * @return {@code true} if this item is preliminary
+     */
+    public boolean isPreliminary() {
+        return this.preliminary;
     }
 
     /**
