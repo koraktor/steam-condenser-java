@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2012, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.sockets;
@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
+import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
@@ -91,6 +92,8 @@ public class RCONSocket extends SteamSocket {
      * concatenated into a single response packet.
      *
      * @return The packet replied from the server
+     * @throws RCONNoAuthException if an authenticated connection has been
+     *         dropped by the server
      * @throws RCONBanException if the IP of the local machine has been banned
      *         on the game server
      * @throws SteamCondenserException if an error occurs while communicating
@@ -99,13 +102,14 @@ public class RCONSocket extends SteamSocket {
      */
     public RCONPacket getReply()
             throws SteamCondenserException, TimeoutException {
-        int bytesRead = this.receivePacket(4);
-        if (bytesRead <= 0) {
-            try {
-                this.channel.close();
-            } catch (IOException e) {}
-            this.channel = null;
-            return null;
+        try {
+            if (this.receivePacket(4) == 0) {
+                try {
+                    this.channel.close();
+                } catch (IOException e) {}
+            }
+        } catch (ConnectionResetException e) {
+            throw new RCONBanException();
         }
 
         int packetSize = Integer.reverseBytes(this.buffer.getInt());

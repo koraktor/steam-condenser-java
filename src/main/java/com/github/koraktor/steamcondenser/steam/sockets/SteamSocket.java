@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2012, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.sockets;
@@ -18,6 +18,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.concurrent.TimeoutException;
 
+import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.PacketFormatException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
@@ -127,10 +128,11 @@ abstract public class SteamSocket {
                 }
             } catch (IOException e) {
                 if (((ReadableByteChannel) this.channel).read(this.buffer) == -1) {
-                    bytesRead = 0;
-                } else {
-                    throw e;
+                    this.channel.close();
+                    throw new ConnectionResetException();
                 }
+
+                throw e;
             }
 
             return bytesRead;
