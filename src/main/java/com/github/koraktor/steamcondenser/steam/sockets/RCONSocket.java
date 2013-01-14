@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
+import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
