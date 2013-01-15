@@ -24,12 +24,14 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
+import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -89,6 +91,16 @@ public class RCONSocketTest {
         }).when(this.socket).receivePacket(234);
 
         assertEquals(packet, this.socket.getReply());
+    }
+
+    @Test
+    public void testConnectionDropped() throws Exception {
+        this.socket.channel = SocketChannel.open();
+        doReturn(0).when(this.socket).receivePacket(4);
+
+        this.exception.expect(RCONNoAuthException.class);
+
+        this.socket.getReply();
     }
 
     @Test
