@@ -108,6 +108,7 @@ public class RCONSocket extends SteamSocket {
                 try {
                     this.channel.close();
                 } catch (IOException e) {}
+                throw new RCONNoAuthException();
             }
         } catch (ConnectionResetException e) {
             throw new RCONBanException();
