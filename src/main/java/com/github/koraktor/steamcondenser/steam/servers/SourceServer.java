@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2012, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -14,6 +14,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONAuthRequestPacket;
@@ -141,9 +142,7 @@ public class SourceServer extends GameServer {
         this.rconRequestId = new Random().nextInt();
 
         this.rconSocket.send(new RCONAuthRequestPacket(this.rconRequestId, password));
-        if (this.rconSocket.getReply() == null) {
-            return this.rconAuth(password);
-        }
+        this.rconSocket.getReply();
         RCONAuthResponse reply = (RCONAuthResponse) this.rconSocket.getReply();
         this.rconAuthenticated = reply.getRequestId() == this.rconRequestId;
 
@@ -156,6 +155,8 @@ public class SourceServer extends GameServer {
      * @param command The command to execute on the server via RCON
      * @return The output of the executed command
      * @see #rconExec
+     * @throws RCONBanException if banned by the server
+     * @throws RCONNoAuthException if not authenticated with the server
      * @throws SteamCondenserException if a problem occurs while parsing the
      *         reply
      * @throws TimeoutException if the request times out
@@ -172,13 +173,19 @@ public class SourceServer extends GameServer {
 
         ArrayList<String> response = new ArrayList<String>();
         do {
-            responsePacket = this.rconSocket.getReply();
-            if (responsePacket == null) {
-                this.rconAuthenticated = false;
-                break;
-            } else if (responsePacket instanceof RCONAuthResponse) {
-                this.rconAuthenticated = false;
-                throw new RCONNoAuthException();
+            try {
+                responsePacket = this.rconSocket.getReply();
+                if (responsePacket instanceof RCONAuthResponse) {
+                    this.rconAuthenticated = false;
+                    throw new RCONNoAuthException();
+                }
+            } catch (RCONBanException e) {
+                if (this.rconAuthenticated) {
+                    this.rconAuthenticated = false;
+                    throw new RCONNoAuthException();
+                }
+
+                throw e;
             }
             response.add(((RCONExecResponsePacket) responsePacket).getResponse());
         } while(response.size() < 3 || ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0);

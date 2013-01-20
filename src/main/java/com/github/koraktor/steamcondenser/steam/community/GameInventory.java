@@ -2,14 +2,16 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2012, Sebastian Staudt
+ * Copyright (c) 2011-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -42,6 +44,8 @@ public class GameInventory {
     private GameItemSchema itemSchema;
 
     private Map<Integer, GameItem> items;
+
+    private List<GameItem> preliminaryItems;
 
     private long steamId64;
 
@@ -199,13 +203,18 @@ public class GameInventory {
             JSONObject result = WebApi.getJSONData("IEconItems_" + this.getAppId(), "GetPlayerItems", 1, params);
 
             this.items = new HashMap<Integer, GameItem>();
+            this.preliminaryItems = new ArrayList<GameItem>();
             JSONArray itemsData = result.getJSONArray("items");
             for(int i = 0; i < itemsData.length(); i ++) {
                 JSONObject itemData = itemsData.getJSONObject(i);
                 if(itemData != null) {
                     try {
                         GameItem item = this.getItemClass().getConstructor(this.getClass(), JSONObject.class).newInstance(this, itemData);
-                        this.items.put(item.getBackpackPosition() - 1, item);
+                        if (item.isPreliminary()) {
+                            this.preliminaryItems.add(item);
+                        } else {
+                            this.items.put(item.getBackpackPosition() - 1, item);
+                        }
                     } catch(IllegalAccessException e) {
                     } catch(InstantiationException e) {
                     } catch(InvocationTargetException e) {
@@ -277,6 +286,15 @@ public class GameInventory {
      */
     public Map<Integer, GameItem> getItems() {
         return this.items;
+    }
+
+    /**
+     * Returns an array of all items that this player just found or traded
+     *
+     * @return All preliminary items of the inventory
+     */
+    public List<GameItem> getPreliminaryItems() {
+        return this.preliminaryItems;
     }
 
     /**
