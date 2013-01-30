@@ -161,7 +161,9 @@ public abstract class SteamPacketFactory {
             }
         }
 
-        packetData = new String(packetData).substring(4).getBytes();
+        tmpData = packetData;
+        packetData = new byte[tmpData.length - 4];
+        System.arraycopy(tmpData, 4, packetData, 0, tmpData.length - 4);
 
         return SteamPacketFactory.getPacketFromData(packetData);
     }
