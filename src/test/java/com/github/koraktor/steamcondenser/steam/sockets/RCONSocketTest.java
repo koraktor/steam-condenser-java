@@ -24,7 +24,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
-import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
 
@@ -98,7 +97,7 @@ public class RCONSocketTest {
         this.socket.channel = SocketChannel.open();
         doReturn(0).when(this.socket).receivePacket(4);
 
-        this.exception.expect(RCONNoAuthException.class);
+        this.exception.expect(RCONBanException.class);
 
         this.socket.getReply();
     }
@@ -108,7 +107,7 @@ public class RCONSocketTest {
         this.socket.channel = SocketChannel.open();
         doThrow(new ConnectionResetException()).when(this.socket).receivePacket(4);
 
-        this.exception.expect(RCONBanException.class);
+        this.exception.expect(ConnectionResetException.class);
 
         this.socket.getReply();
     }

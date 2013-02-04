@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2011, Sebastian Staudt
+ * Copyright (c) 2010-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.exceptions;
@@ -127,7 +127,13 @@ public class WebApiException extends SteamCondenserException {
         }
     }
 
+    @Override
     public String getMessage() {
-        return this.message;
+        if (this.message == null) {
+            return super.getMessage();
+        } else {
+            return this.message;
+        }
     }
+
 }
