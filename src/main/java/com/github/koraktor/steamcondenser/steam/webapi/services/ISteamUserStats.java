@@ -41,7 +41,7 @@ public class ISteamUserStats {
 			return globalAchievementPercentagesForAppCache.get(appId);
 		}else{
 			HashMap<String, Object> params = new HashMap<String, Object>();
-			params.put("gameId", appId);
+			params.put("gameId", Integer.toString(appId));
 			JSONObject data = WebApi.getJSONObject(I_STEAM_USER_STATS, "GetGlobalAchievementPercentagesForApp", 2, params);
 			GlobalAchievements globalAchievements = new GlobalAchievements(appId, data);
 			globalAchievementPercentagesForAppCache.put(appId, globalAchievements);
@@ -51,7 +51,7 @@ public class ISteamUserStats {
 
 	public static int getNumberOfCurrentPlayers(int appId) throws WebApiException, JSONException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put(APPID, appId);
+		params.put(APPID, Integer.toString(appId));
 		JSONObject data = WebApi.getJSONObject(I_STEAM_USER_STATS, "GetNumberOfCurrentPlayers", 1, params);
 		return data.getJSONObject("response").getInt("player_count");
 	}
@@ -62,8 +62,8 @@ public class ISteamUserStats {
 
 	public static PlayerAchievements getPlayerAchievements(long steamId, int appId, String language) throws WebApiException, JSONException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("steamid", steamId);
-		params.put(APPID, appId);
+		params.put("steamid", Long.toString(steamId));
+		params.put(APPID, Integer.toString(appId));
 		if (language != null && language.length() > 0) {
 			params.put("l", language);
 		}
@@ -80,11 +80,11 @@ public class ISteamUserStats {
 			return gameStatsSchemas.get(appId);
 		} else {
 			HashMap<String, Object> params = new HashMap<String, Object>();
-			params.put(APPID, appId);
+			params.put(APPID, Integer.toString(appId));
 			if (language != null && language.length() > 0) {
 				params.put("l", language);
 			}
-			JSONObject data = WebApi.getJSONObject(I_STEAM_USER_STATS, "GetUserStatsForGame", 2, params);
+			JSONObject data = WebApi.getJSONObject(I_STEAM_USER_STATS, "GetSchemaForGame", 2, params);
 			GameStatsSchema gameStatsSchema = new GameStatsSchema(appId, language, data);
 			gameStatsSchemas.put(appId, gameStatsSchema);
 			return gameStatsSchema;
@@ -93,8 +93,8 @@ public class ISteamUserStats {
 
 	public static UserStats getUserStatsForGame(long steamId, int appId) throws WebApiException, JSONException {
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		params.put("steamid", steamId);
-		params.put(APPID, appId);
+		params.put("steamid", Long.toString(steamId));
+		params.put(APPID, Integer.toString(appId));
 		JSONObject data = WebApi.getJSONObject(I_STEAM_USER_STATS, "GetUserStatsForGame", 2, params);
 		return new UserStats(steamId, appId, data);
 	}

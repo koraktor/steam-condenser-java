@@ -11,6 +11,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -18,7 +19,6 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -53,8 +53,10 @@ public class ISteamUserStatsTest {
     @Test
     public void testGlobalAchievementPercentagesForAppCache() throws Exception {
 		JSONObject globalPercentagesDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getGlobalAchievementPercentagesForApp.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("gameId", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(globalPercentagesDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2, params)).thenReturn(globalPercentagesDocument);
 
 		assertTrue(ISteamUserStats.getGlobalAchievementPercentagesForApp(440) == ISteamUserStats.getGlobalAchievementPercentagesForApp(440));
     }
@@ -62,8 +64,10 @@ public class ISteamUserStatsTest {
     @Test
 	public void testGetGlobalAchievementPercentagesForApp() throws WebApiException, JSONException, IOException {
 		JSONObject globalPercentagesDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getGlobalAchievementPercentagesForApp.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("gameId", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(globalPercentagesDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2, params)).thenReturn(globalPercentagesDocument);
 
 		GlobalAchievements globalAchievementPercentagesForApp = ISteamUserStats.getGlobalAchievementPercentagesForApp(440);
 		assertEquals(440, globalAchievementPercentagesForApp.getAppId());
@@ -74,18 +78,22 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetGlobalAchievementPercentagesForAppNoAchivements() throws WebApiException, JSONException, IOException {
 		JSONObject globalPercentagesDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getGlobalAchievementPercentagesForApp.NoAchievements.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("gameId", "48240");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(globalPercentagesDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2, params)).thenReturn(globalPercentagesDocument);
 
-		GlobalAchievements globalAchievementPercentagesForApp = ISteamUserStats.getGlobalAchievementPercentagesForApp(123456);
+		GlobalAchievements globalAchievementPercentagesForApp = ISteamUserStats.getGlobalAchievementPercentagesForApp(48240);
 		assertEquals(0, globalAchievementPercentagesForApp.getPercentages().size());
 	}
 
 	@Test
 	public void testGetGlobalAchievementPercentagesForAppInvalidJSON() throws WebApiException, JSONException, IOException {
 		JSONObject globalPercentagesDocument = new JSONObject("{ }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("gameId", "123456");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(globalPercentagesDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2, params)).thenReturn(globalPercentagesDocument);
 
 		try {
 			ISteamUserStats.getGlobalAchievementPercentagesForApp(123456);
@@ -99,8 +107,10 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetNumberOfCurrentPlayers() throws WebApiException, JSONException, IOException {
 		JSONObject numberOfPlayersDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getCurrentNumberOfPlayers.v1.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(numberOfPlayersDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetNumberOfCurrentPlayers", 1, params)).thenReturn(numberOfPlayersDocument);
 
 		int numberOfPlayers = ISteamUserStats.getNumberOfCurrentPlayers(440);
 		assertEquals(68532, numberOfPlayers);
@@ -109,8 +119,10 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetNumberOfCurrentPlayersInvalidAppId() throws WebApiException, JSONException, IOException {
 		JSONObject numberOfPlayersDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getCurrentNumberOfPlayers.InvalidAppId.v1.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "123456");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(numberOfPlayersDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetNumberOfCurrentPlayers", 1, params)).thenReturn(numberOfPlayersDocument);
 
 		int numberOfPlayers = ISteamUserStats.getNumberOfCurrentPlayers(123456);
 		assertEquals(0, numberOfPlayers);
@@ -120,10 +132,14 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetPlayerAchievements() throws WebApiException, JSONException, IOException {
 		JSONObject playerAchievementsDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getPlayerAchievements.v1.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440");
+		params.put("l", "en");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(playerAchievementsDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
-		PlayerAchievements playerAchievements = ISteamUserStats.getPlayerAchievements(12345L, 440, "en");
+		PlayerAchievements playerAchievements = ISteamUserStats.getPlayerAchievements(12345, 440, "en");
 		
 		assertEquals(12345L, playerAchievements.getSteamId());
 		assertEquals(440, playerAchievements.getAppId());
@@ -144,21 +160,27 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetPlayerAchievementsNoLanguage() throws WebApiException, JSONException, IOException {
 		JSONObject playerAchievementsDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getPlayerAchievements.v1.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(playerAchievementsDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
-		PlayerAchievements playerAchievements = ISteamUserStats.getPlayerAchievements(12345L, 440);
+		PlayerAchievements playerAchievements = ISteamUserStats.getPlayerAchievements(12345, 440);
 		assertNull(playerAchievements.getLanguage());
 
-		playerAchievements = ISteamUserStats.getPlayerAchievements(12345L, 440, "");
+		playerAchievements = ISteamUserStats.getPlayerAchievements(12345, 440, "");
 		assertEquals("", playerAchievements.getLanguage());
 	}
 
 	@Test
 	public void testGetPlayerAchievementsInvalidSteamId() throws WebApiException, JSONException, IOException {
 		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"error\": \"Invalid SteamID\", \"success\": false } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "123456578");
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(playerAchievementsDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(123456578, 440);
@@ -171,8 +193,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetPlayerAchievementsInvalidAppId() throws WebApiException, JSONException, IOException {
 		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"error\": \"Requested app has no stats\", \"success\": false } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "12345");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(playerAchievementsDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(12345, 12345);
@@ -185,8 +210,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetPlayerAchievementsNoAchievements() throws WebApiException, JSONException, IOException {
 		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"error\": \"Requested app has no stats\", \"success\": false } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "48240");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(playerAchievementsDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(12345, 48240); //Anno 2070
@@ -198,9 +226,12 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetPlayerAchievementsInvalidResponse() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{ \"playerstats\": { \"success\": true } }");
+		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"success\": true } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "48240");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(12345, 48240);
@@ -212,9 +243,12 @@ public class ISteamUserStatsTest {
 	
 	@Test
 	public void testGetPlayerAchievementsInvalidNameAttribute() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{	\"playerstats\": { \"steamID\": \"12345\", \"gameName\": \"Left 4 Dead 2\", \"achievements\": [ { \"thisShouldBe_apiname_or_name\": \"ACH_HONK_A_CLOWNS_NOSE\", \"achieved\": 1	} ], \"success\": true } }");
+		JSONObject playerAchievementsDocument = new JSONObject("{	\"playerstats\": { \"steamID\": \"12345\", \"gameName\": \"Left 4 Dead 2\", \"achievements\": [ { \"thisShouldBe_apiname_or_name\": \"ACH_HONK_A_CLOWNS_NOSE\", \"achieved\": 1	} ], \"success\": true } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "48240");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(12345, 48240);
@@ -229,8 +263,10 @@ public class ISteamUserStatsTest {
     @Test
     public void testGameSchemaCache() throws Exception {
 		JSONObject schemaForGameDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getSchemaForGame.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(schemaForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		assertTrue(ISteamUserStats.getSchemaForGame(440) == ISteamUserStats.getSchemaForGame(440));
     }
@@ -239,8 +275,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetSchemaForGame() throws WebApiException, JSONException, IOException {
 		JSONObject schemaForGameDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getSchemaForGame.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
+		params.put("l", "en");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(schemaForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		GameStatsSchema gameStatsSchema = ISteamUserStats.getSchemaForGame(440, "en");
 
@@ -274,8 +313,10 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetSchemaForGameNoLanguage() throws WebApiException, JSONException, IOException {
 		JSONObject schemaForGameDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getSchemaForGame.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(schemaForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		GameStatsSchema gameStatsSchema = ISteamUserStats.getSchemaForGame(440);
 		assertNull(gameStatsSchema.getLanguage());
@@ -288,9 +329,11 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetSchemaForGameInvalidAppId() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{ }");
+		JSONObject schemaForGameDocument = new JSONObject("{ }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "12345");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		try {
 			ISteamUserStats.getSchemaForGame(12345);
@@ -302,9 +345,11 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetSchemaForGameEmptySchema() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{	\"game\": {	} }");
+		JSONObject schemaForGameDocument = new JSONObject("{	\"game\": {	} }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		GameStatsSchema gameStatsSchema = ISteamUserStats.getSchemaForGame(440);
 
@@ -313,9 +358,11 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetSchemaForGameNoStats() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{	\"game\": {	\"gameName\": \"testGameName\", \"gameVersion\": 1, \"availableGameStats\": { } } }");
+		JSONObject schemaForGameDocument = new JSONObject("{	\"game\": {	\"gameName\": \"testGameName\", \"gameVersion\": 1, \"availableGameStats\": { } } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		GameStatsSchema gameStatsSchema = ISteamUserStats.getSchemaForGame(440);
 
@@ -326,9 +373,11 @@ public class ISteamUserStatsTest {
 	
 	@Test
 	public void testGetSchemaForGameNoGameVersion() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{	\"game\": {	\"gameName\": \"myGameNameWithoutVersion\" } }");
+		JSONObject schemaForGameDocument = new JSONObject("{	\"game\": {	\"gameName\": \"myGameNameWithoutVersion\" } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		try {
 			ISteamUserStats.getSchemaForGame(440);
@@ -340,9 +389,11 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetSchemaForGameNoGameName() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{	\"game\": {	\"gameVersion\": 12345 } }");
+		JSONObject schemaForGameDocument = new JSONObject("{	\"game\": {	\"gameVersion\": 12345 } }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
 
 		try {
 			ISteamUserStats.getSchemaForGame(440);
@@ -356,8 +407,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetUserStatsForGame() throws WebApiException, JSONException, IOException {
 		JSONObject userStatsForGameDocument = new JSONObject(loadFileAsString("/com/github/koraktor/steamcondenser/steam/webapi/services/ISteamUserStats/getUserStatsForGame.v2.json"));
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenReturn(userStatsForGameDocument);
 
 		UserStats userStats = ISteamUserStats.getUserStatsForGame(12345, 440);
 
@@ -381,8 +435,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetUserStatsForGameInvalidSteamIdOrAppId() throws WebApiException, JSONException, IOException {
 		JSONObject userStatsForGameDocument = new JSONObject("{ }");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440739");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenReturn(userStatsForGameDocument);
 
 		try {
 			ISteamUserStats.getUserStatsForGame(12345, 440739);
@@ -396,8 +453,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetUserStatsForGameNoStatsOrAchievements() throws WebApiException, JSONException, IOException {
 		JSONObject userStatsForGameDocument = new JSONObject("{ \"playerstats\": {	\"steamID\": \"12345\",	\"gameName\": \"AaaaaAAaaaAAAaaAAAAaAAAAA!!!\"	}}");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440739");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenReturn(userStatsForGameDocument);
 
 		UserStats userStats = ISteamUserStats.getUserStatsForGame(12345, 440739);
 		assertEquals("AaaaaAAaaaAAAaaAAAAaAAAAA!!!", userStats.getGameName());
@@ -408,8 +468,11 @@ public class ISteamUserStatsTest {
 	@Test
 	public void testGetUserStatsForGameInvalidResponse() throws WebApiException, JSONException, IOException {
 		JSONObject userStatsForGameDocument = new JSONObject("{ \"playerstats\": {	\"steamID\": \"12345\" }}");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("steamid", "12345");
+		params.put("appid", "440739");
 
-		when(WebApi.getJSONObject(Mockito.anyString(), Mockito.anyString(), Mockito.anyInt(), Mockito.anyMapOf(String.class, Object.class))).thenReturn(userStatsForGameDocument);
+		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenReturn(userStatsForGameDocument);
 
 		try {
 			ISteamUserStats.getUserStatsForGame(12345, 440739);
