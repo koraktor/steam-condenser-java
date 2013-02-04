@@ -176,6 +176,14 @@ abstract public class WebApi {
 
         return result;
     }
+    
+    //XXX: provide documentation
+    public static JSONObject getJSONObject(String apiInterface, String method, int version, Map<String, Object> params)
+    		throws JSONException, WebApiException {
+        String data = getJSON(apiInterface, method, version, params);
+        return new JSONObject(data);
+    }
+        
 
     /**
      * Fetches data from Steam Web API using the specified interface, method

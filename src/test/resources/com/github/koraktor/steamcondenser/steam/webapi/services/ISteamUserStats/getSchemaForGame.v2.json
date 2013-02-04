@@ -1,0 +1,1689 @@
+{
+	"game": {
+		"gameName": "Team Fortress 2",
+		"gameVersion": "323",
+		"availableGameStats": {
+			"stats": [
+				{
+					"name": "Scout.accum.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iBuildingsDestroyed"
+				},
+				{
+					"name": "Scout.accum.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iDamageDealt"
+				},
+				{
+					"name": "Scout.accum.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iDominations"
+				},
+				{
+					"name": "Scout.accum.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iKillAssists"
+				},
+				{
+					"name": "Scout.accum.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iNumberOfKills"
+				},
+				{
+					"name": "Scout.accum.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iNumDeaths"
+				},
+				{
+					"name": "Scout.accum.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iNumInvulnerable"
+				},
+				{
+					"name": "Scout.accum.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iNumShotsFired"
+				},
+				{
+					"name": "Scout.accum.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iNumShotsHit"
+				},
+				{
+					"name": "Scout.accum.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iPlayTime"
+				},
+				{
+					"name": "Scout.accum.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iPointCaptures"
+				},
+				{
+					"name": "Scout.accum.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iPointDefenses"
+				},
+				{
+					"name": "Scout.accum.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iPointsScored"
+				},
+				{
+					"name": "Scout.accum.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Scout.accum.iRevenge"
+				},
+				{
+					"name": "Scout.max.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iBuildingsDestroyed"
+				},
+				{
+					"name": "Scout.max.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iDamageDealt"
+				},
+				{
+					"name": "Scout.max.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iDominations"
+				},
+				{
+					"name": "Scout.max.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iKillAssists"
+				},
+				{
+					"name": "Scout.max.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iNumberOfKills"
+				},
+				{
+					"name": "Scout.max.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iNumDeaths"
+				},
+				{
+					"name": "Scout.max.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iNumInvulnerable"
+				},
+				{
+					"name": "Scout.max.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iNumShotsFired"
+				},
+				{
+					"name": "Scout.max.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iNumShotsHit"
+				},
+				{
+					"name": "Scout.max.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iPlayTime"
+				},
+				{
+					"name": "Scout.max.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iPointCaptures"
+				},
+				{
+					"name": "Scout.max.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iPointDefenses"
+				},
+				{
+					"name": "Scout.max.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iPointsScored"
+				},
+				{
+					"name": "Scout.max.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Scout.max.iRevenge"
+				},
+				{
+					"name": "Soldier.accum.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iBuildingsDestroyed"
+				},
+				{
+					"name": "Soldier.accum.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iDamageDealt"
+				},
+				{
+					"name": "Soldier.accum.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iDominations"
+				},
+				{
+					"name": "Soldier.accum.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iKillAssists"
+				},
+				{
+					"name": "Soldier.accum.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iNumberOfKills"
+				},
+				{
+					"name": "Soldier.accum.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iNumDeaths"
+				},
+				{
+					"name": "Soldier.accum.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iNumInvulnerable"
+				},
+				{
+					"name": "Soldier.accum.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iNumShotsFired"
+				},
+				{
+					"name": "Soldier.accum.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iNumShotsHit"
+				},
+				{
+					"name": "Soldier.accum.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iPlayTime"
+				},
+				{
+					"name": "Soldier.accum.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iPointCaptures"
+				},
+				{
+					"name": "Soldier.accum.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iPointDefenses"
+				},
+				{
+					"name": "Soldier.accum.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iPointsScored"
+				},
+				{
+					"name": "Soldier.accum.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Soldier.accum.iRevenge"
+				},
+				{
+					"name": "Soldier.max.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iBuildingsDestroyed"
+				},
+				{
+					"name": "Soldier.max.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iDamageDealt"
+				},
+				{
+					"name": "Soldier.max.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iDominations"
+				},
+				{
+					"name": "Soldier.max.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iKillAssists"
+				},
+				{
+					"name": "Soldier.max.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iNumberOfKills"
+				},
+				{
+					"name": "Soldier.max.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iNumDeaths"
+				},
+				{
+					"name": "Soldier.max.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iNumInvulnerable"
+				},
+				{
+					"name": "Soldier.max.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iNumShotsFired"
+				},
+				{
+					"name": "Soldier.max.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iNumShotsHit"
+				},
+				{
+					"name": "Soldier.max.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iPlayTime"
+				},
+				{
+					"name": "Soldier.max.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iPointCaptures"
+				},
+				{
+					"name": "Soldier.max.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iPointDefenses"
+				},
+				{
+					"name": "Soldier.max.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iPointsScored"
+				},
+				{
+					"name": "Soldier.max.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Soldier.max.iRevenge"
+				},
+				{
+					"name": "Spy.accum.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iBuildingsDestroyed"
+				},
+				{
+					"name": "Spy.accum.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iDamageDealt"
+				},
+				{
+					"name": "Spy.accum.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iDominations"
+				},
+				{
+					"name": "Spy.accum.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iKillAssists"
+				},
+				{
+					"name": "Spy.accum.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iNumberOfKills"
+				},
+				{
+					"name": "Spy.accum.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iNumDeaths"
+				},
+				{
+					"name": "Spy.accum.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iNumInvulnerable"
+				},
+				{
+					"name": "Spy.accum.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iNumShotsFired"
+				},
+				{
+					"name": "Spy.accum.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iNumShotsHit"
+				},
+				{
+					"name": "Spy.accum.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iPlayTime"
+				},
+				{
+					"name": "Spy.accum.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iPointCaptures"
+				},
+				{
+					"name": "Spy.accum.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iPointDefenses"
+				},
+				{
+					"name": "Spy.accum.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iPointsScored"
+				},
+				{
+					"name": "Spy.accum.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Spy.accum.iRevenge"
+				},
+				{
+					"name": "Spy.max.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iBuildingsDestroyed"
+				},
+				{
+					"name": "Spy.max.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iDamageDealt"
+				},
+				{
+					"name": "Spy.max.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iDominations"
+				},
+				{
+					"name": "Spy.max.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iKillAssists"
+				},
+				{
+					"name": "Spy.max.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iNumberOfKills"
+				},
+				{
+					"name": "Spy.max.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iNumDeaths"
+				},
+				{
+					"name": "Spy.max.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iNumInvulnerable"
+				},
+				{
+					"name": "Spy.max.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iNumShotsFired"
+				},
+				{
+					"name": "Spy.max.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iNumShotsHit"
+				},
+				{
+					"name": "Spy.max.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iPlayTime"
+				},
+				{
+					"name": "Spy.max.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iPointCaptures"
+				},
+				{
+					"name": "Spy.max.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iPointDefenses"
+				},
+				{
+					"name": "Spy.max.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iPointsScored"
+				},
+				{
+					"name": "Spy.max.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Spy.max.iRevenge"
+				},
+				{
+					"name": "Pyro.accum.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iBuildingsDestroyed"
+				},
+				{
+					"name": "Pyro.accum.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iDamageDealt"
+				},
+				{
+					"name": "Pyro.accum.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iDominations"
+				},
+				{
+					"name": "Pyro.accum.iKillAssists",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iKillAssists"
+				},
+				{
+					"name": "Pyro.accum.iNumberOfKills",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iNumberOfKills"
+				},
+				{
+					"name": "Pyro.accum.iNumDeaths",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iNumDeaths"
+				},
+				{
+					"name": "Pyro.accum.iNumInvulnerable",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iNumInvulnerable"
+				},
+				{
+					"name": "Pyro.accum.iNumShotsFired",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iNumShotsFired"
+				},
+				{
+					"name": "Pyro.accum.iNumShotsHit",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iNumShotsHit"
+				},
+				{
+					"name": "Pyro.accum.iPlayTime",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iPlayTime"
+				},
+				{
+					"name": "Pyro.accum.iPointCaptures",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iPointCaptures"
+				},
+				{
+					"name": "Pyro.accum.iPointDefenses",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iPointDefenses"
+				},
+				{
+					"name": "Pyro.accum.iPointsScored",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iPointsScored"
+				},
+				{
+					"name": "Pyro.accum.iRevenge",
+					"defaultvalue": 0,
+					"displayName": "Pyro.accum.iRevenge"
+				},
+				{
+					"name": "Pyro.max.iBuildingsDestroyed",
+					"defaultvalue": 0,
+					"displayName": "Pyro.max.iBuildingsDestroyed"
+				},
+				{
+					"name": "Pyro.max.iDamageDealt",
+					"defaultvalue": 0,
+					"displayName": "Pyro.max.iDamageDealt"
+				},
+				{
+					"name": "Pyro.max.iDominations",
+					"defaultvalue": 0,
+					"displayName": "Pyro.max.iDominations"
+				}
+			]
+			,
+			"achievements": [
+				{
+					"name": "TF_PLAY_GAME_EVERYCLASS",
+					"defaultvalue": 0,
+					"displayName": "Head of the Class",
+					"hidden": 0,
+					"description": "Play a complete round with every class.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everyclass_bw.jpg"
+				},
+				{
+					"name": "TF_PLAY_GAME_EVERYMAP",
+					"defaultvalue": 0,
+					"displayName": "World Traveler",
+					"hidden": 0,
+					"description": "Play a complete game on 2Fort, Dustbowl, Granary, Gravel Pit, Hydro, and Well (CP).",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everymap.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_everymap_bw.jpg"
+				},
+				{
+					"name": "TF_GET_HEALPOINTS",
+					"defaultvalue": 0,
+					"displayName": "Team Doctor",
+					"hidden": 0,
+					"description": "Accumulate 25000 heal points as a Medic.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_healpoints.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_healpoints_bw.jpg"
+				},
+				{
+					"name": "TF_BURN_PLAYERSINMINIMUMTIME",
+					"defaultvalue": 0,
+					"displayName": "Flamethrower",
+					"hidden": 0,
+					"description": "Set five enemies on fire in 30 seconds.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_burn_playersinminimumtime.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_burn_playersinminimumtime_bw.jpg"
+				},
+				{
+					"name": "TF_GET_TURRETKILLS",
+					"defaultvalue": 0,
+					"displayName": "Sentry Gunner",
+					"hidden": 0,
+					"description": "Accumulate 10 sentry gun kills with a single sentry.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_turretkills.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_turretkills_bw.jpg"
+				},
+				{
+					"name": "TF_KILL_NEMESIS",
+					"defaultvalue": 0,
+					"displayName": "Nemesis",
+					"hidden": 0,
+					"description": "Get five revenge kills.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_kill_nemesis.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_kill_nemesis_bw.jpg"
+				},
+				{
+					"name": "TF_GET_CONSECUTIVEKILLS_NODEATHS",
+					"defaultvalue": 0,
+					"displayName": "Hard to Kill",
+					"hidden": 0,
+					"description": "Get five kills in a row without dying.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_consecutivekills_nodeaths.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_consecutivekills_nodeaths_bw.jpg"
+				},
+				{
+					"name": "TF_GET_HEALED_BYENEMY",
+					"defaultvalue": 0,
+					"displayName": "Master of Disguise",
+					"hidden": 0,
+					"description": "Trick an opposing Medic into healing you.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_healed_byenemy.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_healed_byenemy_bw.jpg"
+				},
+				{
+					"name": "TF_PLAY_GAME_FRIENDSONLY",
+					"defaultvalue": 0,
+					"displayName": "With Friends Like these...",
+					"hidden": 0,
+					"description": "Play in a game with 7 or more players from your Friends list.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_friendsonly.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_play_game_friendsonly_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_MULTIPLEGAMES",
+					"defaultvalue": 0,
+					"displayName": "Dynasty",
+					"hidden": 0,
+					"description": "Win 20 games.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_multiplegames.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_multiplegames_bw.jpg"
+				},
+				{
+					"name": "TF_GET_MULTIPLEKILLS",
+					"defaultvalue": 0,
+					"displayName": "Hardcore",
+					"hidden": 0,
+					"description": "Accumulate 1000 total kills.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_multiplekills.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_multiplekills_bw.jpg"
+				},
+				{
+					"name": "TF_GET_HEADSHOTS",
+					"defaultvalue": 0,
+					"displayName": "Grey Matter",
+					"hidden": 0,
+					"description": "Get 25 headshots as a Sniper.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_headshots.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_get_headshots_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_TOP_SCOREBOARD",
+					"defaultvalue": 0,
+					"displayName": "First Do No Harm",
+					"hidden": 0,
+					"description": "Play a full round without killing any enemies, and score the highest on a team of 6 or more players.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_top_scoreboard.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_top_scoreboard_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_UNDER_FIRE",
+					"defaultvalue": 0,
+					"displayName": "Quadruple Bypass",
+					"hidden": 0,
+					"description": "Heal a teammate who's taking fire from 4 enemies at once.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_under_fire.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_under_fire_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SIMUL_CHARGE",
+					"defaultvalue": 0,
+					"displayName": "Group Health",
+					"hidden": 0,
+					"description": "Work with 2 other Medics to deploy 3 simultaneous ÜberCharges.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_simul_charge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_simul_charge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SETUP_CHARGE",
+					"defaultvalue": 0,
+					"displayName": "Surgical Prep",
+					"hidden": 0,
+					"description": "Have an ÜberCharge ready before the Setup phase ends.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_setup_charge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_setup_charge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_RAPID_CHARGE",
+					"defaultvalue": 0,
+					"displayName": "Trauma Queen",
+					"hidden": 0,
+					"description": "Deploy 3 ÜberCharges in less than 5 minutes, and assist in 5 kills during that time.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_rapid_charge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_rapid_charge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_COUNTER_CHARGE",
+					"defaultvalue": 0,
+					"displayName": "Double Blind Trial",
+					"hidden": 0,
+					"description": "Deploy an ÜberCharge within 8 seconds of a nearby enemy Medic deploying his.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_counter_charge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_counter_charge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SWITCH_TO_MEDIC",
+					"defaultvalue": 0,
+					"displayName": "Play Doctor",
+					"hidden": 0,
+					"description": "In a team with no Medics, be the first person to switch to Medic after a teammate calls for 'Medic!', and then heal 500 health.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_switch_to_medic.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_switch_to_medic_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SAVE_TEAMMATE",
+					"defaultvalue": 0,
+					"displayName": "Triage",
+					"hidden": 0,
+					"description": "Deploy an ÜberCharge on a teammate less than a second before they're hit by a critical explosive.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_save_teammate.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_save_teammate_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_CHARGE_BLOCKER",
+					"defaultvalue": 0,
+					"displayName": "Preventive Medicine",
+					"hidden": 0,
+					"description": "Block the enemy from capturing a control point with an ÜberCharged teammate.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_blocker.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_blocker_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_MEDIC",
+					"defaultvalue": 0,
+					"displayName": "Consultation",
+					"hidden": 0,
+					"description": "Assist a fellow Medic in killing 3 enemies in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_medic.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_medic_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SYRINGE_SCOUTS",
+					"defaultvalue": 0,
+					"displayName": "Does It Hurt When I Do This?",
+					"hidden": 0,
+					"description": "Kill 50 Scouts with your syringe gun.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_syringe_scouts.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_syringe_scouts_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_BONESAW_MEDICS",
+					"defaultvalue": 0,
+					"displayName": "Peer Review",
+					"hidden": 0,
+					"description": "Kill 10 Medics with your bone saw.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_bonesaw_medics.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_bonesaw_medics_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_HEAVY_LONG",
+					"defaultvalue": 0,
+					"displayName": "Big Pharma",
+					"hidden": 0,
+					"description": "Assist a Heavy in killing 10 enemies, where neither of you die.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_heavy_long.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_heavy_long_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_SCOUT",
+					"defaultvalue": 0,
+					"displayName": "You'll Feel a Little Prick",
+					"hidden": 0,
+					"description": "Assist in killing 3 enemies with a single ÜberCharge on a Scout.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_scout.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_scout_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_PYRO",
+					"defaultvalue": 0,
+					"displayName": "Autoclave",
+					"hidden": 0,
+					"description": "Assist in burning 5 enemies with a single ÜberCharge on a Pyro.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0ce0abd23603f3f558976dbfcb6c8632468ea497.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/b2790e60c1a024e2ef598069cd98607c574f3b4b.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_HEAVY",
+					"defaultvalue": 0,
+					"displayName": "Blunt Trauma",
+					"hidden": 0,
+					"description": "Assist in punching 2 enemies with a single ÜberCharge on a Heavy.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_heavy.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_heavy_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_DEMOMAN",
+					"defaultvalue": 0,
+					"displayName": "Medical Breakthrough",
+					"hidden": 0,
+					"description": "Assist in destroying 5 enemy Engineer buildings with a single ÜberCharge on a Demoman.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_demoman.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_demoman_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_ENGINEER",
+					"defaultvalue": 0,
+					"displayName": "Midwife Crisis",
+					"hidden": 0,
+					"description": "Heal an Engineer as he repairs his sentry gun while it's under enemy fire.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_engineer.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_engineer_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_CAPTURER",
+					"defaultvalue": 0,
+					"displayName": "Ubi concordia, ibi victoria",
+					"hidden": 0,
+					"description": "Assist in killing 3 enemies on an enemy control point, in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_capturer.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_capturer_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_CALLERS",
+					"defaultvalue": 0,
+					"displayName": "Grand Rounds",
+					"hidden": 0,
+					"description": "Heal 200 teammates after they've called for 'Medic!'.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_callers.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_callers_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_2FORT_NOENEMYCAPS",
+					"defaultvalue": 0,
+					"displayName": "Powerhouse Offense",
+					"hidden": 0,
+					"description": "Win 2Fort with a shutout.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_2fort_noenemycaps.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_2fort_noenemycaps_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_WELL_MINIMUMTIME",
+					"defaultvalue": 0,
+					"displayName": "Lightning Offense",
+					"hidden": 0,
+					"description": "Win Well in 5 minutes or less.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_well_minimumtime.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_well_minimumtime_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_HYDRO_NOENEMYCAPS",
+					"defaultvalue": 0,
+					"displayName": "Relentless Offense",
+					"hidden": 0,
+					"description": "Win Hydro without giving up a capture.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_hydro_noenemycaps.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_hydro_noenemycaps_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_DUSTBOWL_NOENEMYCAPS",
+					"defaultvalue": 0,
+					"displayName": "Impenetrable Defense",
+					"hidden": 0,
+					"description": "Successfully defend Dustbowl without giving up a capture.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_dustbowl_noenemycaps.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_dustbowl_noenemycaps_bw.jpg"
+				},
+				{
+					"name": "TF_WIN_GRAVELPIT_NOENEMYCAPS",
+					"defaultvalue": 0,
+					"displayName": "Impossible Defense",
+					"hidden": 0,
+					"description": "Successfully defend Gravel Pit without giving up a capture.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_gravelpit_noenemycaps.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_win_gravelpit_noenemycaps_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_EXTINGUISH_TEAMMATES",
+					"defaultvalue": 0,
+					"displayName": "Infernal Medicine",
+					"hidden": 0,
+					"description": "Extinguish 100 burning teammates.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_extinguish_teammates.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_extinguish_teammates_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_VS_NEMESES",
+					"defaultvalue": 0,
+					"displayName": "Doctor Assisted Homicide",
+					"hidden": 0,
+					"description": "Assist in killing 20 nemeses.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_vs_nemeses.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_vs_nemeses_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_KILL_WHILE_CHARGED",
+					"defaultvalue": 0,
+					"displayName": "Placebo Effect",
+					"hidden": 0,
+					"description": "Kill 2 enemies in a single life, while having your ÜberCharge ready, but undeployed.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_kill_while_charged.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_kill_while_charged_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_BONESAW_NOMISSES",
+					"defaultvalue": 0,
+					"displayName": "Sawbones",
+					"hidden": 0,
+					"description": "Hit enemies with your bonesaw 5 times in a row without dying or missing.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a5f2f35fd6731754b77738f2e31818c451f40f27.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d235dc957f30655b561b96dd091b894644af25c0.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_LARGE",
+					"defaultvalue": 0,
+					"displayName": "Intern",
+					"hidden": 0,
+					"description": "Accumulate 7000 heal points in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_large.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_large_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_HUGE",
+					"defaultvalue": 0,
+					"displayName": "Specialist",
+					"hidden": 0,
+					"description": "Accumulate 10000 heal points health in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_huge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_huge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Chief of Staff",
+					"hidden": 0,
+					"description": "Accumulate 1 million total heal points.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_grind.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_grind_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_KILL_HEALED_SPY",
+					"defaultvalue": 0,
+					"displayName": "Hypocritical Oath",
+					"hidden": 0,
+					"description": "Kill an enemy Spy that you have been healing.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_kill_healed_spy.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_kill_healed_spy_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_SAVE_FALLING_TEAMMATE",
+					"defaultvalue": 0,
+					"displayName": "Medical Intervention",
+					"hidden": 0,
+					"description": "Save a falling teammate from dying on impact.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_save_falling_teammate.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_save_falling_teammate_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_CHARGE_JUGGLE",
+					"defaultvalue": 0,
+					"displayName": "Second Opinion",
+					"hidden": 0,
+					"description": "ÜberCharge 2 teammates at once.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_juggle.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_juggle_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_FREEZECAM_RAGDOLL",
+					"defaultvalue": 0,
+					"displayName": "Autopsy Report",
+					"hidden": 0,
+					"description": "Provide an enemy with a freezecam shot of you taunting above their ragdoll.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_freezecam_ragdoll.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_freezecam_ragdoll_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_BONESAW_SPY_CALLERS",
+					"defaultvalue": 0,
+					"displayName": "FYI I am A Medic",
+					"hidden": 0,
+					"description": "Use your bonesaw to kill a spy who has been calling for 'Medic!'.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_bonesaw_spy_callers.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_bonesaw_spy_callers_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_CHARGE_FRIENDS",
+					"defaultvalue": 0,
+					"displayName": "Family Practice",
+					"hidden": 0,
+					"description": "ÜberCharge 5 of your Steam Community Friends.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_friends.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_charge_friends_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_INVITE_JOIN_CHARGE",
+					"defaultvalue": 0,
+					"displayName": "House Call",
+					"hidden": 0,
+					"description": "Join a game that one of your friends is in and then deploy an ÜberCharge on him.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_invite_join_charge.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_invite_join_charge_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_HEAL_ACHIEVER",
+					"defaultvalue": 0,
+					"displayName": "Bedside Manner",
+					"hidden": 0,
+					"description": "Be healing a teammate as he achieves an achievement of his own.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_achiever.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_heal_achiever_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ASSIST_SOLDIER",
+					"defaultvalue": 0,
+					"displayName": "Blast Assist",
+					"hidden": 0,
+					"description": "Assist in exploding 5 enemies with a single ÜberCharge on a Soldier.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_soldier.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/tf_medic_assist_soldier_bw.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ACHIEVE_PROGRESS1",
+					"defaultvalue": 0,
+					"displayName": "Medic Milestone 1",
+					"hidden": 0,
+					"description": "Achieve 10 of the achievements in the Medic pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/3acf8804413a37c18ea5cdf0738e9a862d53c5f3.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2d675205e08474d7d2f3605b8f31ae0ed2baf369.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ACHIEVE_PROGRESS2",
+					"defaultvalue": 0,
+					"displayName": "Medic Milestone 2",
+					"hidden": 0,
+					"description": "Achieve 16 of the achievements in the Medic pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f21fa92f4eade3f9418474c12da16393b897f878.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/494b8d62b6406783daf66ad64b9e469f873e7483.jpg"
+				},
+				{
+					"name": "TF_MEDIC_ACHIEVE_PROGRESS3",
+					"defaultvalue": 0,
+					"displayName": "Medic Milestone 3",
+					"hidden": 0,
+					"description": "Achieve 22 of the achievements in the Medic pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/48c360c7c5bb85ee416f5d33e0c0d852bb9a50a9.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/51544bec4f19351613119a2b74af91e1909c8931.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_MULTIWEAPONS",
+					"defaultvalue": 0,
+					"displayName": "Combined Fire",
+					"hidden": 0,
+					"description": "Use your shotgun to finish off 20 players you've ignited.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/63b213325b29d8913e622435c59d09ef8342e277.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e1be8bc4fca7b406fccce3c80975f11d04a2f961.jpg"
+				},
+				{
+					"name": "TF_PYRO_SIMULBURN_SCOUTS",
+					"defaultvalue": 0,
+					"displayName": "Weenie Roast",
+					"hidden": 0,
+					"description": "Have 2 enemy Scouts on fire at the same time.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7aacbad2824d8185ae81704a85d1c9398a2a48a0.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7fb6255772cef4c1d852a7fd0548f033d4b3c777.jpg"
+				},
+				{
+					"name": "TF_PYRO_FORCE_WATERJUMP",
+					"defaultvalue": 0,
+					"displayName": "Baptism by Fire",
+					"hidden": 0,
+					"description": "Force 10 burning enemies to jump into water.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f62904369fb97aa16fa9fce20b033ceba030783c.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/905f8d39fd06c9627faf6bf426557352ab902ed7.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_POSTDEATH",
+					"defaultvalue": 0,
+					"displayName": "Fire and Forget",
+					"hidden": 0,
+					"description": "Kill 15 players while you're dead.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/40314dbe77440a68899f23df4a9988311a617671.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a5ae389e2515af73030fdd231a8399aef91a71bc.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_SPIES",
+					"defaultvalue": 0,
+					"displayName": "Firewall",
+					"hidden": 0,
+					"description": "Ignite 5 Spies who have a sapper on a friendly building.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f31acdb4bfd1db94ef791f1210ed3200202500b8.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/daed6e37660b12053ea7fa9321998355c671798d.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_CARRIERS",
+					"defaultvalue": 0,
+					"displayName": "Cooking the Books",
+					"hidden": 0,
+					"description": "Ignite 5 enemies carrying your intelligence.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0108bd6ca10deb2e0fa45ce3ea86512802db4780.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f9f47ff3e4e70ca2b323643e369f6ea946b69b8e.jpg"
+				},
+				{
+					"name": "TF_PYRO_REVEAL_SPIES",
+					"defaultvalue": 0,
+					"displayName": "Spontaneous Combustion",
+					"hidden": 0,
+					"description": "Ignite 10 cloaked Spies.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/6098a6339bc0fe25a4928d61056270302535b5ad.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d41502c62f290dd011d9b00225140ab7e7c58d68.jpg"
+				},
+				{
+					"name": "TF_PYRO_CAMP_TELEPORTERS",
+					"defaultvalue": 0,
+					"displayName": "Trailblazer",
+					"hidden": 0,
+					"description": "Ignite 10 enemies that have recently used a teleporter.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/3cfeb76e9270509f6715cbc11987d443830622b1.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/911c5307a9b16ab3f256c72c0a47e078ba97a24e.jpg"
+				},
+				{
+					"name": "TF_PYRO_CAMP_POSITION",
+					"defaultvalue": 0,
+					"displayName": "Camp Fire",
+					"hidden": 0,
+					"description": "Kill 3 enemies in a row, all within the same area.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/9fbe6e36a9e2d61bce8746dd45a1ce19144a6c0b.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f6f76d07281684d4c04c21ac685000c12fe88ce0.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_AXE_SMALL",
+					"defaultvalue": 0,
+					"displayName": "Lumberjack",
+					"hidden": 0,
+					"description": "Kill 3 people with your axe in one life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/118e9e75497e539d847055e3a6b21b3fdd221440.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2a9bbe4b39680be1b2720d8ee2b441d234603084.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_AXE_LARGE",
+					"defaultvalue": 0,
+					"displayName": "Clearcutter",
+					"hidden": 0,
+					"description": "Kill 6 people with your axe in one life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/56165fc4e56d3dbffa7e18650618adaa048f6d36.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/84ba60e80daef936246d53162702220bd521881a.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_SPIES_AS_YOU",
+					"defaultvalue": 0,
+					"displayName": "I Fry",
+					"hidden": 0,
+					"description": "Ignite 10 disguised Spies.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c2fef3239a7454e044bcc006d284856c37d7f4b3.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7306eac0fdcba244b9084879f82c89fed7fc3ae1.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_SNIPERS_ZOOMED",
+					"defaultvalue": 0,
+					"displayName": "Firewatch",
+					"hidden": 0,
+					"description": "Ignite 10 Snipers while they are zoomed in.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/16e90c29a9a53a7723afbdbe63f2accb50c14415.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/212a92733def907031c3969f680638bdd7f0baed.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_MEDICS_CHARGED",
+					"defaultvalue": 0,
+					"displayName": "Burn Ward",
+					"hidden": 0,
+					"description": "Ignite 3 Medics that are ready to deploy an ÜberCharge.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7e9ee62e7a72700fbad7a9b1219989104767114f.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/ccb2d441db3aad0269459d012e7996d9814b03aa.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_HEAVIES",
+					"defaultvalue": 0,
+					"displayName": "Makin' Bacon",
+					"hidden": 1,
+					"description": "Kill 50 Heavies with your flamethrower.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/59d977181e71ace315915b2f7c1d35e146b0b1a4.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c13f90d6337a3a3f0066916e94185dcbf75677ee.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_UNDERWATER",
+					"defaultvalue": 0,
+					"displayName": "Plan B",
+					"hidden": 0,
+					"description": "Kill 10 enemies while you're both underwater.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/472dfc38bb22457a68db8574e269629d03c000e6.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0751a92fe6c9fdfbccd0d570e35d47b36b69a17d.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_UBERCHARGE",
+					"defaultvalue": 0,
+					"displayName": "Pyrotechnics",
+					"hidden": 0,
+					"description": "Kill 3 enemies in a single ÜberCharge.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0cfc2a135facac2b85781d9b29edd12c2c7ccfeb.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/9a5bf44ce682e672d6c628ddea13972614768594.jpg"
+				},
+				{
+					"name": "TF_PYRO_DESTROY_BUILDINGS",
+					"defaultvalue": 0,
+					"displayName": "Arsonist",
+					"hidden": 0,
+					"description": "Destroy 50 Engineer buildings.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e71048d42ec001380aa2008131104ca587f0bcc2.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/ef0aacdcba94d518790230a1b5dcf78481ff7317.jpg"
+				},
+				{
+					"name": "TF_PYRO_DEFEND_POINTS",
+					"defaultvalue": 0,
+					"displayName": "Controlled Burn",
+					"hidden": 0,
+					"description": "Ignite 50 enemies capturing one of your control points.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a0bcd9b4a07aa1d8280943b5a5bc3d61b1125fda.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/96d465c06a625bc80e92289066fde1fc77de96ae.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Firefighter",
+					"hidden": 0,
+					"description": "Kill 500 enemies.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/6eb1f622c395c1c9698617d3002531ea84d8aabe.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8c9aae232ceee40f44685ad6e012cb40ea999565.jpg"
+				},
+				{
+					"name": "TF_PYRO_DAMAGE_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Pyromancer",
+					"hidden": 0,
+					"description": "Do 1 million points of total fire damage.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c2eb5c208cec8cafab3374c9d8b3dcda58fae5ef.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1641c7d94daa59859094e78d6e61298ad127fbac.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_TAUNT",
+					"defaultvalue": 0,
+					"displayName": "OMGWTFBBQ",
+					"hidden": 0,
+					"description": "Kill an enemy with a taunt.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/ecdfd87aac7570b1ba5efa13d87fa1ca7b76e106.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/9791ac4d14cf8ed5a763c1c00755ab20d79854d4.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_SPY_TAUNT",
+					"defaultvalue": 0,
+					"displayName": "Got A Light?",
+					"hidden": 0,
+					"description": "Ignite an enemy Spy while he's flicking a cigarette.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/bb590c7ca44dfc7eb6a31abb39fae07c47502ac7.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/4f244b30a76e9de5287a82cc3829c7930baa38c7.jpg"
+				},
+				{
+					"name": "TF_PYRO_DOMINATE_LEAVESVR",
+					"defaultvalue": 0,
+					"displayName": "BarbeQueQ",
+					"hidden": 0,
+					"description": "Cause a dominated player to leave the server.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/54cd05cdda3ec504995efc7325290a13018f73eb.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c89aaf25155ab8a78d436e935823b8b17c147660.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_TAUNTERS",
+					"defaultvalue": 0,
+					"displayName": "Dance Dance Immolation",
+					"hidden": 0,
+					"description": "Kill 3 enemies while they're taunting.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1797608a8a42e825d76b592a5b1baa3599d32138.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/81a0db8106bb2bb04f7a01218d50a01878c46b5f.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_RJ_SOLDIER",
+					"defaultvalue": 0,
+					"displayName": "Pilot Light",
+					"hidden": 0,
+					"description": "Ignite a rocket-jumping Soldier while he's in midair.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c79357d0b398b21379cab2fe8fded04143af15de.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f61da5ee7db3f110e692f282623b9d17604282dd.jpg"
+				},
+				{
+					"name": "TF_PYRO_FREEZECAM_TAUNTS",
+					"defaultvalue": 0,
+					"displayName": "Freezer Burn",
+					"hidden": 0,
+					"description": "Provide enemies with freezecam shots of each of your taunts.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/dfee76b6423c3e82cc40ece142c1a1c1c0815618.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8c3ea159df7f2f94581443bcf74c982b6ad130c7.jpg"
+				},
+				{
+					"name": "TF_PYRO_BURN_MEDICPAIR",
+					"defaultvalue": 0,
+					"displayName": "Next of Kindling",
+					"hidden": 0,
+					"description": "Ignite an enemy, and the Medic healing him.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/dbdab6cc2f3f8bc723dc4c74a4725ccc11f461ac.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/52beb2b5872b8bcaa03ec2ae404feb9214ed04fd.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_FROM_BEHIND",
+					"defaultvalue": 0,
+					"displayName": "Hot on Your Heels",
+					"hidden": 0,
+					"description": "Kill 50 enemies with your flamethrower, from behind.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1d6cd72858123248cb2740ea9c69c45a57f545c6.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/318fc6217afafaabb74481236f15ce98cc1bae07.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_TEAMWORK",
+					"defaultvalue": 0,
+					"displayName": "Second Degree Burn",
+					"hidden": 0,
+					"description": "Kill a burning enemy who was ignited by another Pyro.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a3125ded53b477caa08d2e9af9947fd6598a5e98.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2408a0f972953a591a1134751cbd9ad9283da723.jpg"
+				},
+				{
+					"name": "TF_PYRO_REFLECT_CROCKET_KILL",
+					"defaultvalue": 0,
+					"displayName": "Hotshot",
+					"hidden": 0,
+					"description": "Kill a Soldier with a reflected critical rocket.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/98461ecf235c3bd142977a062ffd087d60d6c031.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1b745b2cee5f4bc9a6a661f37a2f1c23d09a48e1.jpg"
+				},
+				{
+					"name": "TF_PYRO_KILL_GRIND_LARGE",
+					"defaultvalue": 0,
+					"displayName": "Fire Chief",
+					"hidden": 0,
+					"description": "Kill 1000 enemies.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0097b7d3dd570aa173d107d36e2647adeadc9e24.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/4eb6e08e5856f1b641be529b723d15df72f5a20d.jpg"
+				},
+				{
+					"name": "TF_PYRO_IGNITE_FLAREGUN",
+					"defaultvalue": 0,
+					"displayName": "Attention Getter",
+					"hidden": 0,
+					"description": "Ignite 100 enemies with the flare gun.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/024362f564efadd798245c42e0ed1c3ee9e0a284.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f3661c6e7d7fd647bfa4a251a3a62d82df6cf7fb.jpg"
+				},
+				{
+					"name": "TF_PYRO_REFLECT_PROJECTILES",
+					"defaultvalue": 0,
+					"displayName": "Hot Potato",
+					"hidden": 0,
+					"description": "Reflect 100 projectiles with your compressed air blast.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2976550599e437c2a4d8a91567b4deb6184ef6b1.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8d9c7d2f598a62de7775c95338ee5570d79268c8.jpg"
+				},
+				{
+					"name": "TF_PYRO_DOUBLE_KO",
+					"defaultvalue": 0,
+					"displayName": "Dead Heat",
+					"hidden": 0,
+					"description": "Kill an enemy in the same second that he kills you.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/768627663a53790b51f39b4defd1447870071e1e.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/ec6f89035a26a2799163c9f99c6198633790591e.jpg"
+				},
+				{
+					"name": "TF_PYRO_ACHIEVE_PROGRESS1",
+					"defaultvalue": 0,
+					"displayName": "Pyro Milestone 1",
+					"hidden": 0,
+					"description": "Achieve 10 of the achievements in the Pyro pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8e656bb6a08ae9963579c4c509dbec2973e8b54c.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/073fc2c96d32b08d87540bb47981da0398278c13.jpg"
+				},
+				{
+					"name": "TF_PYRO_ACHIEVE_PROGRESS2",
+					"defaultvalue": 0,
+					"displayName": "Pyro Milestone 2",
+					"hidden": 0,
+					"description": "Achieve 16 of the achievements in the Pyro pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/5377ecfc94bd59615e55c9453cefb1d2d126c75b.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/60dc06b26a1a5427dc5ca04c598c342ee0ede797.jpg"
+				},
+				{
+					"name": "TF_PYRO_ACHIEVE_PROGRESS3",
+					"defaultvalue": 0,
+					"displayName": "Pyro Milestone 3",
+					"hidden": 0,
+					"description": "Achieve 22 of the achievements in the Pyro pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/5cd17769554a97947d9912c3600835eebbd70ef8.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a896644b41e2db2a13192fc9c642ec154f69a870.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ACHIEVE_PROGRESS1",
+					"defaultvalue": 0,
+					"displayName": "Heavy Milestone 1",
+					"hidden": 0,
+					"description": "Achieve 10 of the achievements in the Heavy pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/b98818a31507ba872e4f92b1ac1fd6a0d5ac20f5.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0223ef1859de91775ab25eeb83137ca7e64c7b6d.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ACHIEVE_PROGRESS2",
+					"defaultvalue": 0,
+					"displayName": "Heavy Milestone 2",
+					"hidden": 0,
+					"description": "Achieve 16 of the achievements in the Heavy pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2c701f151731dcd0e8050be6c6fd7f55ee1dc474.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1a1602da1aaf5f5aed8d78da87f85ce355b44b17.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ACHIEVE_PROGRESS3",
+					"defaultvalue": 0,
+					"displayName": "Heavy Milestone 3",
+					"hidden": 0,
+					"description": "Achieve 22 of the achievements in the Heavy pack.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f36813c5713d225db2268e350c7547d380813eee.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0818c70ae42adb38caefbe0c2bc69e0720e7d6b1.jpg"
+				},
+				{
+					"name": "TF_HEAVY_DAMAGE_TAKEN",
+					"defaultvalue": 0,
+					"displayName": "Iron Kurtain",
+					"hidden": 0,
+					"description": "Take 1000 points of damage in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0657e8cd2acac9f8001bf6f721f7f9b23cc7dc1b.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c982e0891f5bf5bdfb01be55972fdbe25e1cbd61.jpg"
+				},
+				{
+					"name": "TF_HEAVY_DEFEND_MEDIC",
+					"defaultvalue": 0,
+					"displayName": "Party Loyalty",
+					"hidden": 0,
+					"description": "Kill 50 enemies within 3 seconds of them attacking your Medic.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e974bb13f2da40948651cc09896dad2c0a300ce9.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/31f33ee67948a6be8fc6b20e521e48bea24af82c.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ASSIST_MEDIC_LARGE",
+					"defaultvalue": 0,
+					"displayName": "Division of Labor",
+					"hidden": 0,
+					"description": "Kill 10 enemies with a Medic assisting you, where neither of you die.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7b5a18b065bfd735b7bd79905c1b53b1dfc2fd6c.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/847aa985ffb6b03d9fed73b3f866195070f0a6fe.jpg"
+				},
+				{
+					"name": "TF_HEAVY_EARN_MEDIC_DOMINATION",
+					"defaultvalue": 0,
+					"displayName": "Red Oktoberfest",
+					"hidden": 0,
+					"description": "Earn a domination for a Medic who's healing you.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2cbf9d9fe5192b2497ec6d0f1a4dec179fb7f390.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e4fab565b0063e29b474897f9690b73374b6cbfa.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_TAUNT",
+					"defaultvalue": 0,
+					"displayName": "Show Trial",
+					"hidden": 0,
+					"description": "Kill an enemy with a taunt.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/896d8630b67f41fb71de6daa3a463b84f263b8a4.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/aa47f7d16432db5036d7b9125c3e1c4c83720fe8.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_FLAG_CARRIERS",
+					"defaultvalue": 0,
+					"displayName": "Crime and Punishment",
+					"hidden": 0,
+					"description": "Kill 10 enemies carrying your intelligence.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/b06391a97668705d3522d7c44e232e36742aeb43.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d970ef038c5ca4c0a362280d85794bad680b890c.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_MEDIC_PAIR",
+					"defaultvalue": 0,
+					"displayName": "Class Struggle",
+					"hidden": 0,
+					"description": "Work with a friendly Medic to kill an enemy Heavy & Medic pair.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/66ef5516aae298c3a4d1fb6492acbe1558aef49b.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/ddc1d0e7c40d0aafe425229435e9a142626fe281.jpg"
+				},
+				{
+					"name": "TF_HEAVY_BLOCK_INVULN_HEAVY",
+					"defaultvalue": 0,
+					"displayName": "Soviet Block",
+					"hidden": 0,
+					"description": "While invulnerable and on defense, block an invulnerable enemy Heavy's movement.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f2346220adb7b41bcb456cf228cd5951399aa71c.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/5aaaded4bb5bb4faee0730ae1387e6160d130bbb.jpg"
+				},
+				{
+					"name": "TF_HEAVY_BLOCK_CART",
+					"defaultvalue": 0,
+					"displayName": "Stalin the Kart",
+					"hidden": 0,
+					"description": "Block the enemy from moving the payload cart 25 times.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/26e419dd8168f60fc393437b89bb0402c14c2b24.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d4ffeebcb4c9d1d89394ddb97e894af06d31ed9a.jpg"
+				},
+				{
+					"name": "TF_HEAVY_RECEIVE_UBER_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Supreme Soviet",
+					"hidden": 0,
+					"description": "Get ÜberCharged 50 times.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/35cd5b3b3d4eb284dced7a608ffa526ba0ed7001.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/14428d20580859d5a36a822e78b8d3dda41bcf42.jpg"
+				},
+				{
+					"name": "TF_HEAVY_STAND_NEAR_DISPENSER",
+					"defaultvalue": 0,
+					"displayName": "Factory Worker",
+					"hidden": 0,
+					"description": "Kill 20 enemies while being recharged by a dispenser.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/08bdcc1259b2694edb9088b70c5051290f14fc66.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/56b36e1a6f5a090ad42a11b65cf4a20462aee5dc.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ASSIST_HEAVY_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Soviet Union",
+					"hidden": 0,
+					"description": "Get 25 enemy kills where you either assist or are assisted by another Heavy.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2a73b3bb932944303a11e25319a0c90252821c75.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/6875f1e7a22b84b21fcfb853ea34f965cb19c4be.jpg"
+				},
+				{
+					"name": "TF_HEAVY_CLEAR_STICKYBOMBS",
+					"defaultvalue": 0,
+					"displayName": "0wn the Means of Production",
+					"hidden": 0,
+					"description": "Remove 20 stickybombs by killing the Demomen who produced them.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8649822ddfc650ff50d56a7c36c94a67e579df03.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2f34b47fd473c0eea429a23eb58e27ce725164f7.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_UNDERWATER",
+					"defaultvalue": 0,
+					"displayName": "Krazy Ivan",
+					"hidden": 0,
+					"description": "Kill 50 enemies while both you and your victim are underwater.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/957daad8f6b9f237620e0326f38cbf941c60a9d1.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/34b787ce4e47ef0e206ecd52626b053da13e18c4.jpg"
+				},
+				{
+					"name": "TF_HEAVY_TAKE_MULTI_DAMAGE",
+					"defaultvalue": 0,
+					"displayName": "Rasputin",
+					"hidden": 0,
+					"description": "In a single life, get shot, burned, bludgeoned, and receive explosive damage.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/75f010adbdf23828c781ea4fc5df9eb3dd3efdcb.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/5e949e6a19ae901836ec243adcf4f925a0ef1240.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_DOMINATED",
+					"defaultvalue": 0,
+					"displayName": "Icing on the Cake",
+					"hidden": 0,
+					"description": "Get 20 kills on players that you're dominating.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/82b0ddea8634845f02ff4ea1b164079ea24de318.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8539b28b36ffc69476f0dd08daa086f17a4f9037.jpg"
+				},
+				{
+					"name": "TF_HEAVY_SURVIVE_CROCKET",
+					"defaultvalue": 0,
+					"displayName": "Crock Block",
+					"hidden": 0,
+					"description": "Survive a direct hit from a critical rocket.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/7b026968cf4bc5f41b13555dba6d380843346c0d.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0b397d465f83cf17c6f67ace66a504e82a946cfb.jpg"
+				},
+				{
+					"name": "TF_HEAVY_ASSIST_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Kollectivization",
+					"hidden": 0,
+					"description": "Get 1000 assists.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/da2004f2ec32296d3d2402d5f60df5e16644d021.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a527a3a25c699011befc0aa9aa4d44b3e7fd43f0.jpg"
+				},
+				{
+					"name": "TF_HEAVY_UNCOVER_SPIES",
+					"defaultvalue": 0,
+					"displayName": "Spyalectical Materialism",
+					"hidden": 0,
+					"description": "Kill or assist in killing 10 cloaked Spies.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/972d268a81a153260b4a515de3d0d100566ad0ae.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e0dd4bd3a147be78420e6a82f011a8f5fe2f3c4e.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_WHILE_SPUNUP",
+					"defaultvalue": 0,
+					"displayName": "Permanent Revolution",
+					"hidden": 0,
+					"description": "Kill 5 enemies without spinning down your gun.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/3fa5f0aed6a7d26ba583488dd90874c7874dbabd.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/1514116037395cc722640d071a0e3f13994c718c.jpg"
+				},
+				{
+					"name": "TF_HEAVY_FIRE_LOTS",
+					"defaultvalue": 0,
+					"displayName": "Heavy Industry",
+					"hidden": 0,
+					"description": "Fire $200,000 worth of minigun rounds in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/55825c6530d0047c4298defdf0482ae2b13065e0.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/354f14a8e7368be6e5a014d53a2b88a0b19f46a0.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_CRIT_PUNCH",
+					"defaultvalue": 0,
+					"displayName": "Communist Mani-Fisto",
+					"hidden": 0,
+					"description": "Kill an enemy with a critical punch.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/096c4bdff778dd9559e929768a280e3db0271e90.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d0b1c10ece49201fbac2ee35cece320d75b517ee.jpg"
+				},
+				{
+					"name": "TF_HEAVY_HEAL_MEDIKITS",
+					"defaultvalue": 0,
+					"displayName": "Redistribution of Health",
+					"hidden": 0,
+					"description": "Heal 1000 damage with med-kits in a single life.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/792b8c02d2ac821c2611b857a13a98d7e7c23321.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/bd63a21bf0d49e5227e3e31b71b139dcbf3506d2.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_SHOTGUN",
+					"defaultvalue": 0,
+					"displayName": "Rationing",
+					"hidden": 0,
+					"description": "Kill an enemy with your shotgun while you're out of minigun ammo.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/8554257692075d010a27e2c78160456cdcf8efa7.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/899028390313c6a31ed8d81652507e66438ce862.jpg"
+				},
+				{
+					"name": "TF_HEAVY_FIRST_TO_CAP",
+					"defaultvalue": 0,
+					"displayName": "Vanguard Party",
+					"hidden": 0,
+					"description": "Be the first on your team to start capturing a control point in a round.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2c08e318ed3ee60827a5816c9c8adad26f456227.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c2abd229eb67bf9a0d53d20af094fec4331be9a0.jpg"
+				},
+				{
+					"name": "TF_HEAVY_PAYLOAD_CAP_GRIND",
+					"defaultvalue": 0,
+					"displayName": "Pushkin the Kart",
+					"hidden": 0,
+					"description": "Get 50 caps on payload maps.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d27828e67f61114e82fad9781419e070e65dfafc.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/680de0d44b08e2bd938831a8b07cc059e9a6e2f1.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_MIDAIR_MINIGUN",
+					"defaultvalue": 0,
+					"displayName": "Marxman",
+					"hidden": 0,
+					"description": "Kill 10 enemies in mid-air with the minigun.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a0105805e82147c69d57e67d98982252fd2a8ce2.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d7e01ff5e6f3896fa362aa1701fa7d068eeaa6af.jpg"
+				},
+				{
+					"name": "TF_HEAVY_DEFEND_CONTROL_POINT",
+					"defaultvalue": 0,
+					"displayName": "Gorky Parked",
+					"hidden": 0,
+					"description": "Kill 25 enemies while you're standing on a control point you own.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/79bdfdc72d63aebaec6f89e676259523411dbadd.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/60960eae646747412c3867db93b0d1076e4fc609.jpg"
+				},
+				{
+					"name": "TF_HEAVY_KILL_CAPPING_ENEMIES",
+					"defaultvalue": 0,
+					"displayName": "Purge",
+					"hidden": 0,
+					"description": "Kill 15 enemies capturing a control point you own.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c6091edd2f68068e069e22d17e24fb3ffc6b1579.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/5c6c01b8de77e6ed425b96385164aced1a949ed7.jpg"
+				},
+				{
+					"name": "TF_HEAVY_REVENGE_ASSIST",
+					"defaultvalue": 0,
+					"displayName": "Lenin A Hand",
+					"hidden": 0,
+					"description": "Help 5 teammates get revenge on their nemeses.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/f87cd288e47d974fe5b51a454c25ad21e1a81534.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/c060a7d6d2523c2f7b775aba9e3a8978c29d0104.jpg"
+				},
+				{
+					"name": "TF_HEAVY_TELEPORT_FAST_KILL",
+					"defaultvalue": 0,
+					"displayName": "Five Second Plan",
+					"hidden": 0,
+					"description": "Kill an enemy in the first 5 seconds after you exit a teleporter.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/2b56ba873c88925eb0d46a95dbe3a44175811f7a.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/95ab9ca37a3c85b74ac09aab5f5519d687891106.jpg"
+				},
+				{
+					"name": "TF_HEAVY_FREEZECAM_TAUNT",
+					"defaultvalue": 0,
+					"displayName": "Photostroika",
+					"hidden": 0,
+					"description": "Provide an enemy with a freezecam shot of you taunting while invulnerable.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/cfaca9db6f57f9deaf4c1a06051eccd06df24a89.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/73754672f3dc7543f645545ffd73e90f42c8d779.jpg"
+				},
+				{
+					"name": "TF_HEAVY_EAT_SANDWICHES",
+					"defaultvalue": 0,
+					"displayName": "Konspicuous Konsumption",
+					"hidden": 0,
+					"description": "Eat 100 sandviches.",
+					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/0f45173a366cc59b5ed0d60681b24c5a9e71d6af.jpg",
+					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/dafdac19dd04083d76cd68adfaffbdcb6415efa5.jpg"
+				}
+			]
+			
+		}
+	}
+}
