@@ -15,7 +15,7 @@ public class GameAchievement extends GameStat {
 	public GameAchievement(JSONObject statJSONObject) throws JSONException {
 		super(statJSONObject);
 		
-		this.description = statJSONObject.getString("description");
+		this.description = statJSONObject.has("description") ? statJSONObject.getString("description") : "";
 		this.iconClosedUrl = statJSONObject.getString("icon");
 		this.iconOpenUrl = statJSONObject.getString("icongray");
 		this.hidden = statJSONObject.getInt("hidden") == 1 ? true : false;

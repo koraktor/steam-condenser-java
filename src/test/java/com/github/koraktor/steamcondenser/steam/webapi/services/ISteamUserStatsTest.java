@@ -304,6 +304,9 @@ public class ISteamUserStatsTest {
 		GameAchievement hiddenAchievement = gameStatsSchema.getAchievement("TF_PYRO_KILL_HEAVIES");
 		assertTrue(hiddenAchievement.isHidden());
 
+		GameAchievement noDescriptionAchievement = gameStatsSchema.getAchievement("TF_HEAVY_KILL_DOMINATED");
+		assertEquals("", noDescriptionAchievement.getDescription());
+		
 		GameStat gameStat = gameStatsSchema.getStat("Spy.accum.iNumInvulnerable");
 		assertEquals("Spy.accum.iNumInvulnerable", gameStat.getDisplayName());
 		assertEquals(0, gameStat.getDefaultValue());
