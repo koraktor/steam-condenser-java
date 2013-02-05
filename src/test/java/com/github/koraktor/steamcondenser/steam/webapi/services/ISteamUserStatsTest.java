@@ -175,35 +175,37 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetPlayerAchievementsInvalidSteamId() throws WebApiException, JSONException, IOException {
-		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"error\": \"Invalid SteamID\", \"success\": false } }");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("steamid", "123456578");
 		params.put("appid", "440");
 
-		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
+		WebApiException webApiException = new WebApiException(WebApiException.Cause.HTTP_ERROR, 400, "Bad Request");
+		
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenThrow(webApiException);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(123456578, 440);
 			fail("Exception should be thrown when calling getPlayerAchievements with an invalid steamId.");
 		} catch (Exception e) {
-			assertEquals("Invalid SteamID", e.getMessage());
+			assertEquals("The Web API request has failed due to an HTTP error: Bad Request (status code: 400).", e.getMessage());
 		}
 	}
 
 	@Test
 	public void testGetPlayerAchievementsInvalidAppId() throws WebApiException, JSONException, IOException {
-		JSONObject playerAchievementsDocument = new JSONObject("{ \"playerstats\": { \"error\": \"Requested app has no stats\", \"success\": false } }");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("steamid", "12345");
 		params.put("appid", "12345");
 
-		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenReturn(playerAchievementsDocument);
+		WebApiException webApiException = new WebApiException(WebApiException.Cause.HTTP_ERROR, 400, "Bad Request");
+		
+		when(WebApi.getJSONObject("ISteamUserStats", "GetPlayerAchievements", 1, params)).thenThrow(webApiException);
 
 		try {
 			ISteamUserStats.getPlayerAchievements(12345, 12345);
 			fail("Exception should be thrown when calling getPlayerAchievements with an invalid appId.");
 		} catch (Exception e) {
-			assertEquals("Requested app has no stats", e.getMessage());
+			assertEquals("The Web API request has failed due to an HTTP error: Bad Request (status code: 400).", e.getMessage());
 		}
 	}
 
@@ -332,17 +334,18 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetSchemaForGameInvalidAppId() throws WebApiException, JSONException, IOException {
-		JSONObject schemaForGameDocument = new JSONObject("{ }");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("appid", "12345");
 
-		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenReturn(schemaForGameDocument);
+		WebApiException webApiException = new WebApiException(WebApiException.Cause.HTTP_ERROR, 400, "Bad Request");
+		
+		when(WebApi.getJSONObject("ISteamUserStats", "GetSchemaForGame", 2, params)).thenThrow(webApiException);
 
 		try {
 			ISteamUserStats.getSchemaForGame(12345);
 			fail("Exception should be thrown when calling getSchemaForGame with an invalid appId.");
 		} catch (Exception e) {
-			assertEquals("Invalid appId", e.getMessage());
+			assertEquals("The Web API request has failed due to an HTTP error: Bad Request (status code: 400).", e.getMessage());
 		}
 	}
 
@@ -437,18 +440,19 @@ public class ISteamUserStatsTest {
 
 	@Test
 	public void testGetUserStatsForGameInvalidSteamIdOrAppId() throws WebApiException, JSONException, IOException {
-		JSONObject userStatsForGameDocument = new JSONObject("{ }");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("steamid", "12345");
 		params.put("appid", "440739");
 
-		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenReturn(userStatsForGameDocument);
+		WebApiException webApiException = new WebApiException(WebApiException.Cause.HTTP_ERROR, 400, "Bad Request");
+		
+		when(WebApi.getJSONObject("ISteamUserStats", "GetUserStatsForGame", 2, params)).thenThrow(webApiException);
 
 		try {
 			ISteamUserStats.getUserStatsForGame(12345, 440739);
 			fail("Exception should be thrown when calling getUserStatsForGame with an invalid appId or steamId.");
 		} catch (Exception e) {
-			assertEquals("Invalid appId or steamId", e.getMessage());
+			assertEquals("The Web API request has failed due to an HTTP error: Bad Request (status code: 400).", e.getMessage());
 		}
 
 	}

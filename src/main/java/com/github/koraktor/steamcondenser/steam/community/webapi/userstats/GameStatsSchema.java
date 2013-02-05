@@ -28,10 +28,6 @@ public class GameStatsSchema {
 		this.appId = appId;
 		this.language = language;
 		try {
-			if (!data.has("game")) {
-				throw new WebApiException("Invalid appId");
-			}
-
 			JSONObject gameObject = data.getJSONObject("game");
 			if (!gameObject.has("gameName") && !gameObject.has("gameVersion")) {
 				emptySchema = true;

@@ -22,10 +22,6 @@ public class UserStats {
 		this.steamId = steamId;
 		this.appId = appId;
 		try {
-			if(!data.has("playerstats")) {
-				throw new WebApiException("Invalid appId or steamId");
-			}
-			
 			JSONObject playerstatsObject = data.getJSONObject("playerstats");
 			gameName = playerstatsObject.getString("gameName");
 		
