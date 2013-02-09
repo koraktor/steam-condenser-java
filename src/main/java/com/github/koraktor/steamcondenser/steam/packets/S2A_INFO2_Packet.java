@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.packets;
@@ -20,6 +20,7 @@ package com.github.koraktor.steamcondenser.steam.packets;
 public class S2A_INFO2_Packet extends S2A_INFO_BasePacket {
 
     protected short appId;
+    protected long gameId;
     protected String gameVersion;
     protected long serverId;
     protected short serverPort;
@@ -68,6 +69,10 @@ public class S2A_INFO2_Packet extends S2A_INFO_BasePacket {
 
             if((extraDataFlag & 0x20) != 0) {
                 this.serverTags = this.contentData.getString();
+            }
+
+            if ((extraDataFlag & 0x01) != 0) {
+                this.gameId = Long.reverseBytes((this.contentData.getInt() << 32) | this.contentData.getInt());
             }
         }
     }
