@@ -19,14 +19,11 @@ package com.github.koraktor.steamcondenser.steam.packets;
  */
 public class S2A_INFO2_Packet extends S2A_INFO_BasePacket {
 
-    protected short appId;
-    protected long gameId;
-    protected String gameVersion;
-    protected long serverId;
-    protected short serverPort;
-    protected String serverTags;
-    protected String tvName;
-    protected short tvPort;
+    private static byte EDF_GAME_ID     = (byte) 0x01;
+    private static byte EDF_GAME_PORT   = (byte) 0x80;
+    private static byte EDF_SERVER_ID   = (byte) 0x10;
+    private static byte EDF_SERVER_TAGS = (byte) 0x20;
+    private static byte EDF_SOURCE_TV   = (byte) 0x40;
 
     /**
      * Creates a new S2A_INFO2 response object based on the given data
@@ -36,44 +33,45 @@ public class S2A_INFO2_Packet extends S2A_INFO_BasePacket {
     public S2A_INFO2_Packet(byte[] dataBytes) {
         super(SteamPacket.S2A_INFO2_HEADER, dataBytes);
 
-        this.networkVersion = this.contentData.getByte();
-        this.serverName = this.contentData.getString();
-        this.mapName = this.contentData.getString();
-        this.gameDir = this.contentData.getString();
-        this.gameDescription = this.contentData.getString();
-        this.appId = Short.reverseBytes(this.contentData.getShort());
-        this.numberOfPlayers = this.contentData.getByte();
-        this.maxPlayers = this.contentData.getByte();
-        this.numberOfBots = this.contentData.getByte();
-        this.dedicated = this.contentData.getByte();
-        this.operatingSystem = this.contentData.getByte();
-        this.passwordProtected = this.contentData.getByte() == 1;
-        this.secure = this.contentData.getByte() == 1;
-        this.gameVersion = this.contentData.getString();
+        this.getInfo().put("networkVersion", this.contentData.getByte());
+        this.getInfo().put("serverName", this.contentData.getString());
+        this.getInfo().put("mapName", this.contentData.getString());
+        this.getInfo().put("gameDir", this.contentData.getString());
+        this.getInfo().put("gameDescription", this.contentData.getString());
+        this.getInfo().put("appId", Short.reverseBytes(this.contentData.getShort()));
+        this.getInfo().put("numberOfPlayers", this.contentData.getByte());
+        this.getInfo().put("maxPlayers", this.contentData.getByte());
+        this.getInfo().put("numberOfBots", this.contentData.getByte());
+        this.getInfo().put("dedicated", this.contentData.getByte());
+        this.getInfo().put("operatingSystem", this.contentData.getByte());
+        this.getInfo().put("passwordProtected", this.contentData.getByte() == 1);
+        this.getInfo().put("secure", this.contentData.getByte() == 1);
+        this.getInfo().put("gameVersion", this.contentData.getString());
 
         if(this.contentData.remaining() > 0) {
             byte extraDataFlag = this.contentData.getByte();
 
-            if((extraDataFlag & 0x80) != 0) {
-                this.serverPort = Short.reverseBytes(this.contentData.getShort());
+            if ((extraDataFlag & EDF_GAME_PORT) != 0) {
+                this.getInfo().put("serverPort", Short.reverseBytes(this.contentData.getShort()));
             }
 
-            if((extraDataFlag & 0x10) != 0) {
-                this.serverId = Long.reverseBytes((this.contentData.getInt() << 32) | this.contentData.getInt());
+            if ((extraDataFlag & EDF_SERVER_ID) != 0) {
+                this.getInfo().put("serverId", Long.reverseBytes((this.contentData.getInt() << 32) | this.contentData.getInt()));
             }
 
-            if((extraDataFlag & 0x40) != 0) {
-                this.tvPort = Short.reverseBytes(this.contentData.getShort());
-                this.tvName = this.contentData.getString();
+            if((extraDataFlag & EDF_SOURCE_TV) != 0) {
+                this.getInfo().put("tvPort", Short.reverseBytes(this.contentData.getShort()));
+                this.getInfo().put("tvName", this.contentData.getString());
             }
 
-            if((extraDataFlag & 0x20) != 0) {
-                this.serverTags = this.contentData.getString();
+            if((extraDataFlag & EDF_SERVER_TAGS) != 0) {
+                this.getInfo().put("serverTags", this.contentData.getString());
             }
 
-            if ((extraDataFlag & 0x01) != 0) {
-                this.gameId = Long.reverseBytes((this.contentData.getInt() << 32) | this.contentData.getInt());
+            if ((extraDataFlag & EDF_GAME_ID) != 0) {
+                this.getInfo().put("gameId", Long.reverseBytes((this.contentData.getInt() << 32) | this.contentData.getInt()));
             }
         }
     }
+
 }

@@ -369,7 +369,7 @@ public class GameServerTest {
         S2A_INFO2_Packet packet = mock(S2A_INFO2_Packet.class);
         HashMap<String, Object> infoMap = new HashMap<String, Object>();
         infoMap.put("test", "test");
-        when(packet.getInfoHash()).thenReturn(infoMap);
+        when(packet.getInfo()).thenReturn(infoMap);
         when(server.getReply()).thenReturn(packet);
 
         this.server.handleResponseForRequest(GameServer.REQUEST_INFO);
@@ -412,7 +412,7 @@ public class GameServerTest {
         S2A_INFO2_Packet packet1 = mock(S2A_INFO2_Packet.class);
         HashMap<String, Object> infoMap = new HashMap<String, Object>();
         infoMap.put("test", "test");
-        when(packet1.getInfoHash()).thenReturn(infoMap);
+        when(packet1.getInfo()).thenReturn(infoMap);
         SteamPlayer player = mock(SteamPlayer.class);
         S2A_PLAYER_Packet packet2 = mock(S2A_PLAYER_Packet.class);
         HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();

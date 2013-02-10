@@ -2,12 +2,11 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.packets;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 
 /**
@@ -20,18 +19,7 @@ import java.util.HashMap;
  */
 public abstract class S2A_INFO_BasePacket extends SteamPacket {
 
-    protected byte dedicated;
-    protected String gameDescription;
-    protected String gameDir;
-    protected String mapName;
-    protected int maxPlayers;
-    protected int networkVersion;
-    protected int numberOfBots;
-    protected int numberOfPlayers;
-    protected byte operatingSystem;
-    protected boolean passwordProtected;
-    protected boolean secure;
-    protected String serverName;
+    protected HashMap<String, Object> info;
 
     S2A_INFO_BasePacket(byte headerByte, byte[] dataBytes) {
         super(headerByte, dataBytes);
@@ -43,19 +31,12 @@ public abstract class S2A_INFO_BasePacket extends SteamPacket {
      *
      * @return The information provided by the server
      */
-    public HashMap<String, Object> getInfoHash() {
-        HashMap<String, Object> infoHash = new HashMap<String, Object>();
+    public HashMap<String, Object> getInfo() {
+        if (this.info == null) {
+            this.info = new HashMap<String, Object>();
+        }
 
-        try {
-            for(Field field : this.getClass().getSuperclass().getDeclaredFields()) {
-                infoHash.put(field.getName(), field.get(this));
-            }
-
-            for(Field field : this.getClass().getDeclaredFields()) {
-                infoHash.put(field.getName(), field.get(this));
-            }
-        } catch(IllegalAccessException e){}
-
-        return infoHash;
+        return this.info;
     }
+
 }
