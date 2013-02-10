@@ -7,7 +7,6 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import org.xml.sax.SAXException;
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
 /**
  * This class provides basic functionality to parse XML data
@@ -61,10 +60,15 @@ public class XMLData {
      * Creates a new XML data container for the given URL
      *
      * @param url The URL to load XML data from
+     * @throws SteamCondenserException if an error occurs while parsing the
+     *         XML data
      */
-    public XMLData(String url)
-            throws IOException, ParserConfigurationException, SAXException {
-        this.root = getDocumentBuilder().parse(url).getDocumentElement();
+    public XMLData(String url) throws SteamCondenserException {
+        try {
+            this.root = getDocumentBuilder().parse(url).getDocumentElement();
+        } catch (Exception e) {
+            throw new SteamCondenserException("XML data could not be parsed: " + e.getMessage(), e);
+        }
     }
 
     /**
