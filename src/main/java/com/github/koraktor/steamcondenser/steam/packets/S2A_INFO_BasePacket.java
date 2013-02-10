@@ -23,6 +23,8 @@ public abstract class S2A_INFO_BasePacket extends SteamPacket {
 
     S2A_INFO_BasePacket(byte headerByte, byte[] dataBytes) {
         super(headerByte, dataBytes);
+
+        this.info = new HashMap<String, Object>();
     }
 
     /**
@@ -32,10 +34,6 @@ public abstract class S2A_INFO_BasePacket extends SteamPacket {
      * @return The information provided by the server
      */
     public HashMap<String, Object> getInfo() {
-        if (this.info == null) {
-            this.info = new HashMap<String, Object>();
-        }
-
         return this.info;
     }
 

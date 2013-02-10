@@ -29,19 +29,19 @@ public class S2A_INFO_DETAILED_Packet extends S2A_INFO_BasePacket {
     public S2A_INFO_DETAILED_Packet(byte[] dataBytes) {
         super(SteamPacket.S2A_INFO_DETAILED_HEADER, dataBytes);
 
-        this.getInfo().put("serverIp", this.contentData.getString());
-        this.getInfo().put("serverName", this.contentData.getString());
-        this.getInfo().put("mapName", this.contentData.getString());
-        this.getInfo().put("gameDir", this.contentData.getString());
-        this.getInfo().put("gameDescription", this.contentData.getString());
-        this.getInfo().put("numberOfPlayers", this.contentData.getByte());
-        this.getInfo().put("maxPlayers", this.contentData.getByte());
-        this.getInfo().put("networkVersion", this.contentData.getByte());
-        this.getInfo().put("dedicated", this.contentData.getByte());
-        this.getInfo().put("operatingSystem", this.contentData.getByte());
-        this.getInfo().put("passwordProtected", this.contentData.getByte() == 1);
+        this.info.put("serverIp", this.contentData.getString());
+        this.info.put("serverName", this.contentData.getString());
+        this.info.put("mapName", this.contentData.getString());
+        this.info.put("gameDir", this.contentData.getString());
+        this.info.put("gameDescription", this.contentData.getString());
+        this.info.put("numberOfPlayers", this.contentData.getByte());
+        this.info.put("maxPlayers", this.contentData.getByte());
+        this.info.put("networkVersion", this.contentData.getByte());
+        this.info.put("dedicated", this.contentData.getByte());
+        this.info.put("operatingSystem", this.contentData.getByte());
+        this.info.put("passwordProtected", this.contentData.getByte() == 1);
         boolean isMod = this.contentData.getByte() == 1;
-        this.getInfo().put("isMod", isMod);
+        this.info.put("isMod", isMod);
 
         if(isMod) {
             HashMap<String, Object> modInfo = new HashMap<String, Object>(6);
@@ -53,13 +53,13 @@ public class S2A_INFO_DETAILED_Packet extends S2A_INFO_BasePacket {
                 modInfo.put("modSize", Integer.reverseBytes(this.contentData.getInt()));
                 modInfo.put("svOnly", this.contentData.getByte() == 1);
                 modInfo.put("clDll", this.contentData.getByte() == 1);
-                this.getInfo().put("secure", this.contentData.getByte() == 1);
-                this.getInfo().put("numberOfBots", this.contentData.getByte());
+                this.info.put("secure", this.contentData.getByte() == 1);
+                this.info.put("numberOfBots", this.contentData.getByte());
             }
-            this.getInfo().put("modInfo", modInfo);
+            this.info.put("modInfo", modInfo);
         } else {
-            this.getInfo().put("secure", this.contentData.getByte() == 1);
-            this.getInfo().put("numberOfBots", this.contentData.getByte());
+            this.info.put("secure", this.contentData.getByte() == 1);
+            this.info.put("numberOfBots", this.contentData.getByte());
         }
     }
 
