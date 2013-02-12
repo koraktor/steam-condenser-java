@@ -267,13 +267,15 @@ public class MasterServer extends Server {
                         Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server " + this.ipAddress + " timed out, retrying...");
                     }
                 } while(!finished);
+                break;
             } catch(TimeoutException e) {
-                if(this.rotateIp() && !force) {
+                if (force) {
+                    break;
+                } else if(this.rotateIp()) {
                     throw e;
                 }
                 Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server failed, retrying " + this.ipAddress + "...");
             }
-            break;
         }
 
         return serverArray;

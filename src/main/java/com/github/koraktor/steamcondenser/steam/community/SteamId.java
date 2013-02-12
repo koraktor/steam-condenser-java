@@ -380,6 +380,9 @@ public class SteamId {
                 }
             }
         } catch(Exception e) {
+            if (e instanceof SteamCondenserException) {
+                throw (SteamCondenserException) e;
+            }
             throw new SteamCondenserException("XML data could not be parsed.", e);
         }
 
