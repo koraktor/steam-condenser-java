@@ -1,4 +1,4 @@
-package com.github.koraktor.steamcondenser.steam.community.webapi.userstats;
+package com.github.koraktor.steamcondenser.steam.community.userstats;
 
 import org.json.JSONException;
 import org.json.JSONObject;

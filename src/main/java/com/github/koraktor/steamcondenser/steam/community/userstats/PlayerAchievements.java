@@ -1,4 +1,4 @@
-package com.github.koraktor.steamcondenser.steam.community.webapi.userstats;
+package com.github.koraktor.steamcondenser.steam.community.userstats;
 
 import java.util.ArrayList;
 import java.util.List;

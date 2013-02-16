@@ -24,14 +24,15 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.WebApi;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GameAchievement;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GameStat;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GameStatsSchema;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GlobalAchievements;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.PlayerAchievements;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.UserAchievement;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.UserStat;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.UserStats;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GameAchievement;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GameStat;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GameStatsSchema;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GlobalAchievements;
+import com.github.koraktor.steamcondenser.steam.community.userstats.PlayerAchievements;
+import com.github.koraktor.steamcondenser.steam.community.userstats.UserAchievement;
+import com.github.koraktor.steamcondenser.steam.community.userstats.UserStat;
+import com.github.koraktor.steamcondenser.steam.community.userstats.UserStats;
+import com.github.koraktor.steamcondenser.steam.webapi.ISteamUserStats;
 
 @PrepareForTest(WebApi.class)
 @RunWith(PowerMockRunner.class)

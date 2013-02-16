@@ -1,4 +1,4 @@
-package com.github.koraktor.steamcondenser.steam.webapi.services;
+package com.github.koraktor.steamcondenser.steam.webapi;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,10 +8,10 @@ import org.json.JSONObject;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.WebApi;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GameStatsSchema;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.GlobalAchievements;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.PlayerAchievements;
-import com.github.koraktor.steamcondenser.steam.community.webapi.userstats.UserStats;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GameStatsSchema;
+import com.github.koraktor.steamcondenser.steam.community.userstats.GlobalAchievements;
+import com.github.koraktor.steamcondenser.steam.community.userstats.PlayerAchievements;
+import com.github.koraktor.steamcondenser.steam.community.userstats.UserStats;
 
 //XXX: needs documenting
 public class ISteamUserStats {
