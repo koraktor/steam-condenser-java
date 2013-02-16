@@ -8,12 +8,14 @@
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,7 +34,7 @@ public class SteamId {
 
     private String customUrl;
     private long fetchTime;
-    private SteamId[] friends;
+    private List<SteamId> friends;
     private HashMap<Integer, SteamGame> games;
     private SteamGroup[] groups;
     private String headLine;
@@ -49,7 +51,7 @@ public class SteamId {
     private String realName;
     private String stateMessage;
     private String nickname;
-    private long steamId64;
+    protected long steamId64;
     private float steamRating;
     private String summary;
     private String tradeBanState;
@@ -378,6 +380,9 @@ public class SteamId {
                 }
             }
         } catch(Exception e) {
+            if (e instanceof SteamCondenserException) {
+                throw (SteamCondenserException) e;
+            }
             throw new SteamCondenserException("XML data could not be parsed.", e);
         }
 
@@ -397,16 +402,19 @@ public class SteamId {
      */
     private void fetchFriends() throws SteamCondenserException {
         try {
-            String url = this.getBaseUrl() + "/friends?xml=1";
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("relationship", "friend");
+            params.put("steamid", this.steamId64);
 
-            List<XMLData> friendElements = new XMLData(url).getElements("friends", "friend");
-            this.friends = new SteamId[friendElements.size()];
-            for(int i = 0; i < this.friends.length; i++) {
-                XMLData friend = friendElements.get(i);
-                this.friends[i] = SteamId.create(Long.parseLong(friend.getRoot().getTextContent()), false);
+            JSONObject jsonData = new JSONObject(WebApi.getJSON("ISteamUser", "GetFriendList", 1, params));
+            JSONArray friendsData = jsonData.getJSONObject("friendslist").getJSONArray("friends");
+            this.friends = new ArrayList<SteamId>();
+            for (int i = 0; i < friendsData.length(); i ++) {
+                JSONObject friend = friendsData.getJSONObject(i);
+                this.friends.add(new SteamId(friend.getLong("steamid"), false));
             }
-        } catch(Exception e) {
-            throw new SteamCondenserException("XML data could not be parsed.", e);
+        } catch(JSONException e) {
+            throw new WebApiException("Could not parse JSON data.", e);
         }
     }
 
@@ -523,7 +531,7 @@ public class SteamId {
      * @throws SteamCondenserException if an error occurs while parsing the
      *         data
      */
-    public SteamId[] getFriends()
+    public List<SteamId> getFriends()
             throws SteamCondenserException {
         if(this.friends == null) {
             this.fetchFriends();

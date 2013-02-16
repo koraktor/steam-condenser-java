@@ -349,6 +349,9 @@ public class SteamGroup {
                 this.members.add(SteamId.create(member.getLong(), false));
             }
         } catch(Exception e) {
+            if (e instanceof SteamCondenserException) {
+                throw (SteamCondenserException) e;
+            }
             throw new SteamCondenserException("XML data could not be parsed.", e);
         }
 

@@ -8,7 +8,11 @@
 
 package com.github.koraktor.steamcondenser.steam.community;
 
+import java.io.DataInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -99,15 +103,25 @@ public class SteamIdTest {
 
     @Test
     public void getFriends() throws Exception {
-        Document friendsDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.getClass().getResourceAsStream("gutomaia-friends.xml"));
-        when(parser.parse("http://steamcommunity.com/id/gutomaia/friends?xml=1")).thenReturn(friendsDocument);
+        InputStream friendStream = this.getClass().getResourceAsStream("koraktor-friends.json");
 
-        SteamId steamId = SteamId.create("gutomaia", false);
-        SteamId friends[] = steamId.getFriends();
+        mockStatic(WebApi.class);
 
-        verify(parser).parse("http://steamcommunity.com/id/gutomaia/friends?xml=1");
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("relationship", "friend");
+        params.put("steamid", 76561197961384956L);
+        byte[] jsonData = new byte[friendStream.available()];
+        new DataInputStream(friendStream).readFully(jsonData);
+        String json = new String(jsonData);
+        when(WebApi.getJSON("ISteamUser", "GetFriendList", 1, params)).thenReturn(json);
 
-        assertEquals(30, friends.length);
+        SteamId steamId = SteamId.create("koraktor", false);
+        steamId.steamId64 = 76561197961384956L;
+        List<SteamId> friends = steamId.getFriends();
+
+        assertEquals(76561197960299808L, friends.get(0).getSteamId64());
+        assertEquals(76561198037444976L, friends.get(friends.size() - 1).getSteamId64());
+        assertEquals(43, friends.size());
     }
 
     @Test

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
-import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
@@ -103,14 +102,10 @@ public class RCONSocket extends SteamSocket {
      */
     public RCONPacket getReply()
             throws SteamCondenserException, TimeoutException {
-        try {
-            if (this.receivePacket(4) == 0) {
-                try {
-                    this.channel.close();
-                } catch (IOException e) {}
-                throw new RCONNoAuthException();
-            }
-        } catch (ConnectionResetException e) {
+        if (this.receivePacket(4) == 0) {
+            try {
+                this.channel.close();
+            } catch (IOException e) {}
             throw new RCONBanException();
         }
 

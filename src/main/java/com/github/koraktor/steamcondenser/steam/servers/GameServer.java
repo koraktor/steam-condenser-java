@@ -323,7 +323,7 @@ public abstract class GameServer extends Server {
         SteamPacket responsePacket = this.getReply();
 
         if(S2A_INFO_BasePacket.class.isInstance(responsePacket)) {
-            this.serverInfo = ((S2A_INFO_BasePacket) responsePacket).getInfoHash();
+            this.serverInfo = ((S2A_INFO_BasePacket) responsePacket).getInfo();
         } else if(responsePacket instanceof S2A_PLAYER_Packet) {
             this.playerHash = ((S2A_PLAYER_Packet) responsePacket).getPlayerHash();
         } else if(responsePacket instanceof S2A_RULES_Packet) {
