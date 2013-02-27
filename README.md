@@ -14,7 +14,7 @@ The following Java libraries are required:
 
 * Apache Commons Compress (for Source servers sending compressed responses)
 * Apache Commons Lang 3
-* Jakarta Commons HTTPClient (for the Web API features)
+* Apache Commons HttpClient (for the Web API features)
 * JSON (for the Web API features)
 * JUnit (for testing)
 * PowerMock (for testing)
