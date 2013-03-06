@@ -80,11 +80,14 @@ public class GameItem {
             this.level            = itemData.getInt("level");
             this.name             = this.getSchemaData().getString("item_name");
             this.preliminary      = (itemData.getLong("inventory") & 0x40000000) != 0;
-            this.origin           = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
             this.originalId       = itemData.getInt("original_id");
             this.quality          = this.inventory.getItemSchema().getQualities().get(itemData.getInt("quality"));
             this.tradeable        = !itemData.optBoolean("flag_cannot_trade");
             this.type             = this.getSchemaData().getString("item_type_name");
+
+            if (itemData.has("origin")) {
+                this.origin = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
+            }
 
             JSONArray attributesData = this.getSchemaData().optJSONArray("attributes");
             if (itemData.has("attributes")) {
