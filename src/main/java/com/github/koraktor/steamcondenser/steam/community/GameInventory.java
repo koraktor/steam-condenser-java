@@ -220,6 +220,8 @@ public class GameInventory {
                     } catch(InvocationTargetException e) {
                         if (e.getCause() instanceof SteamCondenserException) {
                             throw (SteamCondenserException) e.getCause();
+                        } else {
+                            throw (RuntimeException) e.getCause();
                         }
                     } catch(NoSuchMethodException e) {
                     }
