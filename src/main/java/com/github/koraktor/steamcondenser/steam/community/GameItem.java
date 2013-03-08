@@ -90,6 +90,9 @@ public class GameItem {
             }
 
             JSONArray attributesData = this.getSchemaData().optJSONArray("attributes");
+            if (attributesData == null) {
+                attributesData = new JSONArray();
+            }
             if (itemData.has("attributes")) {
                 JSONArray itemAttributes = itemData.getJSONArray("attributes");
                 for (int i = 0; i < itemAttributes.length(); i ++) {
