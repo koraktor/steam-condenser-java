@@ -54,7 +54,7 @@ public class UserStatsBuilderTest {
 	@Test
 	public void testBuildGlobalAchievements() throws JSONException, IOException, ParseException {
 		JSONObject globalPercentagesDocument = new JSONObject(
-				loadFileAsString("../service/ISteamUserStats/getGlobalAchievementPercentagesForApp.v2.json"));
+				loadFileAsString("ISteamUserStats/getGlobalAchievementPercentagesForApp.v2.json"));
 
 		GlobalAchievements globalAchievements = userStatsBuilder.buildGlobalAchievements(440, globalPercentagesDocument);
 
@@ -66,7 +66,7 @@ public class UserStatsBuilderTest {
 	@Test
 	public void testBuildGlobalAchievementsNoAchivements() throws JSONException, IOException, ParseException {
 		JSONObject globalPercentagesDocument = new JSONObject(
-				loadFileAsString("../service/ISteamUserStats/getGlobalAchievementPercentagesForApp.NoAchievements.v2.json"));
+				loadFileAsString("ISteamUserStats/getGlobalAchievementPercentagesForApp.NoAchievements.v2.json"));
 
 		GlobalAchievements globalAchievements = userStatsBuilder.buildGlobalAchievements(440, globalPercentagesDocument);
 
@@ -89,7 +89,7 @@ public class UserStatsBuilderTest {
 	/* Tests for getPlayerAchievements */
 	@Test
 	public void testBuildPlayerAchievements() throws JSONException, IOException, ParseException, DataException {
-		JSONObject playerAchievementsDocument = new JSONObject(loadFileAsString("../service/iSteamUserStats/getPlayerAchievements.v1.json"));
+		JSONObject playerAchievementsDocument = new JSONObject(loadFileAsString("ISteamUserStats/getPlayerAchievements.v1.json"));
 
 		PlayerAchievements playerAchievements = userStatsBuilder.buildPlayerAchievements(12345, 440, "en", playerAchievementsDocument);
 
@@ -135,7 +135,7 @@ public class UserStatsBuilderTest {
 
 	@Test
 	public void testBuildSchemaForGame() throws JSONException, IOException, SteamCondenserException {
-		JSONObject schemaForGameDocument = new JSONObject(loadFileAsString("../service/iSteamUserStats/getSchemaForGame.v2.json"));
+		JSONObject schemaForGameDocument = new JSONObject(loadFileAsString("ISteamUserStats/getSchemaForGame.v2.json"));
 
 		GameStatsSchema gameStatsSchema = userStatsBuilder.buildSchemaForGame(440, "en", schemaForGameDocument);
 
@@ -218,7 +218,7 @@ public class UserStatsBuilderTest {
 
 	@Test
 	public void testBuildUserStatsForGame() throws WebApiException, JSONException, IOException, ParseException {
-		JSONObject userStatsForGameDocument = new JSONObject(loadFileAsString("../service/iSteamUserStats/getUserStatsForGame.v2.json"));
+		JSONObject userStatsForGameDocument = new JSONObject(loadFileAsString("ISteamUserStats/getUserStatsForGame.v2.json"));
 
 		UserStats userStats = userStatsBuilder.buildUserStatsForGame(12345, 440, userStatsForGameDocument);
 
