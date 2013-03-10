@@ -1550,7 +1550,7 @@
 					"name": "TF_HEAVY_UNCOVER_SPIES",
 					"defaultvalue": 0,
 					"displayName": "Spyalectical Materialism",
-					"hidden": 0,
+					"hidden": 1,
 					"description": "Kill or assist in killing 10 cloaked Spies.",
 					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/972d268a81a153260b4a515de3d0d100566ad0ae.jpg",
 					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/e0dd4bd3a147be78420e6a82f011a8f5fe2f3c4e.jpg"
@@ -1586,7 +1586,7 @@
 					"name": "TF_HEAVY_HEAL_MEDIKITS",
 					"defaultvalue": 0,
 					"displayName": "Redistribution of Health",
-					"hidden": 0,
+					"hidden": 1,
 					"description": "Heal 1000 damage with med-kits in a single life.",
 					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/792b8c02d2ac821c2611b857a13a98d7e7c23321.jpg",
 					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/bd63a21bf0d49e5227e3e31b71b139dcbf3506d2.jpg"
@@ -1622,7 +1622,7 @@
 					"name": "TF_HEAVY_KILL_MIDAIR_MINIGUN",
 					"defaultvalue": 0,
 					"displayName": "Marxman",
-					"hidden": 0,
+					"hidden": 1,
 					"description": "Kill 10 enemies in mid-air with the minigun.",
 					"icon": "http://media.steampowered.com/steamcommunity/public/images/apps/440/a0105805e82147c69d57e67d98982252fd2a8ce2.jpg",
 					"icongray": "http://media.steampowered.com/steamcommunity/public/images/apps/440/d7e01ff5e6f3896fa362aa1701fa7d068eeaa6af.jpg"

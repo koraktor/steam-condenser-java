@@ -177,8 +177,22 @@ abstract public class WebApi {
         return result;
     }
     
-    //XXX: provide documentation
-    public static JSONObject getJSONObject(String apiInterface, String method, int version, Map<String, Object> params)
+    /**
+     * Fetches the JSON data from Steam Web API using the specified interface,
+     * method and version. Additional parameters are supplied via HTTP GET.
+     * Returns the complete response in JSON format.
+     *
+     * @param apiInterface The Web API interface to call, e.g.
+     *                     <code>ISteamUser</code>
+     * @param method The Web API method to call, e.g.
+     *               <code>GetPlayerSummaries</code>
+     * @param version The API method version to use
+     * @param params Additional parameters to supply via HTTP GET
+     * @return Data is returned as a <code>JSONObject</code>
+     * @throws JSONException In case of misformatted JSON data
+     * @throws WebApiException In case of any request failure
+     */
+    public static JSONObject getJSONResponse(String apiInterface, String method, int version, Map<String, Object> params)
     		throws JSONException, WebApiException {
         String data = getJSON(apiInterface, method, version, params);
         return new JSONObject(data);
