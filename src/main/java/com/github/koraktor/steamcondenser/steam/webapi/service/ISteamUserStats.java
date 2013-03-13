@@ -61,7 +61,8 @@ public class ISteamUserStats {
 		if(globalAchievementPercentagesForAppCache.containsKey(appId)) {
 			return globalAchievementPercentagesForAppCache.get(appId);
 		}else{
-			Map<String, Object> params = Collections.<String,Object>singletonMap("gameId", Integer.toString(appId));
+			Map<String, Object> params = new HashMap<String,Object>();
+			params.put("gameId", Integer.toString(appId));
 			JSONObject data = WebApi.getJSONResponse(I_STEAM_USER_STATS, "GetGlobalAchievementPercentagesForApp", 2, params);
 			GlobalAchievements globalAchievements = userStatsBuilder.buildGlobalAchievements(appId, data);
 			globalAchievementPercentagesForAppCache.put(appId, globalAchievements);
@@ -81,7 +82,8 @@ public class ISteamUserStats {
 	 * @throws JSONException if the JSON returned from the service is malformed.
 	 */
 	public int getNumberOfCurrentPlayers(int appId) throws WebApiException, JSONException {
-		Map<String, Object> params = Collections.<String,Object>singletonMap(APPID, Integer.toString(appId));
+		Map<String, Object> params = new HashMap<String,Object>();
+		params.put(APPID, Integer.toString(appId));
 		JSONObject data = WebApi.getJSONResponse(I_STEAM_USER_STATS, "GetNumberOfCurrentPlayers", 1, params);
 		return data.getJSONObject("response").getInt("player_count");
 	}
