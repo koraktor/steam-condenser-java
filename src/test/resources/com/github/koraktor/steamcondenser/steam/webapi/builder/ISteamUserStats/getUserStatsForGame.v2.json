@@ -1,0 +1,484 @@
+{
+	"playerstats": {
+		"steamID": "12345",
+		"gameName": "Team Fortress 2",
+		"stats": [
+			{
+				"name": "Engineer.accum.iBuildingsDestroyed",
+				"value": 17
+			},
+			{
+				"name": "Engineer.accum.iDamageDealt",
+				"value": 234641
+			},
+			{
+				"name": "Engineer.accum.iDominations",
+				"value": 75
+			},
+			{
+				"name": "Engineer.accum.iKillAssists",
+				"value": 405
+			},
+			{
+				"name": "Engineer.accum.iNumberOfKills",
+				"value": 1133
+			},
+			{
+				"name": "Engineer.accum.iPlayTime",
+				"value": 93938
+			},
+			{
+				"name": "Engineer.accum.iPointCaptures",
+				"value": 20
+			},
+			{
+				"name": "Engineer.accum.iPointDefenses",
+				"value": 85
+			},
+			{
+				"name": "Engineer.accum.iPointsScored",
+				"value": 1640
+			},
+			{
+				"name": "Engineer.accum.iRevenge",
+				"value": 17
+			},
+			{
+				"name": "Engineer.max.iBuildingsDestroyed",
+				"value": 2
+			},
+			{
+				"name": "Engineer.max.iDamageDealt",
+				"value": 3291
+			},
+			{
+				"name": "Engineer.max.iDominations",
+				"value": 2
+			},
+			{
+				"name": "Engineer.max.iKillAssists",
+				"value": 7
+			},
+			{
+				"name": "Engineer.max.iNumberOfKills",
+				"value": 18
+			},
+			{
+				"name": "Engineer.max.iPlayTime",
+				"value": 759
+			},
+			{
+				"name": "Engineer.max.iPointCaptures",
+				"value": 1
+			},
+			{
+				"name": "Engineer.max.iPointDefenses",
+				"value": 3
+			},
+			{
+				"name": "Engineer.max.iPointsScored",
+				"value": 18
+			},
+			{
+				"name": "Engineer.max.iRevenge",
+				"value": 1
+			},
+			{
+				"name": "Engineer.accum.iBuildingsBuilt",
+				"value": 1477
+			},
+			{
+				"name": "Engineer.max.iBuildingsBuilt",
+				"value": 17
+			},
+			{
+				"name": "Engineer.accum.iNumTeleports",
+				"value": 505
+			},
+			{
+				"name": "Engineer.max.iNumTeleports",
+				"value": 29
+			},
+			{
+				"name": "Engineer.max.iSentryKills",
+				"value": 15
+			},
+			{
+				"name": "Engineer.mvm.accum.iDamageDealt",
+				"value": 32807
+			},
+			{
+				"name": "Engineer.mvm.accum.iKillAssists",
+				"value": 62
+			},
+			{
+				"name": "Engineer.mvm.accum.iNumberOfKills",
+				"value": 223
+			},
+			{
+				"name": "Engineer.mvm.accum.iPlayTime",
+				"value": 2126
+			},
+			{
+				"name": "Engineer.mvm.accum.iPointDefenses",
+				"value": 42
+			},
+			{
+				"name": "Engineer.mvm.accum.iPointsScored",
+				"value": 302
+			},
+			{
+				"name": "Engineer.mvm.max.iDamageDealt",
+				"value": 6320
+			},
+			{
+				"name": "Engineer.mvm.max.iKillAssists",
+				"value": 15
+			},
+			{
+				"name": "Engineer.mvm.max.iNumberOfKills",
+				"value": 47
+			},
+			{
+				"name": "Engineer.mvm.max.iPlayTime",
+				"value": 317
+			},
+			{
+				"name": "Engineer.mvm.max.iPointDefenses",
+				"value": 9
+			},
+			{
+				"name": "Engineer.mvm.max.iPointsScored",
+				"value": 62
+			},
+			{
+				"name": "Engineer.mvm.accum.iBuildingsBuilt",
+				"value": 36
+			},
+			{
+				"name": "Engineer.mvm.max.iBuildingsBuilt",
+				"value": 7
+			},
+			{
+				"name": "Engineer.mvm.accum.iNumTeleports",
+				"value": 22
+			},
+			{
+				"name": "Engineer.mvm.max.iNumTeleports",
+				"value": 4
+			},
+			{
+				"name": "Engineer.mvm.max.iSentryKills",
+				"value": 45
+			}
+		]
+		,
+		"achievements": [
+			{
+				"name": "TF_PLAY_GAME_EVERYCLASS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PLAY_GAME_EVERYMAP",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_HEALPOINTS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_BURN_PLAYERSINMINIMUMTIME",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_TURRETKILLS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_KILL_NEMESIS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_CONSECUTIVEKILLS_NODEATHS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_HEALED_BYENEMY",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PLAY_GAME_FRIENDSONLY",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_MULTIPLEGAMES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_MULTIPLEKILLS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_GET_HEADSHOTS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_TOP_SCOREBOARD",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_UNDER_FIRE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SIMUL_CHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SETUP_CHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_RAPID_CHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_COUNTER_CHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SWITCH_TO_MEDIC",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SAVE_TEAMMATE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_BLOCKER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_MEDIC",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SYRINGE_SCOUTS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_MEDICS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_HEAVY_LONG",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_SCOUT",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_PYRO",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_HEAVY",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_DEMOMAN",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_ENGINEER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_CAPTURER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_CALLERS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_2FORT_NOENEMYCAPS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_WELL_MINIMUMTIME",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_HYDRO_NOENEMYCAPS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_DUSTBOWL_NOENEMYCAPS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_WIN_GRAVELPIT_NOENEMYCAPS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_EXTINGUISH_TEAMMATES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_VS_NEMESES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_KILL_WHILE_CHARGED",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_NOMISSES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_LARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_HUGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_GRIND",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_KILL_HEALED_SPY",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_SAVE_FALLING_TEAMMATE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_JUGGLE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_FREEZECAM_RAGDOLL",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_SPY_CALLERS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_FRIENDS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_INVITE_JOIN_CHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_HEAL_ACHIEVER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_SOLDIER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS1",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS2",
+				"achieved": 1
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS3",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_MULTIWEAPONS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_SIMULBURN_SCOUTS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_FORCE_WATERJUMP",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_POSTDEATH",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_SPIES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_CARRIERS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_REVEAL_SPIES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_CAMP_TELEPORTERS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_CAMP_POSITION",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_AXE_SMALL",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_AXE_LARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_BURN_SPIES_AS_YOU",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_BURN_SNIPERS_ZOOMED",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_BURN_MEDICS_CHARGED",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_HEAVIES",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_UNDERWATER",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_UBERCHARGE",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_DESTROY_BUILDINGS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_DEFEND_POINTS",
+				"achieved": 1
+			},
+			{
+				"name": "TF_PYRO_KILL_GRIND",
+				"achieved": 1
+			}
+		]
+		
+	}
+}
