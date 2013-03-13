@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
 import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException;
 
 /**
@@ -39,5 +40,27 @@ public class AppsBuilder {
         } catch(JSONException e) {
             throw new ParseException(ERR_COULD_NOT_PARSE_JSON_DATA, e);
         }
+	}
+	
+	public UpToDateCheck buildUpToDateCheck(int appId, int versionNumberToCheck, JSONObject data) throws ParseException {
+        try {
+        	boolean upToDate, versionIsListable;
+        	Integer requiredVersion = null;
+        	String message = null;
+        	
+        	JSONObject response = data.getJSONObject("response");
+        	upToDate = response.getBoolean("up_to_date");
+        	versionIsListable = response.getBoolean("version_is_listable");
+        	if(response.has("required_version")) {
+    			requiredVersion = response.getInt("required_version");
+        	}
+        	if(response.has("required_version")) {
+        		message = response.getString("message");
+        	}
+        	return new UpToDateCheck(upToDate, versionIsListable, requiredVersion, message);
+        } catch(JSONException e) {
+            throw new ParseException(ERR_COULD_NOT_PARSE_JSON_DATA, e);
+        }
+		
 	}
 }

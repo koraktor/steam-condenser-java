@@ -8,6 +8,8 @@
 package com.github.koraktor.steamcondenser.steam.webapi.builder;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -21,6 +23,7 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
 import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException;
 
 /**
@@ -62,4 +65,39 @@ public class AppsBuilderTest {
 			assertEquals("Could not parse JSON data.", e.getMessage());
 		}
 	}
+
+	@Test
+	public void testUpToDateCheckFalse() throws JSONException, IOException, ParseException {
+		JSONObject upToDateCheckDocument = new JSONObject(loadFileAsString("ISteamApps/UpToDateCheck.v1.json"));
+
+		UpToDateCheck upToDateCheck = appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
+
+		assertFalse(upToDateCheck.isUpToDate());
+		assertFalse(upToDateCheck.isVersionIsListable());
+		assertEquals(1258, upToDateCheck.getRequiredVersion());
+		assertEquals("Your server is out of date, please upgrade", upToDateCheck.getMessage());
+	}
+	
+	@Test
+	public void testUpToDateCheckTrue() throws JSONException, IOException, ParseException {
+		JSONObject upToDateCheckDocument = new JSONObject("{ \"response\": { \"success\": true, \"up_to_date\": true,	\"version_is_listable\": true } }");
+
+		UpToDateCheck upToDateCheck = appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
+
+		assertTrue(upToDateCheck.isUpToDate());
+		assertTrue(upToDateCheck.isVersionIsListable());
+	}
+
+	@Test
+	public void testUpToDateCheckJSON() throws JSONException {
+		JSONObject upToDateCheckDocument = new JSONObject("{ }");
+
+		try {
+			UpToDateCheck upToDateCheck = appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
+			fail("Exception should be thrown when calling up to date check builder with invalid JSON.");
+		} catch (Exception e) {
+			assertEquals("Could not parse JSON data.", e.getMessage());
+		}
+	}
+
 }

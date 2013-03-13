@@ -12,13 +12,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -29,6 +26,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.WebApi;
+import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
 import com.github.koraktor.steamcondenser.steam.webapi.builder.AppsBuilder;
 import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException;
 
@@ -49,7 +47,6 @@ public class ISteamAppsTest {
         mockStatic(WebApi.class);
 	}
 
-	/* Tests for GetAppList */
     @Test
     public void testGetAppList() throws JSONException, WebApiException, ParseException  {
 		JSONObject appListDocument = new JSONObject("{ \"object\" : \"mockJSONObject\"}");
@@ -62,5 +59,22 @@ public class ISteamAppsTest {
 		iSteamApps.getAppList();
 		
 		verify(appsBuilder).buildAppList(appListDocument);
+    }
+
+    @Test
+    public void testUpToDateCheck() throws JSONException, WebApiException, ParseException  {
+		JSONObject upToDateCheckDocument = new JSONObject("{ \"object\" : \"mockJSONObject\"}");
+
+		Map<String, Object> params = new HashMap<String, Object>(); 
+		params.put("appid", Integer.toString(440));
+		params.put("version", Integer.toString(1253));
+		when(WebApi.getJSONResponse("ISteamApps", "UpToDateCheck", 1, params)).thenReturn(upToDateCheckDocument);
+
+		UpToDateCheck upToDateCheck = mock(UpToDateCheck.class);
+		when(appsBuilder.buildUpToDateCheck(440, 1253, upToDateCheckDocument)).thenReturn(upToDateCheck);
+		
+		iSteamApps.upToDateCheck(440, 1253);
+		
+		verify(appsBuilder).buildUpToDateCheck(440, 1253, upToDateCheckDocument);
     }
 }

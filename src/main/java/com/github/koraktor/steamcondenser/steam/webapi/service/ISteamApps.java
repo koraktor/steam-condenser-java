@@ -7,6 +7,7 @@
 
 package com.github.koraktor.steamcondenser.steam.webapi.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import org.json.JSONObject;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.WebApi;
+import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
 import com.github.koraktor.steamcondenser.steam.webapi.builder.AppsBuilder;
 
 /**
@@ -40,5 +42,14 @@ public class ISteamApps {
 		JSONObject data = WebApi.getJSONResponse(I_STEAM_APPS, "GetAppList", 2, null);
 
 		return appsBuilder.buildAppList(data);
+	}
+
+	public UpToDateCheck upToDateCheck(int appId, int versionNumberToCheck) throws WebApiException, JSONException {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("appid", Integer.toString(appId));
+		params.put("version", Integer.toString(versionNumberToCheck));
+		JSONObject data = WebApi.getJSONResponse(I_STEAM_APPS, "UpToDateCheck", 1, params);
+			
+		return appsBuilder.buildUpToDateCheck(appId, versionNumberToCheck, data);
 	}
 }
