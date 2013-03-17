@@ -12,7 +12,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -26,6 +28,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import com.github.koraktor.steamcondenser.steam.community.WebApi;
+import com.github.koraktor.steamcondenser.steam.community.apps.ServerAtAddress;
 import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
 import com.github.koraktor.steamcondenser.steam.webapi.builder.AppsBuilder;
 import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException;
@@ -37,6 +40,7 @@ import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException
 @PrepareForTest(WebApi.class)
 @RunWith(PowerMockRunner.class)
 public class ISteamAppsTest {
+	private static final String TEST_IP = "85.236.100.104";
 	private ISteamApps iSteamApps;
 	private AppsBuilder appsBuilder;
 	
@@ -76,5 +80,21 @@ public class ISteamAppsTest {
 		iSteamApps.upToDateCheck(440, 1253);
 		
 		verify(appsBuilder).buildUpToDateCheck(440, 1253, upToDateCheckDocument);
+    }
+
+    @Test
+    public void testGetServersAtAddress() throws JSONException, WebApiException, ParseException  {
+		JSONObject getServersAtAddressDocument = new JSONObject("{ \"object\" : \"mockJSONObject\"}");
+
+		Map<String, Object> params = new HashMap<String, Object>(); 
+		params.put("addr", TEST_IP);
+		when(WebApi.getJSONResponse("ISteamApps", "GetServersAtAddress", 1, params)).thenReturn(getServersAtAddressDocument);
+
+		List<ServerAtAddress> serversAtAddress = new ArrayList<ServerAtAddress>();
+		when(appsBuilder.buildServersAtAddress(TEST_IP, getServersAtAddressDocument)).thenReturn(serversAtAddress);
+		
+		iSteamApps.getServersAtAddress(TEST_IP);
+		
+		verify(appsBuilder).buildServersAtAddress(TEST_IP, getServersAtAddressDocument);
     }
 }

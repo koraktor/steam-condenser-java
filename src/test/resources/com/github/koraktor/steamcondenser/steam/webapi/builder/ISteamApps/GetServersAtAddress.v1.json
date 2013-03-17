@@ -1,0 +1,85 @@
+{
+	"response": {
+		"success": true,
+		"servers": [
+			{
+				"addr": "85.236.100.104:27215",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 27215,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:37015",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 37015,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:27515",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 27515,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:27915",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 27915,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:27015",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 27015,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:27315",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 255,
+				"secure": true,
+				"lan": false,
+				"gameport": 27315,
+				"specport": 0
+			},
+			{
+				"addr": "85.236.100.104:27115",
+				"gmsindex": 65534,
+				"appid": 440,
+				"gamedir": "tf",
+				"region": 3,
+				"secure": true,
+				"lan": false,
+				"gameport": 27115,
+				"specport": 0
+			}
+		]
+		
+	}
+}

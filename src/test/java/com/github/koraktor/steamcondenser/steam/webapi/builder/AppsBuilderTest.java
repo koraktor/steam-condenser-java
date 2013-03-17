@@ -15,6 +15,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -23,7 +24,9 @@ import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.github.koraktor.steamcondenser.steam.community.apps.ServerAtAddress;
 import com.github.koraktor.steamcondenser.steam.community.apps.UpToDateCheck;
+import com.github.koraktor.steamcondenser.steam.webapi.exceptions.DataException;
 import com.github.koraktor.steamcondenser.steam.webapi.exceptions.ParseException;
 
 /**
@@ -89,15 +92,57 @@ public class AppsBuilderTest {
 	}
 
 	@Test
-	public void testUpToDateCheckJSON() throws JSONException {
+	public void testUpToDateCheckInvalidJSON() throws JSONException {
 		JSONObject upToDateCheckDocument = new JSONObject("{ }");
 
 		try {
-			UpToDateCheck upToDateCheck = appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
+			appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
 			fail("Exception should be thrown when calling up to date check builder with invalid JSON.");
 		} catch (Exception e) {
 			assertEquals("Could not parse JSON data.", e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testBuildServersAtAddress() throws JSONException, IOException, DataException, ParseException {
+		JSONObject serversAtAddressDocument = new JSONObject(loadFileAsString("ISteamApps/GetServersAtAddress.v1.json"));
 
+		List<ServerAtAddress> serversAtAddress = appsBuilder.buildServersAtAddress("85.236.100.104", serversAtAddressDocument);
+		
+		assertEquals(7, serversAtAddress.size());
+		ServerAtAddress server = serversAtAddress.get(3);
+		assertEquals("85.236.100.104:27915", server.getAddress());
+		assertEquals(65534, server.getGmsIndex());
+		assertEquals(440, server.getAppId());
+		assertEquals("tf", server.getGameDir());
+		assertEquals(3, server.getRegion());
+		assertTrue(server.isSecure());
+		assertFalse(server.isLan());
+		assertEquals(27915, server.getGamePort());
+		assertEquals(0, server.getSpecPort());
+	}
+	
+	@Test
+	public void testBuildServersAtAddressInvalidIp() throws JSONException, IOException, ParseException {
+		JSONObject serversAtAddressDocument = new JSONObject("{	\"response\": {	\"success\": false,	\"message\": true } }");
+
+		try {
+			appsBuilder.buildServersAtAddress("invalidIp", serversAtAddressDocument);
+			fail("Exception should be thrown when calling build servers at address with an invalid IP.");
+		} catch (DataException e) {
+			assertEquals("Invalid IP address: invalidIp", e.getMessage());
+		}
+	}
+
+	@Test
+	public void testBuildServersAtAddressInvalidJSON() throws JSONException, DataException {
+		JSONObject serversAtAddressDocument = new JSONObject("{ }");
+
+		try {
+			appsBuilder.buildServersAtAddress("85.236.100.104", serversAtAddressDocument);
+			fail("Exception should be thrown when calling build servers at address with invalid JSON.");
+		} catch (ParseException e) {
+			assertEquals("Could not parse JSON data.", e.getMessage());
+		}
+	}
 }
