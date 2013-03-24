@@ -32,6 +32,13 @@ public class AppsBuilder {
 
 	private static final String ERR_COULD_NOT_PARSE_JSON_DATA = "Could not parse JSON data.";
 
+	/**
+	 * Build a map of apps available in Steam, with the key as the appId and the value as the name of the app
+	 * 
+	 * @param data The response from the GetAppList request, in JSON form.
+	 * @return a map of apps, with the key as the appId and the value as the name of the app
+	 * @throws ParseException if the JSON cannot be parsed as expected.
+	 */
 	public Map<Long, String> buildAppList(JSONObject data) throws ParseException {
         try {
     		Map<Long, String> appList = new TreeMap<Long, String>();
@@ -46,6 +53,18 @@ public class AppsBuilder {
         }
 	}
 	
+	/**
+	 * Build an object representation of the version check for a certain app.
+	 * 
+	 * @param appId The unique Steam Application ID of the game (e.g.
+     *        <code>440</code> for Team Fortress 2). See
+     *        http://developer.valvesoftware.com/wiki/Steam_Application_IDs for
+     *        all application IDs
+	 * @param versionNumberToCheck the version number to check for this app.
+	 * @param data The response from the UpToDateCheck request, in JSON form.
+	 * @return An object representation of the version check for a certain app.
+	 * @throws ParseException if the JSON cannot be parsed as expected.
+	 */
 	public UpToDateCheck buildUpToDateCheck(int appId, int versionNumberToCheck, JSONObject data) throws ParseException {
         try {
         	boolean upToDate, versionIsListable;
@@ -61,12 +80,21 @@ public class AppsBuilder {
         	if(response.has("required_version")) {
         		message = response.getString("message");
         	}
-        	return new UpToDateCheck(upToDate, versionIsListable, requiredVersion, message);
+        	return new UpToDateCheck(appId, upToDate, versionIsListable, requiredVersion, message);
         } catch(JSONException e) {
             throw new ParseException(ERR_COULD_NOT_PARSE_JSON_DATA, e);
         }
 	}
 
+	/**
+	 * Build a list of servers at a specified IP address.
+	 * 
+	 * @param ip the requested IP address.
+	 * @param data The response from the GetServersAtAddress request, in JSON form.
+	 * @return A list of servers at a specified IP address.
+	 * @throws DataException if an error has been returned in the response. In this case, the "success" value in the response is false.
+	 * @throws ParseException if the JSON cannot be parsed as expected.
+	 */
 	public List<ServerAtAddress> buildServersAtAddress(String ip, JSONObject data) throws DataException, ParseException {
         try {
         	JSONObject response = data.getJSONObject("response");
@@ -96,6 +124,5 @@ public class AppsBuilder {
         } catch(JSONException e) {
             throw new ParseException(ERR_COULD_NOT_PARSE_JSON_DATA, e);
         }
-		
 	}
 }

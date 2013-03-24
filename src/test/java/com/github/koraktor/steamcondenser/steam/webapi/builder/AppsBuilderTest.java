@@ -10,6 +10,7 @@ package com.github.koraktor.steamcondenser.steam.webapi.builder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -75,9 +76,10 @@ public class AppsBuilderTest {
 
 		UpToDateCheck upToDateCheck = appsBuilder.buildUpToDateCheck(440, 23, upToDateCheckDocument);
 
+		assertEquals(440, upToDateCheck.getAppId());
 		assertFalse(upToDateCheck.isUpToDate());
 		assertFalse(upToDateCheck.isVersionIsListable());
-		assertEquals(1258, upToDateCheck.getRequiredVersion());
+		assertEquals(new Integer(1258), upToDateCheck.getRequiredVersion());
 		assertEquals("Your server is out of date, please upgrade", upToDateCheck.getMessage());
 	}
 	
@@ -89,6 +91,8 @@ public class AppsBuilderTest {
 
 		assertTrue(upToDateCheck.isUpToDate());
 		assertTrue(upToDateCheck.isVersionIsListable());
+		assertNull(upToDateCheck.getRequiredVersion());
+		assertNull(upToDateCheck.getMessage());
 	}
 
 	@Test

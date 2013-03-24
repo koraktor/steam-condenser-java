@@ -40,12 +40,31 @@ public class ISteamApps {
 		this.appsBuilder = appsBuilder;
 	}
 	
+	/**
+	 * Get the list of all apps from Steam.
+	 * 
+	 * @return A list of all apps from Steam.
+	 * @throws WebApiException if there is a general service error (e.g. no key supplied)
+	 * @throws JSONException if the JSON returned from the service is malformed.
+	 */
 	public Map<Long,String> getAppList() throws WebApiException, JSONException {
 		JSONObject data = WebApi.getJSONResponse(I_STEAM_APPS, "GetAppList", 2, null);
 
 		return appsBuilder.buildAppList(data);
 	}
 
+	/**
+	 * Check that an app is up to date.
+	 * 
+	 * @param appId The unique Steam Application ID of the game (e.g.
+     *        <code>440</code> for Team Fortress 2). See
+     *        http://developer.valvesoftware.com/wiki/Steam_Application_IDs for
+     *        all application IDs
+	 * @param versionNumberToCheck The version number to check for the provided app.
+	 * @return An object representation of the version check for the provided app.
+	 * @throws WebApiException if there is a general service error (e.g. no key supplied)
+	 * @throws JSONException if the JSON returned from the service is malformed.
+	 */
 	public UpToDateCheck upToDateCheck(int appId, int versionNumberToCheck) throws WebApiException, JSONException {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("appid", Integer.toString(appId));
@@ -55,6 +74,14 @@ public class ISteamApps {
 		return appsBuilder.buildUpToDateCheck(appId, versionNumberToCheck, data);
 	}
 	
+	/**
+	 * Get the list of servers hosted in a particular IP address.
+	 * 
+	 * @param ip The IP address to query.
+	 * @return A list of servers at a specified IP address.
+	 * @throws WebApiException if there is a general service error (e.g. no key supplied)
+	 * @throws JSONException if the JSON returned from the service is malformed.
+	 */
 	public List<ServerAtAddress> getServersAtAddress(String ip) throws WebApiException, JSONException {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("addr", ip);
