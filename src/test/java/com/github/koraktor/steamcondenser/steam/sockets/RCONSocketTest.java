@@ -70,24 +70,24 @@ public class RCONSocketTest {
         doAnswer(new Answer<Integer>() {
             public Integer answer(InvocationOnMock invocationOnMock) throws Throwable {
                 RCONSocket socket = (RCONSocket) invocationOnMock.getMock();
-                socket.buffer = ByteBuffer.wrap(new byte[]{ (byte) 0xd2, 0x4, 0x0, 0x0 });
+                socket.buffer = ByteBuffer.wrap(new byte[]{ (byte) 0x9, 0x0, 0x0, 0x0 });
                 return 4;
             }
         }).when(this.socket).receivePacket(4);
         doAnswer(new Answer<Integer>() {
             public Integer answer(InvocationOnMock invocationOnMock) throws Throwable {
                 RCONSocket socket = (RCONSocket) invocationOnMock.getMock();
-                socket.buffer = ByteBuffer.wrap("test ".getBytes());
-                return 1000;
+                socket.buffer = ByteBuffer.wrap("test".getBytes());
+                return 4;
             }
-        }).when(this.socket).receivePacket(1234);
+        }).when(this.socket).receivePacket(9);
         doAnswer(new Answer<Integer>() {
             public Integer answer(InvocationOnMock invocationOnMock) throws Throwable {
                 RCONSocket socket = (RCONSocket) invocationOnMock.getMock();
-                socket.buffer = ByteBuffer.wrap("test".getBytes());
-                return 234;
+                socket.buffer = ByteBuffer.wrap(" test".getBytes());
+                return 5;
             }
-        }).when(this.socket).receivePacket(234);
+        }).when(this.socket).receivePacket(5);
 
         assertEquals(packet, this.socket.getReply());
     }

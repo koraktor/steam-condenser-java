@@ -73,20 +73,26 @@ public class GameItem {
             this.defindex         = itemData.getInt("defindex");
             this.backpackPosition = (int) itemData.getLong("inventory") & 0xffff;
             this.count            = itemData.getInt("quantity");
-            this.craftable        = itemData.isNull("flag_cannot_craft") || !itemData.getBoolean("flag_cannot_craft");
+            this.craftable        = !itemData.optBoolean("flag_cannot_craft");
             this.id               = itemData.getInt("id");
             this.itemClass        = this.getSchemaData().getString("item_class");
             this.itemSet          = this.inventory.getItemSchema().getItemSets().get(this.getSchemaData().optString("item_set"));
             this.level            = itemData.getInt("level");
             this.name             = this.getSchemaData().getString("item_name");
             this.preliminary      = (itemData.getLong("inventory") & 0x40000000) != 0;
-            this.origin           = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
             this.originalId       = itemData.getInt("original_id");
             this.quality          = this.inventory.getItemSchema().getQualities().get(itemData.getInt("quality"));
-            this.tradeable        = itemData.isNull("flag_cannot_trade") || !itemData.getBoolean("flag_cannot_trade");
+            this.tradeable        = !itemData.optBoolean("flag_cannot_trade");
             this.type             = this.getSchemaData().getString("item_type_name");
 
+            if (itemData.has("origin")) {
+                this.origin = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
+            }
+
             JSONArray attributesData = this.getSchemaData().optJSONArray("attributes");
+            if (attributesData == null) {
+                attributesData = new JSONArray();
+            }
             if (itemData.has("attributes")) {
                 JSONArray itemAttributes = itemData.getJSONArray("attributes");
                 for (int i = 0; i < itemAttributes.length(); i ++) {

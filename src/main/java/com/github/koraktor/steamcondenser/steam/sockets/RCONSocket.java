@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Logger;
 
@@ -41,10 +39,8 @@ public class RCONSocket extends SteamSocket {
      *
      * @param ipAddress Either the IP address or the DNS name of the server
      * @param portNumber The port the server is listening on
-     * @throws SteamCondenserException if the socket cannot be opened
      */
-    public RCONSocket(InetAddress ipAddress, int portNumber)
-            throws SteamCondenserException {
+    public RCONSocket(InetAddress ipAddress, int portNumber) {
         super(ipAddress, portNumber);
     }
 
@@ -55,7 +51,8 @@ public class RCONSocket extends SteamSocket {
      */
     @Override
     public void close() {
-        if(((SocketChannel)this.channel).isConnected()) {
+        if (this.channel != null &&
+            ((SocketChannel) this.channel).isConnected()) {
             super.close();
         }
     }
@@ -112,23 +109,13 @@ public class RCONSocket extends SteamSocket {
         int packetSize = Integer.reverseBytes(this.buffer.getInt());
         int remainingBytes = packetSize;
 
-        byte[] packetData;
-        List<Byte> packetDataList = new ArrayList<Byte>();
+        byte[] packetData = new byte[packetSize];
         int receivedBytes;
         do {
             receivedBytes = this.receivePacket(remainingBytes);
-
-            packetData = this.buffer.array();
-            for(int i = 0; i < this.buffer.limit(); i ++){
-                packetDataList.add(packetData[i]);
-            }
+            System.arraycopy(this.buffer.array(), 0, packetData, packetSize - remainingBytes, receivedBytes);
             remainingBytes -= receivedBytes;
         } while(remainingBytes > 0);
-
-        packetData = new byte[packetDataList.size()];
-        for(int i = 0; i < packetData.length; i ++) {
-            packetData[i] = packetDataList.get(i);
-        }
 
         RCONPacket packet = RCONPacketFactory.getPacketFromData(packetData);
 

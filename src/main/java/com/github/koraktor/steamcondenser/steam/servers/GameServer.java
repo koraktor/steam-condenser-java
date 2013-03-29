@@ -66,6 +66,13 @@ public abstract class GameServer extends Server {
         this.rconAuthenticated = false;
     }
 
+    public void disconnect() {
+        if (this.socket != null) {
+            this.socket.close();
+            this.socket = null;
+        }
+    }
+
     /**
      * Parses the player attribute names supplied by <code>rcon status</code>
      *
@@ -401,6 +408,10 @@ public abstract class GameServer extends Server {
      */
     protected void sendRequest(SteamPacket requestData)
             throws SteamCondenserException {
+        if (this.socket == null) {
+            this.initSocket();
+        }
+
         this.socket.send(requestData);
     }
 
