@@ -39,10 +39,8 @@ public class RCONSocket extends SteamSocket {
      *
      * @param ipAddress Either the IP address or the DNS name of the server
      * @param portNumber The port the server is listening on
-     * @throws SteamCondenserException if the socket cannot be opened
      */
-    public RCONSocket(InetAddress ipAddress, int portNumber)
-            throws SteamCondenserException {
+    public RCONSocket(InetAddress ipAddress, int portNumber) {
         super(ipAddress, portNumber);
     }
 
