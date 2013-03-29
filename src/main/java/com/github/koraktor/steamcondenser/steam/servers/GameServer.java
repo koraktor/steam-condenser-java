@@ -66,6 +66,12 @@ public abstract class GameServer extends Server {
         this.rconAuthenticated = false;
     }
 
+    public void disconnect() {
+        if (this.socket != null) {
+            this.socket.close();
+        }
+    }
+
     /**
      * Parses the player attribute names supplied by <code>rcon status</code>
      *

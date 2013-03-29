@@ -115,6 +115,8 @@ public class SourceServer extends GameServer {
      * @see RCONSocket#close
      */
     public void disconnect() {
+        super.disconnect();
+
         this.rconSocket.close();
     }
 
