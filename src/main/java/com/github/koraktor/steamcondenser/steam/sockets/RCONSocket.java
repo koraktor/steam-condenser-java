@@ -51,7 +51,8 @@ public class RCONSocket extends SteamSocket {
      */
     @Override
     public void close() {
-        if(((SocketChannel)this.channel).isConnected()) {
+        if (this.channel != null &&
+            ((SocketChannel) this.channel).isConnected()) {
             super.close();
         }
     }
