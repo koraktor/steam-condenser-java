@@ -1,0 +1,1807 @@
+{
+	"achievementpercentages": {
+		"achievements": [
+			{
+				"name": "TF_SCOUT_LONG_DISTANCE_RUNNER",
+				"percent": 47.144554138183594
+			},
+			{
+				"name": "TF_HEAVY_DAMAGE_TAKEN",
+				"percent": 44.464458465576172
+			},
+			{
+				"name": "TF_GET_CONSECUTIVEKILLS_NODEATHS",
+				"percent": 44.036083221435547
+			},
+			{
+				"name": "TF_PYRO_CAMP_POSITION",
+				"percent": 35.2294921875
+			},
+			{
+				"name": "TF_KILL_NEMESIS",
+				"percent": 35.067710876464844
+			},
+			{
+				"name": "TF_HEAVY_KILL_MIDAIR_MINIGUN",
+				"percent": 33.361465454101563
+			},
+			{
+				"name": "TF_PYRO_BURN_MEDICPAIR",
+				"percent": 32.347694396972656
+			},
+			{
+				"name": "TF_BURN_PLAYERSINMINIMUMTIME",
+				"percent": 32.087551116943359
+			},
+			{
+				"name": "TF_PYRO_KILL_TEAMWORK",
+				"percent": 30.550252914428711
+			},
+			{
+				"name": "TF_HEAVY_TAKE_MULTI_DAMAGE",
+				"percent": 30.065902709960938
+			},
+			{
+				"name": "TF_PYRO_DOUBLE_KO",
+				"percent": 30.047697067260742
+			},
+			{
+				"name": "TF_DEMOMAN_BOUNCE_AND_KILL",
+				"percent": 29.93956184387207
+			},
+			{
+				"name": "TF_SNIPER_RIFLE_NO_MISSING",
+				"percent": 29.858081817626953
+			},
+			{
+				"name": "TF_SNIPER_KILL_MIDAIR_SCOUT",
+				"percent": 29.394367218017578
+			},
+			{
+				"name": "TF_ENGINEER_DISPENSER_HEAL_GROUP",
+				"percent": 28.272771835327148
+			},
+			{
+				"name": "TF_SNIPER_HEADSHOT_DEMOMAN",
+				"percent": 28.111850738525391
+			},
+			{
+				"name": "TF_HALLOWEEN_DOMINATE_FOR_HAT",
+				"percent": 27.289289474487305
+			},
+			{
+				"name": "TF_GET_HEALED_BYENEMY",
+				"percent": 26.309494018554687
+			},
+			{
+				"name": "TF_ENGINEER_FREEZECAM_SENTRY",
+				"percent": 25.881940841674805
+			},
+			{
+				"name": "TF_SPY_BUMP_CLOAKED_SPY",
+				"percent": 25.837924957275391
+			},
+			{
+				"name": "TF_SNIPER_ACHIEVE_PROGRESS1",
+				"percent": 25.555318832397461
+			},
+			{
+				"name": "TF_SNIPER_KILL_WEAPONS",
+				"percent": 25.088809967041016
+			},
+			{
+				"name": "TF_GET_HEADSHOTS",
+				"percent": 24.709745407104492
+			},
+			{
+				"name": "TF_PYRO_SIMULBURN_SCOUTS",
+				"percent": 24.701753616333008
+			},
+			{
+				"name": "TF_SOLDIER_DEFEND_MEDIC",
+				"percent": 24.476314544677734
+			},
+			{
+				"name": "TF_WIN_MULTIPLEGAMES",
+				"percent": 23.711017608642578
+			},
+			{
+				"name": "TF_SPY_SURVIVE_BURNING",
+				"percent": 23.416515350341797
+			},
+			{
+				"name": "TF_GENERAL_KILL_ENEMIES_AFTER_TELEPORTING",
+				"percent": 23.403678894042969
+			},
+			{
+				"name": "TF_WIN_2FORT_NOENEMYCAPS",
+				"percent": 23.365856170654297
+			},
+			{
+				"name": "TF_ENGINEER_SENTRY_AVENGES_YOU",
+				"percent": 23.14990234375
+			},
+			{
+				"name": "TF_MEDIC_HEAL_ACHIEVER",
+				"percent": 23.001150131225586
+			},
+			{
+				"name": "TF_SNIPER_KILL_INVIS_SPY",
+				"percent": 22.981344223022461
+			},
+			{
+				"name": "TF_MEDIC_SETUP_CHARGE",
+				"percent": 22.712930679321289
+			},
+			{
+				"name": "TF_ENGINEER_HELP_BUILD_STRUCTURE",
+				"percent": 22.614292144775391
+			},
+			{
+				"name": "TF_SNIPER_HEADSHOT_SNIPERS",
+				"percent": 22.232151031494141
+			},
+			{
+				"name": "TF_HEAVY_SURVIVE_CROCKET",
+				"percent": 21.956537246704102
+			},
+			{
+				"name": "TF_MEDIC_HEAL_UNDER_FIRE",
+				"percent": 21.936151504516602
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_QUICK_KILLS",
+				"percent": 21.922243118286133
+			},
+			{
+				"name": "TF_SNIPER_DOMINATE_SNIPER",
+				"percent": 21.886098861694336
+			},
+			{
+				"name": "TF_SPY_ACHIEVE_PROGRESS1",
+				"percent": 21.840065002441406
+			},
+			{
+				"name": "TF_ENGINEER_ACHIEVE_PROGRESS1",
+				"percent": 21.554887771606445
+			},
+			{
+				"name": "TF_HEAVY_FIRST_TO_CAP",
+				"percent": 21.551445007324219
+			},
+			{
+				"name": "TF_MEDIC_HEAL_ENGINEER",
+				"percent": 21.186466217041016
+			},
+			{
+				"name": "TF_HEAVY_EARN_MEDIC_DOMINATION",
+				"percent": 21.091712951660156
+			},
+			{
+				"name": "TF_SNIPER_DESTROY_SENTRYGUNS",
+				"percent": 20.836238861083984
+			},
+			{
+				"name": "TF_MEDIC_SWITCH_TO_MEDIC",
+				"percent": 20.834564208984375
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_DISGUISE_TARGET",
+				"percent": 20.778409957885742
+			},
+			{
+				"name": "TF_SOLDIER_KILL_AIRBORNE_TARGET_WHILE_AIRBORNE",
+				"percent": 20.612920761108398
+			},
+			{
+				"name": "TF_PYRO_BURN_SPIES_AS_YOU",
+				"percent": 20.442642211914063
+			},
+			{
+				"name": "TF_FIRE_WATERJUMP",
+				"percent": 20.352380752563477
+			},
+			{
+				"name": "TF_SPY_REVENGE_WITH_BACKSTAB",
+				"percent": 20.343463897705078
+			},
+			{
+				"name": "TF_HEAVY_KILL_WHILE_SPUNUP",
+				"percent": 20.305332183837891
+			},
+			{
+				"name": "TF_SOLDIER_KILL_SPY_KILLER",
+				"percent": 20.164447784423828
+			},
+			{
+				"name": "TF_SNIPER_KILL_AT_ROUNDSTART",
+				"percent": 20.148368835449219
+			},
+			{
+				"name": "TF_GET_TURRETKILLS",
+				"percent": 19.919792175292969
+			},
+			{
+				"name": "TF_PYRO_REVEAL_SPIES",
+				"percent": 19.845958709716797
+			},
+			{
+				"name": "TF_ENGINEER_KILL_ASSIST",
+				"percent": 19.7138671875
+			},
+			{
+				"name": "TF_SNIPER_BOW_KILL_WHILEDEAD",
+				"percent": 19.526941299438477
+			},
+			{
+				"name": "TF_GET_MULTIPLEKILLS",
+				"percent": 19.12983512878418
+			},
+			{
+				"name": "TF_SNIPER_ACHIEVE_PROGRESS2",
+				"percent": 19.08465576171875
+			},
+			{
+				"name": "TF_MEDIC_RAPID_CHARGE",
+				"percent": 18.80419921875
+			},
+			{
+				"name": "TF_GET_HEALPOINTS",
+				"percent": 18.772365570068359
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_ENEMY_SWITCH_PYRO",
+				"percent": 18.719743728637695
+			},
+			{
+				"name": "TF_PYRO_ACHIEVE_PROGRESS1",
+				"percent": 18.717973709106445
+			},
+			{
+				"name": "TF_ENGINEER_MOVE_SENTRY_GET_KILL",
+				"percent": 18.581972122192383
+			},
+			{
+				"name": "TF_PYRO_DOMINATE_LEAVESVR",
+				"percent": 18.515588760375977
+			},
+			{
+				"name": "TF_HEAVY_KILL_CRIT_PUNCH",
+				"percent": 18.506200790405273
+			},
+			{
+				"name": "TF_SOLDIER_ACHIEVE_PROGRESS1",
+				"percent": 18.412191390991211
+			},
+			{
+				"name": "TF_ENGINEER_SHOTGUN_KILL_PREV_SENTRY_TARGET",
+				"percent": 18.405307769775391
+			},
+			{
+				"name": "TF_SOLDIER_CROUCH_ROCKET_JUMP",
+				"percent": 18.392913818359375
+			},
+			{
+				"name": "TF_SPY_KILL_WORKING_ENGY",
+				"percent": 18.363006591796875
+			},
+			{
+				"name": "TF_SPY_KILL_SPY_WITH_KNIFE",
+				"percent": 18.325645446777344
+			},
+			{
+				"name": "TF_SCOUT_CAPTURE_LAST_POINT",
+				"percent": 18.322643280029297
+			},
+			{
+				"name": "TF_PYRO_BURN_MEDICS_CHARGED",
+				"percent": 18.215353012084961
+			},
+			{
+				"name": "TF_MEDIC_COUNTER_CHARGE",
+				"percent": 17.992639541625977
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_DOMINATING_ENEMY",
+				"percent": 17.957204818725586
+			},
+			{
+				"name": "TF_ENGINEER_REPAIR_SENTRY_W_MEDIC",
+				"percent": 17.891790390014648
+			},
+			{
+				"name": "TF_SOLDIER_SHOOT_MULT_CRITS",
+				"percent": 17.681446075439453
+			},
+			{
+				"name": "TF_PYRO_KILL_POSTDEATH",
+				"percent": 17.652072906494141
+			},
+			{
+				"name": "TF_SCOUT_CAP_FLAG_WITHOUT_ATTACKING",
+				"percent": 17.531257629394531
+			},
+			{
+				"name": "TF_PYRO_BURN_RJ_SOLDIER",
+				"percent": 16.98845100402832
+			},
+			{
+				"name": "TF_SCOUT_SURVIVE_DAMAGE",
+				"percent": 16.902034759521484
+			},
+			{
+				"name": "TF_HEAVY_ACHIEVE_PROGRESS1",
+				"percent": 16.769750595092773
+			},
+			{
+				"name": "TF_SNIPER_KILL_CHARGED_MEDIC",
+				"percent": 16.675317764282227
+			},
+			{
+				"name": "TF_SPY_ACHIEVE_PROGRESS2",
+				"percent": 16.647367477416992
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_DISGUISED_SPY",
+				"percent": 16.451852798461914
+			},
+			{
+				"name": "TF_HEAVY_KILL_SHOTGUN",
+				"percent": 16.373039245605469
+			},
+			{
+				"name": "TF_SNIPER_KILL_UNSCOPED",
+				"percent": 16.352870941162109
+			},
+			{
+				"name": "TF_SOLDIER_DUO_SOLDIER_KILLS",
+				"percent": 16.12962532043457
+			},
+			{
+				"name": "TF_PYRO_KILL_FROM_BEHIND",
+				"percent": 15.913494110107422
+			},
+			{
+				"name": "TF_SOLDIER_KILL_PYRO",
+				"percent": 15.776002883911133
+			},
+			{
+				"name": "TF_HEAVY_TELEPORT_FAST_KILL",
+				"percent": 15.762967109680176
+			},
+			{
+				"name": "TF_MEDIC_INVITE_JOIN_CHARGE",
+				"percent": 15.593992233276367
+			},
+			{
+				"name": "TF_ENGINEER_KILL_DISGUISED_SPY",
+				"percent": 15.254829406738281
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_BUILDING_DIRECT_HIT",
+				"percent": 15.209238052368164
+			},
+			{
+				"name": "TF_PYRO_ACHIEVE_PROGRESS2",
+				"percent": 15.170282363891602
+			},
+			{
+				"name": "TF_PYRO_BURN_SNIPERS_ZOOMED",
+				"percent": 15.015488624572754
+			},
+			{
+				"name": "TF_HEAVY_ASSIST_HEAVY_GRIND",
+				"percent": 14.984817504882813
+			},
+			{
+				"name": "TF_PLAY_GAME_EVERYCLASS",
+				"percent": 14.88232421875
+			},
+			{
+				"name": "TF_DEMOMAN_ACHIEVE_PROGRESS1",
+				"percent": 14.865204811096191
+			},
+			{
+				"name": "TF_HEAVY_FIRE_LOTS",
+				"percent": 14.812782287597656
+			},
+			{
+				"name": "TF_SOLDIER_KILL_ENGY",
+				"percent": 14.803860664367676
+			},
+			{
+				"name": "TF_SNIPER_BOW_PINCUSHION",
+				"percent": 14.650243759155273
+			},
+			{
+				"name": "TF_ENGINEER_ACHIEVE_PROGRESS2",
+				"percent": 14.526968955993652
+			},
+			{
+				"name": "TF_HEAVY_KILL_DOMINATED",
+				"percent": 14.460347175598145
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_MEDIC_CHARGED",
+				"percent": 14.431100845336914
+			},
+			{
+				"name": "TF_SNIPER_ACHIEVE_PROGRESS3",
+				"percent": 14.333873748779297
+			},
+			{
+				"name": "TF_HEAVY_CLEAR_STICKYBOMBS",
+				"percent": 14.198146820068359
+			},
+			{
+				"name": "TF_HEAVY_REVENGE_ASSIST",
+				"percent": 14.17811107635498
+			},
+			{
+				"name": "TF_SPY_DOMINATE_SNIPER",
+				"percent": 14.137451171875
+			},
+			{
+				"name": "TF_PYRO_KILL_AXE_SMALL",
+				"percent": 14.104713439941406
+			},
+			{
+				"name": "TF_SPY_BREAK_SHIELD_KILL_SNIPER",
+				"percent": 13.941957473754883
+			},
+			{
+				"name": "TF_WIN_DUSTBOWL_NOENEMYCAPS",
+				"percent": 13.919733047485352
+			},
+			{
+				"name": "TF_WIN_WELL_MINIMUMTIME",
+				"percent": 13.806072235107422
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS1",
+				"percent": 13.759642601013184
+			},
+			{
+				"name": "TF_COMPLETE_TRAINING",
+				"percent": 13.748656272888184
+			},
+			{
+				"name": "TF_DOMINATE_FOR_GOGGLES",
+				"percent": 13.704707145690918
+			},
+			{
+				"name": "TF_MEDIC_KILL_HEALED_SPY",
+				"percent": 13.692882537841797
+			},
+			{
+				"name": "TF_SCOUT_START_AND_FINISH_CAP",
+				"percent": 13.668192863464355
+			},
+			{
+				"name": "TF_SOLDIER_KILL_SNIPER_WHILE_DEAD",
+				"percent": 13.654422760009766
+			},
+			{
+				"name": "TF_PYRO_CAMP_TELEPORTERS",
+				"percent": 13.630230903625488
+			},
+			{
+				"name": "TF_SPY_SAP_BUILDING_BACKSTAB_ENGY",
+				"percent": 13.596613883972168
+			},
+			{
+				"name": "TF_DEMOMAN_DUO_DEMOMAN_KILLS",
+				"percent": 13.568021774291992
+			},
+			{
+				"name": "TF_SOLDIER_ACHIEVE_PROGRESS2",
+				"percent": 13.562923431396484
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_X_WITH_DIRECTPIPE",
+				"percent": 13.495175361633301
+			},
+			{
+				"name": "TF_PYRO_FORCE_WATERJUMP",
+				"percent": 13.450789451599121
+			},
+			{
+				"name": "TF_HEAVY_UNCOVER_SPIES",
+				"percent": 13.422977447509766
+			},
+			{
+				"name": "TF_SCOUT_DESTROY_BUILDINGS_BEING_BUILT",
+				"percent": 13.421699523925781
+			},
+			{
+				"name": "TF_REPLAY_SAVE_REPLAY",
+				"percent": 13.373537063598633
+			},
+			{
+				"name": "TF_PYRO_KILL_GRIND",
+				"percent": 13.287535667419434
+			},
+			{
+				"name": "TF_SCOUT_KILL_CHARGED_MEDICS",
+				"percent": 13.230621337890625
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_SNIPERS",
+				"percent": 13.20683479309082
+			},
+			{
+				"name": "TF_SOLDIER_DESTROY_SENTRY_OUT_OF_RANGE",
+				"percent": 13.184660911560059
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_MEDIC_PAIR",
+				"percent": 13.150456428527832
+			},
+			{
+				"name": "TF_SPY_ACHIEVE_PROGRESS3",
+				"percent": 13.147929191589355
+			},
+			{
+				"name": "TF_SCOUT_DOUBLE_JUMPS",
+				"percent": 13.10898494720459
+			},
+			{
+				"name": "TF_SOLDIER_KILL_TWENTY_FROM_ABOVE",
+				"percent": 13.078059196472168
+			},
+			{
+				"name": "TF_SCOUT_FAST_CAP",
+				"percent": 12.997050285339355
+			},
+			{
+				"name": "TF_DEMOMAN_CRIT_SWORD_KILL",
+				"percent": 12.739224433898926
+			},
+			{
+				"name": "TF_HEAVY_ACHIEVE_PROGRESS2",
+				"percent": 12.694729804992676
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_MEDIC_HEALING_YOU",
+				"percent": 12.647538185119629
+			},
+			{
+				"name": "TF_SCOUT_ACHIEVE_PROGRESS1",
+				"percent": 12.633040428161621
+			},
+			{
+				"name": "TF_MVM_KILL_BOMB_CARRIERS",
+				"percent": 12.610297203063965
+			},
+			{
+				"name": "TF_SCOUT_THREE_FLAGCAPS",
+				"percent": 12.594999313354492
+			},
+			{
+				"name": "TF_PYRO_KILL_TAUNT",
+				"percent": 12.553614616394043
+			},
+			{
+				"name": "TF_SCOUT_DESTROY_SENTRY_WITH_PISTOL",
+				"percent": 12.423091888427734
+			},
+			{
+				"name": "TF_PYRO_ACHIEVE_PROGRESS3",
+				"percent": 12.263055801391602
+			},
+			{
+				"name": "TF_SOLDIER_KILL_AIRBORNE_WITH_DIRECT_HIT",
+				"percent": 12.25874137878418
+			},
+			{
+				"name": "TF_ENGINEER_REVENGE_CRIT_SENTRY_KILLER",
+				"percent": 12.227463722229004
+			},
+			{
+				"name": "TF_SNIPER_JARATE_EXTINGUISH",
+				"percent": 12.213657379150391
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_X_SCOUTS_PYROS",
+				"percent": 12.186846733093262
+			},
+			{
+				"name": "TF_PYRO_IGNITE_FLAREGUN",
+				"percent": 12.182010650634766
+			},
+			{
+				"name": "TF_SOLDIER_KILL_ON_FIRE",
+				"percent": 12.128619194030762
+			},
+			{
+				"name": "TF_PYRO_KILL_UBERCHARGE",
+				"percent": 12.08296012878418
+			},
+			{
+				"name": "TF_SPY_FEIGN_DEATH_KILL",
+				"percent": 12.049465179443359
+			},
+			{
+				"name": "TF_SCOUT_DESTROY_TELEPORTERS",
+				"percent": 11.983321189880371
+			},
+			{
+				"name": "TF_SNIPER_KILL_RJER",
+				"percent": 11.92906379699707
+			},
+			{
+				"name": "TF_DEMOMAN_DECAPITATE_CLOAKED_SPY",
+				"percent": 11.902627944946289
+			},
+			{
+				"name": "TF_SNIPER_JARATE_REVEAL_SPY",
+				"percent": 11.793166160583496
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_HEAVY_LONG",
+				"percent": 11.709017753601074
+			},
+			{
+				"name": "TF_SCOUT_CAPTURE_THREE_POINTS",
+				"percent": 11.694981575012207
+			},
+			{
+				"name": "TF_SOLDIER_BOUNCE_THEN_SHOTGUN",
+				"percent": 11.681806564331055
+			},
+			{
+				"name": "TF_PYRO_KILL_CARRIERS",
+				"percent": 11.670485496520996
+			},
+			{
+				"name": "TF_PYRO_REFLECT_CROCKET_KILL",
+				"percent": 11.633457183837891
+			},
+			{
+				"name": "TF_SNIPER_KILL_SPIES_MELEE",
+				"percent": 11.626711845397949
+			},
+			{
+				"name": "TF_MVM_COMPLETE_WAVE_WITHOUT_DYING",
+				"percent": 11.558241844177246
+			},
+			{
+				"name": "TF_CHRISTMAS_COLLECT_GIFTS",
+				"percent": 11.500039100646973
+			},
+			{
+				"name": "TF_SPY_KNIFE_KILL_WHILE_JARATED",
+				"percent": 11.483997344970703
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_BLOCKER",
+				"percent": 11.475172996520996
+			},
+			{
+				"name": "TF_DEMOMAN_ACHIEVE_PROGRESS2",
+				"percent": 11.425235748291016
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_NOMISSES",
+				"percent": 11.374231338500977
+			},
+			{
+				"name": "TF_ENGINEER_KILL_SPY_TWO_SAPPERS",
+				"percent": 11.329009056091309
+			},
+			{
+				"name": "TF_PYRO_DESTROY_BUILDINGS",
+				"percent": 11.284010887145996
+			},
+			{
+				"name": "TF_MVM_EARN_MONEY_BONUS",
+				"percent": 11.278865814208984
+			},
+			{
+				"name": "TF_SNIPER_CAPTURE_FLAG",
+				"percent": 11.261866569519043
+			},
+			{
+				"name": "TF_DEMOMAN_DECAPITATE_PLAYERS",
+				"percent": 11.229255676269531
+			},
+			{
+				"name": "TF_SNIPER_BOW_PIN_HEAVY",
+				"percent": 11.188379287719727
+			},
+			{
+				"name": "TF_PYRO_KILL_AXE_LARGE",
+				"percent": 11.153555870056152
+			},
+			{
+				"name": "TF_HEAVY_KILL_TAUNT",
+				"percent": 11.14476203918457
+			},
+			{
+				"name": "TF_PYRO_KILL_SPIES",
+				"percent": 11.133732795715332
+			},
+			{
+				"name": "TF_HALLOWEEN_BOSS_KILL",
+				"percent": 11.069316864013672
+			},
+			{
+				"name": "TF_ENGINEER_REMOVE_SAPPER_LONG_DIST",
+				"percent": 11.008744239807129
+			},
+			{
+				"name": "TF_SNIPER_FREEZECAM_WAVE",
+				"percent": 10.988410949707031
+			},
+			{
+				"name": "TF_SNIPER_JARATE_DOMINATED",
+				"percent": 10.97303581237793
+			},
+			{
+				"name": "TF_DEMOMAN_ENVIRONMENTAL_KILL",
+				"percent": 10.888312339782715
+			},
+			{
+				"name": "TF_SPY_CAMP_POSITION",
+				"percent": 10.83876895904541
+			},
+			{
+				"name": "TF_WIN_HYDRO_NOENEMYCAPS",
+				"percent": 10.827812194824219
+			},
+			{
+				"name": "TF_SNIPER_JARATE_MEDIC_PAIR",
+				"percent": 10.784086227416992
+			},
+			{
+				"name": "TF_HEAVY_STAND_NEAR_DISPENSER",
+				"percent": 10.769771575927734
+			},
+			{
+				"name": "TF_DEMOMAN_DECAPITATE_NEMESIS",
+				"percent": 10.738015174865723
+			},
+			{
+				"name": "TF_HEAVY_ASSIST_MEDIC_LARGE",
+				"percent": 10.719082832336426
+			},
+			{
+				"name": "TF_ENGINEER_TELEPORT_GRIND",
+				"percent": 10.643939971923828
+			},
+			{
+				"name": "TF_SPY_MEDIC_HEALING_KILL_ENEMY",
+				"percent": 10.643939971923828
+			},
+			{
+				"name": "TF_MEDIC_TOP_SCOREBOARD",
+				"percent": 10.62199592590332
+			},
+			{
+				"name": "TF_SCOUT_KNOCK_INTO_TRAIN",
+				"percent": 10.550749778747559
+			},
+			{
+				"name": "TF_SPY_SAPPER_TEAMWORK",
+				"percent": 10.477577209472656
+			},
+			{
+				"name": "TF_HEAVY_RECEIVE_UBER_GRIND",
+				"percent": 10.457342147827148
+			},
+			{
+				"name": "TF_PYRO_DEFEND_POINTS",
+				"percent": 10.376072883605957
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS2",
+				"percent": 10.368927955627441
+			},
+			{
+				"name": "TF_SCOUT_CARRIER_KILL_CARRIER",
+				"percent": 10.368485450744629
+			},
+			{
+				"name": "TF_DEMOMAN_CHARGE_KILL",
+				"percent": 10.360934257507324
+			},
+			{
+				"name": "TF_SOLDIER_ACHIEVE_PROGRESS3",
+				"percent": 10.311220169067383
+			},
+			{
+				"name": "TF_SCOUT_KILL_IN_DODGE_COOLDOWN",
+				"percent": 10.281003952026367
+			},
+			{
+				"name": "TF_ENGINEER_TANK_DAMAGE",
+				"percent": 10.276955604553223
+			},
+			{
+				"name": "TF_SPY_TAUNT_KILL",
+				"percent": 10.232357025146484
+			},
+			{
+				"name": "TF_ENGINEER_ACHIEVE_PROGRESS3",
+				"percent": 10.194340705871582
+			},
+			{
+				"name": "TF_SOLDIER_KILL_GROUP_WITH_CROCKET",
+				"percent": 10.148033142089844
+			},
+			{
+				"name": "TF_DEMOMAN_DECAPITATE_PLAYERS_FAST",
+				"percent": 10.13601016998291
+			},
+			{
+				"name": "TF_HALLOWEEN_DISGUISED_SPY_KILL",
+				"percent": 10.135955810546875
+			},
+			{
+				"name": "TF_ENGINEER_BUILDING_CARRY",
+				"percent": 10.128186225891113
+			},
+			{
+				"name": "TF_MEDIC_SIMUL_CHARGE",
+				"percent": 10.100919723510742
+			},
+			{
+				"name": "TF_PYRO_KILL_GRIND_LARGE",
+				"percent": 10.082460403442383
+			},
+			{
+				"name": "TF_WIN_GRAVELPIT_NOENEMYCAPS",
+				"percent": 10.072920799255371
+			},
+			{
+				"name": "TF_SCOUT_ACHIEVE_PROGRESS2",
+				"percent": 10.049267768859863
+			},
+			{
+				"name": "TF_SNIPER_KILL_FAILED_SPY",
+				"percent": 10.000864028930664
+			},
+			{
+				"name": "TF_MEDIC_EXTINGUISH_TEAMMATES",
+				"percent": 9.9901008605957031
+			},
+			{
+				"name": "TF_SNIPER_TAUNT_KILL",
+				"percent": 9.940241813659668
+			},
+			{
+				"name": "TF_MEDIC_KILL_WHILE_CHARGED",
+				"percent": 9.8936319351196289
+			},
+			{
+				"name": "TF_PYRO_FREEZECAM_TAUNTS",
+				"percent": 9.8787288665771484
+			},
+			{
+				"name": "TF_MVM_PICKUP_MONEY_ABOUT_TO_EXPIRE",
+				"percent": 9.8704929351806641
+			},
+			{
+				"name": "TF_SNIPER_GET_BACKSTABBED",
+				"percent": 9.8577423095703125
+			},
+			{
+				"name": "TF_SNIPER_FREEZECAM_HAT",
+				"percent": 9.8372459411621094
+			},
+			{
+				"name": "TF_MEDIC_HEAL_CALLERS",
+				"percent": 9.8237733840942383
+			},
+			{
+				"name": "TF_HEAVY_KILL_CAPPING_ENEMIES",
+				"percent": 9.8062896728515625
+			},
+			{
+				"name": "TF_SNIPER_JARATE_GROUP",
+				"percent": 9.8060169219970703
+			},
+			{
+				"name": "TF_PLAY_GAME_EVERYMAP",
+				"percent": 9.7713994979858398
+			},
+			{
+				"name": "TF_PYRO_KILL_TAUNTERS",
+				"percent": 9.7546920776367187
+			},
+			{
+				"name": "TF_HEAVY_ACHIEVE_PROGRESS3",
+				"percent": 9.7078332901000977
+			},
+			{
+				"name": "TF_SOLDIER_KILL_DEFENSELESS",
+				"percent": 9.5795106887817383
+			},
+			{
+				"name": "TF_DEMOMAN_DESTROY_BUILDINGS_GRIND",
+				"percent": 9.46466064453125
+			},
+			{
+				"name": "TF_SNIPER_HEADSHOT_POST_INVULN",
+				"percent": 9.4499835968017578
+			},
+			{
+				"name": "TF_MEDIC_SAVE_TEAMMATE",
+				"percent": 9.4233665466308594
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_PYRO",
+				"percent": 9.3578958511352539
+			},
+			{
+				"name": "TF_SOLDIER_RIDE_THE_CART",
+				"percent": 9.2815895080566406
+			},
+			{
+				"name": "TF_SPY_FAST_CAP",
+				"percent": 9.2801237106323242
+			},
+			{
+				"name": "TF_PYRO_REFLECT_PROJECTILES",
+				"percent": 9.1970119476318359
+			},
+			{
+				"name": "TF_DEMOMAN_STICKJUMP_DISTANCE",
+				"percent": 9.192927360534668
+			},
+			{
+				"name": "TF_HEAVY_KILL_MEDIC_PAIR",
+				"percent": 9.1541099548339844
+			},
+			{
+				"name": "TF_SCOUT_FLAG_CAP_GRIND",
+				"percent": 9.1493043899536133
+			},
+			{
+				"name": "TF_HEAVY_DEFEND_CONTROL_POINT",
+				"percent": 9.0804166793823242
+			},
+			{
+				"name": "TF_SCOUT_STEAL_SANDWICH",
+				"percent": 9.0738039016723633
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_MEDIC",
+				"percent": 8.9789113998413086
+			},
+			{
+				"name": "TF_DEMOMAN_ACHIEVE_PROGRESS3",
+				"percent": 8.9747295379638672
+			},
+			{
+				"name": "TF_PYRO_KILL_HEAVIES",
+				"percent": 8.9559364318847656
+			},
+			{
+				"name": "TF_SCOUT_DOUBLEJUMP_KILL",
+				"percent": 8.9123744964599609
+			},
+			{
+				"name": "TF_SOLDIER_THREE_DOMINATIONS",
+				"percent": 8.894902229309082
+			},
+			{
+				"name": "TF_SOLDIER_KILL_TAUNT",
+				"percent": 8.8106155395507813
+			},
+			{
+				"name": "TF_ENGINEER_REVENGE_CRIT_LIFE",
+				"percent": 8.7896947860717773
+			},
+			{
+				"name": "TF_ENGINEER_DISPENSER_EXTINGUISH",
+				"percent": 8.720982551574707
+			},
+			{
+				"name": "TF_PYRO_KILL_MULTIWEAPONS",
+				"percent": 8.7183399200439453
+			},
+			{
+				"name": "TF_SCOUT_DODGE_DAMAGE",
+				"percent": 8.6941652297973633
+			},
+			{
+				"name": "TF_HEAVY_EAT_SANDWICHES",
+				"percent": 8.6929655075073242
+			},
+			{
+				"name": "TF_DEMOMAN_DECAPITATE_EQUALIZER",
+				"percent": 8.6510219573974609
+			},
+			{
+				"name": "TF_DEMOMAN_KILL3_WITH_DETONATION",
+				"percent": 8.5991449356079102
+			},
+			{
+				"name": "TF_MVM_COMPLETE_POP_FILE",
+				"percent": 8.5896368026733398
+			},
+			{
+				"name": "TF_SPY_AMBASSADOR_GRIND",
+				"percent": 8.5734128952026367
+			},
+			{
+				"name": "TF_SCOUT_KILL_FROM_BEHIND",
+				"percent": 8.5650434494018555
+			},
+			{
+				"name": "TF_SCOUT_MAX_STUNS",
+				"percent": 8.5061311721801758
+			},
+			{
+				"name": "TF_DEMOMAN_TAUNT_KILL",
+				"percent": 8.4975366592407227
+			},
+			{
+				"name": "TF_MVM_KILL_SENTRY_BUSTER",
+				"percent": 8.4846830368041992
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_PLAYER_AFTER_TP",
+				"percent": 8.4818716049194336
+			},
+			{
+				"name": "TF_HALLOWEEN_KILL_SCARED_PLAYER",
+				"percent": 8.466217041015625
+			},
+			{
+				"name": "TF_HEAVY_PAYLOAD_CAP_GRIND",
+				"percent": 8.4626235961914062
+			},
+			{
+				"name": "TF_MEDIC_ACHIEVE_PROGRESS3",
+				"percent": 8.3745841979980469
+			},
+			{
+				"name": "TF_SPY_AMBASSADOR_SCOUT_GRIND",
+				"percent": 8.29827880859375
+			},
+			{
+				"name": "TF_SNIPER_BOW_KILL_FLAGCARRIER",
+				"percent": 8.2909154891967773
+			},
+			{
+				"name": "TF_SNIPER_KILL_OBJECTIVES",
+				"percent": 8.2472562789916992
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_SPY_CALLERS",
+				"percent": 8.2402267456054687
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_CAPTURER",
+				"percent": 8.2208395004272461
+			},
+			{
+				"name": "TF_HEAVY_HEAL_MEDIKITS",
+				"percent": 8.2191066741943359
+			},
+			{
+				"name": "TF_SCOUT_IRON_MAN_KILLS",
+				"percent": 8.1779870986938477
+			},
+			{
+				"name": "TF_SCOUT_ACHIEVE_PROGRESS3",
+				"percent": 8.1703081130981445
+			},
+			{
+				"name": "TF_HALLOWEEN_COLLECT_PUMPKINS",
+				"percent": 8.1643867492675781
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_X_DEFENDING",
+				"percent": 8.156163215637207
+			},
+			{
+				"name": "TF_DEMOMAN_FREEZECAM_SMILE",
+				"percent": 8.0902938842773437
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_FRIENDS",
+				"percent": 8.033259391784668
+			},
+			{
+				"name": "TF_SOLDIER_KILL_TWO_DURING_ROCKET_JUMP",
+				"percent": 8.0052051544189453
+			},
+			{
+				"name": "TF_SCOUT_FIRST_BLOOD",
+				"percent": 7.9975337982177734
+			},
+			{
+				"name": "TF_MEDIC_BONESAW_MEDICS",
+				"percent": 7.9771766662597656
+			},
+			{
+				"name": "TF_SNIPER_KILL_GRIND",
+				"percent": 7.9694137573242187
+			},
+			{
+				"name": "TF_SCOUT_TAUNT_KILL",
+				"percent": 7.9426326751708984
+			},
+			{
+				"name": "TF_MEDIC_SAVE_FALLING_TEAMMATE",
+				"percent": 7.9421415328979492
+			},
+			{
+				"name": "TF_MEDIC_FREEZECAM_RAGDOLL",
+				"percent": 7.9415655136108398
+			},
+			{
+				"name": "TF_DEMOMAN_DOMINATE_THREE_ENGINEERS",
+				"percent": 7.8834285736083984
+			},
+			{
+				"name": "TF_TEAM_PYROVISION",
+				"percent": 7.8745813369750977
+			},
+			{
+				"name": "TF_SOLDIER_EQUALIZER_STREAK",
+				"percent": 7.8133530616760254
+			},
+			{
+				"name": "TF_ENGINEER_UPGRADE_BUILDINGS",
+				"percent": 7.8040018081665039
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_JUGGLE",
+				"percent": 7.790123462677002
+			},
+			{
+				"name": "TF_ENGINEER_SENTRY_KILL_CAPS",
+				"percent": 7.7508039474487305
+			},
+			{
+				"name": "TF_SPY_KILL_CP_DEFENDERS",
+				"percent": 7.6524205207824707
+			},
+			{
+				"name": "TF_MEDIC_HEAL_LARGE",
+				"percent": 7.5629754066467285
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_VS_NEMESES",
+				"percent": 7.5581574440002441
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_ENGY_SAP_BUILDING",
+				"percent": 7.531740665435791
+			},
+			{
+				"name": "TF_ENGINEER_TAUNT_KILL",
+				"percent": 7.4323139190673828
+			},
+			{
+				"name": "TF_MEDIC_SYRINGE_SCOUTS",
+				"percent": 7.3977336883544922
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_X_HEAVIES_FULLHP_ONEDET",
+				"percent": 7.3958849906921387
+			},
+			{
+				"name": "TF_ENGINEER_MANUAL_SENTRY_KILLS_BEYOND_RANGE",
+				"percent": 7.2766838073730469
+			},
+			{
+				"name": "TF_SCOUT_STUN_SCOUT_WITH_THEIR_BALL",
+				"percent": 7.2123842239379883
+			},
+			{
+				"name": "TF_SOLDIER_DEFEND_CAP_THIRTY_TIMES",
+				"percent": 7.2102866172790527
+			},
+			{
+				"name": "TF_HEAVY_KILL_SCOUTS",
+				"percent": 7.1899361610412598
+			},
+			{
+				"name": "TF_HEAVY_DEFEND_MEDIC",
+				"percent": 7.1562471389770508
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_ENGI_SENTRY_DISPENSER",
+				"percent": 7.0742859840393066
+			},
+			{
+				"name": "TF_PYRO_KILL_UNDERWATER",
+				"percent": 7.0624933242797852
+			},
+			{
+				"name": "TF_PYRO_BURN_SPY_TAUNT",
+				"percent": 7.0543603897094727
+			},
+			{
+				"name": "TF_SOLDIER_NEMESIS_SHOVEL_KILL",
+				"percent": 6.9848904609680176
+			},
+			{
+				"name": "TF_SOLDIER_FREEZECAM_TAUNT",
+				"percent": 6.9844355583190918
+			},
+			{
+				"name": "TF_HALLOWEEN_COLLECT_GOODY_BAG",
+				"percent": 6.943873405456543
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_HEAVY",
+				"percent": 6.8588523864746094
+			},
+			{
+				"name": "TF_MULTIPLE_BFF",
+				"percent": 6.8165392875671387
+			},
+			{
+				"name": "TF_HEAVY_BLOCK_CART",
+				"percent": 6.7930617332458496
+			},
+			{
+				"name": "TF_SNIPER_JARATE_ASSISTS",
+				"percent": 6.7228646278381348
+			},
+			{
+				"name": "TF_SOLDIER_GIB_GRIND",
+				"percent": 6.7052831649780273
+			},
+			{
+				"name": "TF_HALLOWEEN_EYEBOSS_KILL",
+				"percent": 6.6299042701721191
+			},
+			{
+				"name": "TF_PLAY_GAME_FRIENDSONLY",
+				"percent": 6.5059943199157715
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_SCOUT",
+				"percent": 6.442021369934082
+			},
+			{
+				"name": "TF_HALLOWEEN_BOSS_KILL_MELEE",
+				"percent": 6.4355363845825195
+			},
+			{
+				"name": "TF_ENGINEER_DESTROY_SAPPERS",
+				"percent": 6.432548999786377
+			},
+			{
+				"name": "TF_ENGINEER_FREEZECAM_TAUNT",
+				"percent": 6.422797679901123
+			},
+			{
+				"name": "TF_HALLOWEEN_PUMPKIN_KILL",
+				"percent": 6.4199252128601074
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_SOLDIER",
+				"percent": 6.3745999336242676
+			},
+			{
+				"name": "TF_DEMOMAN_AIR_BURST_KILLS",
+				"percent": 6.3715329170227051
+			},
+			{
+				"name": "TF_SCOUT_STUN_UBER_ENEMIES",
+				"percent": 6.327662467956543
+			},
+			{
+				"name": "TF_HEAVY_KILL_HEAVIES_GLOVES",
+				"percent": 6.3060512542724609
+			},
+			{
+				"name": "TF_SOLDIER_KILL_FIVE_STUNNED",
+				"percent": 6.2859668731689453
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_CAPPING_ENEMIES",
+				"percent": 6.2448596954345703
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_TWO_DURING_STICKYJUMP",
+				"percent": 6.2348418235778809
+			},
+			{
+				"name": "TF_SOLDIER_BUFF_TEAMMATES",
+				"percent": 6.2315387725830078
+			},
+			{
+				"name": "TF_SOLDIER_ASSIST_MEDIC_UBER",
+				"percent": 6.1974310874938965
+			},
+			{
+				"name": "TF_SCOUT_KILL_STUNNED",
+				"percent": 6.1071987152099609
+			},
+			{
+				"name": "TF_DEMOMAN_KILL3_WITH_PIPE_SETUPS",
+				"percent": 6.0704789161682129
+			},
+			{
+				"name": "TF_SPY_BACKSTAB_GRIND",
+				"percent": 6.0028877258300781
+			},
+			{
+				"name": "TF_SPY_AMBASSADOR_SNIPER_GRIND",
+				"percent": 5.9978456497192383
+			},
+			{
+				"name": "TF_MEDIC_CHARGE_FRIENDS",
+				"percent": 5.9856581687927246
+			},
+			{
+				"name": "TF_HEAVY_KILL_FLAG_CARRIERS",
+				"percent": 5.9644351005554199
+			},
+			{
+				"name": "TF_SOLDIER_MVP",
+				"percent": 5.9355936050415039
+			},
+			{
+				"name": "TF_SOLDIER_RJ_EQUALIZER_KILL",
+				"percent": 5.9206185340881348
+			},
+			{
+				"name": "TF_MEDIC_HEAL_HUGE",
+				"percent": 5.9166426658630371
+			},
+			{
+				"name": "TF_SCOUT_BLOCK_CAPS",
+				"percent": 5.911139965057373
+			},
+			{
+				"name": "TF_ENGINEER_WASTE_METAL_GRIND",
+				"percent": 5.885007381439209
+			},
+			{
+				"name": "TF_DEMOMAN_STICKYJUMP_CAP",
+				"percent": 5.8621358871459961
+			},
+			{
+				"name": "TF_ENGINEER_HELP_MANUAL_SENTRY",
+				"percent": 5.8592996597290039
+			},
+			{
+				"name": "TF_SOLDIER_KILL_WITH_EQUALIZER_WHILE_HURT",
+				"percent": 5.8542938232421875
+			},
+			{
+				"name": "TF_DEMOMAN_FREEZECAM_RUMP",
+				"percent": 5.7719154357910156
+			},
+			{
+				"name": "TF_MVM_DESTROY_TWO_TANKS",
+				"percent": 5.7712063789367676
+			},
+			{
+				"name": "TF_SCOUT_ASSIST_MEDIC",
+				"percent": 5.7541465759277344
+			},
+			{
+				"name": "TF_SOLDIER_DESTROY_STICKIES",
+				"percent": 5.7532129287719727
+			},
+			{
+				"name": "TF_SPY_FREEZECAM_FLICK",
+				"percent": 5.6607928276062012
+			},
+			{
+				"name": "TF_SNIPER_BOW_KILL_MEDIC_PAIR",
+				"percent": 5.6418051719665527
+			},
+			{
+				"name": "TF_SCOUT_STUN_INTO_TRAIN",
+				"percent": 5.6279878616333008
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_DEFEND_CARRIER",
+				"percent": 5.6240062713623047
+			},
+			{
+				"name": "TF_REPLAY_PERFORMANCE_MODE",
+				"percent": 5.6007223129272461
+			},
+			{
+				"name": "TF_MEDIC_ASSIST_DEMOMAN",
+				"percent": 5.5954074859619141
+			},
+			{
+				"name": "TF_SNIPER_TOP_SCOREBOARD_GRIND",
+				"percent": 5.5520758628845215
+			},
+			{
+				"name": "TF_ENGINEER_DISPENSER_HEAL_GRIND",
+				"percent": 5.4908056259155273
+			},
+			{
+				"name": "TF_SNIPER_JARATE_KILL_MELEE",
+				"percent": 5.4874668121337891
+			},
+			{
+				"name": "TF_SCOUT_LIFETIME_KILLS",
+				"percent": 5.4872117042541504
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_WIN_MINTIME",
+				"percent": 5.4480376243591309
+			},
+			{
+				"name": "TF_MVM_ENGINEER_ESCAPE_SENTRY_BUSTER",
+				"percent": 5.4020824432373047
+			},
+			{
+				"name": "TF_HEAVY_BLOCK_INVULN_HEAVY",
+				"percent": 5.3881549835205078
+			},
+			{
+				"name": "TF_ENGINEER_MANUAL_SENTRY_ABSORB_DMG",
+				"percent": 5.3719072341918945
+			},
+			{
+				"name": "TF_SCOUT_WELL_EARLY_KILL",
+				"percent": 5.3407754898071289
+			},
+			{
+				"name": "TF_SOLDIER_FREEZECAM_GIBS",
+				"percent": 5.2665724754333496
+			},
+			{
+				"name": "TF_HEAVY_FREEZECAM_TAUNT",
+				"percent": 5.2161259651184082
+			},
+			{
+				"name": "TF_HEAVY_ASSIST_GRIND",
+				"percent": 5.2082290649414062
+			},
+			{
+				"name": "TF_ENGINEER_HEAVY_ASSIST",
+				"percent": 5.1654067039489746
+			},
+			{
+				"name": "TF_HEAVY_KILL_UNDERWATER",
+				"percent": 5.0655078887939453
+			},
+			{
+				"name": "TF_ENGINEER_KILL_SNIPERS_SENTRY",
+				"percent": 4.9387979507446289
+			},
+			{
+				"name": "TF_MEDIC_HEAL_GRIND",
+				"percent": 4.8542861938476562
+			},
+			{
+				"name": "TF_SCOUT_STUN_CAPPING_ENEMIES",
+				"percent": 4.8530435562133789
+			},
+			{
+				"name": "TF_DEMOMAN_MELEE_KILL_WHILE_STICKYJUMPING",
+				"percent": 4.8476862907409668
+			},
+			{
+				"name": "TF_SOLDIER_KILL_DEMOMAN_GRIND",
+				"percent": 4.8332386016845703
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_KILL_CAPPING_ENEMY",
+				"percent": 4.8283839225769043
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_SOLDIER_GRIND",
+				"percent": 4.8149847984313965
+			},
+			{
+				"name": "TF_HALLOWEEN_LOOT_ISLAND",
+				"percent": 4.8012280464172363
+			},
+			{
+				"name": "TF_SPY_SAPPER_GRIND",
+				"percent": 4.7286067008972168
+			},
+			{
+				"name": "TF_SCOUT_FIRST_BLOOD_KILL",
+				"percent": 4.7230854034423828
+			},
+			{
+				"name": "TF_ENGINEER_KILL_FLAG_CARRIERS",
+				"percent": 4.7111830711364746
+			},
+			{
+				"name": "TF_ENGINEER_MANUAL_CLOAKED_SPY_KILL",
+				"percent": 4.7104196548461914
+			},
+			{
+				"name": "TF_DEMOMAN_KILLXSAPPINGSPIES",
+				"percent": 4.6338343620300293
+			},
+			{
+				"name": "TF_DEMOMAN_DESTROY_BUILDINGS_WITH_MEDIC",
+				"percent": 4.5514559745788574
+			},
+			{
+				"name": "TF_ENGINEER_KILL_SENTRY_WITH_SENTRY",
+				"percent": 4.4674415588378906
+			},
+			{
+				"name": "TF_DEMOMAN_KILL_X_CAPPING_ONEDET",
+				"percent": 4.3967838287353516
+			},
+			{
+				"name": "TF_DEMOMAN_DESTROY_X_STICKYBOMBS",
+				"percent": 4.3848752975463867
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_PUSH_BACK_AND_WIN",
+				"percent": 4.1601996421813965
+			},
+			{
+				"name": "TF_ENGINEER_DESTROY_STICKIES",
+				"percent": 4.1309704780578613
+			},
+			{
+				"name": "TF_MVM_DESTROY_TANK_WHILE_DEPLOYING",
+				"percent": 4.1282186508178711
+			},
+			{
+				"name": "TF_SOLDIER_BUFF_FRIENDS",
+				"percent": 4.0586762428283691
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_PUSH_BACK_AND_WIN",
+				"percent": 4.0491557121276855
+			},
+			{
+				"name": "TF_PYRO_DAMAGE_GRIND",
+				"percent": 3.9618923664093018
+			},
+			{
+				"name": "TF_REPLAY_EDIT_TIME",
+				"percent": 3.6665287017822266
+			},
+			{
+				"name": "TF_REPLAY_BROWSE_REPLAYS",
+				"percent": 3.6633834838867187
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_SOLO_CAPTURE",
+				"percent": 3.5377521514892578
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_BACK_AND_FORTH_BATTLE",
+				"percent": 3.4875483512878418
+			},
+			{
+				"name": "TF_MVM_USE_CRIT_BOTTLE",
+				"percent": 3.4557919502258301
+			},
+			{
+				"name": "TF_ENGINEER_SENTRY_KILL_LIFETIME_GRIND",
+				"percent": 3.3772013187408447
+			},
+			{
+				"name": "TF_DEMOMAN_DAMAGE_GRIND",
+				"percent": 3.1834819316864014
+			},
+			{
+				"name": "TF_HALLOWEEN_CRAFT_SAXTON_MASK",
+				"percent": 3.1324901580810547
+			},
+			{
+				"name": "TF_MVM_MAX_PRIMARY_UPGRADES",
+				"percent": 3.0094890594482422
+			},
+			{
+				"name": "TF_MVM_COMPLETE_TOUR",
+				"percent": 2.9466552734375
+			},
+			{
+				"name": "TF_MVM_NO_ALARMS_IN_FINAL_WAVE",
+				"percent": 2.9180624485015869
+			},
+			{
+				"name": "TF_MVM_USE_UBER_BOTTLE",
+				"percent": 2.7926676273345947
+			},
+			{
+				"name": "Zgaszony dżentelmen",
+				"percent": 2.7742500305175781
+			},
+			{
+				"name": "TF_MVM_DESTROY_TANK_QUICKLY",
+				"percent": 2.7620081901550293
+			},
+			{
+				"name": "TF_HALLOWEEN_MERASMUS_KILL",
+				"percent": 2.7611353397369385
+			},
+			{
+				"name": "TF_MVM_USE_AMMO_BOTTLE",
+				"percent": 2.7523844242095947
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_PUSH_INTO_CAULDRON",
+				"percent": 2.7521843910217285
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_TELEPORT_AND_CAP",
+				"percent": 2.6742725372314453
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_ACHIEVE_PROGRESS1",
+				"percent": 2.6008875370025635
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_PLAY_EACH_CLASS",
+				"percent": 2.5972754955291748
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_FAST_FINAL_CAP",
+				"percent": 2.5692586898803711
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_KILL_ENEMY_ON_ROOF",
+				"percent": 2.5436959266662598
+			},
+			{
+				"name": "TF_MVM_MAX_PLAYER_RESISTANCES",
+				"percent": 2.5054552555084229
+			},
+			{
+				"name": "TF_HALLOWEEN_MERASMUS_COLLECT_LOOT",
+				"percent": 2.4811892509460449
+			},
+			{
+				"name": "TF_ENGINEER_REPAIR_TEAM_GRIND",
+				"percent": 2.4703233242034912
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_PLAY_GAME_FRIENDS",
+				"percent": 2.4409000873565674
+			},
+			{
+				"name": "TF_MVM_SOLDIER_BUFF_TEAM",
+				"percent": 2.3988533020019531
+			},
+			{
+				"name": "TF_REPLAY_YOUTUBE_VIEWS_TIER1",
+				"percent": 2.3927567005157471
+			},
+			{
+				"name": "TF_REPLAY_YOUTUBE_VIEWS_TIER2",
+				"percent": 2.3359227180480957
+			},
+			{
+				"name": "TF_MAPS_FOUNDRY_WIN_ROUNDS",
+				"percent": 2.2620649337768555
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_RIDE_THE_ELEVATOR",
+				"percent": 2.1820137500762939
+			},
+			{
+				"name": "TF_REPLAY_YOUTUBE_VIEWS_TIER3",
+				"percent": 1.7779879570007324
+			},
+			{
+				"name": "TF_REPLAY_YOUTUBE_VIEWS_HIGHEST",
+				"percent": 1.7685942649841309
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_KILL_ENEMIES_ON_ELEVATOR",
+				"percent": 1.6735557317733765
+			},
+			{
+				"name": "TF_MVM_USE_BUILD_BOTTLE",
+				"percent": 1.4964054822921753
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_DENY_NEUTRAL_PICKUP",
+				"percent": 1.4428015947341919
+			},
+			{
+				"name": "TF_MVM_SNIPER_KILL_GROUP",
+				"percent": 1.4209842681884766
+			},
+			{
+				"name": "TF_MVM_SCOUT_MARK_FOR_DEATH",
+				"percent": 1.3704046010971069
+			},
+			{
+				"name": "TF_MVM_USE_TELEPORT_BOTTLE",
+				"percent": 1.3572474718093872
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_PLAY_EACH_CLASS",
+				"percent": 1.3528718948364258
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_PUSH_INTO_EXHAUST",
+				"percent": 1.3510174751281738
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_ACHIEVE_PROGRESS1",
+				"percent": 1.2327737808227539
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_KILL_CARRIERS",
+				"percent": 1.212507963180542
+			},
+			{
+				"name": "TF_MVM_MEDIC_SHARE_BOTTLES",
+				"percent": 1.201296329498291
+			},
+			{
+				"name": "TF_MVM_DEFEND_CAP",
+				"percent": 1.1952238082885742
+			},
+			{
+				"name": "TF_PYRO_IGNITE_WITH_RAINBOW",
+				"percent": 1.1514014005661011
+			},
+			{
+				"name": "TF_KILL_BALLOONICORN_OWNERS",
+				"percent": 1.1453288793563843
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_PLAY_GAME_FRIENDS",
+				"percent": 1.1352928876876831
+			},
+			{
+				"name": "TF_MVM_PYRO_BOMB_RESET",
+				"percent": 1.082785964012146
+			},
+			{
+				"name": "TF_MAPS_DOOMSDAY_WIN_ROUNDS",
+				"percent": 1.0740469694137573
+			},
+			{
+				"name": "TF_MVM_KILL_MEDICS_CHARGED",
+				"percent": 1.06878662109375
+			},
+			{
+				"name": "TF_MVM_SPY_SAP_ROBOTS",
+				"percent": 1.0235399007797241
+			},
+			{
+				"name": "TF_MVM_ADVANCED_EARN_ALL_BONUSES",
+				"percent": 1.0081830024719238
+			},
+			{
+				"name": "TF_MVM_HEAVY_RAGE_PUSH_DEPLOYING_ROBOT",
+				"percent": 0.98114776611328125
+			},
+			{
+				"name": "TF_MVM_PLAY_EACH_CLASS",
+				"percent": 0.96724528074264526
+			},
+			{
+				"name": "TF_MVM_DEMO_GROUP_KILL",
+				"percent": 0.91939270496368408
+			},
+			{
+				"name": "TF_MVM_PLAY_GAME_FRIENDS",
+				"percent": 0.84512901306152344
+			},
+			{
+				"name": "TF_MVM_COLLECT_MONEY_GRIND",
+				"percent": 0.84395939111709595
+			},
+			{
+				"name": "TF_MVM_KILL_ROBOT_GRIND",
+				"percent": 0.84169280529022217
+			},
+			{
+				"name": "TF_MVM_KILL_ROBOT_MEGA_GRIND",
+				"percent": 0.84025049209594727
+			},
+			{
+				"name": "Defiende un punto de captura 30 veces.",
+				"percent": 0.36956065893173218
+			}
+		]
+		
+	}
+}
