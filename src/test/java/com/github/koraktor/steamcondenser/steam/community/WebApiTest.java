@@ -53,6 +53,7 @@ public class WebApiTest {
     @Before
     public void setup() throws Exception {
         WebApi.apiKey = "0123456789ABCDEF0123456789ABCDEF";
+        WebApi.setSecure(true);
     }
 
     @Test
@@ -127,6 +128,33 @@ public class WebApiTest {
         whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
 
         HttpGet request = mock(HttpGet.class);
+        whenNew(HttpGet.class).withArguments("https://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF").thenReturn(request);
+
+        HttpResponse response = mock(HttpResponse.class);
+        StatusLine statusLine = mock(StatusLine.class);
+        when(statusLine.getStatusCode()).thenReturn(200);
+        when(response.getStatusLine()).thenReturn(statusLine);
+        HttpEntity entity = mock(HttpEntity.class);
+        when(entity.getContent()).thenReturn(new ByteArrayInputStream("test".getBytes()));
+        when(response.getEntity()).thenReturn(entity);
+        doReturn(response).when(httpClient).execute(request);
+        when(httpClient.execute(request)).thenReturn(response);
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("test", "param");
+
+        assertThat(WebApi.load("json", "interface", "method", 2, params), is(equalTo("test")));
+    }
+
+    @Test
+    public void testLoadInsecure() throws Exception {
+        WebApi.setSecure(false);
+
+        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
+        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
+        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+
+        HttpGet request = mock(HttpGet.class);
         whenNew(HttpGet.class).withArguments("http://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF").thenReturn(request);
 
         HttpResponse response = mock(HttpResponse.class);
@@ -171,7 +199,7 @@ public class WebApiTest {
         whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
 
         HttpGet request = mock(HttpGet.class);
-        whenNew(HttpGet.class).withArguments("http://api.steampowered.com/interface/method/v0002/?format=json&key=0123456789ABCDEF0123456789ABCDEF").thenReturn(request);
+        whenNew(HttpGet.class).withArguments("https://api.steampowered.com/interface/method/v0002/?format=json&key=0123456789ABCDEF0123456789ABCDEF").thenReturn(request);
 
         HttpResponse response = mock(HttpResponse.class);
         StatusLine statusLine = mock(StatusLine.class);
