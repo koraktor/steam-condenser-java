@@ -11,7 +11,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.A2M_GET_SERVERS_BATCH2_Paket;
@@ -29,6 +30,8 @@ import com.github.koraktor.steamcondenser.steam.sockets.MasterServerSocket;
  * @author Sebastian Staudt
  */
 public class MasterServer extends Server {
+
+    protected static final Logger LOG = LoggerFactory.getLogger("com.github.koraktor.steamcondenser");
 
     /**
      * The master server address to query for GoldSrc game servers
@@ -264,7 +267,7 @@ public class MasterServer extends Server {
                         if(failCount == retries) {
                             throw e;
                         }
-                        Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server " + this.ipAddress + " timed out, retrying...");
+                        LOG.info("Request to master server " + this.ipAddress + " timed out, retrying...");
                     }
                 } while(!finished);
                 break;
@@ -274,7 +277,7 @@ public class MasterServer extends Server {
                 } else if(this.rotateIp()) {
                     throw e;
                 }
-                Logger.getLogger("com.github.koraktor.steamcondenser").info("Request to master server failed, retrying " + this.ipAddress + "...");
+                LOG.info("Request to master server failed, retrying " + this.ipAddress + "...");
             }
         }
 
