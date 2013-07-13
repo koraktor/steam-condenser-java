@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2012, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -29,6 +29,8 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  * @author Sebastian Staudt
  */
 public class SteamId {
+
+    private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH);
 
     private static Map<Object, SteamId> steamIds = new HashMap<Object, SteamId>();
 
@@ -357,7 +359,9 @@ public class SteamId {
                 this.headLine = profile.getUnescapedString("headline");
                 this.hoursPlayed = profile.getFloat("hoursPlayed2Wk");
                 this.location = profile.getString("location");
-                this.memberSince = DateFormat.getDateInstance(DateFormat.LONG,Locale.ENGLISH).parse(profile.getString("memberSince"));
+                String memberSince = profile.getString("memberSince");
+                memberSince = memberSince.replaceAll("(\\d+)st|nd|rd|th", "$1");
+                this.memberSince = DATE_FORMAT.parse(memberSince);
                 this.realName = profile.getUnescapedString("realname");
                 this.steamRating = profile.getFloat("steamRating");
                 this.summary = profile.getUnescapedString("summary");

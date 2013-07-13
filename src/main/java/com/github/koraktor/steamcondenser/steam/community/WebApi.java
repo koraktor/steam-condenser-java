@@ -36,6 +36,8 @@ abstract public class WebApi {
 
     protected static String apiKey;
 
+    protected static boolean secure = true;
+
     /**
      * Returns the Steam Web API key currently used by Steam Condenser
      *
@@ -59,6 +61,15 @@ abstract public class WebApi {
         }
 
         WebApi.apiKey = apiKey;
+    }
+
+    /**
+     * Sets whether HTTPS should be used for the communication with the Web API
+     *
+     * @param secure Whether to use HTTPS
+     */
+    public static void setSecure(boolean secure) {
+        WebApi.secure = secure;
     }
 
     /**
@@ -234,7 +245,8 @@ abstract public class WebApi {
      */
     public static String load(String format, String apiInterface, String method, int version, Map<String, Object> params)
             throws WebApiException {
-        String url = String.format("http://api.steampowered.com/%s/%s/v%04d/?", apiInterface, method, version);
+        String protocol = secure ? "https" : "http";
+        String url = String.format("%s://api.steampowered.com/%s/%s/v%04d/?", protocol, apiInterface, method, version);
 
         if(params == null) {
             params = new HashMap<String, Object>();
