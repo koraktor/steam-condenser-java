@@ -12,7 +12,8 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
@@ -31,7 +32,7 @@ import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
  */
 public class RCONSocket extends SteamSocket {
 
-    protected final static Logger LOG = Logger.getLogger(RCONSocket.class.getName());
+    protected final static Logger LOG = LoggerFactory.getLogger(RCONSocket.class.getName());
 
     /**
      * Creates a new TCP socket to communicate with the server on the given IP
