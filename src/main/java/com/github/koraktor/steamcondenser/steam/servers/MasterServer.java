@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -40,7 +40,7 @@ public class MasterServer extends Server {
     /**
      * The master server address to query for GoldSrc game servers
      */
-    public static final String GOLDSRC_MASTER_SERVER = "hl1master.steampowered.com:27010";
+    public static final String GOLDSRC_MASTER_SERVER = "hl1master.steampowered.com:27011";
 
     /**
      * The master server address to query for GoldSrc game servers
