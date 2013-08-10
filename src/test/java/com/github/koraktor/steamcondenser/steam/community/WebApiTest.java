@@ -127,7 +127,7 @@ public class WebApiTest {
         when(httpClient.getParams()).thenReturn(new BasicHttpParams());
         whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
 
-        this.prepareRequest(true, 200, null, "test", "test=param&");
+        this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("test", "param");
@@ -143,7 +143,7 @@ public class WebApiTest {
         when(httpClient.getParams()).thenReturn(new BasicHttpParams());
         whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
 
-        this.prepareRequest(false, 200, null, "test", "test=param&");
+        this.prepareRequest("http://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("test", "param");
@@ -156,9 +156,25 @@ public class WebApiTest {
         this.exception.expect(WebApiException.class);
         this.exception.expectMessage("Your Web API request has been rejected. You most likely did not specify a valid Web API key.");
 
-        this.prepareRequest(true, 401, null, null, null);
+        this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?format=json&key=0123456789ABCDEF0123456789ABCDEF", 401, null, null);
 
         WebApi.load("json", "interface", "method", 2);
+    }
+
+    @Test
+    public void testLoadWithoutKey() throws Exception {
+        WebApi.setApiKey(null);
+
+        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
+        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
+        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+
+        this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json", 200, null, "test");
+
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("test", "param");
+
+        assertThat(WebApi.load("json", "interface", "method", 2, params), is(equalTo("test")));
     }
 
     @Test
@@ -166,23 +182,17 @@ public class WebApiTest {
         this.exception.expect(WebApiException.class);
         this.exception.expectMessage("The Web API request has failed due to an HTTP error: Not found (status code: 404).");
 
-        this.prepareRequest(true, 404, "Not found", null, null);
+        this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?format=json&key=0123456789ABCDEF0123456789ABCDEF", 404, "Not found", null);
 
         WebApi.load("json", "interface", "method", 2);
     }
 
-    private void prepareRequest(boolean secure, int statusCode, String reason, String content, String params) throws Exception {
+    private void prepareRequest(String url, int statusCode, String reason, String content) throws Exception {
         DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
         when(httpClient.getParams()).thenReturn(new BasicHttpParams());
         whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
 
         HttpGet request = mock(HttpGet.class);
-        String protocol = secure ? "https" : "http";
-        String url = protocol + "://api.steampowered.com/interface/method/v0002/?";
-        if (params != null) {
-            url += params;
-        }
-        url += "format=json&key=0123456789ABCDEF0123456789ABCDEF";
         whenNew(HttpGet.class).withArguments(url).thenReturn(request);
 
         HttpResponse response = mock(HttpResponse.class);
