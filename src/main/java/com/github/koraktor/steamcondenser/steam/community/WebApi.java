@@ -18,6 +18,7 @@ import org.apache.http.client.params.ClientPNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,6 +47,23 @@ abstract public class WebApi {
      */
     public static String getApiKey() {
         return apiKey;
+    }
+
+    /**
+     * Returns a raw list of interfaces and their methods that are available in
+     * Steam's Web API
+     *
+     * This can be used for reference when accessing interfaces and methods
+     * that have not yet been implemented by Steam Condenser.
+     *
+     * @return array The list of interfaces and methods
+     */
+    public static JSONArray getInterfaces()
+            throws JSONException, WebApiException {
+        String data = WebApi.getJSON("ISteamWebAPIUtil", "GetSupportedAPIList");
+        return new JSONObject(data).
+                getJSONObject("apilist").
+                getJSONArray("interfaces");
     }
 
     /**
