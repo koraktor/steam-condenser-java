@@ -9,6 +9,7 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
@@ -252,7 +253,9 @@ abstract public class WebApi {
             params = new HashMap<String, Object>();
         }
         params.put("format", format);
-        params.put("key", apiKey);
+        if (apiKey != null) {
+            params.put("key", apiKey);
+        }
 
         boolean first = true;
         for(Map.Entry<String, Object> param : params.entrySet()) {
@@ -265,7 +268,11 @@ abstract public class WebApi {
             url += String.format("%s=%s", param.getKey(), param.getValue());
         }
 
-        LOG.info("Querying Steam Web API: " + url.replace(apiKey, "SECRET"));
+        if (LOG.isLoggable(Level.INFO)) {
+            String debugUrl = (apiKey == null) ?
+                url : url.replace(apiKey, "SECRET");
+            LOG.info("Querying Steam Web API: " + debugUrl);
+        }
 
         String data;
         try {
