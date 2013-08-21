@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.SteamPlayer;
@@ -49,6 +50,8 @@ public abstract class GameServer extends Server {
     protected HashMap<String, String> rulesHash;
     protected HashMap<String, Object> serverInfo;
     protected QuerySocket socket;
+
+    protected static final Logger LOG = LoggerFactory.getLogger(GameServer.class);
 
     /**
      * Creates a new instance of a game server object
@@ -342,7 +345,7 @@ public abstract class GameServer extends Server {
         }
 
         if(!expectedResponse.isInstance(responsePacket)) {
-            Logger.getLogger("com.github.koraktor.steamcondenser").warning("Expected " + expectedResponse + ", got " + responsePacket.getClass() + ".");
+            LOG.warn("Expected " + expectedResponse + ", got " + responsePacket.getClass() + ".");
             if(repeatOnFailure) {
                 this.handleResponseForRequest(requestType, false);
             }

@@ -12,7 +12,8 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
@@ -23,6 +24,8 @@ import com.github.koraktor.steamcondenser.steam.packets.SteamPacket;
  * @author Sebastian Staudt
  */
 public abstract class QuerySocket extends SteamSocket {
+
+    protected static final Logger LOG = LoggerFactory.getLogger(QuerySocket.class);
 
     /**
      * Creates a new socket to communicate with the server on the given IP
@@ -76,7 +79,7 @@ public abstract class QuerySocket extends SteamSocket {
      */
     public void send(SteamPacket dataPacket)
             throws SteamCondenserException {
-        Logger.getLogger("com.github.koraktor.steamcondenser").info("Sending data packet of type \"" + dataPacket.getClass().getSimpleName() + "\"");
+        LOG.info("Sending data packet of type \"" + dataPacket.getClass().getSimpleName() + "\"");
 
         try {
             this.buffer = ByteBuffer.wrap(dataPacket.getBytes());

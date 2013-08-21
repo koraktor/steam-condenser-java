@@ -9,7 +9,8 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -32,7 +33,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 abstract public class WebApi {
 
-    protected static final Logger LOG = Logger.getLogger(WebApi.class.getName());
+    protected static final Logger LOG = LoggerFactory.getLogger(WebApi.class);
 
     protected static String apiKey;
 
