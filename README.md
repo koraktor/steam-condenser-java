@@ -33,6 +33,12 @@ following dependency definition:
         <artifactId>steamcondenser</artifactId>
     </dependency>
 
+## Logging
+
+Steam Condenser provides logging based on [SLF4J][slf4j]. To make use of it you
+have to add a logger implementation (like slf4j-log4j) to your application's
+classpath. See [this list][loggers] for some available SLF4J loggers.
+
 ## License
 
 This code is free software; you can redistribute it and/or modify it under the
@@ -57,3 +63,6 @@ included LICENSE file.
 Follow Steam Condenser on Google Plus+ via
 [+Steam Condenser](https://plus.google.com/b/109400543549250623875/109400543549250623875)
 or on Twitter via [@steamcondenser](https://twitter.com/steamcondenser).
+
+ [loggers]: http://www.slf4j.org/manual.html#swapping
+ [slf4j]:   http://www.slf4j.org
