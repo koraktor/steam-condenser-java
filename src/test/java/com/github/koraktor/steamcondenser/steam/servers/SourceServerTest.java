@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012, Sebastian Staudt
+ * Copyright (c) 2012-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -203,7 +203,7 @@ public class SourceServerTest {
 
         verify(this.rconSocket, times(1)).send(argThat(this.requestMatcher));
     }
-    
+
     @Test
     public void testRCONExec() throws Exception {
         this.server.rconAuthenticated = true;
