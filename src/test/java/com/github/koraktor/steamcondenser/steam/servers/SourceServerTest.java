@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012, Sebastian Staudt
+ * Copyright (c) 2012-2013, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -43,6 +43,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.spy;
@@ -187,7 +188,20 @@ public class SourceServerTest {
         assertFalse(this.server.rconAuthenticated);
 
         verify(this.rconSocket).send(argThat(this.requestMatcher));
-        verify(this.rconSocket).send(argThat(this.terminatorMatcher));
+    }
+
+    @Test
+    public void testRCONExecEmpty() throws Exception {
+        this.server.rconAuthenticated = true;
+        this.server.rconRequestId = 1234;
+
+        RCONExecResponsePacket reply = mock(RCONExecResponsePacket.class);
+        when(reply.getResponse()).thenReturn("");
+        when(this.rconSocket.getReply()).thenReturn(reply);
+
+        assertThat(this.server.rconExec("command"), is(equalTo("")));
+
+        verify(this.rconSocket, times(1)).send(argThat(this.requestMatcher));
     }
 
     @Test
@@ -201,7 +215,7 @@ public class SourceServerTest {
         when(reply2.getResponse()).thenReturn("test");
         RCONExecResponsePacket reply3 = mock(RCONExecResponsePacket.class);
         when(reply3.getResponse()).thenReturn("");
-        when(this.rconSocket.getReply()).thenReturn(reply1, reply2, reply3);
+        when(this.rconSocket.getReply()).thenReturn(reply1, reply2, reply3, reply3);
 
         assertThat(this.server.rconExec("command"), is(equalTo("testtest")));
 

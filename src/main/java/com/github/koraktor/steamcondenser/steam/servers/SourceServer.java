@@ -176,23 +176,29 @@ public class SourceServer extends GameServer {
         }
 
         this.rconSocket.send(new RCONExecRequestPacket(this.rconRequestId, command));
-        this.rconSocket.send(new RCONTerminator(this.rconRequestId));
-        RCONPacket responsePacket;
 
+        boolean isMulti = false;
+         RCONPacket responsePacket;
         ArrayList<String> response = new ArrayList<String>();
         do {
             try {
                 responsePacket = this.rconSocket.getReply();
+
                 if (responsePacket instanceof RCONAuthResponse) {
                     this.rconAuthenticated = false;
                     throw new RCONNoAuthException();
+                }
+
+                if (!isMulti && ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0) {
+                    isMulti = true;
+                    this.rconSocket.send(new RCONTerminator(this.rconRequestId));
                 }
             } catch (ConnectionResetException e) {
                 this.rconAuthenticated = false;
                 throw new RCONNoAuthException();
             }
             response.add(((RCONExecResponsePacket) responsePacket).getResponse());
-        } while(response.size() < 3 || ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0);
+        } while(isMulti && !(response.size() > 2 && response.get(response.size() - 2).equals("") && response.get(response.size() - 1).equals("")));
 
         return StringUtils.join(response.toArray()).trim();
     }

@@ -9,8 +9,6 @@ package com.github.koraktor.steamcondenser.steam.community;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -18,8 +16,12 @@ import org.apache.http.client.params.ClientPNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 
@@ -46,6 +48,23 @@ abstract public class WebApi {
      */
     public static String getApiKey() {
         return apiKey;
+    }
+
+    /**
+     * Returns a raw list of interfaces and their methods that are available in
+     * Steam's Web API
+     *
+     * This can be used for reference when accessing interfaces and methods
+     * that have not yet been implemented by Steam Condenser.
+     *
+     * @return array The list of interfaces and methods
+     */
+    public static JSONArray getInterfaces()
+            throws JSONException, WebApiException {
+        String data = WebApi.getJSON("ISteamWebAPIUtil", "GetSupportedAPIList");
+        return new JSONObject(data).
+                getJSONObject("apilist").
+                getJSONArray("interfaces");
     }
 
     /**
@@ -253,7 +272,9 @@ abstract public class WebApi {
             params = new HashMap<String, Object>();
         }
         params.put("format", format);
-        params.put("key", apiKey);
+        if (apiKey != null) {
+            params.put("key", apiKey);
+        }
 
         boolean first = true;
         for(Map.Entry<String, Object> param : params.entrySet()) {
@@ -266,7 +287,11 @@ abstract public class WebApi {
             url += String.format("%s=%s", param.getKey(), param.getValue());
         }
 
-        LOG.info("Querying Steam Web API: " + url.replace(apiKey, "SECRET"));
+        if (LOG.isInfoEnabled()) {
+            String debugUrl = (apiKey == null) ?
+                url : url.replace(apiKey, "SECRET");
+            LOG.info("Querying Steam Web API: " + debugUrl);
+        }
 
         String data;
         try {
