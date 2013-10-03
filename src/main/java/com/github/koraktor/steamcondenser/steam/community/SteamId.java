@@ -8,6 +8,8 @@
 package com.github.koraktor.steamcondenser.steam.community;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -359,7 +361,11 @@ public class SteamId {
                 this.location = profile.getString("location");
                 String memberSince = profile.getString("memberSince");
                 memberSince = memberSince.replaceAll("(\\d+)st|nd|rd|th", "$1");
-                this.memberSince = DATE_FORMAT.parse(memberSince);
+                try {
+                    this.memberSince = DATE_FORMAT.parse(memberSince);
+                } catch (ParseException e) {
+                    this.memberSince = DATE_FORMAT.parse(memberSince + ", " + Calendar.getInstance().get(Calendar.YEAR));
+                }
                 this.realName = profile.getUnescapedString("realname");
                 this.steamRating = profile.getFloat("steamRating");
                 this.summary = profile.getUnescapedString("summary");
