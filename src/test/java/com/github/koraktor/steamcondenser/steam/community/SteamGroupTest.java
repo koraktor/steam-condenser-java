@@ -79,10 +79,20 @@ public class SteamGroupTest {
         SteamGroup group = new SteamGroup("valve", true);
         ArrayList<SteamId> members = group.getMembers();
 
-        assertThat(group.getMemberCount(), is(221));
-        assertThat(members.get(0).getSteamId64(), is(76561197960265740L));
+        assertThat(group.getMemberCount(), is(239));
+        assertThat(group.getGroupId64(), is(103582791429521412L));
+
+        assertThat(group.getAvatarFullUrl(), is(equalTo("http://media.steampowered.com/steamcommunity/public/images/avatars/1d/1d8baf5a2b5968ae5ca65d7a971c02e222c9a17e_full.jpg")));
+        assertThat(group.getAvatarIconUrl(), is(equalTo("http://media.steampowered.com/steamcommunity/public/images/avatars/1d/1d8baf5a2b5968ae5ca65d7a971c02e222c9a17e.jpg")));
+        assertThat(group.getAvatarMediumUrl(), is(equalTo("http://media.steampowered.com/steamcommunity/public/images/avatars/1d/1d8baf5a2b5968ae5ca65d7a971c02e222c9a17e_medium.jpg")));
+        assertThat(group.getCustomUrl(), is(equalTo("Valve")));
+        assertThat(group.getHeadline(), is(equalTo("VALVE")));
+        assertThat(group.getName(), is(equalTo("Valve")));
+        assertThat(group.getSummary(), is(equalTo("In addition to producing best-selling entertainment titles, Valve is a developer of leading-edge technologies such as the Source™ game engine and Steam™, a broadband platform for the delivery and management of digital content.")));
+
+        assertThat(members.get(0).getSteamId64(), is(76561197985607672L));
         assertFalse(members.get(0).isFetched());
-        assertThat(members.get(members.size() - 1).getSteamId64(), is(76561197970323416L));
+        assertThat(members.get(members.size() - 1).getSteamId64(), is(76561198086572943L));
         assertTrue(group.isFetched());
 
         verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1");
@@ -112,16 +122,7 @@ public class SteamGroupTest {
         Document memberDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.getClass().getResourceAsStream("invalid.xml"));
         when(this.parser.parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1")).thenReturn(memberDocument);
 
-        SteamGroup group = new SteamGroup("valve", true);
-        ArrayList<SteamId> members = group.getMembers();
-
-        assertThat(group.getMemberCount(), is(221));
-        assertThat(members.get(0).getSteamId64(), is(76561197960265740L));
-        assertFalse(members.get(0).isFetched());
-        assertThat(members.get(members.size() - 1).getSteamId64(), is(76561197970323416L));
-        assertTrue(group.isFetched());
-
-        verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1");
+        new SteamGroup("valve", true);
     }
 
     @Test
@@ -130,7 +131,7 @@ public class SteamGroupTest {
         when(this.parser.parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1")).thenReturn(memberDocument);
 
         SteamGroup group = new SteamGroup("valve", false);
-        assertThat(group.getMemberCount(), is(221));
+        assertThat(group.getMemberCount(), is(239));
 
         verify(this.parser).parse("http://steamcommunity.com/groups/valve/memberslistxml?p=1");
     }
