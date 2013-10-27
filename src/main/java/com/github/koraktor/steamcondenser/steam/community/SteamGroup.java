@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2012, Sebastian Staudt
+ * Copyright (c) 2008-2013, Sebastian Staudt
  *               2012, Sam Kinard
  */
 
@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
@@ -22,7 +24,11 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
  */
 public class SteamGroup {
 
+    private static final String AVATAR_URL = "http://media.steampowered.com/steamcommunity/public/images/avatars/%s/%s%s.jpg";
+
     protected static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
+
+    private String avatarHash;
 
     private String customUrl;
 
@@ -30,9 +36,15 @@ public class SteamGroup {
 
     private long groupId64;
 
+    private String headline;
+
     private Integer memberCount;
 
     private ArrayList<SteamId> members;
+
+    private String name;
+
+    private String summary;
 
     /**
      * Clears the Steam Community group cache
@@ -249,6 +261,33 @@ public class SteamGroup {
     }
 
     /**
+     * Returns the URL to this group's full avatar
+     *
+     * @return The URL to this group's full avatar
+     */
+    public String getAvatarFullUrl() {
+        return String.format(AVATAR_URL, this.avatarHash.substring(0, 2), this.avatarHash, "_full");
+    }
+
+    /**
+     * Returns the URL to this group's icon avatar
+     *
+     * @return The URL to this group's icon avatar
+     */
+    public String getAvatarIconUrl() {
+        return String.format(AVATAR_URL, this.avatarHash.substring(0, 2), this.avatarHash, "");
+    }
+
+    /**
+     * Returns the URL to this group's medium avatar
+     *
+     * @return The URL to this group's medium avatar
+     */
+    public String getAvatarMediumUrl() {
+        return String.format(AVATAR_URL, this.avatarHash.substring(0, 2), this.avatarHash, "_medium");
+    }
+
+    /**
      * Returns the custom URL of this group
      * <p>
      * The custom URL is a admin specified unique string that can be used
@@ -294,6 +333,15 @@ public class SteamGroup {
     }
 
     /**
+     * Returns this group's headline text
+     *
+     * @return This group's headline text
+     */
+    public String getHeadline() {
+        return this.headline;
+    }
+
+    /**
      * Returns this group's 64bit SteamID
      *
      * @return This group's 64bit SteamID
@@ -329,6 +377,24 @@ public class SteamGroup {
     }
 
     /**
+     * Returns this group's name
+     *
+     * @return This group's name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns this group's summary text
+     *
+     * @return This group's summary text
+     */
+    public String getSummary() {
+        return this.summary;
+    }
+
+    /**
      * Fetches a specific page of the member listing of this group
      *
      * @param page The member page to fetch
@@ -340,12 +406,25 @@ public class SteamGroup {
         int totalPages;
 
         try {
-            XMLData xmlData = new XMLData(this.getBaseUrl() + "/memberslistxml?p=" + page);
+            XMLData memberData = new XMLData(this.getBaseUrl() + "/memberslistxml?p=" + page);
 
-            this.memberCount = xmlData.getInteger("memberCount");
-            totalPages = xmlData.getInteger("totalPages");
+            if (page == 1) {
+                XMLData groupDetails = memberData.getElement("groupDetails");
 
-            for(XMLData member : xmlData.getElements("members", "steamID64")) {
+                Matcher matcher = Pattern.compile("/([0-9a-f]+)\\.jpg$").matcher(groupDetails.getString("avatarIcon"));
+                matcher.find();
+                this.avatarHash = matcher.group(1);
+                this.customUrl  = groupDetails.getString("groupURL");
+                this.groupId64  = memberData.getLong("groupID64");
+                this.name       = groupDetails.getString("groupName");
+                this.headline   = groupDetails.getString("headline");
+                this.summary    = groupDetails.getString("summary");
+            }
+
+            this.memberCount = memberData.getInteger("memberCount");
+            totalPages = memberData.getInteger("totalPages");
+
+            for(XMLData member : memberData.getElements("members", "steamID64")) {
                 this.members.add(SteamId.create(member.getLong(), false));
             }
         } catch(Exception e) {
