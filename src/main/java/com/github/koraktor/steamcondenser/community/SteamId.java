@@ -40,7 +40,7 @@ public class SteamId {
     private long fetchTime;
     private List<SteamId> friends;
     private HashMap<Integer, SteamGame> games;
-    private SteamGroup[] groups;
+    private List<SteamGroup> groups;
     private String headLine;
     private float hoursPlayed;
     private String imageUrl;
@@ -378,10 +378,10 @@ public class SteamId {
                 }
 
                 List<XMLData> groupElements = profile.getElements("groups", "group");
-                this.groups = new SteamGroup[groupElements.size()];
-                for(int i = 0; i < this.groups.length; i++) {
+                this.groups = new ArrayList<SteamGroup>(groupElements.size());
+                for(int i = 0; i < this.groups.size(); i++) {
                     XMLData group = groupElements.get(i);
-                    this.groups[i] = SteamGroup.create(group.getLong("groupID64"), false);
+                    this.groups.add(SteamGroup.create(group.getLong("groupID64"), false));
                 }
 
                 this.links = new HashMap<String, String>();
@@ -599,7 +599,7 @@ public class SteamId {
      *
      * @return The groups this user is a member of
      */
-    public SteamGroup[] getGroups() {
+    public List<SteamGroup> getGroups() {
         return this.groups;
     }
 
