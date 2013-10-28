@@ -13,7 +13,7 @@ package com.github.koraktor.steamcondenser.exceptions;
  * broken request.
  *
  * @author Sebastian Staudt
- * @see com.github.koraktor.steamcondenser.steam.community.WebApi
+ * @see com.github.koraktor.steamcondenser.community.WebApi
  */
 public class WebApiException extends SteamCondenserException {
 
@@ -64,7 +64,7 @@ public class WebApiException extends SteamCondenserException {
      *        <li><code>UNAUTHORIZED</code>: This happens when a Steam Web API
      *            request is rejected as unauthorized. This most likely means
      *            that you did not specify a valid Web API key using
-     *            {@link com.github.koraktor.steamcondenser.steam.community.WebApi#setApiKey}.
+     *            {@link com.github.koraktor.steamcondenser.community.WebApi#setApiKey}.
      *            A Web API key can be obtained from
      *            http://steamcommunity.com/dev/apikey.
      *        </ul>
@@ -99,7 +99,7 @@ public class WebApiException extends SteamCondenserException {
      *        <li><code>UNAUTHORIZED</code>: This happens when a Steam Web API
      *            request is rejected as unauthorized. This most likely means
      *            that you did not specify a valid Web API key using
-     *            {@link com.github.koraktor.steamcondenser.steam.community.WebApi#setApiKey}.
+     *            {@link com.github.koraktor.steamcondenser.community.WebApi#setApiKey}.
      *            A Web API key can be obtained from
      *            http://steamcommunity.com/dev/apikey.
      *        </ul>
