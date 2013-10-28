@@ -24,7 +24,7 @@ import com.github.koraktor.steamcondenser.servers.sockets.GoldSrcSocket;
  * @author Sebastian Staudt
  * @see SourceServer
  */
-public class GoldSrcServer extends com.github.koraktor.steamcondenser.servers.GameServer {
+public class GoldSrcServer extends GameServer {
 
     private boolean isHLTV;
 
@@ -37,8 +37,8 @@ public class GoldSrcServer extends com.github.koraktor.steamcondenser.servers.Ga
      * @return The GoldSrc master server
      * @throws SteamCondenserException if initializing the socket fails
      */
-    public static com.github.koraktor.steamcondenser.servers.MasterServer getMaster() throws SteamCondenserException {
-        return new com.github.koraktor.steamcondenser.servers.MasterServer(com.github.koraktor.steamcondenser.servers.MasterServer.GOLDSRC_MASTER_SERVER);
+    public static MasterServer getMaster() throws SteamCondenserException {
+        return new MasterServer(MasterServer.GOLDSRC_MASTER_SERVER);
     }
 
     /**

@@ -39,8 +39,8 @@ public class SteamId {
     private String customUrl;
     private long fetchTime;
     private List<SteamId> friends;
-    private HashMap<Integer, com.github.koraktor.steamcondenser.community.SteamGame> games;
-    private com.github.koraktor.steamcondenser.community.SteamGroup[] groups;
+    private HashMap<Integer, SteamGame> games;
+    private SteamGroup[] groups;
     private String headLine;
     private float hoursPlayed;
     private String imageUrl;
@@ -265,7 +265,7 @@ public class SteamId {
             HashMap<String, Object> params = new HashMap<String, Object>();
             params.put("vanityurl", vanityUrl);
 
-            String json = com.github.koraktor.steamcondenser.community.WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
+            String json = WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
             JSONObject result = new JSONObject(json).getJSONObject("response");
 
             if (result.getInt("success") != 1) {
@@ -329,7 +329,7 @@ public class SteamId {
      */
     public void fetchData() throws SteamCondenserException {
         try {
-            com.github.koraktor.steamcondenser.community.XMLData profile = new com.github.koraktor.steamcondenser.community.XMLData(this.getBaseUrl() + "?xml=1");
+            XMLData profile = new XMLData(this.getBaseUrl() + "?xml=1");
 
             if(profile.hasElement("error")) {
                 throw new SteamCondenserException(profile.getString("error"));
@@ -373,19 +373,19 @@ public class SteamId {
                 this.summary = profile.getUnescapedString("summary");
 
                 this.mostPlayedGames = new HashMap<String, Float>();
-                for(com.github.koraktor.steamcondenser.community.XMLData mostPlayedGame : profile.getElements("mostPlayedGames", "mostPlayedGame")) {
+                for(XMLData mostPlayedGame : profile.getElements("mostPlayedGames", "mostPlayedGame")) {
                     this.mostPlayedGames.put(mostPlayedGame.getString("gameName"), mostPlayedGame.getFloat("hoursPlayed"));
                 }
 
-                List<com.github.koraktor.steamcondenser.community.XMLData> groupElements = profile.getElements("groups", "group");
-                this.groups = new com.github.koraktor.steamcondenser.community.SteamGroup[groupElements.size()];
+                List<XMLData> groupElements = profile.getElements("groups", "group");
+                this.groups = new SteamGroup[groupElements.size()];
                 for(int i = 0; i < this.groups.length; i++) {
-                    com.github.koraktor.steamcondenser.community.XMLData group = groupElements.get(i);
-                    this.groups[i] = com.github.koraktor.steamcondenser.community.SteamGroup.create(group.getLong("groupID64"), false);
+                    XMLData group = groupElements.get(i);
+                    this.groups[i] = SteamGroup.create(group.getLong("groupID64"), false);
                 }
 
                 this.links = new HashMap<String, String>();
-                for(com.github.koraktor.steamcondenser.community.XMLData weblink : profile.getElements("weblinks", "weblink")) {
+                for(XMLData weblink : profile.getElements("weblinks", "weblink")) {
                     this.links.put(weblink.getUnescapedString("title"), weblink.getString("link"));
                 }
             }
@@ -416,7 +416,7 @@ public class SteamId {
             params.put("relationship", "friend");
             params.put("steamid", this.steamId64);
 
-            JSONObject jsonData = new JSONObject(com.github.koraktor.steamcondenser.community.WebApi.getJSON("ISteamUser", "GetFriendList", 1, params));
+            JSONObject jsonData = new JSONObject(WebApi.getJSON("ISteamUser", "GetFriendList", 1, params));
             JSONArray friendsData = jsonData.getJSONObject("friendslist").getJSONArray("friends");
             this.friends = new ArrayList<SteamId>();
             for (int i = 0; i < friendsData.length(); i ++) {
@@ -437,13 +437,13 @@ public class SteamId {
      */
     private void fetchGames() throws SteamCondenserException {
         try {
-            com.github.koraktor.steamcondenser.community.XMLData gamesData = new com.github.koraktor.steamcondenser.community.XMLData(this.getBaseUrl() + "/games?xml=1");
+            XMLData gamesData = new XMLData(this.getBaseUrl() + "/games?xml=1");
 
-            this.games = new HashMap<Integer, com.github.koraktor.steamcondenser.community.SteamGame>();
+            this.games = new HashMap<Integer, SteamGame>();
             this.playtimes = new HashMap<Integer, int[]>();
-            for(com.github.koraktor.steamcondenser.community.XMLData gameData : gamesData.getElements("games", "game")) {
+            for(XMLData gameData : gamesData.getElements("games", "game")) {
                 int appId = gameData.getInteger("appID");
-                com.github.koraktor.steamcondenser.community.SteamGame game = com.github.koraktor.steamcondenser.community.SteamGame.create(appId, gameData);
+                SteamGame game = SteamGame.create(appId, gameData);
                 this.games.put(appId, game);
                 float recent;
                 try {
@@ -562,7 +562,7 @@ public class SteamId {
      * @throws SteamCondenserException if an error occurs while parsing the
      *         data
      */
-    public HashMap<Integer, com.github.koraktor.steamcondenser.community.SteamGame> getGames()
+    public HashMap<Integer, SteamGame> getGames()
             throws SteamCondenserException {
         if(this.games == null) {
             this.fetchGames();
@@ -579,18 +579,18 @@ public class SteamId {
      * @throws SteamCondenserException if the user does not own this game or it
      *         does not have any stats
      */
-    public com.github.koraktor.steamcondenser.community.GameStats getGameStats(Object id)
+    public GameStats getGameStats(Object id)
             throws SteamCondenserException {
-        com.github.koraktor.steamcondenser.community.SteamGame game = this.findGame(id);
+        SteamGame game = this.findGame(id);
 
         if(!game.hasStats()) {
             throw new SteamCondenserException("\"" + game.getName() + "\" does not have stats.");
         }
 
         if(this.customUrl == null) {
-            return com.github.koraktor.steamcondenser.community.GameStats.createGameStats(this.steamId64, game.getShortName());
+            return GameStats.createGameStats(this.steamId64, game.getShortName());
         } else {
-            return com.github.koraktor.steamcondenser.community.GameStats.createGameStats(this.customUrl, game.getShortName());
+            return GameStats.createGameStats(this.customUrl, game.getShortName());
         }
     }
 
@@ -599,7 +599,7 @@ public class SteamId {
      *
      * @return The groups this user is a member of
      */
-    public com.github.koraktor.steamcondenser.community.SteamGroup[] getGroups() {
+    public SteamGroup[] getGroups() {
         return this.groups;
     }
 
@@ -716,7 +716,7 @@ public class SteamId {
      */
     public int getRecentPlaytime(Object id)
             throws SteamCondenserException {
-        com.github.koraktor.steamcondenser.community.SteamGame game = this.findGame(id);
+        SteamGame game = this.findGame(id);
 
         return this.playtimes.get(game.getAppId())[0];
     }
@@ -769,7 +769,7 @@ public class SteamId {
      */
     public int getTotalPlaytime(Object id)
             throws SteamCondenserException {
-        com.github.koraktor.steamcondenser.community.SteamGame game = this.findGame(id);
+        SteamGame game = this.findGame(id);
 
         return this.playtimes.get(game.getAppId())[1];
     }
@@ -801,14 +801,14 @@ public class SteamId {
      * @throws SteamCondenserException if the user does not own the game or no
      *         game with the given ID exists
      */
-    private com.github.koraktor.steamcondenser.community.SteamGame findGame(Object id)
+    private SteamGame findGame(Object id)
             throws SteamCondenserException {
-        com.github.koraktor.steamcondenser.community.SteamGame game = null;
+        SteamGame game = null;
 
         if(id instanceof Integer) {
             game = this.getGames().get(id);
         } else {
-            for(com.github.koraktor.steamcondenser.community.SteamGame currentGame : this.getGames().values()) {
+            for(SteamGame currentGame : this.getGames().values()) {
                 if(id.equals(currentGame.getShortName()) ||
                    id.equals(currentGame.getName())) {
                     game = currentGame;
