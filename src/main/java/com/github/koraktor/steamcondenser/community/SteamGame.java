@@ -314,7 +314,7 @@ public class SteamGame {
     /**
      * Returns whether this game has statistics available
      *
-     * @return <code>true</code if this game has stats
+     * @return <code>true</code> if this game has stats
      */
     public boolean hasStats() {
         return this.shortName != null;
