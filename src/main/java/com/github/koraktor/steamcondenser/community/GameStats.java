@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.github.koraktor.steamcondenser.community.css.CSSStats;
 import com.github.koraktor.steamcondenser.community.defense_grid.DefenseGridStats;
 import com.github.koraktor.steamcondenser.community.dods.DoDSStats;
@@ -19,6 +21,7 @@ import com.github.koraktor.steamcondenser.community.l4d.L4D2Stats;
 import com.github.koraktor.steamcondenser.community.l4d.L4DStats;
 import com.github.koraktor.steamcondenser.community.portal2.Portal2Stats;
 import com.github.koraktor.steamcondenser.community.tf2.TF2Stats;
+import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 
 /**
  * This class represents the game statistics for a single user and a specific
@@ -242,5 +245,17 @@ public class GameStats {
      */
     protected boolean isPublic() {
         return this.privacyState.equals("public");
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+            .append("achievementsDone", getAchievementsDone())
+            .append("achievements", getAchievements().size())
+            .append("game", game)
+            .append("hoursPlayed", hoursPlayed)
+            .append("privacyState", privacyState)
+            .append("user", user)
+            .toString();
     }
 }

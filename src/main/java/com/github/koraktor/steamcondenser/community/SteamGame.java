@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -331,6 +333,15 @@ public class SteamGame {
     public boolean isUpToDate(int version)
             throws JSONException, SteamCondenserException {
         return SteamGame.isUpToDate(this.appId, version);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+            .append("appId", appId)
+            .append("name", name)
+            .append("shortName", shortName)
+            .toString();
     }
 
 }
