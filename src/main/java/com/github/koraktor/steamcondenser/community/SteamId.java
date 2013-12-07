@@ -857,7 +857,7 @@ public class SteamId {
      * @return <code>true</code> if the user is in-game
      */
     public boolean isInGame() {
-        return this.onlineState.equals("in-game");
+        return this.onlineState != null && this.onlineState.equals("in-game");
     }
 
     /**
@@ -876,7 +876,8 @@ public class SteamId {
      * @return <code>true</code> if the user is online
      */
     public boolean isOnline() {
-        return (this.onlineState.equals("online") || this.onlineState.equals("in-game"));
+        return this.onlineState != null &&
+                (this.onlineState.equals("online") || this.onlineState.equals("in-game"));
     }
 
     @Override
