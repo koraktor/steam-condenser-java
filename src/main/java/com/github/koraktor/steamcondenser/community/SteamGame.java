@@ -338,9 +338,9 @@ public class SteamGame {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("appId", appId)
-            .append("name", name)
-            .append("shortName", shortName)
+            .append("appId", this.appId)
+            .append("name", this.name)
+            .append("shortName", this.shortName)
             .toString();
     }
 

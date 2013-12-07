@@ -250,12 +250,13 @@ public class GameStats {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-            .append("achievementsDone", getAchievementsDone())
-            .append("achievements", getAchievements().size())
-            .append("game", game)
-            .append("hoursPlayed", hoursPlayed)
-            .append("privacyState", privacyState)
-            .append("user", user)
+            .append("achievementsDone", this.getAchievementsDone())
+            .append("achievements", this.getAchievements().size())
+            .append("game", this.game)
+            .append("hoursPlayed", this.hoursPlayed)
+            .append("privacyState", this.privacyState)
+            .append("user", this.user)
             .toString();
     }
+
 }

@@ -189,12 +189,12 @@ public class GameAchievement {
     @Override
     public String toString() {
     return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-        .append("apiName", apiName)
-        .append("name", name)
-        .append("unlocked", unlocked)
-        .append("timestamp", timestamp)
-        .append("user", user)
-        .append("game", game)
+        .append("apiName", this.apiName)
+        .append("name", this.name)
+        .append("unlocked", this.unlocked)
+        .append("timestamp", this.timestamp)
+        .append("user", this.user)
+        .append("game", this.game)
         .toString();
     }
 
