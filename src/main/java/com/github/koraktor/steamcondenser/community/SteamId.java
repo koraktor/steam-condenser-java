@@ -882,7 +882,10 @@ public class SteamId {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+            .append("steamId64", this.steamId64)
+            .append("vanityUrl", this.customUrl)
             .append("nickname", this.nickname)
+            .append("online", this.isOnline())
             .toString();
     }
 }
