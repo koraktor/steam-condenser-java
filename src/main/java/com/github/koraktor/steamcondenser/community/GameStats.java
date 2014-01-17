@@ -118,7 +118,7 @@ public class GameStats {
         }
 
         try {
-            this.xmlData = new XMLData(getBaseUrl(steamId, gameId) + "?xml=all");
+            this.xmlData = new XMLData(getBaseUrl(steamId, gameId) + "?xml=1");
 
             if(this.xmlData.hasElement("error")) {
                 throw new SteamCondenserException(this.xmlData.getString("error"));
