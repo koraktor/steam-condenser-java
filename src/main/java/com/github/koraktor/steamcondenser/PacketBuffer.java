@@ -101,7 +101,7 @@ public class PacketBuffer {
             return null;
         } else {
             dataString = dataString.substring(0, stringEnd);
-            this.byteBuffer.position(this.byteBuffer.position() + dataString.getBytes().length + 1);
+            this.byteBuffer.position(this.byteBuffer.position() + stringEnd + 1);
 
             return dataString;
         }
