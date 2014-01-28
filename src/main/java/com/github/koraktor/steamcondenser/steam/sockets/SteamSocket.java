@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2014, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.sockets;
@@ -122,7 +122,11 @@ abstract public class SteamSocket {
 
             try {
                 bytesRead = ((ReadableByteChannel) this.channel).read(this.buffer);
-                if(bytesRead > 0) {
+                if (bytesRead < 0) {
+                    this.channel.close();
+                    throw new ConnectionResetException();
+                }
+                if (bytesRead > 0) {
                     this.buffer.rewind();
                     this.buffer.limit(bytesRead);
                 }
