@@ -23,12 +23,14 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
-import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.steam.packets.rcon.RCONPacketFactory;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
@@ -97,9 +99,7 @@ public class RCONSocketTest {
         this.socket.channel = SocketChannel.open();
         doReturn(0).when(this.socket).receivePacket(4);
 
-        this.exception.expect(RCONBanException.class);
-
-        this.socket.getReply();
+        assertThat(this.socket.getReply(), is(nullValue()));
     }
 
     @Test
@@ -107,9 +107,7 @@ public class RCONSocketTest {
         this.socket.channel = SocketChannel.open();
         doThrow(new ConnectionResetException()).when(this.socket).receivePacket(4);
 
-        this.exception.expect(ConnectionResetException.class);
-
-        this.socket.getReply();
+        assertThat(this.socket.getReply(), is(nullValue()));
     }
 
 }

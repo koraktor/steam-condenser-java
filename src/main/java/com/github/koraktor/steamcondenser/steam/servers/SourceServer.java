@@ -14,7 +14,6 @@ import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
 import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
@@ -146,13 +145,12 @@ public class SourceServer extends GameServer {
         this.rconRequestId = new Random().nextInt();
 
         this.rconSocket.send(new RCONAuthRequestPacket(this.rconRequestId, password));
-        try {
-            this.rconSocket.getReply();
-            RCONAuthResponse reply = (RCONAuthResponse) this.rconSocket.getReply();
-            this.rconAuthenticated = reply.getRequestId() == this.rconRequestId;
-        } catch (ConnectionResetException e) {
+        RCONPacket reply = this.rconSocket.getReply();
+        if (reply == null) {
             throw new RCONBanException();
         }
+        reply = this.rconSocket.getReply();
+        this.rconAuthenticated = reply.getRequestId() == this.rconRequestId;
 
         return this.rconAuthenticated;
     }
@@ -181,21 +179,17 @@ public class SourceServer extends GameServer {
          RCONPacket responsePacket;
         ArrayList<String> response = new ArrayList<String>();
         do {
-            try {
-                responsePacket = this.rconSocket.getReply();
+            responsePacket = this.rconSocket.getReply();
 
-                if (responsePacket instanceof RCONAuthResponse) {
-                    this.rconAuthenticated = false;
-                    throw new RCONNoAuthException();
-                }
-
-                if (!isMulti && ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0) {
-                    isMulti = true;
-                    this.rconSocket.send(new RCONTerminator(this.rconRequestId));
-                }
-            } catch (ConnectionResetException e) {
+            if (responsePacket == null ||
+                    responsePacket instanceof RCONAuthResponse) {
                 this.rconAuthenticated = false;
                 throw new RCONNoAuthException();
+            }
+
+            if (!isMulti && ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0) {
+                isMulti = true;
+                this.rconSocket.send(new RCONTerminator(this.rconRequestId));
             }
             response.add(((RCONExecResponsePacket) responsePacket).getResponse());
         } while(isMulti && !(response.size() > 2 && response.get(response.size() - 2).equals("") && response.get(response.size() - 1).equals("")));
