@@ -30,7 +30,8 @@ following dependency definition:
 
     <dependency>
         <groupId>com.github.koraktor</groupId>
-        <artifactId>steamcondenser</artifactId>
+      	<artifactId>steam-condenser</artifactId>
+      	<version>LATEST</version>
     </dependency>
 
 ## Logging
