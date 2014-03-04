@@ -216,7 +216,7 @@ public class GameItemSchema {
      * @return A string representation of this item schema
      */
     public String toString() {
-        Object fetchDate = (this.fetchDate == null) ? "not fetched" : this.fetchDate;
+        Object fetchDate = this.isFetched() ? "not fetched" : this.fetchDate;
 
         return String.format("%s[%d (%s) - %s]", this.getClass().getName(),
                 this.appId, this.language, fetchDate);
