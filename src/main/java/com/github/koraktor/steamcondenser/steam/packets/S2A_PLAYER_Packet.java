@@ -2,12 +2,13 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright 2008-2011, Sebastian Staudt
+ * Copyright 2008-2014, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.packets;
 
 import java.util.HashMap;
+
 import com.github.koraktor.steamcondenser.exceptions.PacketFormatException;
 import com.github.koraktor.steamcondenser.steam.SteamPlayer;
 
@@ -39,7 +40,7 @@ public class S2A_PLAYER_Packet extends SteamPacket {
         this.playerHash = new HashMap<String, SteamPlayer>(this.contentData.getByte());
 
         while(this.contentData.hasRemaining()) {
-            byte playerId = this.contentData.getByte();
+            int playerId = this.contentData.getByte() & 0xff;
             String playerName = this.contentData.getString();
             this.playerHash.put(playerName, new SteamPlayer(
                 playerId,
