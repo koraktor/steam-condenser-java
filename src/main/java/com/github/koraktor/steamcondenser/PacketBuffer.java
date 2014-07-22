@@ -2,13 +2,15 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2014, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * A convenience class wrapping around {@link ByteBuffer} used for easy
@@ -94,16 +96,16 @@ public class PacketBuffer {
     public String getString() {
         byte[] remainingBytes = new byte[this.byteBuffer.remaining()];
         this.byteBuffer.slice().get(remainingBytes);
-        String dataString = new String(remainingBytes);
-        int stringEnd = dataString.indexOf(0);
+        int zeroPosition = ArrayUtils.indexOf(remainingBytes, (byte) 0);
 
-        if(stringEnd == -1) {
+        if (zeroPosition == ArrayUtils.INDEX_NOT_FOUND) {
             return null;
         } else {
-            dataString = dataString.substring(0, stringEnd);
-            this.byteBuffer.position(this.byteBuffer.position() + dataString.getBytes().length + 1);
+            byte[] stringBytes = new byte[zeroPosition];
+            System.arraycopy(remainingBytes, 0, stringBytes, 0, zeroPosition);
+            this.byteBuffer.position(this.byteBuffer.position() + zeroPosition + 1);
 
-            return dataString;
+            return new String(stringBytes);
         }
     }
 

@@ -15,8 +15,7 @@ import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.koraktor.steamcondenser.exceptions.RCONBanException;
-import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
+import com.github.koraktor.steamcondenser.exceptions.ConnectionResetException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONPacketFactory;
@@ -89,22 +88,26 @@ public class RCONSocket extends SteamSocket {
      * using multiple TCP packets. The data is received in chunks and
      * concatenated into a single response packet.
      *
-     * @return The packet replied from the server
-     * @throws RCONNoAuthException if an authenticated connection has been
-     *         dropped by the server
-     * @throws RCONBanException if the IP of the local machine has been banned
-     *         on the game server
+     * @return The packet replied from the server or <code>null</code> if the
+     *         connection has been closed by the server
      * @throws SteamCondenserException if an error occurs while communicating
      *         with the server
      * @throws TimeoutException if the request times out
      */
     public RCONPacket getReply()
             throws SteamCondenserException, TimeoutException {
-        if (this.receivePacket(4) == 0) {
+        try {
+            if (this.receivePacket(4) == 0) {
+                try {
+                    this.channel.close();
+                } catch (IOException ignored) {}
+                return null;
+            }
+        } catch (ConnectionResetException e) {
             try {
                 this.channel.close();
-            } catch (IOException e) {}
-            throw new RCONBanException();
+            } catch (IOException ignored) {}
+            return null;
         }
 
         int packetSize = Integer.reverseBytes(this.buffer.getInt());
