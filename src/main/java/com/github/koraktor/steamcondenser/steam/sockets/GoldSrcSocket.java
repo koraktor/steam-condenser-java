@@ -144,7 +144,7 @@ public class GoldSrcSocket extends QuerySocket {
         }
 
         this.rconSend("rcon " + this.rconChallenge + " " + password + " " + command);
-        this.rconSend("rcon " + this.rconChallenge + " " + password);
+
         String response;
         if(this.isHLTV) {
             try {
@@ -161,6 +161,8 @@ public class GoldSrcSocket extends QuerySocket {
         } else if(response.trim().equals("You have been banned from this server")) {
             throw new RCONBanException();
         }
+
+        this.rconSend("rcon " + this.rconChallenge + " " + password);
 
         String responsePart;
         do {
