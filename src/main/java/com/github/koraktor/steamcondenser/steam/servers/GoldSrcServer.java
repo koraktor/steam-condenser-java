@@ -10,6 +10,7 @@ package com.github.koraktor.steamcondenser.steam.servers;
 import java.net.InetAddress;
 import java.util.concurrent.TimeoutException;
 
+import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.steam.sockets.GoldSrcSocket;
 
@@ -147,10 +148,18 @@ public class GoldSrcServer extends GameServer {
      *         this method always returns <code>true</code>
      * @see #rconExec
      */
-    public boolean rconAuth(String password) {
+    public boolean rconAuth(String password) throws SteamCondenserException, TimeoutException {
         this.rconPassword = password;
 
-        return true;
+        try {
+            this.rconAuthenticated = true;
+            this.rconExec("");
+        } catch (RCONNoAuthException e) {
+            this.rconAuthenticated = false;
+            this.rconPassword = null;
+        }
+
+        return this.rconAuthenticated;
     }
 
     /**
@@ -164,7 +173,16 @@ public class GoldSrcServer extends GameServer {
      */
     public String rconExec(String command)
             throws TimeoutException, SteamCondenserException {
-        return ((GoldSrcSocket) this.socket).rconExec(this.rconPassword, command).trim();
+        if (!this.rconAuthenticated) {
+            throw new RCONNoAuthException();
+        }
+
+        try {
+            return ((GoldSrcSocket) this.socket).rconExec(this.rconPassword, command).trim();
+        } catch (RCONNoAuthException e) {
+            this.rconAuthenticated = false;
+            throw e;
+        }
     }
 
 }

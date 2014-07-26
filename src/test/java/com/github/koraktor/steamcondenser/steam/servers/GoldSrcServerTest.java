@@ -69,7 +69,7 @@ public class GoldSrcServerTest {
     }
 
     @Test
-    public void testRconAuth() {
+    public void testRconAuth() throws Exception {
         assertTrue(this.server.rconAuth("password"));
         assertThat(this.server.rconPassword, is(equalTo("password")));
     }
