@@ -16,10 +16,12 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.github.koraktor.steamcondenser.exceptions.RCONNoAuthException;
 import com.github.koraktor.steamcondenser.steam.sockets.GoldSrcSocket;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -69,13 +71,25 @@ public class GoldSrcServerTest {
     }
 
     @Test
-    public void testRconAuth() {
+    public void testRconAuthFailed() throws Exception {
+        when(this.socket.rconExec("password", "")).
+                thenThrow(new RCONNoAuthException());
+
+        assertThat(this.server.rconAuth("password"), is(false));
+        assertThat(this.server.rconPassword, is(nullValue()));
+    }
+
+    @Test
+    public void testRconAuthSuccessful() throws Exception {
+        when(this.socket.rconExec("password", "")).thenReturn("");
+
         assertTrue(this.server.rconAuth("password"));
         assertThat(this.server.rconPassword, is(equalTo("password")));
     }
 
     @Test
     public void testRconExec() throws Exception {
+        this.server.rconAuthenticated = true;
         when(this.socket.rconExec("password", "command")).thenReturn("test");
 
         this.server.rconPassword = "password";
