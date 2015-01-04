@@ -130,7 +130,7 @@ abstract public class SteamSocket {
 
             return bytesRead;
         } catch(IOException e) {
-            if (e.getMessage().equals("Connection reset by peer")) {
+            if ("Connection reset by peer".equals(e.getMessage())) {
                 throw new ConnectionResetException();
             }
             throw new SteamCondenserException(e.getMessage(), e);
