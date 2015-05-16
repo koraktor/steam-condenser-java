@@ -13,9 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.params.ClientPNames;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import org.json.JSONArray;
@@ -294,8 +294,7 @@ abstract public class WebApi {
 
         String data;
         try {
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            httpClient.getParams().setBooleanParameter(ClientPNames.HANDLE_AUTHENTICATION, false);
+            HttpClient httpClient = HttpClients.createDefault();
             HttpGet request = new HttpGet(url);
             HttpResponse response = httpClient.execute(request);
 
