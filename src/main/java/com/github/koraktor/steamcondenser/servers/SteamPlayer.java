@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2015, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -19,6 +19,7 @@ import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 public class SteamPlayer {
 
     private int clientPort;
+    private int connectionId;
     private float connectTime;
     private boolean extended;
     private int id;
@@ -27,7 +28,6 @@ public class SteamPlayer {
     private String name;
     private int ping;
     private int rate;
-    private int realId;
     private int score;
     private String state;
     private String steamId;
@@ -64,7 +64,7 @@ public class SteamPlayer {
         }
 
         this.extended = true;
-        this.realId = Integer.parseInt(playerData.get("userid"));
+        this.connectionId = Integer.parseInt(playerData.get("userid"));
         this.steamId = playerData.get("uniqueid");
 
         if(playerData.containsKey("state")) {
@@ -94,6 +94,15 @@ public class SteamPlayer {
      */
     public int getClientPort() {
         return this.clientPort;
+    }
+
+    /**
+     * Returns the connection ID (as used on the server) of this player
+     *
+     * @return The connection ID of this player
+     */
+    public int getConnectionId() {
+        return this.connectionId;
     }
 
     /**
@@ -160,15 +169,6 @@ public class SteamPlayer {
     }
 
     /**
-     * Returns the real ID (as used on the server) of this player
-     *
-     * @return The real ID of this player
-     */
-    public int getRealId() {
-        return this.realId;
-    }
-
-    /**
      * Returns the score of this player
      *
      * @return The score of this player
@@ -223,7 +223,7 @@ public class SteamPlayer {
     @Override
     public String toString() {
         if(this.extended) {
-            return "#" + this.realId + " \"" + this.name + "\", SteamID: " + this.steamId + ", Score: " + this.score + ", Time: " + this.connectTime;
+            return "#" + this.connectionId + " \"" + this.name + "\", SteamID: " + this.steamId + ", Score: " + this.score + ", Time: " + this.connectTime;
         } else {
             return "#" + this.id + " \"" + this.name + "\", Score: " + this.score + ", Time: " + this.connectTime;
         }
