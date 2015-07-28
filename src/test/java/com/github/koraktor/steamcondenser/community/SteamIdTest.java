@@ -67,6 +67,37 @@ public class SteamIdTest {
     }
 
     @Test
+    public void testConvertCommunityIdToSteamId() throws Exception {
+        String steamId = SteamId.convertCommunityIdToSteamId(76561197960290418L);
+
+        assertEquals("STEAM_0:0:12345", steamId);
+    }
+
+    @Test
+    public void testConvertCommunityIdToSteamId3() throws Exception {
+        String steamId = SteamId.convertCommunityIdToSteamId3(76561197960497430L);
+        assertEquals("[U:1:231702]", steamId);
+        steamId = SteamId.convertCommunityIdToSteamId3(76561197998273743L);
+        assertEquals("[U:1:38008015]", steamId);
+        steamId = SteamId.convertCommunityIdToSteamId3(76561198000009691L);
+        assertEquals("[U:1:39743963]", steamId);
+    }
+
+    @Test
+    public void testConvertSteamIdToCommunityId() throws Exception {
+        long steamId64 = SteamId.convertSteamIdToCommunityId("STEAM_0:0:12345");
+        assertEquals(76561197960290418L, steamId64);
+    }
+
+    @Test
+    public void testConvertUIdToCommunityId() throws Exception {
+        long steamId64 = SteamId.convertSteamIdToCommunityId("[U:1:12345]");
+        assertEquals(76561197960278073L, steamId64);
+        steamId64 = SteamId.convertSteamIdToCommunityId("[U:1:39743963]");
+        assertEquals(76561198000009691L, steamId64);
+    }
+
+    @Test
     public void testFetch() throws Exception {
         Document steamIdDocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(this.getClass().getResourceAsStream("gutomaia-steamid.xml"));
         when(parser.parse("http://steamcommunity.com/id/gutomaia?xml=1")).thenReturn(steamIdDocument);

@@ -94,6 +94,28 @@ public class SteamId {
     }
 
     /**
+     * Converts a 64bit numeric SteamID as used by the Steam Community to the
+     * modern SteamID format (also known as SteamID 3)
+     *
+     * @param communityId The SteamID string as used by the Steam
+     *        Community
+     * @return The converted SteamID, like <code>[U:1:12345]</code>
+     * @throws SteamCondenserException if the community ID is to small
+     */
+    public static String convertCommunityIdToSteamId3(long communityId)
+            throws SteamCondenserException {
+        // Only the public universe (1) is supported
+        int steamId1 = 1;
+        long steamId2 = communityId - 76561197960265728L;
+
+        if (steamId2 <= 0) {
+            throw new SteamCondenserException(String.format("SteamID %d is too small.", communityId));
+        }
+
+        return String.format("[U:%d:%d]", steamId1, steamId2);
+    }
+
+    /**
      * Converts a SteamID as reported by game servers to a 64bit numeric
      * SteamID as used by the Steam Community
      *
