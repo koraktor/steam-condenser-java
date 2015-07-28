@@ -10,7 +10,7 @@ Currently it is implemented in Java, PHP and Ruby.
 ## Requirements
 
 * Linux, MacOS X or Windows
-* Java 1.5 or newer
+* Java 7 or newer
 
 The following Java libraries are required:
 
@@ -33,7 +33,7 @@ following dependency definition:
       	<artifactId>steam-condenser</artifactId>
       	<version>x.y.z</version>
     </dependency>
-    
+
 Remember to specify a version using appropriate tag.
 
 ## Logging
