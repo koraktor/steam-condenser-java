@@ -2,15 +2,18 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2015, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -167,7 +170,7 @@ public class MasterServer extends Server {
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
      */
-    public Vector<InetSocketAddress> getServers()
+    public Set<InetSocketAddress> getServers()
             throws SteamCondenserException, TimeoutException {
         return this.getServers(MasterServer.REGION_ALL, "", false);
     }
@@ -194,7 +197,7 @@ public class MasterServer extends Server {
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
      */
-    public Vector<InetSocketAddress> getServers(byte regionCode, String filter)
+    public Set<InetSocketAddress> getServers(byte regionCode, String filter)
             throws SteamCondenserException, TimeoutException {
         return this.getServers(regionCode, filter, false);
     }
@@ -234,14 +237,14 @@ public class MasterServer extends Server {
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
      */
-    public Vector<InetSocketAddress> getServers(byte regionCode, String filter, boolean force)
+    public Set<InetSocketAddress> getServers(byte regionCode, String filter, boolean force)
             throws SteamCondenserException, TimeoutException {
         int failCount    = 0;
         boolean finished = false;
         int portNumber   = 0;
         String hostName  = "0.0.0.0";
         Vector<String> serverStringArray;
-        Vector<InetSocketAddress> serverArray = new Vector<InetSocketAddress>();
+        Set<InetSocketAddress> serverSet = new HashSet<>();
 
         while(true) {
             try {
@@ -256,7 +259,7 @@ public class MasterServer extends Server {
                             portNumber = Integer.valueOf(serverString.substring(serverString.lastIndexOf(":") + 1));
 
                             if(!hostName.equals("0.0.0.0") && portNumber != 0) {
-                                serverArray.add(new InetSocketAddress(hostName, portNumber));
+                                serverSet.add(new InetSocketAddress(hostName, portNumber));
                             } else {
                                 finished = true;
                             }
@@ -281,7 +284,7 @@ public class MasterServer extends Server {
             }
         }
 
-        return serverArray;
+        return serverSet;
     }
 
     /**

@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2015, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -10,7 +10,9 @@ package com.github.koraktor.steamcondenser.servers;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.TimeoutException;
 
@@ -66,7 +68,7 @@ public class MasterServerTest {
         when(packet2.getServers()).thenReturn(servers2);
         when(this.server.socket.getReply()).thenReturn(packet1).thenReturn(packet2);
 
-        Vector<InetSocketAddress> servers = new Vector<InetSocketAddress>();
+        Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
         servers.add(new InetSocketAddress("127.0.0.2", 27015));
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
@@ -110,7 +112,7 @@ public class MasterServerTest {
         when(packet1.getServers()).thenReturn(servers1);
         when(this.server.socket.getReply()).thenReturn(packet1).thenThrow(new TimeoutException());
 
-        Vector<InetSocketAddress> servers = new Vector<InetSocketAddress>();
+        Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
         servers.add(new InetSocketAddress("127.0.0.2", 27015));
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
@@ -163,7 +165,7 @@ public class MasterServerTest {
 
         when(this.server.rotateIp()).thenReturn(false);
 
-        Vector<InetSocketAddress> servers = new Vector<InetSocketAddress>();
+        Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
         servers.add(new InetSocketAddress("127.0.0.2", 27015));
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
