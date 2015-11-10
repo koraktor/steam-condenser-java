@@ -71,7 +71,7 @@ public class SteamPlayer {
             this.state = playerData.get("state");
         }
 
-        if(!this.isBot()) {
+        if(!this.isBot() && !this.isHLTV()) {
             this.loss  = Integer.parseInt(playerData.get("loss"));
             this.ping  = Integer.parseInt(playerData.get("ping"));
 
@@ -203,7 +203,16 @@ public class SteamPlayer {
     public boolean isBot() {
         return this.steamId.equals("BOT");
     }
-
+    
+    /**
+     * Returns whether this client is a HLTV
+     *
+     * @return <code>true</code> if this client is a HLTV
+     */
+    public boolean isHLTV() {
+        return this.steamId.equals("HLTV");
+    }
+    
     /**
      * Returns whether this player object has extended information gathered
      * using RCON
