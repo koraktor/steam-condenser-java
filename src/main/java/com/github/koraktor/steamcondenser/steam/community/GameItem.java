@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2016, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community;
@@ -70,8 +70,9 @@ public class GameItem {
         this.inventory = inventory;
 
         try {
+            long inventoryMask = itemData.getLong("inventory");
+
             this.defindex         = itemData.getInt("defindex");
-            this.backpackPosition = (int) itemData.getLong("inventory") & 0xffff;
             this.count            = itemData.getInt("quantity");
             this.craftable        = !itemData.optBoolean("flag_cannot_craft");
             this.id               = itemData.getInt("id");
@@ -79,11 +80,18 @@ public class GameItem {
             this.itemSet          = this.inventory.getItemSchema().getItemSets().get(this.getSchemaData().optString("item_set"));
             this.level            = itemData.getInt("level");
             this.name             = this.getSchemaData().getString("item_name");
-            this.preliminary      = (itemData.getLong("inventory") & 0x40000000) != 0;
+            this.preliminary      = inventoryMask == 0 || (inventoryMask & 0x40000000) != 0;
             this.originalId       = itemData.getInt("original_id");
             this.quality          = this.inventory.getItemSchema().getQualities().get(itemData.getInt("quality"));
             this.tradeable        = !itemData.optBoolean("flag_cannot_trade");
             this.type             = this.getSchemaData().getString("item_type_name");
+
+            long unpositioned = inventoryMask & 0x7f000000;
+            if (this.isPreliminary() || unpositioned > 0) {
+                this.backpackPosition = (int) unpositioned >> 24;
+            } else {
+                this.backpackPosition = (int) (inventoryMask & 0xffff) << 8;
+            }
 
             if (itemData.has("origin")) {
                 this.origin = this.inventory.getItemSchema().getOrigins().get(itemData.getInt("origin"));
