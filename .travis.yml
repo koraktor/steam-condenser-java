@@ -9,3 +9,8 @@ notifications:
     urls:
       - https://webhooks.gitter.im/e/8229d26a4f90bcc6cd67
 script: mvn test -Dsurefire.useFile=false
+
+# Workaround for buffer overflow in Travis’ OpenJDK installations
+before_install:
+  - sudo hostname "$(hostname | cut -c1-63)"
+  - sed -e "s/^\\(127\\.0\\.0\\.1.*\\)/\\1 $(hostname | cut -c1-63)/" /etc/hosts | sudo tee /etc/hosts
