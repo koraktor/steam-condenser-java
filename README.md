@@ -33,6 +33,8 @@ following dependency definition:
       	<artifactId>steam-condenser</artifactId>
       	<version>x.y.z</version>
     </dependency>
+    
+Remember to specify a version using appropriate tag.
 
 Remember to specify a version using appropriate tag.
 
