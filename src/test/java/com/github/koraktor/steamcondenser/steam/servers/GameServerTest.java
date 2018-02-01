@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Before;
@@ -40,15 +39,14 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Sebastian Staudt
@@ -63,26 +61,26 @@ public class GameServerTest {
 
     @Before
     public void setup() throws Exception {
-        this.server = spy(new GenericGameServer());
-        this.socket = mock(QuerySocket.class);
-        this.server.socket = this.socket;
+        server = spy(new GenericGameServer());
+        socket = mock(QuerySocket.class);
+        server.socket = socket;
     }
 
     @Test
     public void testSendRequest() throws Exception {
         SteamPacket packet = mock(SteamPacket.class);
 
-        this.server.sendRequest(packet);
+        server.sendRequest(packet);
 
-        verify(this.socket).send(packet);
+        verify(socket).send(packet);
     }
 
     @Test
     public void testGetReply() throws Exception {
         SteamPacket packet = mock(SteamPacket.class);
-        when(this.socket.getReply()).thenReturn(packet);
+        when(socket.getReply()).thenReturn(packet);
 
-        assertEquals(packet, this.server.getReply());
+        assertEquals(packet, server.getReply());
     }
 
     @Test
@@ -92,141 +90,141 @@ public class GameServerTest {
                 Thread.sleep(50);
                 return null;
             }
-        }).when(this.server).getReply();
+        }).when(server).getReply();
 
-        this.server.updatePing();
+        server.updatePing();
 
-        verify(this.socket).send(any(A2S_INFO_Packet.class));
-        assertThat(this.server.getPing(), is(greaterThanOrEqualTo(50)));
+        verify(socket).send(any(A2S_INFO_Packet.class));
+        assertThat(server.getPing(), is(greaterThanOrEqualTo(50)));
     }
 
     @Test
     public void testUpdateChallengeNumber() throws Exception {
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
 
-        this.server.updateChallengeNumber();
+        server.updateChallengeNumber();
 
-        verify(this.server).handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
+        verify(server).handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
     }
 
     @Test
     public void testUpdateServerInfo() throws Exception {
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_INFO);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_INFO);
 
-        this.server.updateServerInfo();
+        server.updateServerInfo();
 
-        verify(this.server).handleResponseForRequest(GameServer.REQUEST_INFO);
+        verify(server).handleResponseForRequest(GameServer.REQUEST_INFO);
     }
 
     @Test
     public void testUpdateRules() throws Exception {
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_RULES);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_RULES);
 
-        this.server.updateRules();
+        server.updateRules();
 
-        verify(this.server).handleResponseForRequest(GameServer.REQUEST_RULES);
+        verify(server).handleResponseForRequest(GameServer.REQUEST_RULES);
     }
 
     @Test
     public void testUpdatePlayers() throws Exception {
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
 
-        this.server.updatePlayers();
+        server.updatePlayers();
 
-        verify(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        verify(server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
     }
 
     @Test
     public void testInitialize() throws Exception {
-        doNothing().when(this.server).updatePing();
-        doNothing().when(this.server).updateServerInfo();
-        doNothing().when(this.server).updateChallengeNumber();
+        doNothing().when(server).updatePing();
+        doNothing().when(server).updateServerInfo();
+        doNothing().when(server).updateChallengeNumber();
 
-        this.server.initialize();
+        server.initialize();
 
-        verify(this.server).updatePing();
-        verify(this.server).updateServerInfo();
-        verify(this.server).updateChallengeNumber();
+        verify(server).updatePing();
+        verify(server).updateServerInfo();
+        verify(server).updateChallengeNumber();
     }
 
     @Test
     public void testIsRconAuthenticated() {
-        assertEquals(this.server.rconAuthenticated, this.server.isRconAuthenticated());
+        assertEquals(server.rconAuthenticated, server.isRconAuthenticated());
     }
 
     @Test
     public void testCachePing() throws Exception {
         doAnswer(new Answer<Object>() {
-            public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
+            public SteamPacket answer(InvocationOnMock invocationOnMock) {
                 ((GameServer) invocationOnMock.getMock()).ping = 1;
                 return null;
             }
-        }).when(this.server).updatePing();
+        }).when(server).updatePing();
 
-        this.server.getPing();
-        this.server.getPing();
+        server.getPing();
+        server.getPing();
 
-        verify(this.server, times(1)).updatePing();
+        verify(server, times(1)).updatePing();
     }
 
     @Test
     public void testCachePlayers() throws Exception {
         doAnswer(new Answer<Object>() {
-            public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
+            public SteamPacket answer(InvocationOnMock invocationOnMock) {
                 ((GameServer) invocationOnMock.getMock()).playerHash = new HashMap<String, SteamPlayer>();
                 return null;
             }
-        }).when(this.server).updatePlayers(null);
+        }).when(server).updatePlayers(null);
 
-        this.server.getPlayers();
-        this.server.getPlayers();
+        server.getPlayers();
+        server.getPlayers();
 
-        verify(this.server, times(1)).updatePlayers(null);
+        verify(server, times(1)).updatePlayers(null);
     }
 
     @Test
     public void testCacheRules() throws Exception {
         doAnswer(new Answer<Object>() {
-            public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
+            public SteamPacket answer(InvocationOnMock invocationOnMock) {
                 ((GameServer) invocationOnMock.getMock()).rulesHash = new HashMap<String, String>();
                 return null;
             }
-        }).when(this.server).updateRules();
+        }).when(server).updateRules();
 
-        this.server.getRules();
-        this.server.getRules();
+        server.getRules();
+        server.getRules();
 
-        verify(this.server, times(1)).updateRules();
+        verify(server, times(1)).updateRules();
     }
 
     @Test
     public void testCacheServerInfo() throws Exception {
         doAnswer(new Answer<Object>() {
-            public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
+            public SteamPacket answer(InvocationOnMock invocationOnMock) {
                 ((GameServer) invocationOnMock.getMock()).serverInfo = new HashMap<String, Object>();
                 return null;
             }
-        }).when(this.server).updateServerInfo();
+        }).when(server).updateServerInfo();
 
-        this.server.getServerInfo();
-        this.server.getServerInfo();
+        server.getServerInfo();
+        server.getServerInfo();
 
-        verify(this.server, times(1)).updateServerInfo();
+        verify(server, times(1)).updateServerInfo();
     }
 
     @Test
     public void testPlayerInfoSourceWithPassword() throws Exception {
-        String status = this.readFixture("status_source");
+        String status = readFixture("status_source");
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
         HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
-        this.server.playerHash = playerMap;
+        server.playerHash = playerMap;
 
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
-        when(this.server.rconExec("status")).thenReturn(status);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        when(server.rconExec("status")).thenReturn(status);
 
         HashMap<String, String> someoneData = new HashMap<String, String>();
         someoneData.put("name", "someone");
@@ -247,33 +245,27 @@ public class GameServerTest {
         somebodyData.put("loss", "0");
         somebodyData.put("state", "active");
 
-        mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
-        when(GameServer.getPlayerStatusAttributes("userid name           uniqueid            score connected ping loss state")).thenReturn(attributes);
-        when(GameServer.splitPlayerStatus(attributes, "1 \"someone\"      STEAM_0:0:123456    10    3:52      12   0    active")).thenReturn(someoneData);
-        when(GameServer.splitPlayerStatus(attributes, "2 \"somebody\"     STEAM_0:0:123457    3     2:42      34   0    active")).thenReturn(somebodyData);
+        server.updatePlayers("password");
 
-        this.server.updatePlayers("password");
-
-        verify(this.server).rconAuth("password");
+        verify(server).rconAuth("password");
         verify(someone).addInformation(someoneData);
         verify(somebody).addInformation(somebodyData);
     }
 
     @Test
     public void testPlayerInfoSourceAuthenticated() throws Exception {
-        String status = this.readFixture("status_source");
+        String status = readFixture("status_source");
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
         HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
-        this.server.playerHash = playerMap;
-        this.server.rconAuthenticated = true;
+        server.playerHash = playerMap;
+        server.rconAuthenticated = true;
 
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
-        when(this.server.rconExec("status")).thenReturn(status);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        when(server.rconExec("status")).thenReturn(status);
 
         HashMap<String, String> someoneData = new HashMap<String, String>();
         someoneData.put("name", "someone");
@@ -294,13 +286,7 @@ public class GameServerTest {
         somebodyData.put("loss", "0");
         somebodyData.put("state", "active");
 
-        mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
-        when(GameServer.getPlayerStatusAttributes("userid name           uniqueid            score connected ping loss state")).thenReturn(attributes);
-        when(GameServer.splitPlayerStatus(attributes, "1 \"someone\"      STEAM_0:0:123456    10    3:52      12   0    active")).thenReturn(someoneData);
-        when(GameServer.splitPlayerStatus(attributes, "2 \"somebody\"     STEAM_0:0:123457    3     2:42      34   0    active")).thenReturn(somebodyData);
-
-        this.server.updatePlayers();
+        server.updatePlayers();
 
         verify(someone).addInformation(someoneData);
         verify(somebody).addInformation(somebodyData);
@@ -308,17 +294,17 @@ public class GameServerTest {
 
     @Test
     public void testPlayerInfoGoldSrcWithPassword() throws Exception {
-        String status = this.readFixture("status_goldsrc");
+        String status = readFixture("status_goldsrc");
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
         HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
-        this.server.playerHash = playerMap;
+        server.playerHash = playerMap;
 
-        doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
-        when(this.server.rconExec("status")).thenReturn(status);
+        doNothing().when(server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        when(server.rconExec("status")).thenReturn(status);
 
         HashMap<String, String> someoneData = new HashMap<String, String>();
         someoneData.put("name", "someone");
@@ -339,15 +325,9 @@ public class GameServerTest {
         somebodyData.put("loss", "0");
         somebodyData.put("adr", "0");
 
-        mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
-        when(GameServer.getPlayerStatusAttributes("name userid uniqueid frag time ping loss adr")).thenReturn(attributes);
-        when(GameServer.splitPlayerStatus(attributes, "1   \"someone\" 1 STEAM_0:0:123456 10 3:52 12 0 0")).thenReturn(someoneData);
-        when(GameServer.splitPlayerStatus(attributes, "2   \"somebody\" 2 STEAM_0:0:123457 3 2:42 34 0 0")).thenReturn(somebodyData);
+        server.updatePlayers("password");
 
-        this.server.updatePlayers("password");
-
-        verify(this.server).rconAuth("password");
+        verify(server).rconAuth("password");
         verify(someone).addInformation(someoneData);
         verify(somebody).addInformation(somebodyData);
     }
@@ -358,10 +338,10 @@ public class GameServerTest {
         when(packet.getChallengeNumber()).thenReturn(1234);
         when(server.getReply()).thenReturn(packet);
 
-        this.server.handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
+        server.handleResponseForRequest(GameServer.REQUEST_CHALLENGE);
 
-        assertEquals(1234, this.server.challengeNumber);
-        verify(this.server).sendRequest(any(A2S_PLAYER_Packet.class));
+        assertEquals(1234, server.challengeNumber);
+        verify(server).sendRequest(any(A2S_PLAYER_Packet.class));
     }
 
     @Test
@@ -372,10 +352,10 @@ public class GameServerTest {
         when(packet.getInfo()).thenReturn(infoMap);
         when(server.getReply()).thenReturn(packet);
 
-        this.server.handleResponseForRequest(GameServer.REQUEST_INFO);
+        server.handleResponseForRequest(GameServer.REQUEST_INFO);
 
-        assertEquals("test", this.server.serverInfo.get("test"));
-        verify(this.server).sendRequest(any(A2S_INFO_Packet.class));
+        assertEquals("test", server.serverInfo.get("test"));
+        verify(server).sendRequest(any(A2S_INFO_Packet.class));
     }
 
     @Test
@@ -386,10 +366,10 @@ public class GameServerTest {
         when(packet.getRulesHash()).thenReturn(rulesMap);
         when(server.getReply()).thenReturn(packet);
 
-        this.server.handleResponseForRequest(GameServer.REQUEST_RULES);
+        server.handleResponseForRequest(GameServer.REQUEST_RULES);
 
-        assertEquals("test", this.server.rulesHash.get("test"));
-        verify(this.server).sendRequest(any(A2S_RULES_Packet.class));
+        assertEquals("test", server.rulesHash.get("test"));
+        verify(server).sendRequest(any(A2S_RULES_Packet.class));
     }
 
     @Test
@@ -401,10 +381,10 @@ public class GameServerTest {
         when(packet.getPlayerHash()).thenReturn(playerMap);
         when(server.getReply()).thenReturn(packet);
 
-        this.server.handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        server.handleResponseForRequest(GameServer.REQUEST_PLAYER);
 
-        assertEquals(player, this.server.playerHash.get("test"));
-        verify(this.server).sendRequest(any(A2S_PLAYER_Packet.class));
+        assertEquals(player, server.playerHash.get("test"));
+        verify(server).sendRequest(any(A2S_PLAYER_Packet.class));
     }
 
     @Test
@@ -420,21 +400,21 @@ public class GameServerTest {
         when(packet2.getPlayerHash()).thenReturn(playerMap);
         when(server.getReply()).thenReturn(packet1).thenReturn(packet2);
 
-        this.server.handleResponseForRequest(GameServer.REQUEST_PLAYER);
+        server.handleResponseForRequest(GameServer.REQUEST_PLAYER);
 
-        assertEquals("test", this.server.serverInfo.get("test"));
-        assertEquals(player, this.server.playerHash.get("test"));
-        verify(this.server, times(2)).sendRequest(any(A2S_PLAYER_Packet.class));
+        assertEquals("test", server.serverInfo.get("test"));
+        assertEquals(player, server.playerHash.get("test"));
+        verify(server, times(2)).sendRequest(any(A2S_PLAYER_Packet.class));
     }
 
     private String readFixture(String fixture) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fixture)));
-        String result = "";
+        BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(fixture)));
+        StringBuilder result = new StringBuilder();
         while(reader.ready()) {
-            result += reader.readLine() + "\n";
+            result.append(reader.readLine()).append("\n");
         }
 
-        return result;
+        return result.toString();
     }
 
     class GenericGameServer extends GameServer {
