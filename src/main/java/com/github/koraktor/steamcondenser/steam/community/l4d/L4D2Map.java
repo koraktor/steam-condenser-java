@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2012, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.community.l4d;
@@ -49,7 +49,7 @@ public class L4D2Map extends L4DMap {
     public L4D2Map(XMLData mapData)
             throws SteamCondenserException {
         String imgUrl = mapData.getString("img");
-        this.id = imgUrl.substring(imgUrl.lastIndexOf('/'), -4);
+        this.id = imgUrl.substring(imgUrl.lastIndexOf('/') + 1, imgUrl.length() - 4);
         this.name = mapData.getString("name");
         this.played = mapData.getString("hasPlayed").equals("1");
 
