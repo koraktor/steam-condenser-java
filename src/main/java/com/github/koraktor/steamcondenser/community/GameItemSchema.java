@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -29,7 +29,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 public class GameItemSchema {
 
     private static Map<Integer, Map<String, GameItemSchema>> cache =
-        new HashMap<Integer, Map<String, GameItemSchema>>();
+            new HashMap<>();
 
     private int appId;
     private Map<Object, JSONObject> attributes;
@@ -125,11 +125,11 @@ public class GameItemSchema {
      */
     public void fetch() throws WebApiException {
         try {
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             params.put("language", this.language);
             JSONObject data = WebApi.getJSONData("IEconItems_" + this.appId, "GetSchema", 1, params);
 
-            this.attributes = new HashMap<Object, JSONObject>();
+            this.attributes = new HashMap<>();
             JSONArray attributesData = data.getJSONArray("attributes");
             for (int i = 0; i < attributesData.length(); i++) {
                 JSONObject attribute = attributesData.getJSONObject(i);
@@ -137,15 +137,15 @@ public class GameItemSchema {
                 this.attributes.put(attribute.getString("name"), attribute);
             }
 
-            this.effects = new HashMap<Integer, JSONObject>();
+            this.effects = new HashMap<>();
             JSONArray effectsData = data.getJSONArray("attribute_controlled_attached_particles");
             for (int i = 0; i < effectsData.length(); i++) {
                 JSONObject effect = effectsData.getJSONObject(i);
                 this.effects.put(effect.getInt("id"), effect);
             }
 
-            this.items = new HashMap<Integer, JSONObject>();
-            this.itemNames = new HashMap<String, Integer>();
+            this.items = new HashMap<>();
+            this.itemNames = new HashMap<>();
             JSONArray itemsData = data.getJSONArray("items");
             for (int i = 0; i < itemsData.length(); i++) {
                 JSONObject item = itemsData.getJSONObject(i);
@@ -154,11 +154,11 @@ public class GameItemSchema {
             }
 
             if (data.has("levels")) {
-                this.itemLevels = new HashMap<String, Object>();
+                this.itemLevels = new HashMap<>();
                 JSONArray itemsLevelsData = data.getJSONArray("item_levels");
                 for (int i = 0; i < itemsLevelsData.length(); i++) {
                     JSONObject itemLevelType = itemsLevelsData.getJSONObject(i);
-                    HashMap<Integer, String> itemLevels = new HashMap<Integer, String>();
+                    HashMap<Integer, String> itemLevels = new HashMap<>();
                     this.itemLevels.put(itemLevelType.getString("name"), itemLevels);
                     for (int j = 0; j < itemLevelType.getJSONArray("levels").length(); j ++) {
                         JSONObject itemLevel = itemLevelType.getJSONArray("levels").getJSONObject(j);
@@ -167,21 +167,21 @@ public class GameItemSchema {
                 }
             }
 
-            this.itemSets = new HashMap<String, JSONObject>();
+            this.itemSets = new HashMap<>();
             JSONArray itemSetsData = data.getJSONArray("item_sets");
             for (int i = 0; i < itemSetsData.length(); i++) {
                 JSONObject itemSet = itemSetsData.getJSONObject(i);
                 this.itemSets.put(itemSet.getString("item_set"), itemSet);
             }
 
-            this.origins = new HashMap<Integer, String>();
+            this.origins = new HashMap<>();
             JSONArray originsData = data.getJSONArray("originNames");
             for (int i = 0; i < originsData.length(); i++) {
                 JSONObject origin = originsData.getJSONObject(i);
                 this.origins.put(origin.getInt("origin"), origin.getString("name"));
             }
 
-            this.qualities = new HashMap<Integer, String>();
+            this.qualities = new HashMap<>();
             JSONObject qualitiesData = data.getJSONObject("qualities");
             Iterator qualityKeys = qualitiesData.keys();
             int index = -1;
@@ -320,7 +320,7 @@ public class GameItemSchema {
         if (cache.containsKey(this.appId)) {
             gameCache = cache.get(this.appId);
         } else {
-            gameCache = new HashMap<String, GameItemSchema>();
+            gameCache = new HashMap<>();
         }
         gameCache.put(this.language, this);
     }

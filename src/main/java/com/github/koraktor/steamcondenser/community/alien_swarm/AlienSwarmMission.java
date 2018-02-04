@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.alien_swarm;
@@ -68,7 +68,7 @@ public class AlienSwarmMission {
         this.totalGames           = missionData.getInteger("gamestotal");
         this.totalGamesPercentage = missionData.getFloat("gamestotalpct");
 
-        this.time = new HashMap<String, String>();
+        this.time = new HashMap<>();
         this.time.put("average", missionData.getString("avgtime"));
         this.time.put("brutal", missionData.getString("brutaltime"));
         this.time.put("easy", missionData.getString("easytime"));

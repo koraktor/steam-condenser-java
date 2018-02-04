@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.tf2;
@@ -93,7 +93,7 @@ public class TF2Stats extends GameStats {
         }
 
         if(this.classStats == null) {
-            this.classStats = new ArrayList<TF2Class>();
+            this.classStats = new ArrayList<>();
             for(XMLData classData : this.xmlData.getElements("stats", "classData")) {
                 this.classStats.add(TF2ClassFactory.getTF2Class(classData));
             }

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -77,7 +77,7 @@ public class WebApiTest {
 
     @Test
     public void testGetJSON() throws Exception {
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("test", "param");
 
         spy(WebApi.class);
@@ -88,7 +88,7 @@ public class WebApiTest {
 
     @Test
     public void testGetJSONData() throws Exception {
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("test", "param");
 
         String data = mock(String.class);
@@ -129,7 +129,7 @@ public class WebApiTest {
 
         this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("test", "param");
 
         assertThat(WebApi.load("json", "interface", "method", 2, params), is(equalTo("test")));
@@ -145,7 +145,7 @@ public class WebApiTest {
 
         this.prepareRequest("http://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("test", "param");
 
         assertThat(WebApi.load("json", "interface", "method", 2, params), is(equalTo("test")));
@@ -171,7 +171,7 @@ public class WebApiTest {
 
         this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json", 200, null, "test");
 
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("test", "param");
 
         assertThat(WebApi.load("json", "interface", "method", 2, params), is(equalTo("test")));

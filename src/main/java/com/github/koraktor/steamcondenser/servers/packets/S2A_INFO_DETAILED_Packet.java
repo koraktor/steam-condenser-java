@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.packets;
@@ -44,7 +44,7 @@ public class S2A_INFO_DETAILED_Packet extends S2A_INFO_BasePacket {
         this.info.put("isMod", isMod);
 
         if(isMod) {
-            HashMap<String, Object> modInfo = new HashMap<String, Object>(6);
+            HashMap<String, Object> modInfo = new HashMap<>(6);
             modInfo.put("urlInfo", this.contentData.getString());
             modInfo.put("urlDl", this.contentData.getString());
             this.contentData.getByte();

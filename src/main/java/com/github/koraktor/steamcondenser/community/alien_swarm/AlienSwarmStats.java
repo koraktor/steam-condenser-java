@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.alien_swarm;
@@ -61,7 +61,7 @@ public class AlienSwarmStats extends GameStats {
             XMLData lifetimeStats = this.xmlData.getElement("stats", "lifetime");
             this.hoursPlayed = lifetimeStats.getString("timeplayed");
 
-            this.lifetimeStats = new HashMap<String, Object>();
+            this.lifetimeStats = new HashMap<>();
             this.lifetimeStats.put("accuracy", lifetimeStats.getFloat("accuracy"));
             this.lifetimeStats.put("aliensBurned", lifetimeStats.getInteger("aliensburned"));
             this.lifetimeStats.put("aliensKilled", lifetimeStats.getInteger("alienskilled"));
@@ -104,7 +104,7 @@ public class AlienSwarmStats extends GameStats {
         if(this.favorites == null) {
             XMLData favoritesData = this.xmlData.getElement("stats", "favorites");
 
-            this.favorites = new HashMap<String, Object>();
+            this.favorites = new HashMap<>();
             this.favorites.put("class", favoritesData.getString("class"));
             this.favorites.put("classImg", favoritesData.getString("classimg"));
             this.favorites.put("classPercentage", favoritesData.getFloat("classpct"));
@@ -146,7 +146,7 @@ public class AlienSwarmStats extends GameStats {
         if(this.itemStats == null) {
             XMLData itemStatsData = this.xmlData.getElement("stats", "weapons");
 
-            this.itemStats = new HashMap<String, Object>();
+            this.itemStats = new HashMap<>();
             this.itemStats.put("ammoDeployed", itemStatsData.getInteger("ammo_deployed"));
             this.itemStats.put("sentrygunsDeployed", itemStatsData.getInteger("sentryguns_deployed"));
             this.itemStats.put("sentryFlamersDeployed", itemStatsData.getInteger("sentry_flamers_deployed"));
@@ -196,7 +196,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.missionStats == null) {
-            this.missionStats = new HashMap<String, Object>();
+            this.missionStats = new HashMap<>();
             for(XMLData missionData : this.xmlData.getElements("stats", "missions")) {
                 this.missionStats.put(missionData.getName(), new AlienSwarmMission(missionData));
             }
@@ -219,7 +219,7 @@ public class AlienSwarmStats extends GameStats {
         }
 
         if(this.weaponStats == null) {
-            this.weaponStats = new HashMap<String, Object>();
+            this.weaponStats = new HashMap<>();
             for(String weaponNode : WEAPONS) {
                 XMLData weaponData = this.xmlData.getElement("stats", "weapons", weaponNode);
                 AlienSwarmWeapon weapon = new AlienSwarmWeapon(weaponData);

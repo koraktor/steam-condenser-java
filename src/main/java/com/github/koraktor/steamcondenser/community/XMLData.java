@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -164,7 +164,7 @@ public class XMLData {
 
         XMLData baseElement = this.getElement(baseNames);
         if(baseElement == null) {
-            return new ArrayList<XMLData>();
+            return new ArrayList<>();
         }
 
         return this.wrapNodeList(baseElement.getRoot().getElementsByTagName(name));
@@ -278,7 +278,7 @@ public class XMLData {
      * @return A list of data containers
      */
     protected List<XMLData> wrapNodeList(NodeList nodeList) {
-        List<XMLData> elements = new ArrayList<XMLData>(nodeList.getLength());
+        List<XMLData> elements = new ArrayList<>(nodeList.getLength());
         for(int i = 0; i < nodeList.getLength(); i++) {
             elements.add(new XMLData((Element) nodeList.item(i)));
         }

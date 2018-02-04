@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -269,7 +269,7 @@ abstract public class WebApi {
         String url = String.format("%s://api.steampowered.com/%s/%s/v%04d/?", protocol, apiInterface, method, version);
 
         if(params == null) {
-            params = new HashMap<String, Object>();
+            params = new HashMap<>();
         }
         params.put("format", format);
         if (apiKey != null) {

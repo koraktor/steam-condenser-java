@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -33,7 +33,7 @@ import com.github.koraktor.steamcondenser.community.tf2.TF2Inventory;
  */
 public class GameInventory {
 
-    public static Map<Integer, Map<Long, GameInventory>> cache = new HashMap<Integer, Map<Long, GameInventory>>();
+    public static Map<Integer, Map<Long, GameInventory>> cache = new HashMap<>();
 
     private static String schemaLanguage = "en";
 
@@ -198,12 +198,12 @@ public class GameInventory {
      */
     public void fetch() throws SteamCondenserException {
         try {
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             params.put("SteamID", this.steamId64);
             JSONObject result = WebApi.getJSONData("IEconItems_" + this.getAppId(), "GetPlayerItems", 1, params);
 
-            this.items = new HashMap<Integer, GameItem>();
-            this.preliminaryItems = new ArrayList<GameItem>();
+            this.items = new HashMap<>();
+            this.preliminaryItems = new ArrayList<>();
             JSONArray itemsData = result.getJSONArray("items");
             for(int i = 0; i < itemsData.length(); i ++) {
                 JSONObject itemData = itemsData.getJSONObject(i);
@@ -335,7 +335,7 @@ public class GameInventory {
         if (cache.containsKey(this.appId)) {
             gameCache = cache.get(this.appId);
         } else {
-            gameCache = new HashMap<Long, GameInventory>();
+            gameCache = new HashMap<>();
         }
         gameCache.put(this.steamId64, this);
     }

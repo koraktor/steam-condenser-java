@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -62,13 +62,13 @@ public class GameAchievement {
      */
     public static Map<String, Double> getGlobalPercentages(int appId)
             throws WebApiException {
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("gameid", appId);
 
         try {
             JSONObject data = new JSONObject(WebApi.getJSON("ISteamUserStats", "GetGlobalAchievementPercentagesForApp", 2, params));
 
-            HashMap<String, Double> percentages = new HashMap<String, Double>();
+            HashMap<String, Double> percentages = new HashMap<>();
             JSONArray achievementsData = data.getJSONObject("achievementpercentages").getJSONArray("achievements");
             for(int i = 0; i < achievementsData.length(); i ++) {
                 JSONObject achievementData = achievementsData.getJSONObject(i);

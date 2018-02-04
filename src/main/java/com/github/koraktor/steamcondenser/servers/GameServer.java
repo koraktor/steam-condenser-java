@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -83,7 +83,7 @@ public abstract class GameServer extends Server {
      * @see #splitPlayerStatus
      */
     protected static List<String> getPlayerStatusAttributes(String statusHeader) {
-        List<String> statusAttributes = new ArrayList<String>();
+        List<String> statusAttributes = new ArrayList<>();
         for(String attribute : statusHeader.split("\\s+")) {
             if(attribute.equals("connected")) {
                 statusAttributes.add("time");
@@ -113,12 +113,12 @@ public abstract class GameServer extends Server {
 
         int firstQuote = playerStatus.indexOf('"');
         int lastQuote  = playerStatus.lastIndexOf('"');
-        List<String> tmpData = new ArrayList<String>();
+        List<String> tmpData = new ArrayList<>();
         tmpData.add(playerStatus.substring(0, firstQuote));
         tmpData.add(playerStatus.substring(firstQuote + 1, lastQuote));
         tmpData.add(playerStatus.substring(lastQuote + 1));
 
-        List<String> data = new ArrayList<String>();
+        List<String> data = new ArrayList<>();
         data.addAll(Arrays.asList(tmpData.get(0).trim().split("\\s+")));
         data.add(tmpData.get(1));
         data.addAll(Arrays.asList(tmpData.get(2).trim().split("\\s+")));
@@ -132,7 +132,7 @@ public abstract class GameServer extends Server {
             data.remove(1);
         }
 
-        Map<String, String> playerData = new HashMap<String, String>();
+        Map<String, String> playerData = new HashMap<>();
         for(int i = 0; i < data.size(); i ++) {
             playerData.put(attributes.get(i), data.get(i));
         }
@@ -537,7 +537,7 @@ public abstract class GameServer extends Server {
             this.rconAuth(rconPassword);
         }
 
-        List<String> players = new ArrayList<String>();
+        List<String> players = new ArrayList<>();
         for(String line : Arrays.asList(this.rconExec("status").split("\n"))) {
             if(line.startsWith("#") && !line.equals("#end")) {
                 players.add(line.substring(1).trim());

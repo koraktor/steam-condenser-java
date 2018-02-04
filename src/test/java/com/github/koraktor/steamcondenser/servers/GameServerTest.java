@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -172,7 +172,7 @@ public class GameServerTest {
     public void testCachePlayers() throws Exception {
         doAnswer(new Answer<Object>() {
             public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
-                ((GameServer) invocationOnMock.getMock()).playerHash = new HashMap<String, SteamPlayer>();
+                ((GameServer) invocationOnMock.getMock()).playerHash = new HashMap<>();
                 return null;
             }
         }).when(this.server).updatePlayers(null);
@@ -187,7 +187,7 @@ public class GameServerTest {
     public void testCacheRules() throws Exception {
         doAnswer(new Answer<Object>() {
             public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
-                ((GameServer) invocationOnMock.getMock()).rulesHash = new HashMap<String, String>();
+                ((GameServer) invocationOnMock.getMock()).rulesHash = new HashMap<>();
                 return null;
             }
         }).when(this.server).updateRules();
@@ -202,7 +202,7 @@ public class GameServerTest {
     public void testCacheServerInfo() throws Exception {
         doAnswer(new Answer<Object>() {
             public SteamPacket answer(InvocationOnMock invocationOnMock) throws Throwable {
-                ((GameServer) invocationOnMock.getMock()).serverInfo = new HashMap<String, Object>();
+                ((GameServer) invocationOnMock.getMock()).serverInfo = new HashMap<>();
                 return null;
             }
         }).when(this.server).updateServerInfo();
@@ -219,7 +219,7 @@ public class GameServerTest {
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
-        HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
+        HashMap<String, SteamPlayer> playerMap = new HashMap<>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
         this.server.playerHash = playerMap;
@@ -227,7 +227,7 @@ public class GameServerTest {
         doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
         when(this.server.rconExec("status")).thenReturn(status);
 
-        HashMap<String, String> someoneData = new HashMap<String, String>();
+        HashMap<String, String> someoneData = new HashMap<>();
         someoneData.put("name", "someone");
         someoneData.put("userid", "1");
         someoneData.put("uniqueid", "STEAM_0:0:123456");
@@ -236,7 +236,7 @@ public class GameServerTest {
         someoneData.put("ping", "12");
         someoneData.put("loss", "0");
         someoneData.put("state", "active");
-        HashMap<String, String> somebodyData = new HashMap<String, String>();
+        HashMap<String, String> somebodyData = new HashMap<>();
         somebodyData.put("name", "somebody");
         somebodyData.put("userid", "2");
         somebodyData.put("uniqueid", "STEAM_0:0:123457");
@@ -247,7 +247,7 @@ public class GameServerTest {
         somebodyData.put("state", "active");
 
         mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
+        ArrayList<String> attributes = new ArrayList<>();
         when(GameServer.getPlayerStatusAttributes("userid name           uniqueid            score connected ping loss state")).thenReturn(attributes);
         when(GameServer.splitPlayerStatus(attributes, "1 \"someone\"      STEAM_0:0:123456    10    3:52      12   0    active")).thenReturn(someoneData);
         when(GameServer.splitPlayerStatus(attributes, "2 \"somebody\"     STEAM_0:0:123457    3     2:42      34   0    active")).thenReturn(somebodyData);
@@ -265,7 +265,7 @@ public class GameServerTest {
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
-        HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
+        HashMap<String, SteamPlayer> playerMap = new HashMap<>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
         this.server.playerHash = playerMap;
@@ -274,7 +274,7 @@ public class GameServerTest {
         doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
         when(this.server.rconExec("status")).thenReturn(status);
 
-        HashMap<String, String> someoneData = new HashMap<String, String>();
+        HashMap<String, String> someoneData = new HashMap<>();
         someoneData.put("name", "someone");
         someoneData.put("userid", "1");
         someoneData.put("uniqueid", "STEAM_0:0:123456");
@@ -283,7 +283,7 @@ public class GameServerTest {
         someoneData.put("ping", "12");
         someoneData.put("loss", "0");
         someoneData.put("state", "active");
-        HashMap<String, String> somebodyData = new HashMap<String, String>();
+        HashMap<String, String> somebodyData = new HashMap<>();
         somebodyData.put("name", "somebody");
         somebodyData.put("userid", "2");
         somebodyData.put("uniqueid", "STEAM_0:0:123457");
@@ -294,7 +294,7 @@ public class GameServerTest {
         somebodyData.put("state", "active");
 
         mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
+        ArrayList<String> attributes = new ArrayList<>();
         when(GameServer.getPlayerStatusAttributes("userid name           uniqueid            score connected ping loss state")).thenReturn(attributes);
         when(GameServer.splitPlayerStatus(attributes, "1 \"someone\"      STEAM_0:0:123456    10    3:52      12   0    active")).thenReturn(someoneData);
         when(GameServer.splitPlayerStatus(attributes, "2 \"somebody\"     STEAM_0:0:123457    3     2:42      34   0    active")).thenReturn(somebodyData);
@@ -311,7 +311,7 @@ public class GameServerTest {
 
         SteamPlayer someone = mock(SteamPlayer.class);
         SteamPlayer somebody = mock(SteamPlayer.class);
-        HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
+        HashMap<String, SteamPlayer> playerMap = new HashMap<>();
         playerMap.put("someone", someone);
         playerMap.put("somebody", somebody);
         this.server.playerHash = playerMap;
@@ -319,7 +319,7 @@ public class GameServerTest {
         doNothing().when(this.server).handleResponseForRequest(GameServer.REQUEST_PLAYER);
         when(this.server.rconExec("status")).thenReturn(status);
 
-        HashMap<String, String> someoneData = new HashMap<String, String>();
+        HashMap<String, String> someoneData = new HashMap<>();
         someoneData.put("name", "someone");
         someoneData.put("userid", "1");
         someoneData.put("uniqueid", "STEAM_0:0:123456");
@@ -328,7 +328,7 @@ public class GameServerTest {
         someoneData.put("ping", "12");
         someoneData.put("loss", "0");
         someoneData.put("adr", "0");
-        HashMap<String, String> somebodyData = new HashMap<String, String>();
+        HashMap<String, String> somebodyData = new HashMap<>();
         somebodyData.put("name", "somebody");
         somebodyData.put("userid", "2");
         somebodyData.put("uniqueid", "STEAM_0:0:123457");
@@ -339,7 +339,7 @@ public class GameServerTest {
         somebodyData.put("adr", "0");
 
         mockStatic(GameServer.class);
-        ArrayList<String> attributes = new ArrayList<String>();
+        ArrayList<String> attributes = new ArrayList<>();
         when(GameServer.getPlayerStatusAttributes("name userid uniqueid frag time ping loss adr")).thenReturn(attributes);
         when(GameServer.splitPlayerStatus(attributes, "1   \"someone\" 1 STEAM_0:0:123456 10 3:52 12 0 0")).thenReturn(someoneData);
         when(GameServer.splitPlayerStatus(attributes, "2   \"somebody\" 2 STEAM_0:0:123457 3 2:42 34 0 0")).thenReturn(somebodyData);
@@ -366,7 +366,7 @@ public class GameServerTest {
     @Test
     public void testHandleInfoRequests() throws Exception {
         S2A_INFO2_Packet packet = mock(S2A_INFO2_Packet.class);
-        HashMap<String, Object> infoMap = new HashMap<String, Object>();
+        HashMap<String, Object> infoMap = new HashMap<>();
         infoMap.put("test", "test");
         when(packet.getInfo()).thenReturn(infoMap);
         when(server.getReply()).thenReturn(packet);
@@ -380,7 +380,7 @@ public class GameServerTest {
     @Test
     public void testHandleRulesRequests() throws Exception {
         S2A_RULES_Packet packet = mock(S2A_RULES_Packet.class);
-        HashMap<String, String> rulesMap = new HashMap<String, String>();
+        HashMap<String, String> rulesMap = new HashMap<>();
         rulesMap.put("test", "test");
         when(packet.getRulesHash()).thenReturn(rulesMap);
         when(server.getReply()).thenReturn(packet);
@@ -395,7 +395,7 @@ public class GameServerTest {
     public void testHandlePlayerRequests() throws Exception {
         SteamPlayer player = mock(SteamPlayer.class);
         S2A_PLAYER_Packet packet = mock(S2A_PLAYER_Packet.class);
-        HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
+        HashMap<String, SteamPlayer> playerMap = new HashMap<>();
         playerMap.put("test", player);
         when(packet.getPlayerHash()).thenReturn(playerMap);
         when(server.getReply()).thenReturn(packet);
@@ -409,12 +409,12 @@ public class GameServerTest {
     @Test
     public void testHandleUnexpectedResponses() throws Exception {
         S2A_INFO2_Packet packet1 = mock(S2A_INFO2_Packet.class);
-        HashMap<String, Object> infoMap = new HashMap<String, Object>();
+        HashMap<String, Object> infoMap = new HashMap<>();
         infoMap.put("test", "test");
         when(packet1.getInfo()).thenReturn(infoMap);
         SteamPlayer player = mock(SteamPlayer.class);
         S2A_PLAYER_Packet packet2 = mock(S2A_PLAYER_Packet.class);
-        HashMap<String, SteamPlayer> playerMap = new HashMap<String, SteamPlayer>();
+        HashMap<String, SteamPlayer> playerMap = new HashMap<>();
         playerMap.put("test", player);
         when(packet2.getPlayerHash()).thenReturn(playerMap);
         when(server.getReply()).thenReturn(packet1).thenReturn(packet2);

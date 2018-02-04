@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2015, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -56,13 +56,13 @@ public class MasterServerTest {
     @Test
     public void testGetServers() throws Exception {
         M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
-        Vector<String> servers1 = new Vector<String>();
+        Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
         when(packet1.getServers()).thenReturn(servers1);
         M2A_SERVER_BATCH_Paket packet2 = mock(M2A_SERVER_BATCH_Paket.class);
-        Vector<String> servers2 = new Vector<String>();
+        Vector<String> servers2 = new Vector<>();
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
         when(packet2.getServers()).thenReturn(servers2);
@@ -105,7 +105,7 @@ public class MasterServerTest {
         MasterServer.setRetries(1);
 
         M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
-        Vector<String> servers1 = new Vector<String>();
+        Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
@@ -146,13 +146,13 @@ public class MasterServerTest {
     @Test
     public void testGetServersSwapIp() throws Exception {
         M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
-        Vector<String> servers1 = new Vector<String>();
+        Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
         when(packet1.getServers()).thenReturn(servers1);
         M2A_SERVER_BATCH_Paket packet2 = mock(M2A_SERVER_BATCH_Paket.class);
-        Vector<String> servers2 = new Vector<String>();
+        Vector<String> servers2 = new Vector<>();
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
         when(packet2.getServers()).thenReturn(servers2);

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.portal2;
@@ -41,7 +41,7 @@ public class Portal2Item extends GameItem {
             throws JSONException, SteamCondenserException {
         super(inventory, itemData);
 
-        this.equipped = new HashMap<String, Boolean>();
+        this.equipped = new HashMap<>();
         for(int botId = 0; botId < BOTS.length; botId++) {
             this.equipped.put(BOTS[botId], (itemData.getLong("inventory") & (1 << 16 + botId)) != 0);
         }
@@ -53,7 +53,7 @@ public class Portal2Item extends GameItem {
      * @return The names of the bots this player has equipped this item
      */
     public List<String> getBotsEquipped() {
-        List<String> botsEquipped = new ArrayList<String>();
+        List<String> botsEquipped = new ArrayList<>();
         for(Map.Entry<String, Boolean> botEquipped : this.equipped.entrySet()) {
             if(botEquipped.getValue()) {
                 botsEquipped.add(botEquipped.getKey());

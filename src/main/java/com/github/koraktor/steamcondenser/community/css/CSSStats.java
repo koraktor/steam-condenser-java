@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.css;
@@ -64,8 +64,8 @@ public class CSSStats extends GameStats {
             XMLData lifetimeStats = this.xmlData.getElement("stats", "lifetime");
             XMLData summaryStats = this.xmlData.getElement("stats", "summary");
 
-            this.lastMatchStats = new HashMap<String, Object>();
-            this.totalStats     = new HashMap<String, Object>();
+            this.lastMatchStats = new HashMap<>();
+            this.totalStats     = new HashMap<>();
 
             this.lastMatchStats.put("costPerKill", lastMatchStats.getFloat("costkill"));
             this.lastMatchStats.put("ctWins", lastMatchStats.getInteger("ct_wins"));
@@ -149,7 +149,7 @@ public class CSSStats extends GameStats {
         }
 
         if(this.mapStats == null) {
-            this.mapStats = new HashMap<String, CSSMap>();
+            this.mapStats = new HashMap<>();
             XMLData mapsData = this.xmlData.getElement("stats", "maps");
 
             for(String mapName : MAPS) {
@@ -183,7 +183,7 @@ public class CSSStats extends GameStats {
         }
 
         if(this.weaponStats == null) {
-            this.weaponStats = new HashMap<String, CSSWeapon>();
+            this.weaponStats = new HashMap<>();
             XMLData weaponData = this.xmlData.getElement("stats", "weapons");
 
             for(String weaponName : WEAPONS) {

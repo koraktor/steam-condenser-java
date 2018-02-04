@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.packets;
@@ -40,7 +40,7 @@ public class M2A_SERVER_BATCH_Paket extends SteamPacket {
         }
 
         int firstOctet, secondOctet, thirdOctet, fourthOctet, portNumber;
-        this.serverArray = new Vector<String>();
+        this.serverArray = new Vector<>();
 
         do {
             firstOctet = this.contentData.getByte() & 0xFF;

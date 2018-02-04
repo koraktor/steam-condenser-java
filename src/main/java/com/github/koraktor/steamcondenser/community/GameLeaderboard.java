@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -29,7 +29,7 @@ public class GameLeaderboard {
     public static final int LEADERBOARD_SORT_METHOD_ASC  = 1;
     public static final int LEADERBOARD_SORT_METHOD_DESC = 2;
 
-    private static Map<String, Map<Integer, GameLeaderboard>> leaderboards = new HashMap<String, Map<Integer, GameLeaderboard>>();
+    private static Map<String, Map<Integer, GameLeaderboard>> leaderboards = new HashMap<>();
 
     protected int id;
 
@@ -253,7 +253,7 @@ public class GameLeaderboard {
                 throw new SteamCondenserException(boardData.getString("error"));
             }
 
-            Map<Integer, GameLeaderboardEntry> entries = new HashMap<Integer, GameLeaderboardEntry>();
+            Map<Integer, GameLeaderboardEntry> entries = new HashMap<>();
             for(XMLData entryData : boardData.getElements("entries", "entry")) {
                 GameLeaderboardEntry entry = new GameLeaderboardEntry(entryData, this);
                 entries.put(entry.getRank(), entry);
@@ -291,7 +291,7 @@ public class GameLeaderboard {
                 throw new SteamCondenserException(boardData.getString("error"));
             }
 
-            Map<Integer, GameLeaderboardEntry> entries = new HashMap<Integer, GameLeaderboardEntry>();
+            Map<Integer, GameLeaderboardEntry> entries = new HashMap<>();
             for(XMLData entryData : boardData.getElements("entries", "entry")) {
                 GameLeaderboardEntry entry = new GameLeaderboardEntry(entryData, this);
                 entries.put(entry.getRank(), entry);

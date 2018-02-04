@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.packets;
@@ -38,7 +38,7 @@ public class S2A_RULES_Packet extends SteamPacket {
         }
 
         int rulesCount = Short.reverseBytes(this.contentData.getShort());
-        this.rulesHash = new HashMap<String, String>(rulesCount);
+        this.rulesHash = new HashMap<>(rulesCount);
 
         String rule;
         String value;

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2013, Sebastian Staudt
+ * Copyright (c) 2009-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.defense_grid;
@@ -102,7 +102,7 @@ public class DefenseGridStats extends GameStats {
 
         if(this.alienStats != null) {
             XMLData aliensData = this.xmlData.getElement("stats", "aliens");
-            this.alienStats = new HashMap<String, int[]>();
+            this.alienStats = new HashMap<>();
             String[] aliens = {"bulwark", "crasher", "dart", "decoy",
                 "drone", "grunt", "juggernaut", "manta", "racer", "rumbler",
                 "seeker", "spire", "stealth", "swarmer", "turtle", "walker"};
@@ -339,12 +339,12 @@ public class DefenseGridStats extends GameStats {
 
         if(this.towerStats != null) {
             XMLData towersData = this.xmlData.getElement("stats", "towers");
-            this.towerStats = new HashMap<String, ArrayList<float[]>>();
+            this.towerStats = new HashMap<>();
             String[] towers = {"cannon", "flak", "gun", "inferno", "laser", "meteor", "missile", "tesla"};
 
             ArrayList<float[]> towerData;
             for(String tower : towers) {
-                towerData = new ArrayList<float[]>();
+                towerData = new ArrayList<>();
                 for(int i = 1; i <= 3; i++) {
                     float[] levelData = new float[2];
                     levelData[0] = towersData.getXPath(tower + "[@level=" + i + "]/built/value").getFloat();
@@ -354,7 +354,7 @@ public class DefenseGridStats extends GameStats {
                 this.towerStats.put(tower, towerData);
             }
 
-            towerData = new ArrayList<float[]>();
+            towerData = new ArrayList<>();
             for(int i = 1; i <= 3; i++) {
                 float[] levelData = new float[2];
                 levelData[0] = towersData.getXPath("command[@level=" + i + "]/built/value").getFloat();
@@ -363,7 +363,7 @@ public class DefenseGridStats extends GameStats {
             }
             this.towerStats.put("command", towerData);
 
-            towerData = new ArrayList<float[]>();
+            towerData = new ArrayList<>();
             for(int i = 1; i <= 3; i++) {
                 float[] levelData = new float[2];
                 levelData[0] = towersData.getXPath("temporal[@level=" + i + "]/built/value").getFloat();

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -99,13 +99,13 @@ public class AppNews {
     public static List<AppNews> getNewsForApp(int appId, int count, Integer maxLength)
             throws WebApiException {
         try {
-            HashMap<String, Object> params = new HashMap<String, Object>();
+            HashMap<String, Object> params = new HashMap<>();
             params.put("appid", appId);
             params.put("count", count);
             params.put("maxlength", maxLength);
             JSONObject data = new JSONObject(WebApi.getJSON("ISteamNews", "GetNewsForApp", 2, params));
 
-            List<AppNews> newsItems = new ArrayList<AppNews>();
+            List<AppNews> newsItems = new ArrayList<>();
             JSONArray newsData = data.getJSONObject("appnews").getJSONArray("newsitems");
             for(int i = 0; i < newsData.length(); i ++) {
                 newsItems.add(new AppNews(appId, newsData.getJSONObject(i)));

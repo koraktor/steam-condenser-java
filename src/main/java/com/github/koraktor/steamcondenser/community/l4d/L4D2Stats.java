@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.l4d;
@@ -36,7 +36,7 @@ public class L4D2Stats extends AbstractL4DStats {
         super(steamId, "l4d2");
 
         XMLData weaponsData = this.xmlData.getElement("stats", "weapons");
-        this.damagePercentages = new HashMap<String, Float>();
+        this.damagePercentages = new HashMap<>();
         this.damagePercentages.put("melee", weaponsData.getFloat("meleePctDmg"));
         this.damagePercentages.put("pistols", weaponsData.getFloat("pistolsPctDmg"));
         this.damagePercentages.put("rifles", weaponsData.getFloat("bulletsPctDmg"));
@@ -101,7 +101,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.scavengeStats == null) {
             XMLData scavengeStatsElement = this.xmlData.getElement("stats", "scavenge");
-            this.scavengeStats = new HashMap<String, Object>();
+            this.scavengeStats = new HashMap<>();
             this.scavengeStats.put("avgCansPerRound", scavengeStatsElement.getFloat("avgcansperround"));
             this.scavengeStats.put("perfectRounds", scavengeStatsElement.getInteger("perfect16canrounds"));
             this.scavengeStats.put("roundsLost", scavengeStatsElement.getInteger("roundslost"));
@@ -109,10 +109,10 @@ public class L4D2Stats extends AbstractL4DStats {
             this.scavengeStats.put("roundsWon", scavengeStatsElement.getInteger("roundswon"));
             this.scavengeStats.put("totalCans", scavengeStatsElement.getInteger("totalcans"));
 
-            HashMap<String, HashMap<String, Object>> mapsHash = new HashMap<String, HashMap<String, Object>>();
+            HashMap<String, HashMap<String, Object>> mapsHash = new HashMap<>();
             for(XMLData mapData : scavengeStatsElement.getChildren("mapstats")) {
                 String mapId = mapData.getString("name");
-                HashMap<String, Object> mapHash = new HashMap<String, Object>();
+                HashMap<String, Object> mapHash = new HashMap<>();
                 mapHash.put("avgRoundScore", mapData.getInteger("avgscoreperround"));
                 mapHash.put("highestGameScore", mapData.getInteger("highgamescore"));
                 mapHash.put("highestRoundScore", mapData.getInteger("highroundscore"));
@@ -150,7 +150,7 @@ public class L4D2Stats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            HashMap<String, L4D2Map> mapsHash = new HashMap<String, L4D2Map>();
+            HashMap<String, L4D2Map> mapsHash = new HashMap<>();
             for(XMLData mapData : this.xmlData.getChildren("stats", "survival", "maps")) {
                 mapsHash.put(mapData.getName(), new L4D2Map(mapData));
             }
@@ -174,7 +174,7 @@ public class L4D2Stats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            this.weaponStats = new HashMap<String, GameWeapon>();
+            this.weaponStats = new HashMap<>();
             for(XMLData weaponData : this.xmlData.getChildren("stats", "weapons")) {
                 String weaponName = weaponData.getName();
                 GameWeapon weapon;

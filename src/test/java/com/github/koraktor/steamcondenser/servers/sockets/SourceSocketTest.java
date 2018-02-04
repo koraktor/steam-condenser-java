@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.sockets;
@@ -68,7 +68,7 @@ public class SourceSocketTest {
 
     @Test
     public void testSplitPacketReply() throws Exception {
-        ArrayList<byte[]> packets = new ArrayList<byte[]>();
+        ArrayList<byte[]> packets = new ArrayList<>();
         packets.add("test".getBytes());
         packets.add("test".getBytes());
         when(SteamPacketFactory.reassemblePacket(refEq(packets))).thenReturn(this.packet);
@@ -93,7 +93,7 @@ public class SourceSocketTest {
 
     @Test
     public void testCompressedReply() throws Exception {
-        ArrayList<byte[]> packets = new ArrayList<byte[]>();
+        ArrayList<byte[]> packets = new ArrayList<>();
         packets.add("test".getBytes());
         packets.add("test".getBytes());
         when(SteamPacketFactory.reassemblePacket(refEq(packets), eq(true), eq(8), eq(1337))).thenReturn(this.packet);

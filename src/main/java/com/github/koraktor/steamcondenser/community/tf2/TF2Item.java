@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.tf2;
@@ -44,7 +44,7 @@ public class TF2Item extends GameItem {
             throws JSONException, SteamCondenserException {
         super(inventory, itemData);
 
-        this.equipped = new HashMap<String, Boolean>();
+        this.equipped = new HashMap<>();
         for(int classId = 0; classId < CLASSES.length; classId++) {
             this.equipped.put(CLASSES[classId], (itemData.getLong("inventory") & (1 << 16 + classId)) != 0);
         }
@@ -57,7 +57,7 @@ public class TF2Item extends GameItem {
      * @return The names of the classes this player has equipped this item
      */
     public List<String> getClassesEquipped() {
-        List<String> classesEquipped = new ArrayList<String>();
+        List<String> classesEquipped = new ArrayList<>();
         for(Map.Entry<String, Boolean> classEquipped : this.equipped.entrySet()) {
             if(classEquipped.getValue()) {
                 classesEquipped.add(classEquipped.getKey());

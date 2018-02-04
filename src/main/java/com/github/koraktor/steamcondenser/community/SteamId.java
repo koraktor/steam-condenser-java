@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -36,7 +36,7 @@ public class SteamId {
 
     private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.LONG, Locale.ENGLISH);
 
-    private static Map<Object, SteamId> steamIds = new HashMap<Object, SteamId>();
+    private static Map<Object, SteamId> steamIds = new HashMap<>();
 
     private String customUrl;
     private long fetchTime;
@@ -286,7 +286,7 @@ public class SteamId {
     public static Long resolveVanityUrl(String vanityUrl)
             throws WebApiException {
         try {
-            HashMap<String, Object> params = new HashMap<String, Object>();
+            HashMap<String, Object> params = new HashMap<>();
             params.put("vanityurl", vanityUrl);
 
             String json = WebApi.getJSON("ISteamUser", "ResolveVanityURL", 1, params);
@@ -396,19 +396,19 @@ public class SteamId {
                 this.steamRating = profile.getFloat("steamRating");
                 this.summary = profile.getUnescapedString("summary");
 
-                this.mostPlayedGames = new HashMap<String, Float>();
+                this.mostPlayedGames = new HashMap<>();
                 for(XMLData mostPlayedGame : profile.getElements("mostPlayedGames", "mostPlayedGame")) {
                     this.mostPlayedGames.put(mostPlayedGame.getString("gameName"), mostPlayedGame.getFloat("hoursPlayed"));
                 }
 
                 List<XMLData> groupElements = profile.getElements("groups", "group");
-                this.groups = new ArrayList<SteamGroup>(groupElements.size());
+                this.groups = new ArrayList<>(groupElements.size());
                 for(int i = 0; i < this.groups.size(); i++) {
                     XMLData group = groupElements.get(i);
                     this.groups.add(SteamGroup.create(group.getLong("groupID64"), false));
                 }
 
-                this.links = new HashMap<String, String>();
+                this.links = new HashMap<>();
                 for(XMLData weblink : profile.getElements("weblinks", "weblink")) {
                     this.links.put(weblink.getUnescapedString("title"), weblink.getString("link"));
                 }
@@ -436,13 +436,13 @@ public class SteamId {
      */
     private void fetchFriends() throws SteamCondenserException {
         try {
-            Map<String, Object> params = new HashMap<String, Object>();
+            Map<String, Object> params = new HashMap<>();
             params.put("relationship", "friend");
             params.put("steamid", this.steamId64);
 
             JSONObject jsonData = new JSONObject(WebApi.getJSON("ISteamUser", "GetFriendList", 1, params));
             JSONArray friendsData = jsonData.getJSONObject("friendslist").getJSONArray("friends");
-            this.friends = new ArrayList<SteamId>();
+            this.friends = new ArrayList<>();
             for (int i = 0; i < friendsData.length(); i ++) {
                 JSONObject friend = friendsData.getJSONObject(i);
                 this.friends.add(new SteamId(friend.getLong("steamid"), false));
@@ -463,8 +463,8 @@ public class SteamId {
         try {
             XMLData gamesData = new XMLData(this.getBaseUrl() + "/games?xml=1");
 
-            this.games = new HashMap<Integer, SteamGame>();
-            this.playtimes = new HashMap<Integer, int[]>();
+            this.games = new HashMap<>();
+            this.playtimes = new HashMap<>();
             for(XMLData gameData : gamesData.getElements("games", "game")) {
                 int appId = gameData.getInteger("appID");
                 SteamGame game = SteamGame.create(appId, gameData);

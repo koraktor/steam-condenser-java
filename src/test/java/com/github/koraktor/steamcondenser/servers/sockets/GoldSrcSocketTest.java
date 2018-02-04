@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.sockets;
@@ -127,7 +127,7 @@ public class GoldSrcSocketTest {
     @PrepareForTest(SteamPacketFactory.class)
     public void testSplitPacketReply() throws Exception {
         SteamPacket packet = mock(SteamPacket.class);
-        ArrayList<byte[]> packets = new ArrayList<byte[]>();
+        ArrayList<byte[]> packets = new ArrayList<>();
         packets.add("test".getBytes());
         packets.add("test".getBytes());
         mockStatic(SteamPacketFactory.class);

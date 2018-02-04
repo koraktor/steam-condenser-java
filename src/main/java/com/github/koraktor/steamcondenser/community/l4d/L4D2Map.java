@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.l4d;
@@ -56,17 +56,17 @@ public class L4D2Map extends L4DMap {
         if(this.played) {
             this.bestTime = mapData.getFloat("besttimemilliseconds") / 1000;
 
-            this.items = new HashMap<String, Integer>();
+            this.items = new HashMap<>();
             for(String item : ITEMS) {
                 this.items.put(item, mapData.getInteger("items_" + item));
             }
 
-            this.kills = new HashMap<String, Integer>();
+            this.kills = new HashMap<>();
             for(String infected : INFECTED) {
                 this.items.put(infected, mapData.getInteger("kills_" + infected));
             }
 
-            this.teammates = new ArrayList<SteamId>();
+            this.teammates = new ArrayList<>();
             for(XMLData teammateData : mapData.getChildren("teammates")) {
                 this.teammates.add(SteamId.create(teammateData.getLong()));
             }

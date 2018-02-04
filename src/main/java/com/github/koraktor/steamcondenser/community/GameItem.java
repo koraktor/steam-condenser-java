@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -100,7 +100,7 @@ public class GameItem {
                 }
             }
 
-            this.attributes = new ArrayList<JSONObject>();
+            this.attributes = new ArrayList<>();
             for (int i = 0; i < attributesData.length(); i ++) {
                 JSONObject attributeData = attributesData.getJSONObject(i);
                 Object attributeKey = attributeData.opt("defindex");

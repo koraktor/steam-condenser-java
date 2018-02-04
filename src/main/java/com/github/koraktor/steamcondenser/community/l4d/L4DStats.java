@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2009-2013, Sebastian Staudt
+ * Copyright (c) 2009-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.l4d;
@@ -50,7 +50,7 @@ public class L4DStats extends AbstractL4DStats {
 
         if(this.survivalStats == null) {
             super.getSurvivalStats();
-            HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
+            HashMap<String, L4DMap> mapsHash = new HashMap<>();
             for(XMLData mapData : this.xmlData.getElements("stats", "survival", "maps")) {
                 mapsHash.put(mapData.getName(), new L4DMap(mapData));
             }
@@ -74,7 +74,7 @@ public class L4DStats extends AbstractL4DStats {
         }
 
         if(this.weaponStats == null) {
-            this.weaponStats = new HashMap<String, GameWeapon>();
+            this.weaponStats = new HashMap<>();
             for(XMLData weaponData : this.xmlData.getChildren("stats", "weapons")) {
                 String weaponName = weaponData.getName();
                 GameWeapon weapon;

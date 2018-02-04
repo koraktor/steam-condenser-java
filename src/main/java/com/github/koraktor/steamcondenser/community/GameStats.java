@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -147,7 +147,7 @@ public class GameStats {
      */
     public ArrayList<GameAchievement> getAchievements() {
         if(this.achievements == null) {
-            this.achievements = new ArrayList<GameAchievement>();
+            this.achievements = new ArrayList<>();
             this.achievementsDone = 0;
 
             for(XMLData achievementData : this.xmlData.getElements("achievements", "achievement")) {

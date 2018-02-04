@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  *               2012, Sam Kinard
  */
 
@@ -26,7 +26,7 @@ public class SteamGroup {
 
     private static final String AVATAR_URL = "http://media.steampowered.com/steamcommunity/public/images/avatars/%s/%s%s.jpg";
 
-    protected static Map<Object, SteamGroup> steamGroups = new HashMap<Object, SteamGroup>();
+    protected static Map<Object, SteamGroup> steamGroups = new HashMap<>();
 
     private String avatarHash;
 
@@ -208,7 +208,7 @@ public class SteamGroup {
             this.groupId64 = (Long) id;
         }
 
-        this.members = new ArrayList<SteamId>();
+        this.members = new ArrayList<>();
 
         if(fetch) {
             this.fetchMembers();

@@ -1,9 +1,9 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -138,7 +138,7 @@ public class SteamIdTest {
 
         mockStatic(WebApi.class);
 
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("relationship", "friend");
         params.put("steamid", 76561197961384956L);
         byte[] jsonData = new byte[friendStream.available()];
@@ -166,7 +166,7 @@ public class SteamIdTest {
 
     @Test
     public void testResolveVanityUrlSuccess() throws Exception {
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("vanityurl", "koraktor");
 
         mockStatic(WebApi.class);
@@ -179,7 +179,7 @@ public class SteamIdTest {
 
     @Test
     public void testResolveVanityUrlFailure() throws Exception {
-        HashMap<String, Object> params = new HashMap<String, Object>();
+        HashMap<String, Object> params = new HashMap<>();
         params.put("vanityurl", "unknown");
 
         mockStatic(WebApi.class);

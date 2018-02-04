@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -30,7 +30,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
  */
 public class SteamGame {
 
-    private static Map<Integer, SteamGame> games = new HashMap<Integer, SteamGame>();
+    private static Map<Integer, SteamGame> games = new HashMap<>();
 
     private int appId;
 
@@ -114,7 +114,7 @@ public class SteamGame {
      */
     public static boolean isUpToDate(int appId, int version)
             throws JSONException, SteamCondenserException {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("appid", appId);
         params.put("version", version);
         String json = WebApi.getJSON("ISteamApps", "UpToDateCheck", 1, params);
@@ -272,7 +272,7 @@ public class SteamGame {
      * @throws WebApiException on Web API errors
      */
     public int getPlayerCount() throws JSONException, WebApiException {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("appid", this.appId);
         String jsonString = WebApi.getJSON("ISteamUserStats", "GetNumberOfCurrentPlayers", 1, params);
         JSONObject result = new JSONObject(jsonString).getJSONObject("response");

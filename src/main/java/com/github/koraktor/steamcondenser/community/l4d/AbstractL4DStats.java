@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2013, Sebastian Staudt
+ * Copyright (c) 2010-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community.l4d;
@@ -54,7 +54,7 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.isPublic()) {
             XMLData mostRecentGameNode = this.xmlData.getElement("stats", "mostRecentGame");
-            this.mostRecentGame = new HashMap<String, Object>();
+            this.mostRecentGame = new HashMap<>();
             if(mostRecentGameNode != null) {
                 this.mostRecentGame.put("difficulty", mostRecentGameNode.getString("difficulty"));
                 this.mostRecentGame.put("escaped", mostRecentGameNode.getString("bEscaped").equals("1"));
@@ -78,7 +78,7 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.favorites == null) {
             XMLData favoritesNode = this.xmlData.getElement("stats", "favorites");
-            this.favorites = new HashMap<String, Object>();
+            this.favorites = new HashMap<>();
             this.favorites.put("campaign", favoritesNode.getString("campaign"));
             this.favorites.put("campaignPercentage", favoritesNode.getInteger("campaignpct"));
             this.favorites.put("character", favoritesNode.getString("character"));
@@ -107,7 +107,7 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.lifetimeStats == null) {
             XMLData lifetimeStatsElement = this.xmlData.getElement("stats", "lifetime");
-            this.lifetimeStats = new HashMap<String, Object>();
+            this.lifetimeStats = new HashMap<>();
             this.lifetimeStats.put("finalesSurvived", lifetimeStatsElement.getInteger("finales"));
             this.lifetimeStats.put("gamesPlayed", lifetimeStatsElement.getInteger("gamesplayed"));
             this.lifetimeStats.put("finalesSurvivedPercentage", ((Integer) this.lifetimeStats.get("finalesSurvived")).floatValue() / (Integer) this.lifetimeStats.get("gamesPlayed"));
@@ -140,14 +140,14 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.survivalStats == null) {
             XMLData survivalStatsElement = this.xmlData.getElement("stats", "survival");
-            this.survivalStats = new HashMap<String, Object>();
+            this.survivalStats = new HashMap<>();
             this.survivalStats.put("goldMedals", survivalStatsElement.getInteger("goldmedals"));
             this.survivalStats.put("silverMedals", survivalStatsElement.getInteger("silvermedals"));
             this.survivalStats.put("bronzeMedals", survivalStatsElement.getInteger("bronzemedals"));
             this.survivalStats.put("roundsPlayed", survivalStatsElement.getInteger("roundsplayed"));
             this.survivalStats.put("bestTime", survivalStatsElement.getFloat("besttime"));
 
-            HashMap<String, L4DMap> mapsHash = new HashMap<String, L4DMap>();
+            HashMap<String, L4DMap> mapsHash = new HashMap<>();
             for(XMLData mapData : survivalStatsElement.getElements("maps")) {
                 mapsHash.put(mapData.getName(), new L4DMap(mapData));
             }
@@ -173,7 +173,7 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.teamplayStats == null) {
             XMLData teamplayStatsElement = this.xmlData.getElement("stats", "teamplay");
-            this.teamplayStats = new HashMap<String, Object>();
+            this.teamplayStats = new HashMap<>();
             this.teamplayStats.put("revived", teamplayStatsElement.getInteger("revived"));
             this.teamplayStats.put("mostRevivedDifficulty", teamplayStatsElement.getString("reviveddiff"));
             this.teamplayStats.put("avgRevived", teamplayStatsElement.getFloat("revivedavg"));
@@ -206,7 +206,7 @@ public abstract class AbstractL4DStats extends GameStats {
 
         if(this.versusStats == null) {
             XMLData versusStatsElement = this.xmlData.getElement("stats", "versus");
-            this.versusStats = new HashMap<String, Object>();
+            this.versusStats = new HashMap<>();
             this.versusStats.put("gamesPlayed", versusStatsElement.getInteger("gamesplayed"));
             this.versusStats.put("gamesCompleted", versusStatsElement.getInteger("gamescompleted"));
             this.versusStats.put("finalesSurvived", versusStatsElement.getInteger("finales"));
@@ -217,13 +217,13 @@ public abstract class AbstractL4DStats extends GameStats {
             this.versusStats.put("gamesLost", versusStatsElement.getInteger("gameslost"));
             this.versusStats.put("highestSurvivorScore", versusStatsElement.getInteger("survivorscore"));
 
-            ArrayList<String> infectedArray = new ArrayList<String>();
+            ArrayList<String> infectedArray = new ArrayList<>();
             infectedArray.add("boomer");
             infectedArray.add("hunter");
             infectedArray.add("smoker");
             infectedArray.add("tank");
             for(String infected : infectedArray) {
-                HashMap<String, Number> infectedStats = new HashMap<String, Number>();
+                HashMap<String, Number> infectedStats = new HashMap<>();
                 infectedStats.put("special", versusStatsElement.getInteger(infected + "special"));
                 infectedStats.put("mostDamage", versusStatsElement.getInteger(infected + "dmg"));
                 infectedStats.put("avgLifespan", versusStatsElement.getInteger(infected + "lifespan"));

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2011-2013, Sebastian Staudt
+ * Copyright (c) 2011-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -46,8 +46,8 @@ public abstract class Server {
      */
     protected Server(Object address, Integer port)
             throws SteamCondenserException {
-        this.hostNames   = new ArrayList<String>();
-        this.ipAddresses = new ArrayList<InetAddress>();
+        this.hostNames   = new ArrayList<>();
+        this.ipAddresses = new ArrayList<>();
         this.ipIndex     = 0;
 
         if(address instanceof String) {
