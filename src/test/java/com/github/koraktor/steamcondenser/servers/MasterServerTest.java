@@ -47,10 +47,10 @@ public class MasterServerTest {
 
     @Before
     public void setup() throws Exception {
-        this.server = spy(new MasterServer(InetAddress.getByAddress(new byte[] { 0x7f, 0x0, 0x0, 0x1 }), 27015));
-        this.server.socket = mock(MasterServerSocket.class);
+        server = spy(new MasterServer(InetAddress.getByAddress(new byte[] { 0x7f, 0x0, 0x0, 0x1 }), 27015));
+        server.socket = mock(MasterServerSocket.class);
 
-        doReturn(true).when(this.server).rotateIp();
+        doReturn(true).when(server).rotateIp();
     }
 
     @Test
@@ -66,7 +66,7 @@ public class MasterServerTest {
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
         when(packet2.getServers()).thenReturn(servers2);
-        when(this.server.socket.getReply()).thenReturn(packet1).thenReturn(packet2);
+        when(server.socket.getReply()).thenReturn(packet1).thenReturn(packet2);
 
         Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
@@ -74,30 +74,12 @@ public class MasterServerTest {
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
         servers.add(new InetSocketAddress("127.0.0.4", 27015));
 
-        assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
+        assertThat(server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
 
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
+        verify(server.socket).
+                send(argThat(matchesPacketBytes("\u0031\u00030.0.0.0:0\0filter\0")));
+        verify(server.socket).
+                send(argThat(matchesPacketBytes("\u0031\u0003127.0.0.3:27015\0filter\0")));
     }
 
     @Test
@@ -110,37 +92,19 @@ public class MasterServerTest {
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
         when(packet1.getServers()).thenReturn(servers1);
-        when(this.server.socket.getReply()).thenReturn(packet1).thenThrow(new TimeoutException());
+        when(server.socket.getReply()).thenReturn(packet1).thenThrow(new TimeoutException());
 
         Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
         servers.add(new InetSocketAddress("127.0.0.2", 27015));
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
 
-        assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter", true), is(equalTo(servers)));
+        assertThat(server.getServers(MasterServer.REGION_EUROPE, "filter", true), is(equalTo(servers)));
 
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
+        verify(server.socket).
+                send(argThat(matchesPacketBytes("\u0031\u00030.0.0.0:0\0filter\0")));
+        verify(server.socket).
+                send(argThat(matchesPacketBytes("\u0031\u0003127.0.0.3:27015\0filter\0")));
     }
 
     @Test
@@ -156,14 +120,14 @@ public class MasterServerTest {
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
         when(packet2.getServers()).thenReturn(servers2);
-        when(this.server.socket.getReply())
+        when(server.socket.getReply())
             .thenReturn(packet1)
             .thenThrow(new TimeoutException())
             .thenThrow(new TimeoutException())
             .thenThrow(new TimeoutException())
             .thenReturn(packet2);
 
-        when(this.server.rotateIp()).thenReturn(false);
+        when(server.rotateIp()).thenReturn(false);
 
         Set<InetSocketAddress> servers = new HashSet<>();
         servers.add(new InetSocketAddress("127.0.0.1", 27015));
@@ -171,31 +135,13 @@ public class MasterServerTest {
         servers.add(new InetSocketAddress("127.0.0.3", 27015));
         servers.add(new InetSocketAddress("127.0.0.4", 27015));
 
-        assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
+        assertThat(server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
 
-        verify(this.server, times(3)).rotateIp();
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
-        verify(this.server.socket, times(4)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
-            }
-
-            public void describeTo(Description description) {}
-        }));
+        verify(server, times(3)).rotateIp();
+        verify(server.socket).
+                send(argThat(matchesPacketBytes("\u0031\u00030.0.0.0:0\0filter\0")));
+        verify(server.socket, times(4)).
+                send(argThat(matchesPacketBytes("\u0031\u0003127.0.0.3:27015\0filter\0")));
     }
 
     @Test
@@ -203,24 +149,46 @@ public class MasterServerTest {
         int retries = new Random().nextInt(4) + 1;
         MasterServer.setRetries(retries);
 
-        when(this.server.socket.getReply()).thenThrow(new TimeoutException());
+        when(server.socket.getReply()).thenThrow(new TimeoutException());
 
         try {
-            this.server.getServers();
+            server.getServers();
             fail();
-        } catch(TimeoutException e) {}
+        } catch (TimeoutException ignored) {}
 
-        verify(this.server.socket, times(retries)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                    return false;
-                }
-                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-                return Arrays.equals(packet.getBytes(), new byte[] { 0x31, (byte) 0xFF, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x3a, 0x30, 0x00, 0x00 });
+        verify(server.socket, times(retries)).
+                send(argThat(matchesPacketBytes(new byte[] { 0x31, (byte) 0xFF, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x3a, 0x30, 0x00, 0x00 })));
+    }
+
+    private static A2M_GET_SERVERS_BATCH2_PacketMatcher matchesPacketBytes(String byteString) {
+        return new A2M_GET_SERVERS_BATCH2_PacketMatcher(byteString.getBytes());
+    }
+
+    private static A2M_GET_SERVERS_BATCH2_PacketMatcher matchesPacketBytes(byte[] bytes) {
+        return new A2M_GET_SERVERS_BATCH2_PacketMatcher(bytes);
+    }
+
+    private static class A2M_GET_SERVERS_BATCH2_PacketMatcher extends BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet> {
+
+        private final byte[] bytes;
+
+        A2M_GET_SERVERS_BATCH2_PacketMatcher(byte[] bytes) {
+            this.bytes =  bytes;
+        }
+
+        @Override
+        public boolean matches(Object o) {
+            if (!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
+                return false;
             }
 
-            public void describeTo(Description description) {}
-        }));
+            A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
+
+            return Arrays.equals(packet.getBytes(), bytes);
+        }
+
+        @Override
+        public void describeTo(Description description) {}
     }
 
 }
