@@ -1,14 +1,13 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2014, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -47,15 +46,6 @@ public class PacketBuffer {
      */
     public byte getByte() {
         return this.byteBuffer.get();
-    }
-
-    /**
-     * Returns a floating-point value from the buffer's current position
-     *
-     * @return A floating-point value
-     */
-    public float getFloat() {
-        return this.byteBuffer.getFloat();
     }
 
     /**
@@ -107,16 +97,6 @@ public class PacketBuffer {
 
             return new String(stringBytes);
         }
-    }
-
-    /**
-     * Changes the byte-order of the underlying byte buffer
-     *
-     * @param byteOrder The byte-order to use in the underlying byte buffer
-     */
-    public PacketBuffer order(ByteOrder byteOrder) {
-        this.byteBuffer.order(byteOrder);
-        return this;
     }
 
     /**
