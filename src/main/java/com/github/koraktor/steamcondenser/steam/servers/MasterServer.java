@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.servers;
@@ -261,7 +261,7 @@ public class MasterServer extends Server {
      */
     public Vector<InetSocketAddress> getServers(byte regionCode, String filter, boolean force)
             throws SteamCondenserException, TimeoutException {
-        int failCount    = 0;
+        int failCount;
         boolean finished = false;
         int portNumber   = 0;
         String hostName  = "0.0.0.0";

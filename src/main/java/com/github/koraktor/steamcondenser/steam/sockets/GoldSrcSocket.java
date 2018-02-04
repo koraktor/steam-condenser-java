@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2011, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.steam.sockets;
@@ -79,7 +79,7 @@ public class GoldSrcSocket extends QuerySocket {
         int bytesRead;
         SteamPacket packet;
 
-        bytesRead = this.receivePacket(1400);
+        this.receivePacket(1400);
 
         if(this.packetIsSplit()) {
             byte[] splitData;
