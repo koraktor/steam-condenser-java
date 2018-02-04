@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.packets;
@@ -72,7 +72,7 @@ public abstract class SteamPacketFactory {
                 return new S2C_CHALLENGE_Packet(data);
 
             case SteamPacket.M2A_SERVER_BATCH_HEADER:
-                return new M2A_SERVER_BATCH_Paket(data);
+                return new M2A_SERVER_BATCH_Packet(data);
 
             case SteamPacket.RCON_GOLDSRC_CHALLENGE_HEADER:
             case SteamPacket.RCON_GOLDSRC_NO_CHALLENGE_HEADER:

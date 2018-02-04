@@ -22,8 +22,8 @@ import org.junit.Test;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
-import com.github.koraktor.steamcondenser.servers.packets.A2M_GET_SERVERS_BATCH2_Paket;
-import com.github.koraktor.steamcondenser.servers.packets.M2A_SERVER_BATCH_Paket;
+import com.github.koraktor.steamcondenser.servers.packets.A2M_GET_SERVERS_BATCH2_Packet;
+import com.github.koraktor.steamcondenser.servers.packets.M2A_SERVER_BATCH_Packet;
 import com.github.koraktor.steamcondenser.servers.sockets.MasterServerSocket;
 
 import static org.hamcrest.core.Is.is;
@@ -55,13 +55,13 @@ public class MasterServerTest {
 
     @Test
     public void testGetServers() throws Exception {
-        M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
+        M2A_SERVER_BATCH_Packet packet1 = mock(M2A_SERVER_BATCH_Packet.class);
         Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
         when(packet1.getServers()).thenReturn(servers1);
-        M2A_SERVER_BATCH_Paket packet2 = mock(M2A_SERVER_BATCH_Paket.class);
+        M2A_SERVER_BATCH_Packet packet2 = mock(M2A_SERVER_BATCH_Packet.class);
         Vector<String> servers2 = new Vector<>();
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
@@ -76,23 +76,23 @@ public class MasterServerTest {
 
         assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
 
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
             }
 
             public void describeTo(Description description) {}
         }));
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
             }
 
@@ -104,7 +104,7 @@ public class MasterServerTest {
     public void testGetServersForced() throws Exception {
         MasterServer.setRetries(1);
 
-        M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
+        M2A_SERVER_BATCH_Packet packet1 = mock(M2A_SERVER_BATCH_Packet.class);
         Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
@@ -119,23 +119,23 @@ public class MasterServerTest {
 
         assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter", true), is(equalTo(servers)));
 
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
             }
 
             public void describeTo(Description description) {}
         }));
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
             }
 
@@ -145,13 +145,13 @@ public class MasterServerTest {
 
     @Test
     public void testGetServersSwapIp() throws Exception {
-        M2A_SERVER_BATCH_Paket packet1 = mock(M2A_SERVER_BATCH_Paket.class);
+        M2A_SERVER_BATCH_Packet packet1 = mock(M2A_SERVER_BATCH_Packet.class);
         Vector<String> servers1 = new Vector<>();
         servers1.add("127.0.0.1:27015");
         servers1.add("127.0.0.2:27015");
         servers1.add("127.0.0.3:27015");
         when(packet1.getServers()).thenReturn(servers1);
-        M2A_SERVER_BATCH_Paket packet2 = mock(M2A_SERVER_BATCH_Paket.class);
+        M2A_SERVER_BATCH_Packet packet2 = mock(M2A_SERVER_BATCH_Packet.class);
         Vector<String> servers2 = new Vector<>();
         servers2.add("127.0.0.4:27015");
         servers2.add("0.0.0.0:0");
@@ -174,23 +174,23 @@ public class MasterServerTest {
         assertThat(this.server.getServers(MasterServer.REGION_EUROPE, "filter"), is(equalTo(servers)));
 
         verify(this.server, times(3)).rotateIp();
-        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u00030.0.0.0:0\0filter\0".getBytes());
             }
 
             public void describeTo(Description description) {}
         }));
-        verify(this.server.socket, times(4)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket, times(4)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), "\u0031\u0003127.0.0.3:27015\0filter\0".getBytes());
             }
 
@@ -210,12 +210,12 @@ public class MasterServerTest {
             fail();
         } catch(TimeoutException e) {}
 
-        verify(this.server.socket, times(retries)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Paket>() {
+        verify(this.server.socket, times(retries)).send(argThat(new BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet>() {
             public boolean matches(Object o) {
-                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Paket)) {
+                if(!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
                     return false;
                 }
-                A2M_GET_SERVERS_BATCH2_Paket packet = (A2M_GET_SERVERS_BATCH2_Paket) o;
+                A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
                 return Arrays.equals(packet.getBytes(), new byte[] { 0x31, (byte) 0xFF, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x2E, 0x30, 0x3a, 0x30, 0x00, 0x00 });
             }
 

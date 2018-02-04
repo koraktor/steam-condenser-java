@@ -1,9 +1,10 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2013, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
+
 package com.github.koraktor.steamcondenser.servers.packets;
 
 import com.github.koraktor.steamcondenser.servers.MasterServer;
@@ -36,19 +37,11 @@ import com.github.koraktor.steamcondenser.servers.MasterServer;
  * @author Sebastian Staudt
  * @see MasterServer#getServers(byte, String)
  */
-public class A2M_GET_SERVERS_BATCH2_Paket extends SteamPacket {
+public class A2M_GET_SERVERS_BATCH2_Packet extends SteamPacket {
 
     private String filter;
     private byte regionCode;
     private String startIp;
-
-    /**
-     * Creates a new A2M_GET_SERVERS_BATCH2 request object without applying any
-     * filters
-     */
-    public A2M_GET_SERVERS_BATCH2_Paket() {
-        this(MasterServer.REGION_ALL, "0.0.0.0:0", "");
-    }
 
     /**
      * Creates a new A2M_GET_SERVERS_BATCH2 request object, filtering by the
@@ -59,7 +52,7 @@ public class A2M_GET_SERVERS_BATCH2_Paket extends SteamPacket {
      *        server or 0.0.0.0
      * @param filter The filters to apply in the form ("\filtername\value...")
      */
-    public A2M_GET_SERVERS_BATCH2_Paket(byte regionCode, String startIp, String filter) {
+    public A2M_GET_SERVERS_BATCH2_Packet(byte regionCode, String startIp, String filter) {
         super(SteamPacket.A2M_GET_SERVERS_BATCH2_HEADER);
 
         this.filter = filter;

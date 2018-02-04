@@ -21,7 +21,7 @@ import com.github.koraktor.steamcondenser.exceptions.PacketFormatException;
  * @author Sebastian Staudt
  * @see com.github.koraktor.steamcondenser.servers.MasterServer#getServers
  */
-public class M2A_SERVER_BATCH_Paket extends SteamPacket {
+public class M2A_SERVER_BATCH_Packet extends SteamPacket {
 
     private Vector<String> serverArray;
 
@@ -31,7 +31,7 @@ public class M2A_SERVER_BATCH_Paket extends SteamPacket {
      * @param data The raw packet data replied from the server
      * @throws PacketFormatException if the packet data is not well formatted
      */
-    public M2A_SERVER_BATCH_Paket(byte[] data)
+    public M2A_SERVER_BATCH_Packet(byte[] data)
             throws PacketFormatException {
         super(SteamPacket.M2A_SERVER_BATCH_HEADER, data);
 

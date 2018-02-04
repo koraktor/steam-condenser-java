@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2008-2015, Sebastian Staudt
+ * Copyright (c) 2008-2018, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -18,16 +18,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
-import com.github.koraktor.steamcondenser.servers.packets.A2M_GET_SERVERS_BATCH2_Paket;
-import com.github.koraktor.steamcondenser.servers.packets.M2A_SERVER_BATCH_Paket;
+import com.github.koraktor.steamcondenser.servers.packets.A2M_GET_SERVERS_BATCH2_Packet;
+import com.github.koraktor.steamcondenser.servers.packets.M2A_SERVER_BATCH_Packet;
 import com.github.koraktor.steamcondenser.servers.sockets.MasterServerSocket;
 
 /**
  * This class represents a Steam master server and can be used to get game
  * servers which are publicly available
  * <p/>
- * An intance of this class can be used much like Steam's server browser to get
- * a list of available game servers, including filters to narrow down the
+ * An instance of this class can be used much like Steam's server browser to
+ * get a list of available game servers, including filters to narrow down the
  * search results.
  *
  * @author Sebastian Staudt
@@ -165,7 +165,7 @@ public class MasterServer extends Server {
      *
      * @return A list of game servers matching the given
      *         region and filters
-     * @see A2M_GET_SERVERS_BATCH2_Paket
+     * @see A2M_GET_SERVERS_BATCH2_Packet
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
@@ -192,7 +192,7 @@ public class MasterServer extends Server {
      * @param filter The filters that game servers should match
      * @return A list of game servers matching the given
      *         region and filters
-     * @see A2M_GET_SERVERS_BATCH2_Paket
+     * @see A2M_GET_SERVERS_BATCH2_Packet
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
@@ -232,7 +232,7 @@ public class MasterServer extends Server {
      * @param filter The filters that game servers should match
      * @return A list of game servers matching the given
      *         region and filters
-     * @see A2M_GET_SERVERS_BATCH2_Paket
+     * @see A2M_GET_SERVERS_BATCH2_Packet
      * @throws SteamCondenserException if the request fails
      * @throws TimeoutException if too many timeouts occur while querying the
      *         master server
@@ -250,9 +250,9 @@ public class MasterServer extends Server {
             try {
                 failCount = 0;
                 do {
-                    this.socket.send(new A2M_GET_SERVERS_BATCH2_Paket(regionCode, hostName + ":" + portNumber, filter));
+                    this.socket.send(new A2M_GET_SERVERS_BATCH2_Packet(regionCode, hostName + ":" + portNumber, filter));
                     try {
-                        serverStringArray = ((M2A_SERVER_BATCH_Paket) this.socket.getReply()).getServers();
+                        serverStringArray = ((M2A_SERVER_BATCH_Packet) this.socket.getReply()).getServers();
 
                         for(String serverString : serverStringArray) {
                             hostName = serverString.substring(0, serverString.lastIndexOf(":"));
