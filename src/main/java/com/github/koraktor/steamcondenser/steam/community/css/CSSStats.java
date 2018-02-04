@@ -59,7 +59,7 @@ public class CSSStats extends GameStats {
     public CSSStats(Object steamId) throws SteamCondenserException {
         super(steamId, "cs:s");
 
-        if(this.isPublic()); {
+        if (this.isPublic()) {
             XMLData lastMatchStats = this.xmlData.getElement("stats", "lastmatch");
             XMLData lifetimeStats = this.xmlData.getElement("stats", "lifetime");
             XMLData summaryStats = this.xmlData.getElement("stats", "summary");
