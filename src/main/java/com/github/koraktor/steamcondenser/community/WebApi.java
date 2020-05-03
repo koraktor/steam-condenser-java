@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2010-2018, Sebastian Staudt
+ * Copyright (c) 2010-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -13,7 +13,9 @@ import java.util.Map;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import org.json.JSONArray;
@@ -295,8 +297,7 @@ abstract public class WebApi {
 
         String data;
         try {
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            httpClient.getParams().setBooleanParameter(ClientPNames.HANDLE_AUTHENTICATION, false);
+            CloseableHttpClient httpClient = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(url);
             HttpResponse response = httpClient.execute(request);
 

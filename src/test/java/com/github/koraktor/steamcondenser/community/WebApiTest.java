@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2018, Sebastian Staudt
+ * Copyright (c) 2012-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -11,11 +11,11 @@ import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -32,11 +32,7 @@ import com.github.koraktor.steamcondenser.exceptions.WebApiException;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 /**
  *
@@ -44,16 +40,18 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
  * @author Sebastian Staudt
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ DefaultHttpClient.class, WebApi.class })
+@PrepareForTest({ HttpClientBuilder.class, WebApi.class })
 public class WebApiTest {
 
     @Rule
     private ExpectedException exception = ExpectedException.none();
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         WebApi.apiKey = "0123456789ABCDEF0123456789ABCDEF";
         WebApi.setSecure(true);
+
+        mockStatic(HttpClientBuilder.class);
     }
 
     @Test
@@ -123,9 +121,10 @@ public class WebApiTest {
 
     @Test
     public void testLoad() throws Exception {
-        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
-        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
-        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+        HttpClientBuilder clientBuilder = mock(HttpClientBuilder.class);
+        CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
+        when(clientBuilder.build()).thenReturn(httpClient);
+        when(HttpClientBuilder.create()).thenReturn(clientBuilder);
 
         this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
@@ -139,9 +138,10 @@ public class WebApiTest {
     public void testLoadInsecure() throws Exception {
         WebApi.setSecure(false);
 
-        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
-        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
-        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+        HttpClientBuilder clientBuilder = mock(HttpClientBuilder.class);
+        CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
+        when(clientBuilder.build()).thenReturn(httpClient);
+        when(HttpClientBuilder.create()).thenReturn(clientBuilder);
 
         this.prepareRequest("http://api.steampowered.com/interface/method/v0002/?test=param&format=json&key=0123456789ABCDEF0123456789ABCDEF", 200, null, "test");
 
@@ -165,9 +165,10 @@ public class WebApiTest {
     public void testLoadWithoutKey() throws Exception {
         WebApi.setApiKey(null);
 
-        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
-        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
-        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+        HttpClientBuilder clientBuilder = mock(HttpClientBuilder.class);
+        CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
+        when(clientBuilder.build()).thenReturn(httpClient);
+        when(HttpClientBuilder.create()).thenReturn(clientBuilder);
 
         this.prepareRequest("https://api.steampowered.com/interface/method/v0002/?test=param&format=json", 200, null, "test");
 
@@ -188,14 +189,15 @@ public class WebApiTest {
     }
 
     private void prepareRequest(String url, int statusCode, String reason, String content) throws Exception {
-        DefaultHttpClient httpClient = mock(DefaultHttpClient.class);
-        when(httpClient.getParams()).thenReturn(new BasicHttpParams());
-        whenNew(DefaultHttpClient.class).withNoArguments().thenReturn(httpClient);
+        HttpClientBuilder clientBuilder = mock(HttpClientBuilder.class);
+        CloseableHttpClient httpClient = mock(CloseableHttpClient.class);
+        when(clientBuilder.build()).thenReturn(httpClient);
+        when(HttpClientBuilder.create()).thenReturn(clientBuilder);
 
         HttpGet request = mock(HttpGet.class);
         whenNew(HttpGet.class).withArguments(url).thenReturn(request);
 
-        HttpResponse response = mock(HttpResponse.class);
+        CloseableHttpResponse response = mock(CloseableHttpResponse.class);
         StatusLine statusLine = mock(StatusLine.class);
         when(statusLine.getReasonPhrase()).thenReturn(reason);
         when(statusLine.getStatusCode()).thenReturn(statusCode);
