@@ -2,7 +2,7 @@
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2018, Sebastian Staudt
+ * Copyright (c) 2012-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -19,8 +19,7 @@ import java.util.concurrent.TimeoutException;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
+import org.mockito.ArgumentMatcher;
 
 import com.github.koraktor.steamcondenser.servers.packets.A2M_GET_SERVERS_BATCH2_Packet;
 import com.github.koraktor.steamcondenser.servers.packets.M2A_SERVER_BATCH_Packet;
@@ -168,7 +167,8 @@ public class MasterServerTest {
         return new A2M_GET_SERVERS_BATCH2_PacketMatcher(bytes);
     }
 
-    private static class A2M_GET_SERVERS_BATCH2_PacketMatcher extends BaseMatcher<A2M_GET_SERVERS_BATCH2_Packet> {
+    private static class A2M_GET_SERVERS_BATCH2_PacketMatcher
+            implements ArgumentMatcher<A2M_GET_SERVERS_BATCH2_Packet> {
 
         private final byte[] bytes;
 
@@ -177,18 +177,9 @@ public class MasterServerTest {
         }
 
         @Override
-        public boolean matches(Object o) {
-            if (!(o instanceof A2M_GET_SERVERS_BATCH2_Packet)) {
-                return false;
-            }
-
-            A2M_GET_SERVERS_BATCH2_Packet packet = (A2M_GET_SERVERS_BATCH2_Packet) o;
-
+        public boolean matches(A2M_GET_SERVERS_BATCH2_Packet packet) {
             return Arrays.equals(packet.getBytes(), bytes);
         }
-
-        @Override
-        public void describeTo(Description description) {}
     }
 
 }

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers;
@@ -15,9 +15,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
+import org.mockito.ArgumentMatcher;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -28,7 +26,6 @@ import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONAuthRequestPa
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONAuthResponse;
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONExecRequestPacket;
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONExecResponsePacket;
-import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONPacket;
 import com.github.koraktor.steamcondenser.servers.packets.rcon.RCONTerminator;
 import com.github.koraktor.steamcondenser.servers.sockets.RCONSocket;
 import com.github.koraktor.steamcondenser.servers.sockets.SourceSocket;
@@ -70,29 +67,17 @@ public class SourceServerTest {
 
     private SourceSocket socket;
 
-    private Matcher<RCONPacket> requestMatcher = new BaseMatcher<RCONPacket>() {
-        public boolean matches(Object o) {
-            if(!(o instanceof RCONExecRequestPacket)) {
-                return false;
-            }
-            RCONExecRequestPacket packet = (RCONExecRequestPacket) o;
+    private ArgumentMatcher<RCONExecRequestPacket> requestMatcher = new ArgumentMatcher<RCONExecRequestPacket>() {
+        public boolean matches(RCONExecRequestPacket packet) {
             return packet.getRequestId() == 1234 &&
                    new String(packet.getBytes(), 12, 7).equals("command");
         }
-
-        public void describeTo(Description description) {}
     };
 
-    private Matcher<RCONPacket> terminatorMatcher = new BaseMatcher<RCONPacket>() {
-        public boolean matches(Object o) {
-            if(!(o instanceof RCONTerminator)) {
-                return false;
-            }
-            RCONTerminator packet = (RCONTerminator) o;
+    private ArgumentMatcher<RCONTerminator> terminatorMatcher = new ArgumentMatcher<RCONTerminator>() {
+        public boolean matches(RCONTerminator packet) {
             return packet.getRequestId() == 1234;
         }
-
-        public void describeTo(Description description) {}
     };
 
     @Before

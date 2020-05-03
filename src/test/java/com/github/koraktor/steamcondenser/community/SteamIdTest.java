@@ -3,7 +3,7 @@
  * the terms of the new BSD License.
  *
  * Copyright (c) 2011, Guto Maia
- * Copyright (c) 2011-2018, Sebastian Staudt
+ * Copyright (c) 2011-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.community;
@@ -28,9 +28,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -187,7 +187,7 @@ public class SteamIdTest {
             thenReturn("{ \"response\": { \"success\": 42 } }");
 
         Long steamID64 = SteamId.resolveVanityUrl("unknown");
-        assertThat(steamID64, is(eq(null)));
+        assertThat(steamID64, is(nullValue()));
     }
 
 }

@@ -1,8 +1,8 @@
-/**
+/*
  * This code is free software; you can redistribute it and/or modify it under
  * the terms of the new BSD License.
  *
- * Copyright (c) 2012-2013, Sebastian Staudt
+ * Copyright (c) 2012-2020, Sebastian Staudt
  */
 
 package com.github.koraktor.steamcondenser.servers.sockets;
@@ -17,15 +17,13 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.hamcrest.BaseMatcher;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
+import org.mockito.ArgumentMatcher;
 
 import com.github.koraktor.steamcondenser.exceptions.SteamCondenserException;
 import com.github.koraktor.steamcondenser.servers.packets.SteamPacket;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -75,27 +73,17 @@ public class QuerySocketTest {
 
         this.socket.send(packet);
 
-        Matcher<ByteBuffer> bufferMatcher = new BaseMatcher<ByteBuffer>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof ByteBuffer)) {
-                    return false;
-                }
-                return Arrays.equals(((ByteBuffer) o).array(), new byte[] { 0x1, 0x2, 0x3, 0x4 });
+        ArgumentMatcher<ByteBuffer> bufferMatcher = new ArgumentMatcher<ByteBuffer>() {
+            public boolean matches(ByteBuffer buffer) {
+                return Arrays.equals(buffer.array(), new byte[] { 0x1, 0x2, 0x3, 0x4 });
             }
-
-            public void describeTo(Description description) {}
         };
 
-        Matcher<InetSocketAddress> socketMatcher = new BaseMatcher<InetSocketAddress>() {
-            public boolean matches(Object o) {
-                if(!(o instanceof InetSocketAddress)) {
-                    return false;
-                }
-                return ((InetSocketAddress) o).getAddress().isLoopbackAddress() &&
-                       ((InetSocketAddress) o).getPort() == 27015;
+        ArgumentMatcher<InetSocketAddress> socketMatcher = new ArgumentMatcher<InetSocketAddress>() {
+            public boolean matches(InetSocketAddress socketAddress) {
+                return socketAddress.getAddress().isLoopbackAddress() &&
+                       socketAddress.getPort() == 27015;
             }
-
-            public void describeTo(Description description) {}
         };
 
         verify(this.channel).send(argThat(bufferMatcher), argThat(socketMatcher));
