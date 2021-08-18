@@ -19,3 +19,7 @@ notifications:
     urls:
       - https://webhooks.gitter.im/e/8229d26a4f90bcc6cd67
 script: mvn test -Dsurefire.useFile=false
+
+cache:
+  directories:
+  - $HOME/.m2
