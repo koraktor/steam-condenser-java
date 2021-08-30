@@ -181,11 +181,14 @@ public class SourceServer extends GameServer {
         do {
             responsePacket = this.rconSocket.getReply();
 
-            if (responsePacket == null ||
+            if ((response.size() == 0 && responsePacket == null) ||
                     responsePacket instanceof RCONAuthResponse) {
                 this.rconAuthenticated = false;
                 throw new RCONNoAuthException();
             }
+
+            if(responsePacket == null)
+                break;
 
             if (!isMulti && ((RCONExecResponsePacket) responsePacket).getResponse().length() > 0) {
                 isMulti = true;
